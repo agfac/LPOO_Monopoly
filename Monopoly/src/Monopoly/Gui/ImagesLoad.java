@@ -16,8 +16,8 @@ public class ImagesLoad extends JPanel{
 	public ImagesLoad(){
 		
 		 try {
-			 board =  ImageIO.read(new File("images/MonopolyBoard.jpg"));
-			 dogPiece =  ImageIO.read(new File("images/DogPiece.jpg"));
+			 board =  ImageIO.read(new File("resources/MonopolyBoard.jpg"));
+			 dogPiece =  ImageIO.read(new File("resources/DogPiece.jpg"));
 
 
 		} catch (IOException e) {
