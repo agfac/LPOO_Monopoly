@@ -16,6 +16,9 @@ public class GamePanel extends ImagesLoad {
 		this.dimYFrame = dimYFrame;
 	}
 	
+	public void llal(){
+		
+	}
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
