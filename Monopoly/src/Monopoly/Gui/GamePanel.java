@@ -23,8 +23,6 @@ public class GamePanel extends ImagesLoad {
 		g.setColor(Color.white);
 
 		g.drawImage(board, 0, 0, this.getWidth(), this.getHeight(), 0, 0, board.getWidth(), board.getHeight(), null);
-		
-		System.out.println("aaa");
-			
+					
 	}	
 }
