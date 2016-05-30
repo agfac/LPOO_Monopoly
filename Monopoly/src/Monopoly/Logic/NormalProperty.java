@@ -7,62 +7,68 @@ import java.util.*;
  */
 public class NormalProperty extends Property {
 
+	private int nrHouses;
+	private int nrHotels;
+	private int[] rentValues;
+	private int[] rentValuesWithHouses;
+	private int rentValuesWithHotel;
+	private int hotelCost;
+	private int houseCost;
+    
     /**
      * Default constructor
      */
     public NormalProperty() {
+    	
     }
 
     /**
      * 
      */
-    public int nrHouses;
-
-    /**
-     * 
-     */
-    public int nrHotels;
-
-    /**
-     * 
-     */
-    public int[] rentValues;
-
-    /**
-     * 
-     */
-    public int[] rentValuesWithHouses;
-
-    /**
-     * 
-     */
-    public int rentValuesWithHotel;
-
-    /**
-     * 
-     */
-    public int hotelCost;
-
-    /**
-     * 
-     */
-    public int houseCost;
-
-    /**
-     * @param idGroup 
-     * @param name 
-     * @param pos 
-     * @param amount 
-     * @param mortgageValue 
-     * @param mortgageValueBack 
-     * @param rentValues 
-     * @param rentValuesWithHouses 
-     * @param rentValuesWithHotel 
-     * @param hotelCost 
-     * @param houseCost
-     */
-    public void NormalProperty(int idGroup, String name, int pos, int amount, int mortgageValue, int mortgageValueBack, int[] rentValues, int[] rentValuesWithHouses, int rentValuesWithHotel, int hotelCost, int houseCost) {
-        // TODO implement here
+    public NormalProperty(int pos, String name, int idGroup, int amount, int mortgageValue, int rentValue, int[] rentValuesWithHouses, int rentValuesWithHotel) {
+        super(name, pos, idGroup, amount, mortgageValue);
+        this.rentValues[0] = rentValue;
+        this.rentValues[1] = (int) (this.rentValues[0]*1.1);
+        if (idGroup!=1 && idGroup!=9)
+        	this.rentValues[2] = (int) (this.rentValues[0]*1.2);
+        this.rentValuesWithHouses = rentValuesWithHouses;
+        this.rentValuesWithHotel = rentValuesWithHotel;
+        switch (idGroup) {
+        case 1:
+        	this.houseCost = 50;
+        	this.hotelCost = 50;
+        	break;
+        case 3:
+        	this.houseCost = 50;
+        	this.hotelCost = 50;
+        	break;
+        case 4:
+        	this.houseCost = 100;
+        	this.hotelCost = 100;
+        	break;
+        case 5:
+        	this.houseCost = 100;
+        	this.hotelCost = 100;
+        	break;
+        case 6:
+        	this.houseCost = 150;
+        	this.hotelCost = 150;
+        	break;
+        case 7:
+        	this.houseCost = 150;
+        	this.hotelCost = 150;
+        	break;
+        case 8:
+        	this.houseCost = 200;
+        	this.hotelCost = 200;
+        	break;
+        case 9:
+        	this.houseCost = 200;
+        	this.hotelCost = 200;
+        	break;
+        }
+        this.nrHouses = 0;
+        this.nrHotels = 0;
     }
 
     /**

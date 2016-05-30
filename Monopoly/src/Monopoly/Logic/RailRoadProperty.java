@@ -6,17 +6,16 @@ import java.util.*;
  * 
  */
 public class RailRoadProperty extends Property {
-
+	private int[] rentValues;
+	
     /**
      * Default constructor
      */
-    public RailRoadProperty() {
+    public RailRoadProperty(int pos, String name) {
+    	super(name,pos, 2, 200, 100);
+    	this.rentValues = new int[] {25, 50, 100, 200};
     }
-
-    /**
-     * 
-     */
-    public int[] rentValues;
+    
 
     /**
      * @param idGroup 

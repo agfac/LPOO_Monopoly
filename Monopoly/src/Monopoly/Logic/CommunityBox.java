@@ -10,7 +10,9 @@ public class CommunityBox extends BoardBox {
     /**
      * Default constructor
      */
-    public CommunityBox() {
+    public CommunityBox(int pos) {
+    	this.pos = pos;
+    	this.name = "Community Box";
     }
 
     /**

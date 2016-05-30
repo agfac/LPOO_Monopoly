@@ -7,46 +7,32 @@ import java.util.*;
  */
 public class Property extends BoardBox {
 
-    /**
-     * 
-     */
-    private int idGroup;
-
-    /**
-     * 
-     */
-    private int amount;
-
-    /**
-     * 
-     */
-    private boolean sold;
-
-    /**
-     * 
-     */
-    private Player owner;
-
-    /**
-     * 
-     */
-    private boolean mortgage;
-
-    /**
-     * 
-     */
-    private int mortgageValue;
-
-    /**
-     * 
-     */
-    private int mortgageValueBack;
-
+    protected int idGroup;
+    protected int amount;
+    protected boolean sold;
+    protected Player owner;
+    protected boolean mortgage;
+    protected int mortgageValue;
+    protected int mortgageValueBack;
 
     /**
      * Default constructor
      */
-    public Property() {
+    public Property(){
+    	
+    }
+    
+    public Property(String name, int pos, int idGroup, int amount, int mortgageValue) {
+    	this.name = name;
+    	this.pos = pos;
+    	this.idGroup = idGroup;
+    	this.amount = amount;
+    	this.sold = false;
+    	this.owner = null;
+    	this.mortgage = false;
+    	this.mortgageValue = mortgageValue;
+    	this.mortgageValueBack = (int) (this.mortgageValue*0.8);
+    	
     }
 
     /**

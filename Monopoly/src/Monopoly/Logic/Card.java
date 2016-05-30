@@ -3,10 +3,13 @@ package Monopoly.Logic;
 import java.util.*;
 
 /**
- * 
+ * Card Class
  */
 public class Card {
-
+	
+    public String deckType;
+    public int nrCards;
+    
     /**
      * Default constructor
      */
@@ -14,19 +17,8 @@ public class Card {
     }
 
     /**
-     * 
-     */
-    public String deckType;
-
-    /**
-     * 
-     */
-    public int nrCards;
-
-
-    /**
      * @param deckType 
-     * @param nrCards
+     * @param nrCards 
      */
     public void Card(String deckType, int nrCards) {
         // TODO implement here
@@ -34,7 +26,6 @@ public class Card {
 
     /**
      * @param player 
-     * @return
      */
     public void behaviorWithPlayer(Player player) {
         // TODO implement here

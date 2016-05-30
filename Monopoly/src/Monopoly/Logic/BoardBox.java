@@ -3,72 +3,62 @@ package Monopoly.Logic;
 import java.util.*;
 
 /**
- * 
+ * BoardBox Class
  */
 public class BoardBox {
-    /**
-     * 
-     */
-    private String name;
+
+    protected String name;
+    protected int pos ;
+    protected Vector<Player> playersIn;
 
     /**
-     * 
-     */
-    private int pos ;
-
-    /**
-     * 
-     */
-    public Vector<Player> playersIn;
-
-
-
-    /**
-     * Default constructor
+     * Default constructor of BoardBox
      */
     public BoardBox() {
     }
     
+    public BoardBox(String name, int pos) {
+    	this.name = name;
+    	this.pos = pos;
+    }
+    
     /**
-     * @return
+     * @return Name of BoardBox
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
-     * @return
+     * @return Position of the BoardBox
      */
     public int getPos() {
-        return pos;
+        return this.pos;
     }
 
     /**
-     * @param player 
-     * @return
+     * @param player to be add to BoardBox
      */
     public void addPlayer(Player player) {
     	playersIn.add(player);
     }
 
     /**
-     * @param player 
-     * @return
+     * @param player to be removed from BoardBox
      */
     public void removePlayer(Player player) {
         playersIn.remove(player);
     }
 
     /**
-     * @return
+     * @return players in BoardBox
      */
     public Vector<Player> getPlayersIn() {
         return playersIn;
     }
 
     /**
-     * @param player 
-     * @return
+     * @param player behavior with BoardBox
      */
     public void behaviorWithPlayer(Player player) {
         // TODO implement here

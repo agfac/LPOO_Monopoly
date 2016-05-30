@@ -6,17 +6,16 @@ import java.util.*;
  * 
  */
 public class TaxBox extends BoardBox {
-
+	private int taxValue;
+	
     /**
      * Default constructor
      */
-    public TaxBox() {
+    public TaxBox(int pos, String name,int taxValue) {
+    	this.pos = pos;
+    	this.name = name;
+    	this.taxValue = taxValue;
     }
-
-    /**
-     * 
-     */
-    public int taxValue;
 
     /**
      * @param post 

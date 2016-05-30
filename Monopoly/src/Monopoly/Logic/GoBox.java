@@ -11,6 +11,8 @@ public class GoBox extends BoardBox {
      * Default constructor
      */
     public GoBox() {
+    	this.name = "GO BOX";
+    	this.pos = 0;
     }
 
     /**

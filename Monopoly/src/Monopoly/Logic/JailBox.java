@@ -11,6 +11,8 @@ public class JailBox extends BoardBox {
      * Default constructor
      */
     public JailBox() {
+    	this.pos = 10;
+    	this.name = "Jail Box";
     }
 
     /**

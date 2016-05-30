@@ -10,7 +10,9 @@ public class ChanceBox extends BoardBox {
     /**
      * Default constructor
      */
-    public ChanceBox() {
+    public ChanceBox(int pos) {
+    	this.pos = pos;
+    	this.name = "Chance Box";
     }
 
     /**
