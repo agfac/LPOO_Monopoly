@@ -42,7 +42,8 @@ public class Board {
     	NormalProperty IndianaAvenue = new NormalProperty(23, "Indiana Avenue", 6, 220, 110, 18, new int[]{90,250,700,875}, 1050);
     	NormalProperty IllinoisAvenue = new NormalProperty(24, "Illinois Avenue", 6, 240, 120, 20, new int[]{100,300,750,925}, 1100);
     	RailRoadProperty BORailRoad = new RailRoadProperty(25, "B&O RailRoad");
-    	NormalProperty AtlanticAvenue = new NormalProperty(26, "Atlantic Avenue", 7, 240, 120, 20, new int[]{100,300,750,925}, 1100);
+    	NormalProperty AtlanticAvenue = new NormalProperty(26, "Atlantic Avenue", 7, 260, 130, 22, new int[]{110,330,800,975}, 1150);
+    	NormalProperty VentnorAvenue = new NormalProperty(27, "Ventnor Avenue", 7, 260, 130, 22, new int[]{110,330,800,975}, 1150);
 
 
     }
