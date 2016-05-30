@@ -17,7 +17,7 @@ public class Board {
     public Board() {
     	
     	GoBox Go = new GoBox();
-    	//NormalProperty MediterraneanAvenue = new NormalProperty(1,"Mediterranean Avenue", 1, 60, 30, 2, new int[]{10,30,90,160}, 250);
+    	NormalProperty MediterraneanAvenue = new NormalProperty(1,"Mediterranean Avenue", 1, 60, 30, 2, new int[]{10,30,90,160}, 250);
     	CommunityBox CommunityBox1 = new CommunityBox(2);
     	NormalProperty BalticAvenue = new NormalProperty(3,"Baltic Avenue", 1, 60, 30, 4, new int[]{20,60,180,320}, 450);
     	TaxBox IncomeTax = new TaxBox(4,"Income Tax",200);
