@@ -57,14 +57,6 @@ public class Board {
     	TaxBox LuxuryTax = new TaxBox(38,"Luxury Tax",100);
     	NormalProperty BoardWalk = new NormalProperty(39, "Board Walk", 9, 400, 200, 50, new int[]{200,600,1400,1700}, 2000);
 
-
-
-
-    	
-
-
-
-
     }
 
     /**

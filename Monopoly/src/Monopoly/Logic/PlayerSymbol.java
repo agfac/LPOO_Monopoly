@@ -7,21 +7,25 @@ import java.util.*;
  */
 public class PlayerSymbol {
 
+	 /**
+     * 
+     */
+    private int id;
+
+    /**
+     * 
+     */
+    private String name;
+    
     /**
      * Default constructor
      */
-    public PlayerSymbol() {
+    public PlayerSymbol(int id, String name) {
+    	this.id = id;
+    	this.name = name;
     }
 
-    /**
-     * 
-     */
-    public int id;
-
-    /**
-     * 
-     */
-    public String name;
+   
 
 
     /**
