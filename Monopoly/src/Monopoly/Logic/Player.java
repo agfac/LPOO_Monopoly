@@ -15,8 +15,10 @@ public class Player {
     private boolean inJail;
     private Vector<Card> cardsOwned;
     private Vector<Property> propertiesOwned;
+    private int nrOfRolls;
+    private int nrOfRollsInJail;
 
-    /**
+	/**
      * Default constructor of Player
      */
     public Player() {	
@@ -36,6 +38,7 @@ public class Player {
         this.cardsOwned = new Vector<Card>();
         this.propertiesOwned = new Vector<Property>();
         this.pos = pos;
+        this.nrOfRolls = 0;
     }
 
     /**
@@ -104,7 +107,7 @@ public class Player {
     /**
      * @return True if player is in Jail, false if player not in jail
      */
-    public boolean getInJain() {
+    public boolean getInJail() {
         return inJail;
     }
 
@@ -168,7 +171,7 @@ public class Player {
     }
 
     /**
-     * @param property to be unmortgage
+     * @param property to be "unmortgage"
      */
     public void unMortgageProperty(Property property) {
     	if ( propertiesOwned.contains(property) ){
@@ -176,5 +179,45 @@ public class Player {
     		property.setMortgage(false);
     	}
     }
+    
+    /**
+     * Number of roll dices tries by user
+     * @return Number of roll dices tries by user.
+     */
+    public int getNrOfRolls() {
+		return nrOfRolls;
+	}
+    
+    /**
+     * Update the number of tries that user use to roll the dice
+     * @param numberTries Number of tries.
+     */
+	public void setNrOfRolls(Boolean bool) {
+		if(bool){
+			this.nrOfRolls++;
+		}else
+			this.nrOfRolls = 0;
+	}
 
+	/**
+     * Get number of roll dices tries by user in jail
+     * @return Number of roll dices tries by user.
+     */
+	public int getNrOfRollsInJail() {
+		return nrOfRollsInJail;
+	}
+
+	/**
+     * Update the number of tries that user use to roll the dice in jail
+     * @param numberTries Number of tries.
+     */
+	public void setNrOfRollsInJail(Boolean bool) {
+		if(!bool){
+			this.nrOfRollsInJail++;
+		}else
+			this.nrOfRollsInJail = 0;
+	}
+	
+	
+	
 }
