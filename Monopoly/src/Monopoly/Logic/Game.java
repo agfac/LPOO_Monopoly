@@ -36,6 +36,9 @@ public class Game {
 	}
 	
 	public static void main(String[] args) {
-		
+		Game game = new Game();
+		System.out.println(game.player.getPos().getPos());
+		game.movePlayer(game.player);
+		System.out.println(game.player.getPos().getPos());
 	}
 }
