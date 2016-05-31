@@ -17,7 +17,7 @@ public class Board {
     public Board() {
        	
     	boxs = new BoardBox[40];
-    	
+    	//.
     	GoBox Go = new GoBox();
     	boxs[0] = Go;
     	NormalProperty MediterraneanAvenue = new NormalProperty(1,"Mediterranean Avenue", 1, 60, 30, 2, new int[]{10,30,90,160}, 250);
