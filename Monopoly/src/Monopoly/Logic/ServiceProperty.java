@@ -10,10 +10,11 @@ public class ServiceProperty extends Property {
     /**
      * Default constructor
      */
-    public ServiceProperty(int pos, String name, int amount) {
+    public ServiceProperty(int pos, String name) {
     	this.pos = pos;
     	this.name = name;
-    	this.amount = amount;
+    	this.amount = 150;
+    	this.mortgageValue = 75;
     }
 
     /**

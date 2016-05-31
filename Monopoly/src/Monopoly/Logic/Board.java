@@ -28,7 +28,7 @@ public class Board {
     	NormalProperty ConnecticutAvenue = new NormalProperty(9, "Connecticut Avenue", 3, 120, 60, 8, new int[]{40,100,300,450}, 600);
     	JailBox JailBox1 = new JailBox();
     	NormalProperty STCharlesPlace = new NormalProperty(11, "ST Charles Place", 4, 140, 70, 10, new int[]{50,150,450,625}, 750);
-    	ServiceProperty ElectricCompany = new ServiceProperty(12, "Electric Company", 150);
+    	ServiceProperty ElectricCompany = new ServiceProperty(12, "Electric Company");
     	NormalProperty StatesAvenue = new NormalProperty(13, "States Avenue", 4, 140, 70, 10, new int[]{50,150,450,625}, 750);
     	NormalProperty VirginiaAvenue = new NormalProperty(14, "Virginia Avenue", 4, 160, 80, 12, new int[]{60,180,500,700}, 900);
     	RailRoadProperty PennsylvaniaRailRoad = new RailRoadProperty(15, "Pennsylvania RailRoad");
@@ -44,6 +44,25 @@ public class Board {
     	RailRoadProperty BORailRoad = new RailRoadProperty(25, "B&O RailRoad");
     	NormalProperty AtlanticAvenue = new NormalProperty(26, "Atlantic Avenue", 7, 260, 130, 22, new int[]{110,330,800,975}, 1150);
     	NormalProperty VentnorAvenue = new NormalProperty(27, "Ventnor Avenue", 7, 260, 130, 22, new int[]{110,330,800,975}, 1150);
+    	ServiceProperty WaterWorks = new ServiceProperty(28, "Water Works");
+    	NormalProperty MarvinGardens = new NormalProperty(29, "Marvin Gardens", 7, 280, 140, 24, new int[]{120,360,850,1025}, 1200);
+    	GoJailBox GoJail = new GoJailBox();
+    	NormalProperty PacificAvenue = new NormalProperty(31, "Pacific Avenue", 8, 300, 150, 26, new int[]{130,390,900,1100}, 1275);
+    	NormalProperty NorthCarolinaAvenue = new NormalProperty(32, "North Carolina Avenue", 8, 300, 150, 26, new int[]{130,390,900,1100}, 1275);
+    	CommunityBox CommunityBox3 = new CommunityBox(33);
+    	NormalProperty PennsylvaniaAvenue = new NormalProperty(34, "Pennsylvania Avenue", 8, 320, 160, 28, new int[]{150,450,1000,1200}, 1400);
+    	RailRoadProperty ShortLineRailRoad = new RailRoadProperty(35, "Short Line RailRoad");
+    	ChanceBox ChanceBox3 = new ChanceBox(36);
+    	NormalProperty ParkPlace = new NormalProperty(37, "Park Place", 9, 350, 175, 35, new int[]{175,500,1100,1300}, 1500);
+    	TaxBox LuxuryTax = new TaxBox(38,"Luxury Tax",100);
+    	NormalProperty BoardWalk = new NormalProperty(39, "Board Walk", 9, 400, 200, 50, new int[]{200,600,1400,1700}, 2000);
+
+
+
+
+    	
+
+
 
 
     }

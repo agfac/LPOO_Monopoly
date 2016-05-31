@@ -11,6 +11,7 @@ public class GoJailBox extends BoardBox {
      * Default constructor
      */
     public GoJailBox() {
+    	this.pos = 30;
     }
 
     /**
