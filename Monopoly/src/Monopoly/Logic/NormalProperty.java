@@ -9,8 +9,11 @@ public class NormalProperty extends Property {
 
 	private int nrHouses;
 	private int nrHotels;
-	private int[] rentValues;
+	
 	private int[] rentValuesWithHouses;
+	
+	private int[] rentValues;
+	
 	private int rentValuesWithHotel;
 	private int hotelCost;
 	private int houseCost;
@@ -27,11 +30,18 @@ public class NormalProperty extends Property {
      */
     public NormalProperty(int pos, String name, int idGroup, int amount, int mortgageValue, int rentValue, int[] rentValuesWithHouses, int rentValuesWithHotel) {
         super(name, pos, idGroup, amount, mortgageValue);
+      
+        if (idGroup!=1 && idGroup!=9){
+        	rentValues = new int[3];
+        	this.rentValues[2] = (int) (this.rentValues[0]*1.2);
+        }
+        else
+        	rentValues = new int[2];
+        
         this.rentValues[0] = rentValue;
         this.rentValues[1] = (int) (this.rentValues[0]*1.1);
-        if (idGroup!=1 && idGroup!=9)
-        	this.rentValues[2] = (int) (this.rentValues[0]*1.2);
-        this.rentValuesWithHouses = rentValuesWithHouses;
+        
+        this.rentValuesWithHouses = rentValuesWithHouses;        
         this.rentValuesWithHotel = rentValuesWithHotel;
         switch (idGroup) {
         case 1:

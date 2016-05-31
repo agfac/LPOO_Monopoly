@@ -6,7 +6,9 @@ import java.util.*;
  * 
  */
 public class GoBox extends BoardBox {
-
+	
+	public int valueGO;
+	
     /**
      * Default constructor
      */
@@ -15,10 +17,7 @@ public class GoBox extends BoardBox {
     	this.pos = 0;
     }
 
-    /**
-     * 
-     */
-    public int valueGO;
+    
 
     /**
      * @param post 
