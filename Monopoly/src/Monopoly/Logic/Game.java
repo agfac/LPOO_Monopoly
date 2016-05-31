@@ -152,7 +152,7 @@ public class Game {
 		boardToBuy = player.getPos();
 		int pos = player.getPos().getPos();
 		
-		System.out.println("Do you want to buy >" + boardToBuy.getName() + "< Property for a value of: " + board.boxs[pos]);
+		System.out.println("Do you want to buy >" + boardToBuy.getName() + "< Property for a value of: " );
 	}
 
 	/**

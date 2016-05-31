@@ -15,10 +15,10 @@ public class Board {
      * Board Constructor
      */
     public Board() {
-   
+       	
     	boxs = new BoardBox[40];
     	
-    	BoardBox Go = new GoBox();
+    	GoBox Go = new GoBox();
     	boxs[0] = Go;
     	NormalProperty MediterraneanAvenue = new NormalProperty(1,"Mediterranean Avenue", 1, 60, 30, 2, new int[]{10,30,90,160}, 250);
     	boxs[1] = MediterraneanAvenue;
@@ -98,6 +98,7 @@ public class Board {
     	boxs[38] = LuxuryTax;
     	NormalProperty BoardWalk = new NormalProperty(39, "Board Walk", 9, 400, 200, 50, new int[]{200,600,1400,1700}, 2000);
     	boxs[39] = BoardWalk;
+    	
     }
 
     /**
