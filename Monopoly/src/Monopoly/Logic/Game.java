@@ -9,10 +9,11 @@ public class Game {
 	BoardBox boardbox;
 	
 	public Game(){
-		playersymbol = new PlayerSymbol(2, "Teste");
-		player = new Player("Pedro",playersymbol,2000);
-		dice = new Dice();
 		board = new Board();
+		playersymbol = new PlayerSymbol(2, "Teste");
+		player = new Player("Pedro",playersymbol,2000, board.searchBoardBox(0));
+		dice = new Dice();
+		
 	}
 	
 	/**
@@ -37,7 +38,8 @@ public class Game {
 	
 	public static void main(String[] args) {
 		Game game = new Game();
-		System.out.println(game.player.getPos().getPos());
+		int n = game.player.getPos().getPos();
+		System.out.println(n);
 		game.movePlayer(game.player);
 		System.out.println(game.player.getPos().getPos());
 	}

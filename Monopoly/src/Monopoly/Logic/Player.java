@@ -28,13 +28,14 @@ public class Player {
      * @param piece symbol that identify the player
      * @param balance value that player have in their wallet
      */
-    public Player(String name, PlayerSymbol piece, int balance) {
+    public Player(String name, PlayerSymbol piece, int balance, BoardBox pos) {
         this.name = name;
         this.symbol = piece;
         this.balance = balance;
         this.inJail = false;
         this.cardsOwned = new Vector<Card>();
         this.propertiesOwned = new Vector<Property>();
+        this.pos = pos;
     }
 
     /**
