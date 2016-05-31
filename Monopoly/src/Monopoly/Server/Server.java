@@ -17,13 +17,13 @@ public class Server {
 	public static void main(String[] args) {
 		
 		try {
-			serverSocket = new ServerSocket(4444); // Server socket
+			serverSocket = new ServerSocket(80); // Server socket
 	
 		} catch (IOException e) {
-			System.out.println("Could not listen on port: 4444");
+			System.out.println("Could not listen on port: 80");
 		}
 	
-		System.out.println("Server started. Listening to the port 4444");
+		System.out.println("Server started. Listening to the port 80");
 	
 		while (true) {
 			try {
