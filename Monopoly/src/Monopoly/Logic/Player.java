@@ -3,7 +3,7 @@ package Monopoly.Logic;
 import java.util.*;
 
 /**
- * 
+ * Class Player
  */
 public class Player {
 	
@@ -23,11 +23,12 @@ public class Player {
     }
     
     /**
+     * Constructor of Player
      * @param name of player
      * @param piece symbol that identify the player
      * @param balance value that player have in their wallet
      */
-    public void Player(String name, PlayerSymbol piece, int balance) {
+    public Player(String name, PlayerSymbol piece, int balance) {
         this.name = name;
         this.symbol = piece;
         this.balance = balance;

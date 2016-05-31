@@ -3,9 +3,13 @@ package Monopoly.Logic;
 import java.util.*;
 
 /**
- * 
+ * Class PlayerSymbol
  */
 public class PlayerSymbol {
+	
+	public int id;
+    public String name;
+
 
     /**
      * Default constructor
@@ -13,47 +17,36 @@ public class PlayerSymbol {
     public PlayerSymbol() {
     }
 
+    public PlayerSymbol(int id, String name) {
+    	this.id = id;
+    	this.name = name;
+    }
     /**
-     * 
-     */
-    public int id;
-
-    /**
-     * 
-     */
-    public String name;
-
-
-    /**
-     * @return
+     * @return id of player symbol
      */
     public int getId() {
-        // TODO implement here
-        return 0;
+        return this.id;
     }
 
     /**
-     * @param value 
-     * @return
+     * @param value id to be set
      */
     public void setId(int value) {
-        // TODO implement here
+        this.id = value;
     }
 
     /**
-     * @return
+     * @return name
      */
     public String getName() {
-        // TODO implement here
-        return null;
+        return this.name;
     }
 
     /**
-     * @param value 
-     * @return
+     * @param value name to be set
      */
     public void setName(String value) {
-        // TODO implement here
+        this.name = value;
     }
 
 }
