@@ -100,9 +100,11 @@ public class Game {
 		else
 			player.setPos(board.searchBoardBox(atualPlayerPos));
 		
-		// Check if the new position is the JailBox
+		// Check if the new position is the JailBox, if yes goes to jail.
 		if(player.getPos() == board.searchBoardBox(30)){
 			player.setInJail(true);
+			player.setPos(board.searchBoardBox(10));
+			player.setNrOfRolls(false); //Reset number of rolls
 		}
 	}
 
