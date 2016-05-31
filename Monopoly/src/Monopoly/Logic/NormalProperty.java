@@ -40,7 +40,7 @@ public class NormalProperty extends Property {
         
         this.rentValues[0] = rentValue;
         this.rentValues[1] = (int) (this.rentValues[0]*1.1);
-        
+      
         this.rentValuesWithHouses = rentValuesWithHouses;        
         this.rentValuesWithHotel = rentValuesWithHotel;
         switch (idGroup) {
