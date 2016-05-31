@@ -9,7 +9,7 @@ public class Board {
 	
 	public Vector<Player> players;
     public Vector<Deck> deck;
-    public BoardBox boxs[];
+    public BoardBox[] boxs;
     
     /**
      * Board Constructor
