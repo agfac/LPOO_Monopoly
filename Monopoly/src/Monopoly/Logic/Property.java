@@ -92,6 +92,7 @@ public class Property extends BoardBox {
     public int getMortgageValueBack() {
         return mortgageValueBack;
     }
+    
     /**
      * @param player 
      * @return

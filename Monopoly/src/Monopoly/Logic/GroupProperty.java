@@ -33,7 +33,7 @@ public class GroupProperty {
      * @param id 
      * @return
      */
-    public int getTotalProperty(int id) {
+    public int getTotalProperty() {
         return totalProperty;
     }
 

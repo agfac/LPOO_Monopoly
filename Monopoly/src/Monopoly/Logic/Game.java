@@ -143,7 +143,7 @@ public class Game {
 		if (atualPlayerPos > 39 && !player.getInJail()) {
 			dif = atualPlayerPos - 39;
 			player.setPos(board.searchBoardBox((dif - 1)));
-			player.setBalance(player.getBalance() + GOVALUE);
+			player.updateBalance(GOVALUE);
 		} else
 			player.setPos(board.searchBoardBox(atualPlayerPos));
 
@@ -169,7 +169,9 @@ public class Game {
 
 		// Store the value of 2 rolled dices
 		totalDiceValue = get2RollDices(dice1, dice2);
-
+		
+		System.out.println("Dice1 value: " + dice1.getValue() + " Dice2 value: " + dice2.getValue());
+		
 		// Increment the tries in jail
 		player.setNrOfRollsInJail(sameValuesDice(dice1, dice2));
 
@@ -183,7 +185,7 @@ public class Game {
 		// pay fee
 		if (player.getNrOfRollsInJail() == 3) {
 			player.setInJail(false);
-			player.setBalance(player.getBalance() - JAILVALUE);
+			player.updateBalance(- JAILVALUE);
 			player.setNrOfRollsInJail(true); // Reset number of rolls in jail
 		}
 
@@ -211,22 +213,30 @@ public class Game {
 				option = s.next().charAt(0);
 				if(option == 'y'){
 					player.buyProperty(((Property)(boardToBuy)));
+					player.updateBlPropertyGroup(((Property)(boardToBuy)).getIdGroup(), board.getMaxPropertiesPerGroup(((Property)(boardToBuy)).getIdGroup()));
 				}
 				else
 				{
 					//TODO LEILAOO DO CARALHO!!!!!!
 				}
 			}
-			else
+			else if(!player.equals(((Property)(boardToBuy)).getOwner()))
 			{
-				//TODO PAY THE RENT
-				//player.payBill(((Property)(boardToBuy)).getOwner());
+				payBill(player, ((Property)(boardToBuy)));
 			}
 		}
 		
 		
 		
-		showProperties(player);
+		//showProperties(player);
+	}
+	
+	private void payBill(Player player, Property property){
+		if((property instanceof NormalProperty)){	
+			player.updateBalance( - ((NormalProperty)(property)).getValueToPay());
+			((NormalProperty)(property)).getOwner().updateBalance(((NormalProperty)(property)).getValueToPay());
+			System.out.println("WARNING !!!! Value to pay: " + ((NormalProperty)(property)).getValueToPay());
+		}
 	}
 	
 	/**
@@ -235,11 +245,14 @@ public class Game {
 	 */
 	private void showProperties(Player player){
 		for(Property vp : player.getPropertiesOwned()){
-			System.out.println("Property name: " + vp.getName());
+			System.out.println("Property name: " + vp.getName() + " Nr: " + player.getPropertiesNr(vp));
 		}
-		
 	}
 
+	private void createHouses(Player player){
+		
+	}
+	
 	/**
 	 * Update all game - MAIN FUNCTION!!!!!
 	 */
@@ -252,7 +265,7 @@ public class Game {
 
 		infoPlayer(player);
 
-		//buyProperty(player);
+		buyProperty(player);
 
 	}
 
@@ -277,7 +290,7 @@ public class Game {
 		Player player1 = new Player("Pedro", game.dog, 10000, game.board.searchBoardBox(0));
 		game.addPlayer(player1);
 		
-		Player player2 = new Player("Faby", game.car, 20000, game.board.searchBoardBox(0));
+		Player player2 = new Player("Faby", game.car, 10000, game.board.searchBoardBox(0));
 		game.addPlayer(player2);
 		
 		while (option != 0) {

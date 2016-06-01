@@ -18,13 +18,8 @@ public class Player {
     private Vector<Property> propertiesOwned;
     private int nrOfRolls;
     private int nrOfRollsInJail;
-    private HashMap <GroupProperty,Integer> propertyGroup;
-    
-	/**
-     * Default constructor of Player
-     */
-    public Player() {	
-    }
+    private HashMap <Integer,Integer> nrPropertyGroup = new HashMap<Integer,Integer>();
+    private HashMap <Integer,Boolean> blPropertyGroup = new HashMap<Integer,Boolean>();
     
     /**
      * Constructor of Player
@@ -78,6 +73,9 @@ public class Player {
     	this.balance = balance;
     }
 
+    public void updateBalance(int value){
+    	this.balance += value; 
+    }
     /**
      * @return Symbol of the player
      */
@@ -150,10 +148,11 @@ public class Player {
     		propertiesOwned.add(property);
     		property.setSold(true);
     		property.setOwner(this);
-    		
+    		int count = nrPropertyGroup.containsKey(property.getIdGroup()) ? nrPropertyGroup.get(property.getIdGroup()) : 0;
+    		nrPropertyGroup.put(property.getIdGroup(), count + 1);
     	}
     }
-
+    
     /**
      * @param property to be sold
      * @param amount to be sold
@@ -164,6 +163,9 @@ public class Player {
     		propertiesOwned.remove(property);
     		property.setSold(false);
     		property.setOwner(null);
+    		int aux = nrPropertyGroup.get(property.getIdGroup());
+    		nrPropertyGroup.put(property.getIdGroup(), --aux);
+    		blPropertyGroup.put(property.getIdGroup(), false);
     	}
     }
 
@@ -233,6 +235,25 @@ public class Player {
 			this.nrOfRollsInJail = 0;
 	}
 	
+	/**
+	 * Get number of properties per group
+	 * @param property
+	 * @return
+	 */
+	public int getPropertiesNr(Property property){
+		return nrPropertyGroup.get(property.getIdGroup());
+	}
 	
+	public void updateBlPropertyGroup(int key, int valeu){
+		if (nrPropertyGroup.get(key) == valeu ){
+			blPropertyGroup.put(key, true);
+		}
+		else
+    		blPropertyGroup.put(key, false);
+	}
+	
+	public boolean haveAllPropertiesGroup (Property property){
+		return blPropertyGroup.get(property.getIdGroup());
+	}
 	
 }

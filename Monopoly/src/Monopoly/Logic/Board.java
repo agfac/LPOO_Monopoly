@@ -9,6 +9,7 @@ public class Board {
 	
 	public Vector<Player> players;
     public Vector<Deck> deck;
+    private Vector<GroupProperty> groupProperty = new Vector<GroupProperty>();
     public BoardBox[] boxs;
     
     /**
@@ -17,7 +18,7 @@ public class Board {
     public Board() {
        	
     	boxs = new BoardBox[40];
-    	//.
+    	
     	GoBox Go = new GoBox();
     	boxs[0] = Go;
     	NormalProperty MediterraneanAvenue = new NormalProperty(1,"Mediterranean Avenue", 1, 60, 30, 2, new int[]{10,30,90,160}, 250);
@@ -99,19 +100,28 @@ public class Board {
     	NormalProperty BoardWalk = new NormalProperty(39, "Board Walk", 9, 400, 200, 50, new int[]{200,600,1400,1700}, 2000);
     	boxs[39] = BoardWalk;
     	
-    	GroupProperty brownGroup = new GroupProperty(1,"Brown",2);
-    	GroupProperty railGroup = new GroupProperty(2,"Rail",4);
-    	GroupProperty cyanGroup = new GroupProperty(3,"Cyan",3);
-    	GroupProperty pinkGroup = new GroupProperty(4,"Pink",3);
-    	GroupProperty orangeGroup = new GroupProperty(5,"Orange",3);
-    	GroupProperty redGroup = new GroupProperty(6,"Red",3);
-    	GroupProperty yellowGroup = new GroupProperty(7,"Yellow",3);
-    	GroupProperty greenGroup = new GroupProperty(8,"Green",3);
-    	GroupProperty BlueGroup = new GroupProperty(9,"Blue",3);
-    	GroupProperty companyGroup = new GroupProperty(10,"Company",2);
+    	
+    	groupProperty.add(new GroupProperty(1,"Brown",2));
+    	groupProperty.add(new GroupProperty(2,"Rail",4));
+    	groupProperty.add(new GroupProperty(3,"Cyan",3));
+    	groupProperty.add(new GroupProperty(4,"Pink",3));
+    	groupProperty.add(new GroupProperty(5,"Orange",3));
+    	groupProperty.add(new GroupProperty(6,"Red",3));
+    	groupProperty.add(new GroupProperty(7,"Yellow",3));
+    	groupProperty.add(new GroupProperty(8,"Green",3));
+    	groupProperty.add(new GroupProperty(9,"Blue",3));
+    	groupProperty.add(new GroupProperty(10,"Company",2));
+    	
     	
     }
 
+    public int getMaxPropertiesPerGroup(int index){
+    	for(GroupProperty gp: groupProperty){
+    		if(gp.getId() == index)
+    			return gp.getTotalProperty();
+    	}
+    	return 0;
+    }
     /**
      * @param players
      */

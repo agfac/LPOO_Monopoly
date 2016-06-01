@@ -31,16 +31,20 @@ public class NormalProperty extends Property {
     public NormalProperty(int pos, String name, int idGroup, int amount, int mortgageValue, int rentValue, int[] rentValuesWithHouses, int rentValuesWithHotel) {
         super(name, pos, idGroup, amount, mortgageValue);
       
+        this.rentValues = new int[2];
+        this.rentValues[0] = rentValue;
+        this.rentValues[1] = (int) (rentValue*1.2);
+        /*
         if (idGroup!=1 && idGroup!=9){
         	rentValues = new int[3];
-        	this.rentValues[2] = (int) (this.rentValues[0]*1.2);
+        	this.rentValues[2] = (int) (rentValue*1.2);
         }
         else
         	rentValues = new int[2];
         
         this.rentValues[0] = rentValue;
-        this.rentValues[1] = (int) (this.rentValues[0]*1.1);
-      
+        this.rentValues[1] = (int) (rentValue*1.1);
+      */
         this.rentValuesWithHouses = rentValuesWithHouses;        
         this.rentValuesWithHotel = rentValuesWithHotel;
         switch (idGroup) {
@@ -199,6 +203,29 @@ public class NormalProperty extends Property {
     public int getRentValuesWithHotel() {
         // TODO implement here
         return 0;
+    }
+    
+    public int getValueToPay(){
+    	if(owner.haveAllPropertiesGroup(this)){
+    		if(nrHouses != 0 || nrHotels != 0){
+    			switch (nrHouses){
+    			case 1:
+    				return rentValuesWithHouses[0];
+    			case 2:
+    				return rentValuesWithHouses[1];
+    			case 3:
+    				return rentValuesWithHouses[2];
+    			case 4:
+    				return rentValuesWithHouses[3];
+    			}
+    			
+    			if( nrHotels == 1)
+    				return rentValuesWithHotel;
+    			
+    		}else
+    			return rentValues[1];
+    	}
+    	return rentValues[0];
     }
 
 }
