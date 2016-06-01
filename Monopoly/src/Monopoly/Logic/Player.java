@@ -72,10 +72,15 @@ public class Player {
     public void setBalance(int balance) {
     	this.balance = balance;
     }
-
+    
+    /**
+     * Update the balance from player
+     * @param value to be updated on balance
+     */
     public void updateBalance(int value){
     	this.balance += value; 
     }
+    
     /**
      * @return Symbol of the player
      */
@@ -140,6 +145,7 @@ public class Player {
     }
 
     /**
+     * Method to buy property
      * @param property that will be purchased from Player
      */
     public void buyProperty(Property property) {
@@ -154,6 +160,7 @@ public class Player {
     }
     
     /**
+     * Method to sell the property
      * @param property to be sold
      * @param amount to be sold
      */
@@ -170,6 +177,7 @@ public class Player {
     }
 
     /**
+     * Method to mortgage the property
      * @param property to be mortgage
      */
     public void mortgageProperty(Property property) {
@@ -180,6 +188,7 @@ public class Player {
     }
 
     /**
+     * Method to "unmortgage" the property
      * @param property to be "unmortgage"
      */
     public void unMortgageProperty(Property property) {
@@ -244,14 +253,24 @@ public class Player {
 		return nrPropertyGroup.get(property.getIdGroup());
 	}
 	
-	public void updateBlPropertyGroup(int key, int valeu){
-		if (nrPropertyGroup.get(key) == valeu ){
+	/**
+	 * Verify if have all property
+	 * @param key value of properties to be compared
+	 * @param value max of properties
+	 */
+	public void updateBlPropertyGroup(int key, int value){
+		if (nrPropertyGroup.get(key) == value ){
 			blPropertyGroup.put(key, true);
 		}
 		else
     		blPropertyGroup.put(key, false);
 	}
 	
+	/**
+	 * Return true or false if have all properties or not
+	 * @param property
+	 * @return true if have all properties, false if not
+	 */
 	public boolean haveAllPropertiesGroup (Property property){
 		return blPropertyGroup.get(property.getIdGroup());
 	}

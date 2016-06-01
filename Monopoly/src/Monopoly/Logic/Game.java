@@ -112,7 +112,7 @@ public class Game {
 	}
 
 	/**
-	 * Function to update the player on board
+	 * Method to update the player on board
 	 * 
 	 * @param player
 	 *            to be update on board
@@ -159,7 +159,7 @@ public class Game {
 	}
 
 	/**
-	 * Function to update the player in Jail
+	 * Method to update the player in Jail
 	 * 
 	 * @param player
 	 *            to be updated on Jail
@@ -169,9 +169,9 @@ public class Game {
 
 		// Store the value of 2 rolled dices
 		totalDiceValue = get2RollDices(dice1, dice2);
-		
+
 		System.out.println("Dice1 value: " + dice1.getValue() + " Dice2 value: " + dice2.getValue());
-		
+
 		// Increment the tries in jail
 		player.setNrOfRollsInJail(sameValuesDice(dice1, dice2));
 
@@ -185,7 +185,7 @@ public class Game {
 		// pay fee
 		if (player.getNrOfRollsInJail() == 3) {
 			player.setInJail(false);
-			player.updateBalance(- JAILVALUE);
+			player.updateBalance(-JAILVALUE);
 			player.setNrOfRollsInJail(true); // Reset number of rolls in jail
 		}
 
@@ -198,61 +198,103 @@ public class Game {
 	}
 
 	/**
-	 * Function to buy property
-	 * @param player to buy property
-	 */
-	private void buyProperty(Player player){
-		BoardBox boardToBuy = player.getPos();
-		
-		Scanner s = new Scanner(System.in);
-		char option;
-		
-		if((boardToBuy instanceof Property)){
-			if(!((Property)(boardToBuy)).getSold()){
-				System.out.print("Do you want to buy >" + boardToBuy.getName() + "< Property for a value of: " + ((Property)(boardToBuy)).getAmount() + " (y or n) >");
-				option = s.next().charAt(0);
-				if(option == 'y'){
-					player.buyProperty(((Property)(boardToBuy)));
-					player.updateBlPropertyGroup(((Property)(boardToBuy)).getIdGroup(), board.getMaxPropertiesPerGroup(((Property)(boardToBuy)).getIdGroup()));
-				}
-				else
-				{
-					//TODO LEILAOO DO CARALHO!!!!!!
-				}
-			}
-			else if(!player.equals(((Property)(boardToBuy)).getOwner()))
-			{
-				payBill(player, ((Property)(boardToBuy)));
-			}
-		}
-		
-		
-		
-		//showProperties(player);
-	}
-	
-	private void payBill(Player player, Property property){
-		if((property instanceof NormalProperty)){	
-			player.updateBalance( - ((NormalProperty)(property)).getValueToPay());
-			((NormalProperty)(property)).getOwner().updateBalance(((NormalProperty)(property)).getValueToPay());
-			System.out.println("WARNING !!!! Value to pay: " + ((NormalProperty)(property)).getValueToPay());
-		}
-	}
-	
-	/**
+	 * Method to buy property
 	 * 
 	 * @param player
+	 *            to buy property
 	 */
-	private void showProperties(Player player){
-		for(Property vp : player.getPropertiesOwned()){
+	private void buyProperty(Player player) {
+		BoardBox boardToBuy = player.getPos();
+
+		Scanner s = new Scanner(System.in);
+		char option;
+
+		if ((boardToBuy instanceof Property)) {
+			if (!((Property) (boardToBuy)).getSold()) {
+				System.out.print("Do you want to buy >" + boardToBuy.getName() + "< Property for a value of: "
+						+ ((Property) (boardToBuy)).getAmount() + " (y or n) >");
+				option = s.next().charAt(0);
+				if (option == 'y') {
+					player.buyProperty(((Property) (boardToBuy)));
+					player.updateBlPropertyGroup(((Property) (boardToBuy)).getIdGroup(),
+							board.getMaxPropertiesPerGroup(((Property) (boardToBuy)).getIdGroup()));
+				} else {
+					// TODO LEILAOO!!!!!!
+				}
+			} else if (!player.equals(((Property) (boardToBuy)).getOwner())) {
+				payBill(player, ((Property) (boardToBuy)));
+			}
+		}
+		showProperties(player);
+	}
+
+	/**
+	 * Method to pay a bill if a player is on other player property
+	 * 
+	 * @param player
+	 *            that will pay the bill
+	 * @param property
+	 *            property where player is on
+	 */
+	private void payBill(Player player, Property property) {
+		if ((property instanceof NormalProperty)) {
+			player.updateBalance(-((NormalProperty) (property)).getValueToPay());
+			((NormalProperty) (property)).getOwner().updateBalance(((NormalProperty) (property)).getValueToPay());
+			System.out.println("WARNING !!!! Value to pay: " + ((NormalProperty) (property)).getValueToPay());
+		}
+	}
+
+	/**
+	 * Method to show information about properties that a player have.
+	 * 
+	 * @param player
+	 *            to be showed information
+	 */
+	private void showProperties(Player player) {
+		for (Property vp : player.getPropertiesOwned()) {
 			System.out.println("Property name: " + vp.getName() + " Nr: " + player.getPropertiesNr(vp));
 		}
 	}
 
-	private void createHouses(Player player){
-		
+	/**
+	 * Method to create houses
+	 * 
+	 * @param player
+	 *            who will buy the houses
+	 * @param nProperty
+	 *            to place the houses
+	 * @param n
+	 *            number of houses to be purchased
+	 */
+	private void createHouses(Player player, NormalProperty nProperty, int n) {
+		if (player.haveAllPropertiesGroup(nProperty)) {
+			if ((player.getBalance() >= nProperty.getHouseCost() * n) && (n > 0 && n <= 4)
+					&& nProperty.canBuildHouse()) {
+				player.updateBalance(-nProperty.getHouseCost() * n);
+				nProperty.buildHouse(n);
+			} else {
+				System.out.println("You have no money or enter a wrong number or cant build more");
+			}
+		}
 	}
-	
+
+	/**
+	 * Method to create hotels
+	 * 
+	 * @param player
+	 *            who will buy the hotel
+	 * @param nProperty
+	 *            to place the hotel
+	 */
+	private void createHotel(Player player, NormalProperty nProperty) {
+		if (nProperty.canBuildHotel() && (player.getBalance() >= nProperty.getHotelCost())) {
+			player.updateBalance(-nProperty.getHotelCost());
+			nProperty.buildHotel();
+		} else {
+			System.out.println("You cant build Hotel or dont have enought money");
+		}
+	}
+
 	/**
 	 * Update all game - MAIN FUNCTION!!!!!
 	 */
@@ -289,20 +331,20 @@ public class Game {
 
 		Player player1 = new Player("Pedro", game.dog, 10000, game.board.searchBoardBox(0));
 		game.addPlayer(player1);
-		
+
 		Player player2 = new Player("Faby", game.car, 10000, game.board.searchBoardBox(0));
 		game.addPlayer(player2);
-		
+
 		while (option != 0) {
 
 			System.out.print("Generate dice Player1 (0 to leave) > ");
 			option = s.nextInt();
 			game.updateGame(player1);
-			
+			System.out.println("====================================");
 			System.out.print("Generate dice Player2 (0 to leave) > ");
 			option = s.nextInt();
 			game.updateGame(player2);
-			
+
 			System.out.println("======================================================================");
 		}
 	}

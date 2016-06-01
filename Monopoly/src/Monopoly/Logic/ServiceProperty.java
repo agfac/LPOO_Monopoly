@@ -3,19 +3,19 @@ package Monopoly.Logic;
 import java.util.*;
 
 /**
- * 
+ * ServiceProperty Class
  */
 public class ServiceProperty extends Property {
 	public int[] rentValues;
 
     /**
-     * @param idGroup 
-     * @param name 
-     * @param pos 
-     * @param amount 
-     * @param mortgageValue 
-     * @param mortgageValueBack 
-     * @param rentValues
+     * Constructor of ServiceProperty
+     * @param pos Position
+     * @param name Name
+     * @param idGroup IDGroup
+     * @param amount Value of service property
+     * @param mortgageValue Mortgage value
+     * @param rentValues Array of rent values
      */
     public ServiceProperty(int pos, String name, int idGroup, int amount, int mortgageValue, int[] rentValues) {
     	super(name, pos, idGroup, amount, mortgageValue);

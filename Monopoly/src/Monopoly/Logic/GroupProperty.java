@@ -12,6 +12,7 @@ public class GroupProperty {
     public int totalProperty;
 
 	/**
+	 * Constructor of GroupProperty
      * @param id 
      * @param color 
      * @param totalProperty
@@ -23,15 +24,16 @@ public class GroupProperty {
     }
 
     /**
-     * @return
+     * Get the id of the GroupProperty
+     * @return id of GroupProperty
      */
     public int getId() {
         return id;
     }
 
     /**
-     * @param id 
-     * @return
+     * Get the number of total properties that a group have.
+     * @return total of properties
      */
     public int getTotalProperty() {
         return totalProperty;
