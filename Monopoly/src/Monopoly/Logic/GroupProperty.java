@@ -6,46 +6,27 @@ import java.util.*;
  * 
  */
 public class GroupProperty {
-
-    /**
-     * Default constructor
-     */
-    public GroupProperty() {
-    }
-
-    /**
-     * 
-     */
+	
     public int id;
-
-    /**
-     * 
-     */
     public String color;
-
-    /**
-     * 
-     */
     public int totalProperty;
 
-
-
-
-    /**
+	/**
      * @param id 
      * @param color 
      * @param totalProperty
      */
-    public void GroupProperty(int id, String color, int totalProperty) {
-        // TODO implement here
+    public GroupProperty(int id, String color, int totalProperty) {
+        this.id = id;
+        this.color = color;
+        this.totalProperty = totalProperty;
     }
 
     /**
      * @return
      */
     public int getId() {
-        // TODO implement here
-        return 0;
+        return id;
     }
 
     /**
@@ -53,8 +34,7 @@ public class GroupProperty {
      * @return
      */
     public int getTotalProperty(int id) {
-        // TODO implement here
-        return 0;
+        return totalProperty;
     }
 
 }

@@ -42,7 +42,7 @@ public class Board {
     	boxs[10] = JailBox1;
     	NormalProperty STCharlesPlace = new NormalProperty(11, "ST Charles Place", 4, 140, 70, 10, new int[]{50,150,450,625}, 750);
     	boxs[11] = STCharlesPlace;
-    	ServiceProperty ElectricCompany = new ServiceProperty(12, "Electric Company");
+    	ServiceProperty ElectricCompany = new ServiceProperty(12, "Electric Company", 10, 150, 75, new int[]{4,10});
     	boxs[12] = ElectricCompany;
     	NormalProperty StatesAvenue = new NormalProperty(13, "States Avenue", 4, 140, 70, 10, new int[]{50,150,450,625}, 750);
     	boxs[13] = StatesAvenue;
@@ -74,7 +74,7 @@ public class Board {
     	boxs[26] = AtlanticAvenue;
     	NormalProperty VentnorAvenue = new NormalProperty(27, "Ventnor Avenue", 7, 260, 130, 22, new int[]{110,330,800,975}, 1150);
     	boxs[27] = VentnorAvenue;
-    	ServiceProperty WaterWorks = new ServiceProperty(28, "Water Works");
+    	ServiceProperty WaterWorks = new ServiceProperty(28, "Water Works", 10, 150, 75, new int[]{4,10});
     	boxs[28] = WaterWorks;
     	NormalProperty MarvinGardens = new NormalProperty(29, "Marvin Gardens", 7, 280, 140, 24, new int[]{120,360,850,1025}, 1200);
     	boxs[29] = MarvinGardens;
@@ -98,6 +98,17 @@ public class Board {
     	boxs[38] = LuxuryTax;
     	NormalProperty BoardWalk = new NormalProperty(39, "Board Walk", 9, 400, 200, 50, new int[]{200,600,1400,1700}, 2000);
     	boxs[39] = BoardWalk;
+    	
+    	GroupProperty brownGroup = new GroupProperty(1,"Brown",2);
+    	GroupProperty railGroup = new GroupProperty(2,"Rail",4);
+    	GroupProperty cyanGroup = new GroupProperty(3,"Cyan",3);
+    	GroupProperty pinkGroup = new GroupProperty(4,"Pink",3);
+    	GroupProperty orangeGroup = new GroupProperty(5,"Orange",3);
+    	GroupProperty redGroup = new GroupProperty(6,"Red",3);
+    	GroupProperty yellowGroup = new GroupProperty(7,"Yellow",3);
+    	GroupProperty greenGroup = new GroupProperty(8,"Green",3);
+    	GroupProperty BlueGroup = new GroupProperty(9,"Blue",3);
+    	GroupProperty companyGroup = new GroupProperty(10,"Company",2);
     	
     }
 

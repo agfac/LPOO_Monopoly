@@ -1,6 +1,7 @@
 package Monopoly.Logic;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Vector;
 
 /**
  * Class Player
@@ -17,7 +18,8 @@ public class Player {
     private Vector<Property> propertiesOwned;
     private int nrOfRolls;
     private int nrOfRollsInJail;
-
+    private HashMap <GroupProperty,Integer> propertyGroup;
+    
 	/**
      * Default constructor of Player
      */
@@ -146,6 +148,9 @@ public class Player {
     	if ( balance >= property.getAmount() ){
     		balance -= property.getAmount();
     		propertiesOwned.add(property);
+    		property.setSold(true);
+    		property.setOwner(this);
+    		
     	}
     }
 
@@ -157,6 +162,8 @@ public class Player {
     	if ( propertiesOwned.contains(property) ){
     		balance += amount;
     		propertiesOwned.remove(property);
+    		property.setSold(false);
+    		property.setOwner(null);
     	}
     }
 
@@ -178,6 +185,14 @@ public class Player {
     		balance -= property.getMortgageValueBack();
     		property.setMortgage(false);
     	}
+    }
+    
+    /**
+     * Get all properties owned
+     * @return properties owned
+     */
+    public Vector<Property> getPropertiesOwned(){
+    	return propertiesOwned;
     }
     
     /**

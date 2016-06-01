@@ -6,21 +6,7 @@ import java.util.*;
  * 
  */
 public class ServiceProperty extends Property {
-
-    /**
-     * Default constructor
-     */
-    public ServiceProperty(int pos, String name) {
-    	this.pos = pos;
-    	this.name = name;
-    	this.amount = 150;
-    	this.mortgageValue = 75;
-    }
-
-    /**
-     * 
-     */
-    public int[] rentValues;
+	public int[] rentValues;
 
     /**
      * @param idGroup 
@@ -31,15 +17,14 @@ public class ServiceProperty extends Property {
      * @param mortgageValueBack 
      * @param rentValues
      */
-    public void ServiceProperty(int idGroup, String name, int pos, int amount, int mortgageValue, int mortgageValueBack, int[] rentValues) {
-        // TODO implement here
+    public ServiceProperty(int pos, String name, int idGroup, int amount, int mortgageValue, int[] rentValues) {
+    	super(name, pos, idGroup, amount, mortgageValue);
     }
 
     /**
      * @return
      */
     public int getRentValues() {
-        // TODO implement here
         return 0;
     }
 

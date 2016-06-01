@@ -39,7 +39,7 @@ public class Property extends BoardBox {
      * @return
      */
     public boolean getSold() {
-        return false;
+        return this.sold;
     }
 
     /**
