@@ -3,7 +3,7 @@ package Monopoly.Logic;
 import java.util.*;
 
 /**
- * 
+ * TaxBox Class
  */
 public class TaxBox extends BoardBox {
 	private int taxValue;
@@ -16,22 +16,13 @@ public class TaxBox extends BoardBox {
     	this.name = name;
     	this.taxValue = taxValue;
     }
-
+    
     /**
-     * @param post 
-     * @param name 
-     * @param taxValue
+     * Return the Tax Value
+     * @return tax value
      */
-    public void TaxBox(int post, String name, int taxValue) {
-        // TODO implement here
-    }
-
-    /**
-     * @param player 
-     * @return
-     */
-    public void behaviorWithPlayer(Player player) {
-        // TODO implement here
-    }
+	public int getTaxValue() {
+		return taxValue;
+	}
 
 }

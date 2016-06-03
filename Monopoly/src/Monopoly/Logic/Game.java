@@ -123,7 +123,9 @@ public class Game {
 
 		// Store the value of 2 rolled dices
 		totalDiceValue = get2RollDices(dice1, dice2);
-
+		
+		player.setDicesValue(totalDiceValue);
+		
 		// Update number of tries from player, if get 3 times goes to jail.
 		player.setNrOfRolls(sameValuesDice(dice1, dice2));
 		if (player.getNrOfRolls() == 3) {
@@ -181,7 +183,7 @@ public class Game {
 		}
 
 		if ((player.getPos() == board.getBoardBox(4)) || (player.getPos() == board.getBoardBox(38)))
-			player.updateBalance(-200);
+			player.updateBalance(-((TaxBox) board.getBoardBox(4)).getTaxValue());
 
 		System.out.println("Dice value: " + (dice1.getValue() + dice2.getValue()));
 	}
@@ -197,7 +199,9 @@ public class Game {
 
 		// Store the value of 2 rolled dices
 		totalDiceValue = get2RollDices(dice1, dice2);
-
+		
+		player.setDicesValue(totalDiceValue);
+		
 		System.out.println("Dice1 value: " + dice1.getValue() + " Dice2 value: " + dice2.getValue());
 
 		// Increment the tries in jail
@@ -249,7 +253,7 @@ public class Game {
 				} else {
 					// TODO LEILAOO!!!!!!
 				}
-			} else if (!player.equals(((Property) (boardToBuy)).getOwner())) {
+			} else if (!player.equals(((Property) (boardToBuy)).getOwner()) && !((Property) (boardToBuy)).getMortgage()) {
 				payBill(player, ((Property) (boardToBuy)));
 			}
 		}
@@ -270,6 +274,16 @@ public class Game {
 			((NormalProperty) (property)).getOwner().updateBalance(((NormalProperty) (property)).getValueToPay());
 			System.out.println("WARNING !!!! Value to pay: " + ((NormalProperty) (property)).getValueToPay());
 		}
+		if ((property instanceof RailRoadProperty)){
+			player.updateBalance(-((RailRoadProperty) (property)).getValueToPay());
+			((RailRoadProperty) (property)).getOwner().updateBalance(((RailRoadProperty) (property)).getValueToPay());
+			System.out.println("WARNING !!!! Value to pay: " + ((RailRoadProperty) (property)).getValueToPay());
+		}
+		if ((property instanceof ServiceProperty)){
+			player.updateBalance(-((ServiceProperty) (property)).getValueToPay(player.getDicesValue()));
+			((ServiceProperty) (property)).getOwner().updateBalance(((ServiceProperty) (property)).getValueToPay(player.getDicesValue()));
+			System.out.println("WARNING !!!! Value to pay: " + ((ServiceProperty) (property)).getValueToPay(player.getDicesValue()));
+		}
 	}
 
 	/**
@@ -284,6 +298,57 @@ public class Game {
 		}
 	}
 
+	public void mortgage(Player player, Property property){
+		if (player.equals(property.getOwner()) && !property.getMortgage()){
+			property.setMortgage(true);
+			player.updateBalance(property.getMortgageValue());
+		}
+	}
+	
+	public void unMortgage(Player player, Property property){
+		if (player.equals(property.getOwner())  && property.getMortgage() ){
+			property.setMortgage(false);
+			player.updateBalance(- property.getMortgageValueBack());
+		}
+	}
+	
+	/**
+	 * Method to sell houses
+	 * 
+	 * @param player
+	 *            who will sell the houses
+	 * @param nProperty
+	 *            to sell the houses
+	 * @param n
+	 *            number of houses to be sold
+	 */
+	private void sellHouses(Player player, NormalProperty nProperty, int n) {
+		if (player.equals(nProperty.getOwner()) && nProperty.getNrHouses() >= n){
+			nProperty.sellHouse(n);
+			player.updateBalance(n * (nProperty.getHouseCost()/2));
+		}else 
+			System.out.println("You dont have " + n + " houses.");
+	}
+	
+	/**
+	 * Method to sell hotel
+	 * 
+	 * @param player
+	 *            who will sell the hotel
+	 * @param nProperty
+	 *            to sell the hotel
+	 * @param n
+	 *            number of hotel to be sold
+	 */
+	private void sellHotel(Player player, NormalProperty nProperty) {
+		if (player.equals(nProperty.getOwner()) && nProperty.getNrHotels() == 1){
+			nProperty.sellHotel();
+			player.updateBalance(nProperty.getHotelCost()/2);
+		}else 
+			System.out.println("You dont have hotel.");
+	}
+	
+	
 	/**
 	 * Method to create houses
 	 * 
@@ -322,7 +387,11 @@ public class Game {
 			System.out.println("You cant build Hotel or dont have enought money");
 		}
 	}
-
+	
+	/**
+	 * Generate random number from 1 to 15 and associate to a chance card, player will have an action from that card generated.
+	 * @param player that have an action
+	 */
 	private void gerateChance(Player player) {
 		int option = 0;
 
@@ -391,6 +460,7 @@ public class Game {
 		case 10:
 			int countHotel = 0;
 			int countHouse = 0;
+			//For each property owned by player, will check if have houses and hotels, and pay a value by a number of hoses and hotels
 			for (Property np : player.getPropertiesOwned()) {
 				if (np.getPos() != 5 && np.getPos() != 15 && np.getPos() != 25 && np.getPos() != 35 && np.getPos() != 12
 						&& np.getPos() != 28) {
@@ -422,7 +492,11 @@ public class Game {
 			break;
 		}
 	}
-
+	
+	/**
+	 * Generate random number from 1 to 15 and associate to a community card, player will have an action from that card generated.
+	 * @param player that have an action
+	 */
 	private void gerateCommunity(Player player) {
 		int option = 0;
 
@@ -474,6 +548,7 @@ public class Game {
 		case 13:
 			int countHotel = 0;
 			int countHouse = 0;
+			//For each property owned by player, will check if have houses and hotels, and pay a value by a number of hoses and hotels
 			for (Property np : player.getPropertiesOwned()) {
 				if (np.getPos() != 5 && np.getPos() != 15 && np.getPos() != 25 && np.getPos() != 35 && np.getPos() != 12
 						&& np.getPos() != 28) {

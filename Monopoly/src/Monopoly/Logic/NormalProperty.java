@@ -3,7 +3,7 @@ package Monopoly.Logic;
 import java.util.*;
 
 /**
- * 
+ * NormalProperty class
  */
 public class NormalProperty extends Property {
 
@@ -19,14 +19,15 @@ public class NormalProperty extends Property {
 	private int houseCost;
 
 	/**
-	 * Default constructor
-	 */
-	public NormalProperty() {
-
-	}
-
-	/**
-	 * 
+	 * NormalProperty Constructor
+	 * @param pos Position on board
+	 * @param name Name of the property
+	 * @param idGroup Id Group
+	 * @param amount Cost property
+	 * @param mortgageValue Mortgage cost
+	 * @param rentValue Rent Cost
+	 * @param rentValuesWithHouses Rent Cost with houses 
+	 * @param rentValuesWithHotel Rent Cost with hotels
 	 */
 	public NormalProperty(int pos, String name, int idGroup, int amount, int mortgageValue, int rentValue,
 			int[] rentValuesWithHouses, int rentValuesWithHotel) {
@@ -35,16 +36,10 @@ public class NormalProperty extends Property {
 		this.rentValues = new int[2];
 		this.rentValues[0] = rentValue;
 		this.rentValues[1] = (int) (rentValue * 1.2);
-		/*
-		 * if (idGroup!=1 && idGroup!=9){ rentValues = new int[3];
-		 * this.rentValues[2] = (int) (rentValue*1.2); } else rentValues = new
-		 * int[2];
-		 * 
-		 * this.rentValues[0] = rentValue; this.rentValues[1] = (int)
-		 * (rentValue*1.1);
-		 */
+
 		this.rentValuesWithHouses = rentValuesWithHouses;
 		this.rentValuesWithHotel = rentValuesWithHotel;
+		
 		switch (idGroup) {
 		case 1:
 			this.houseCost = 50;
@@ -83,120 +78,90 @@ public class NormalProperty extends Property {
 		this.nrHotels = 0;
 	}
 	
+	/**
+	 * Method to check if can build houses or not
+	 * @return true if number of houses is less than 4, false if not
+	 */
 	public boolean canBuildHouse(){
 		return (nrHouses < 4)? true : false;
 	}
 
 	/**
-	 * @return
+	 * Method to check if can build hotel or not
+	 * @return true if number of houses is 4, false if not
 	 */
 	public boolean canBuildHotel() {
 		return (nrHouses == 4)? true : false;
 	}
 
 	/**
-	 * @param n number of houses to be add
+	 * Method to add houses
+	 * @param n number of houses to be added
 	 */
 	public void buildHouse(int n) {
-		nrHouses = n;
+		nrHouses += n;
 	}
 
 	/**
-	 * @param n
-	 * @return
+	 * Method to update the build hotel
 	 */
 	public void buildHotel() {
 		nrHotels = 1;
 	}
 
 	/**
-	 * @param n
+	 * Sell houses
+	 * @param n number of houses to be sold
 	 * @return
 	 */
 	public void sellHouse(int n) {
-		// TODO implement here
+		nrHouses -= n;
 	}
 
 	/**
-	 * @param n
+	 * Sell hotel
 	 * @return
 	 */
-	public void sellHotel(int n) {
-		// TODO implement here
+	public void sellHotel() {
+		nrHotels = 0;
 	}
 
 	/**
-	 * @return
+	 * Get number of houses
+	 * @return number of houses
 	 */
 	public int getNrHouses() {
-		// TODO implement here
-		return 0;
+		return nrHouses;
 	}
 
 	/**
-	 * @return
+	 * Get number of hotels
+	 * @return number of hotels
 	 */
 	public int getNrHotels() {
-		// TODO implement here
-		return 0;
+		return nrHotels;
 	}
 
 	/**
-	 * @return
+	 * Get house cost
+	 * @return house cost
 	 */
 	public int getHouseCost() {
-		// TODO implement here
-		return 0;
+		return houseCost;
 	}
 
 	/**
-	 * @param value
-	 * @return
-	 */
-	public void setHouseCost(int value) {
-		// TODO implement here
-	}
-
-	/**
-	 * @return
+	 * Get hotel cost
+	 * @return hotel cost
 	 */
 	public int getHotelCost() {
-		// TODO implement here
-		return 0;
+		return hotelCost;
 	}
-
+	
 	/**
-	 * @param value
-	 * @return
+	 * Get the value to pay on this property
+	 * @return value to pay
 	 */
-	public void setHotelCost(int value) {
-		// TODO implement here
-	}
-
-	/**
-	 * @return
-	 */
-	public int getRentValues() {
-		// TODO implement here
-		return 0;
-	}
-
-	/**
-	 * @return
-	 */
-	public int getRentValuesWithHouses() {
-		// TODO implement here
-		return 0;
-	}
-
-	/**
-	 * @return
-	 */
-	public int getRentValuesWithHotel() {
-		// TODO implement here
-		return 0;
-	}
-
 	public int getValueToPay() {
 		if (owner.haveAllPropertiesGroup(this)) {
 			if (nrHouses != 0 || nrHotels != 0) {

@@ -3,13 +3,13 @@ package Monopoly.Logic;
 import java.util.*;
 
 /**
- * 
+ * GroupProperty Class
  */
 public class GroupProperty {
 	
-    public int id;
-    public String color;
-    public int totalProperty;
+	private int id;
+	private String color;
+	private int totalProperty;
 
 	/**
 	 * Constructor of GroupProperty

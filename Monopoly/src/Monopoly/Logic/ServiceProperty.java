@@ -6,7 +6,7 @@ import java.util.*;
  * ServiceProperty Class
  */
 public class ServiceProperty extends Property {
-	public int[] rentValues;
+	private int[] rentValue;
 
     /**
      * Constructor of ServiceProperty
@@ -19,13 +19,16 @@ public class ServiceProperty extends Property {
      */
     public ServiceProperty(int pos, String name, int idGroup, int amount, int mortgageValue, int[] rentValues) {
     	super(name, pos, idGroup, amount, mortgageValue);
+    	this.rentValue = rentValues;
     }
 
     /**
      * @return
      */
-    public int getRentValues() {
-        return 0;
+    public int getValueToPay(int diceValue) {
+    	if (owner.getPropertiesNr(((Property) this)) == 2) 
+			return (rentValue[1]*diceValue);
+    	return (rentValue[0]*diceValue);
     }
 
 }

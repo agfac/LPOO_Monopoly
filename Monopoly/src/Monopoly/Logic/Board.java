@@ -7,18 +7,30 @@ import java.util.*;
  */
 public class Board {
 	
-	public Vector<Player> players;
-    public Vector<Deck> deck;
+	private Vector<Player> players;
     private Vector<GroupProperty> groupProperty = new Vector<GroupProperty>();
-    public BoardBox[] boxs;
-    public Vector<Card> chanceCards = new Vector<Card>();
-    public Vector<Card> communityCards = new Vector<Card>();
+    private BoardBox[] boxs;
+    private Vector<Card> chanceCards = new Vector<Card>();
+    private Vector<Card> communityCards = new Vector<Card>();
     
     /**
      * Board Constructor
      */
     public Board() {
-       	
+    	
+    	generateBoardBoxs();
+    	
+    	generateGroupProperty();
+    	
+    	generateChance();
+    	
+    	generateCommunity();
+    }
+    
+    /**
+     * Generate Board Boxs
+     */
+    public void generateBoardBoxs(){
     	boxs = new BoardBox[40];
     	
     	GoBox Go = new GoBox();
@@ -101,8 +113,12 @@ public class Board {
     	boxs[38] = LuxuryTax;
     	NormalProperty BoardWalk = new NormalProperty(39, "Board Walk", 9, 400, 200, 50, new int[]{200,600,1400,1700}, 2000);
     	boxs[39] = BoardWalk;
-    	
-    	
+    }
+    
+    /**
+     * Generate Group Properties
+     */
+    public void generateGroupProperty(){
     	groupProperty.add(new GroupProperty(1,"Brown",2));
     	groupProperty.add(new GroupProperty(2,"Rail",4));
     	groupProperty.add(new GroupProperty(3,"Cyan",3));
@@ -113,8 +129,12 @@ public class Board {
     	groupProperty.add(new GroupProperty(8,"Green",3));
     	groupProperty.add(new GroupProperty(9,"Blue",3));
     	groupProperty.add(new GroupProperty(10,"Company",2));
-    	
-    	
+    }
+    
+    /**
+     * Generate Chance Cards
+     */
+    public void generateChance(){
     	chanceCards.add(new Card("Advance Go",1));
     	chanceCards.add(new Card("Advance Illinois Avenue",2));
     	chanceCards.add(new Card("Advance ST Charles Place",3));
@@ -130,7 +150,12 @@ public class Board {
     	chanceCards.add(new Card("Advance Board Walk",13));
     	chanceCards.add(new Card("Receive 150",14));
     	chanceCards.add(new Card("Pay each player 50",15));
-    	
+    }
+    
+    /**
+     * Generate Community Cards
+     */
+    public void generateCommunity(){
     	communityCards.add(new Card("Advance Go",1));
     	communityCards.add(new Card("Receive 200",2));
     	communityCards.add(new Card("Pay 50",3));
@@ -148,7 +173,12 @@ public class Board {
     	communityCards.add(new Card("Receive 100",15));
     	communityCards.add(new Card("Receive 100",16));
     }
-
+    
+    /**
+     * Get number max of properties per group
+     * @param index Id of group
+     * @return number max of properties per group
+     */
     public int getMaxPropertiesPerGroup(int index){
     	for(GroupProperty gp: groupProperty){
     		if(gp.getId() == index)
@@ -156,26 +186,21 @@ public class Board {
     	}
     	return 0;
     }
-    /**
-     * @param players
-     */
-    public void Board(Vector<Player> players) {
-    	this.players = players;
-    	deck.add(new Deck());
-    	deck.add(new Deck());
-    	
     
-    	// ciclo para criar tds as propiendades e guardar no -> boxs
-    }
-
-	public BoardBox[] getBoxs() {
-		return boxs;
-	}
-	
+    /**
+     * Get Board Box
+     * @param pos integer of position of the board box
+     * @return Board Box
+     */
 	public BoardBox getBoardBox(int pos){
 		return boxs[pos];
 	}
 	
+	/**
+	 * Get Card
+	 * @param val index position from Cards Vector
+	 * @return card
+	 */
 	public Card getCard(int val){
 		return communityCards.get(val-1);
 	}

@@ -3,7 +3,7 @@ package Monopoly.Logic;
 import java.util.*;
 
 /**
- * 
+ * Community Class
  */
 public class CommunityBox extends BoardBox {
 
@@ -13,14 +13,6 @@ public class CommunityBox extends BoardBox {
     public CommunityBox(int pos) {
     	this.pos = pos;
     	this.name = "Community Box";
-    }
-
-    /**
-     * @param player 
-     * @return
-     */
-    public void behaviorWithPlayer(Player player) {
-        // TODO implement here
     }
 
 }

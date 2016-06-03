@@ -20,6 +20,7 @@ public class Player {
     private int nrOfRollsInJail;
     private HashMap <Integer,Integer> nrPropertyGroup = new HashMap<Integer,Integer>();
     private HashMap <Integer,Boolean> blPropertyGroup = new HashMap<Integer,Boolean>();
+    private int dicesValue;
     
     /**
      * Constructor of Player
@@ -35,6 +36,7 @@ public class Player {
         this.propertiesOwned = new Vector<Property>();
         this.pos = pos;
         this.nrOfRolls = 0;
+        this.dicesValue = 0;
     }
 
     /**
@@ -268,5 +270,15 @@ public class Player {
 	public boolean haveAllPropertiesGroup (Property property){
 		return blPropertyGroup.get(property.getIdGroup());
 	}
+
+	
+	public int getDicesValue() {
+		return dicesValue;
+	}
+
+	public void setDicesValue(int dicesValue) {
+		this.dicesValue = dicesValue;
+	}
+	
 	
 }
