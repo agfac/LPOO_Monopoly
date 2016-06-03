@@ -14,7 +14,7 @@ public class Player {
     private int balance;
     private PlayerSymbol symbol;
     private boolean inJail;
-    private Vector<Card> cardsOwned;
+    private int cardsJail;
     private Vector<Property> propertiesOwned;
     private int nrOfRolls;
     private int nrOfRollsInJail;
@@ -32,7 +32,6 @@ public class Player {
         this.symbol = piece;
         this.balance = balance;
         this.inJail = false;
-        this.cardsOwned = new Vector<Card>();
         this.propertiesOwned = new Vector<Property>();
         this.pos = pos;
         this.nrOfRolls = 0;
@@ -122,26 +121,21 @@ public class Player {
     public void setInJail(boolean inJail) {
     	this.inJail = inJail;
     }
-
+    
     /**
-     * @return Cards owned
+     * Get number of cards from out of jail
+     * @return number of cards from out of jail
      */
-    public Vector<Card> getCardsOwned() {
-        return cardsOwned;
-    }
-
-    /**
-     * @param card to be added to the player owned cards
-     */
-    public void addCardsOwned(Card card) {
-    	cardsOwned.addElement(card);
+    public int getNrCardJail(){
+    	return cardsJail;
     }
     
     /**
-     * @param card to be removed from player owned cards
+     * Update the cards from out of jail
+     * @param n 1 if receive a jail card, -1 if use the card
      */
-    public void removeCardsOwned(Card card) {
-    	cardsOwned.remove(card);
+    public void updateCardsJail(int n){
+    	cardsJail += n;
     }
 
     /**

@@ -1,5 +1,6 @@
 package Monopoly.Logic;
 
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -126,10 +127,16 @@ public class Game {
 		// Update number of tries from player, if get 3 times goes to jail.
 		player.setNrOfRolls(sameValuesDice(dice1, dice2));
 		if (player.getNrOfRolls() == 3) {
-			player.setInJail(true);
-			player.setPos(board.searchBoardBox(10));
-			player.setNrOfRolls(false); // Reset number of rolls
-			System.out.println("You go to jail!!!");
+			// Check if have out of jail card and leave the jail if yes
+			if (player.getNrCardJail() != 0) {
+				player.updateCardsJail(-1);
+				System.out.println("You use one card out of jail");
+			} else {
+				player.setInJail(true);
+				player.setPos(board.getBoardBox(10));
+				player.setNrOfRolls(false); // Reset number of rolls
+				System.out.println("You go to jail!!!");
+			}
 		}
 
 		// Get player position and update with the new position from dices if
@@ -142,18 +149,39 @@ public class Game {
 		// Check if pass trough Go DoardBox and store the new player Position.
 		if (atualPlayerPos > 39 && !player.getInJail()) {
 			dif = atualPlayerPos - 39;
-			player.setPos(board.searchBoardBox((dif - 1)));
+			player.setPos(board.getBoardBox((dif - 1)));
 			player.updateBalance(GOVALUE);
 		} else
-			player.setPos(board.searchBoardBox(atualPlayerPos));
+			player.setPos(board.getBoardBox(atualPlayerPos));
 
 		// Check if the new position is the JailBox, if yes goes to jail.
-		if (player.getPos() == board.searchBoardBox(30)) {
-			player.setInJail(true);
-			player.setPos(board.searchBoardBox(10));
-			player.setNrOfRolls(false); // Reset number of rolls
-			System.out.println("You go to jail!!!");
+		if (player.getPos() == board.getBoardBox(30)) {
+			// Check if have out of jail card and leave the jail if yes
+			if (player.getNrCardJail() != 0) {
+				player.updateCardsJail(-1);
+				System.out.println("You use one card out of jail");
+			} else {
+				player.setInJail(true);
+				player.setPos(board.getBoardBox(10));
+				player.setNrOfRolls(false); // Reset number of rolls
+				System.out.println("You go to jail!!!");
+			}
 		}
+
+		if ((player.getPos() == board.getBoardBox(7)) || (player.getPos() == board.getBoardBox(22))
+				|| (player.getPos() == board.getBoardBox(36))) {
+			gerateChance(player);
+			System.out.println("CHANCE BOX");
+		}
+
+		if ((player.getPos() == board.getBoardBox(2)) || (player.getPos() == board.getBoardBox(17))
+				|| (player.getPos() == board.getBoardBox(33))) {
+			gerateCommunity(player);
+			System.out.println("COMMUNITY BOX");
+		}
+
+		if ((player.getPos() == board.getBoardBox(4)) || (player.getPos() == board.getBoardBox(38)))
+			player.updateBalance(-200);
 
 		System.out.println("Dice value: " + (dice1.getValue() + dice2.getValue()));
 	}
@@ -193,7 +221,7 @@ public class Game {
 		// rolled dice.
 		if (!player.getInJail()) {
 			atualPlayerPos = player.getPos().getPos();
-			player.setPos(board.searchBoardBox(atualPlayerPos + totalDiceValue));
+			player.setPos(board.getBoardBox(atualPlayerPos + totalDiceValue));
 		}
 	}
 
@@ -295,6 +323,178 @@ public class Game {
 		}
 	}
 
+	private void gerateChance(Player player) {
+		int option = 0;
+
+		// Generate the random Chance card to be choose
+		Random r = new Random();
+		option = r.nextInt(15) + 1;
+
+		switch (option) {
+		case 1:
+			player.setPos(board.getBoardBox(0));
+			player.updateBalance(200);
+			break;
+		case 2:
+			if (player.getPos().getPos() > 24)
+				player.updateBalance(200);
+			player.setPos(board.getBoardBox(24));
+			break;
+		case 3:
+			if (player.getPos().getPos() > 11)
+				player.updateBalance(200);
+			player.setPos(board.getBoardBox(11));
+			break;
+		case 4:
+			int aux = 0;
+			if (player.getPos().getPos() == 7)
+				aux = 15;
+			if (player.getPos().getPos() == 22)
+				aux = 25;
+			if (player.getPos().getPos() == 36)
+				aux = 5;
+			player.setPos(board.getBoardBox(aux));
+
+			// If have owner, player will pay 2 times the value of the rent.
+			if (((Property) (board.getBoardBox(aux))).getSold())
+				payBill(player, ((Property) (board.getBoardBox(aux))));
+			break;
+		case 5:
+			int val = 0;
+			if (player.getPos().getPos() == 7 || player.getPos().getPos() == 36)
+				val = 12;
+			if (player.getPos().getPos() == 22)
+				val = 28;
+			player.setPos(board.getBoardBox(val));
+
+			// If have owner, player roll dices and pay 10 times the value to
+			// owner
+			if (((Property) (board.getBoardBox(val))).getSold()) {
+				int num = (rollDice(dice1) + rollDice(dice2));
+				((Property) (board.getBoardBox(val))).getOwner().updateBalance(num * 10);
+				player.updateBalance(-(num * 10));
+			}
+
+			break;
+		case 6:
+			player.updateBalance(50);
+			break;
+		case 7:
+			player.updateCardsJail(1);
+			break;
+		case 8:
+			player.setPos(board.getBoardBox(player.getPos().getPos() - 3));
+			break;
+		case 9:
+			player.setPos(board.getBoardBox(10));
+			break;
+		case 10:
+			int countHotel = 0;
+			int countHouse = 0;
+			for (Property np : player.getPropertiesOwned()) {
+				if (np.getPos() != 5 && np.getPos() != 15 && np.getPos() != 25 && np.getPos() != 35 && np.getPos() != 12
+						&& np.getPos() != 28) {
+					countHotel += ((NormalProperty) np).getNrHotels();
+					countHouse += ((NormalProperty) np).getNrHouses();
+				}
+			}
+			player.updateBalance(-((100 * countHotel) + (25 * countHouse)));
+			break;
+		case 11:
+			player.updateBalance(-15);
+			break;
+		case 12:
+			if (player.getPos().getPos() > 5)
+				player.updateBalance(200);
+			player.setPos(board.getBoardBox(5));
+			break;
+		case 13:
+			player.setPos(board.getBoardBox(39));
+			break;
+		case 14:
+			player.updateBalance(150);
+			break;
+		case 15:
+			for (Player p : this.player) {
+				p.updateBalance(50);
+				player.updateBalance(-50);
+			}
+			break;
+		}
+	}
+
+	private void gerateCommunity(Player player) {
+		int option = 0;
+
+		// Generate the random Community card to be choose
+		Random r = new Random();
+		option = r.nextInt(16) + 1;
+
+		switch (option) {
+		case 1:
+			player.setPos(board.getBoardBox(0));
+			player.updateBalance(200);
+			break;
+		case 2:
+			player.updateBalance(200);
+			break;
+		case 3:
+			player.updateBalance(-50);
+			break;
+		case 4:
+			player.updateBalance(50);
+			break;
+		case 5:
+			player.updateCardsJail(1);
+			break;
+		case 6:
+			player.setPos(board.getBoardBox(10));
+			break;
+		case 7:
+			player.updateBalance(20);
+			break;
+		case 8:
+			for (Player p : this.player) {
+				p.updateBalance(-10);
+				player.updateBalance(10);
+			}
+			break;
+		case 9:
+			player.updateBalance(100);
+			break;
+		case 10:
+			player.updateBalance(-100);
+			break;
+		case 11:
+			player.updateBalance(-50);
+			break;
+		case 12:
+			player.updateBalance(25);
+			break;
+		case 13:
+			int countHotel = 0;
+			int countHouse = 0;
+			for (Property np : player.getPropertiesOwned()) {
+				if (np.getPos() != 5 && np.getPos() != 15 && np.getPos() != 25 && np.getPos() != 35 && np.getPos() != 12
+						&& np.getPos() != 28) {
+					countHotel += ((NormalProperty) np).getNrHotels();
+					countHouse += ((NormalProperty) np).getNrHouses();
+				}
+			}
+			player.updateBalance(-((115 * countHotel) + (40 * countHouse)));
+			break;
+		case 14:
+			player.updateBalance(10);
+			break;
+		case 15:
+			player.updateBalance(100);
+			break;
+		case 16:
+			player.updateBalance(100);
+			break;
+		}
+	}
+
 	/**
 	 * Update all game - MAIN FUNCTION!!!!!
 	 */
@@ -329,10 +529,10 @@ public class Game {
 		Scanner s = new Scanner(System.in);
 		int option = 1;
 
-		Player player1 = new Player("Pedro", game.dog, 10000, game.board.searchBoardBox(0));
+		Player player1 = new Player("Pedro", game.dog, 10000, game.board.getBoardBox(0));
 		game.addPlayer(player1);
 
-		Player player2 = new Player("Faby", game.car, 10000, game.board.searchBoardBox(0));
+		Player player2 = new Player("Faby", game.car, 10000, game.board.getBoardBox(0));
 		game.addPlayer(player2);
 
 		while (option != 0) {

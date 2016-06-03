@@ -11,6 +11,8 @@ public class Board {
     public Vector<Deck> deck;
     private Vector<GroupProperty> groupProperty = new Vector<GroupProperty>();
     public BoardBox[] boxs;
+    public Vector<Card> chanceCards = new Vector<Card>();
+    public Vector<Card> communityCards = new Vector<Card>();
     
     /**
      * Board Constructor
@@ -113,6 +115,38 @@ public class Board {
     	groupProperty.add(new GroupProperty(10,"Company",2));
     	
     	
+    	chanceCards.add(new Card("Advance Go",1));
+    	chanceCards.add(new Card("Advance Illinois Avenue",2));
+    	chanceCards.add(new Card("Advance ST Charles Place",3));
+    	chanceCards.add(new Card("Advance nearest RailRoad",4));
+    	chanceCards.add(new Card("Advance nearest Utility",5));
+    	chanceCards.add(new Card("Bank pay 50",6));
+    	chanceCards.add(new Card("Out jail",7));
+    	chanceCards.add(new Card("Back 3 spaces",8));
+    	chanceCards.add(new Card("Go jail",9));
+    	chanceCards.add(new Card("General Repairs",10));
+    	chanceCards.add(new Card("Speeding fine",11));
+    	chanceCards.add(new Card("Advance Reading RailRoad",12));
+    	chanceCards.add(new Card("Advance Board Walk",13));
+    	chanceCards.add(new Card("Receive 150",14));
+    	chanceCards.add(new Card("Pay each player 50",15));
+    	
+    	communityCards.add(new Card("Advance Go",1));
+    	communityCards.add(new Card("Receive 200",2));
+    	communityCards.add(new Card("Pay 50",3));
+    	communityCards.add(new Card("Receive 50",4));
+    	communityCards.add(new Card("Out Jail",5));
+    	communityCards.add(new Card("Go Jail",6));
+    	communityCards.add(new Card("Receive 20",7));
+    	communityCards.add(new Card("Receive 10 each player",8));
+    	communityCards.add(new Card("Receive 100",9));
+    	communityCards.add(new Card("Pay 100",10));
+    	communityCards.add(new Card("Pay 50",11));
+    	communityCards.add(new Card("Receive 25",12));
+    	communityCards.add(new Card("Street repairs",13));
+    	communityCards.add(new Card("Receive 10",14));
+    	communityCards.add(new Card("Receive 100",15));
+    	communityCards.add(new Card("Receive 100",16));
     }
 
     public int getMaxPropertiesPerGroup(int index){
@@ -138,7 +172,11 @@ public class Board {
 		return boxs;
 	}
 	
-	public BoardBox searchBoardBox(int pos){
+	public BoardBox getBoardBox(int pos){
 		return boxs[pos];
+	}
+	
+	public Card getCard(int val){
+		return communityCards.get(val-1);
 	}
 }

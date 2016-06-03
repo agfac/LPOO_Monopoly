@@ -8,7 +8,7 @@ import java.util.*;
 public class Card {
 	
     public String deckType;
-    public int nrCards;
+    public int nrCard;
     
     /**
      * Default constructor
@@ -18,10 +18,11 @@ public class Card {
 
     /**
      * @param deckType 
-     * @param nrCards 
+     * @param nrCards
      */
-    public void Card(String deckType, int nrCards) {
-        // TODO implement here
+    public Card(String deckType, int nrCard) {
+        this.deckType = deckType;
+        this.nrCard = nrCard;
     }
 
     /**
