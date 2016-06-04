@@ -1,15 +1,26 @@
 package Monopoly.Gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class GraphicsWindow {
 
 	private JFrame frame;
-
+	protected static BufferedImage dogPiece;
 	/**
 	 * Launch the application.
 	 */
@@ -37,19 +48,33 @@ public class GraphicsWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		
 		frame = new JFrame();
 		frame.setTitle("Monopoly Game");
-		frame.setBounds(100, 100, 1440, 900);
+		frame.setPreferredSize(new Dimension(dim.width, dim.height-50));
+		frame.setBounds(0, 0, dim.width, dim.height-50);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		GamePanel panel = new GamePanel(frame.getWidth(),frame.getHeight());
-		panel.setBounds(0, 0, 1080, 900);
-		frame.getContentPane().add(panel);
+		frame.setResizable(false);
 		
 		
-		PlayerPanel panel_1 = new PlayerPanel(frame.getWidth(),frame.getHeight());
-		panel_1.setBounds(720, 0, 1440, 900);
-		frame.getContentPane().add(panel_1);
+		GamePanel panel = new GamePanel();
+		panel.setBounds(0, 0, (int) 2*(frame.getWidth()/3), frame.getHeight()-40);
+		panel.setBorder(BorderFactory.createLineBorder(Color.black));
+		frame.getContentPane().add(panel, BorderLayout.WEST);
+	
+		
+		InfoPanel panel_1 = new InfoPanel();
+		panel_1.setBounds((int) 2*(frame.getWidth()/3), 0, (int) (frame.getWidth()/3), frame.getHeight()-40);
+		panel_1.setBorder(BorderFactory.createLineBorder(Color.black));
+		frame.getContentPane().add(panel_1, BorderLayout.EAST);
+
+		frame.pack();
+		
+		panel.requestFocus();
+		
 	}
+	
 }

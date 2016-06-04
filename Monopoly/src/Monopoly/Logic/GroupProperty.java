@@ -3,58 +3,40 @@ package Monopoly.Logic;
 import java.util.*;
 
 /**
- * 
+ * GroupProperty Class
  */
 public class GroupProperty {
+	
+	private int id;
+	private String color;
+	private int totalProperty;
 
-    /**
-     * Default constructor
-     */
-    public GroupProperty() {
-    }
-
-    /**
-     * 
-     */
-    public int id;
-
-    /**
-     * 
-     */
-    public String color;
-
-    /**
-     * 
-     */
-    public int totalProperty;
-
-
-
-
-    /**
+	/**
+	 * Constructor of GroupProperty
      * @param id 
      * @param color 
      * @param totalProperty
      */
-    public void GroupProperty(int id, String color, int totalProperty) {
-        // TODO implement here
+    public GroupProperty(int id, String color, int totalProperty) {
+        this.id = id;
+        this.color = color;
+        this.totalProperty = totalProperty;
     }
 
     /**
-     * @return
+     * Get the id of the GroupProperty
+     * @return id of GroupProperty
      */
     public int getId() {
-        // TODO implement here
-        return 0;
+        return id;
     }
 
     /**
-     * @param id 
-     * @return
+     * Get the number of total properties that a group have.
+     * @return total of properties
      */
-    public int getTotalProperty(int id) {
-        // TODO implement here
-        return 0;
+    public int getTotalProperty() {
+        return totalProperty;
     }
 
 }

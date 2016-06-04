@@ -3,7 +3,7 @@ package Monopoly.Logic;
 import java.util.*;
 
 /**
- * 
+ * RailRoadProperty Class
  */
 public class RailRoadProperty extends Property {
 	private int[] rentValues;
@@ -16,26 +16,20 @@ public class RailRoadProperty extends Property {
     	this.rentValues = new int[] {25, 50, 100, 200};
     }
     
-
+    
     /**
-     * @param idGroup 
-     * @param name 
-     * @param pos 
-     * @param amount 
-     * @param mortgageValue 
-     * @param mortgageValueBack 
-     * @param rentValues
-     */
-    public void RailRoadProperty(int idGroup, String name, int pos, int amount, int mortgageValue, int mortgageValueBack, int[] rentValues) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public int getRentValues() {
-        // TODO implement here
-        return 0;
-    }
+	 * Get the value to pay on this Rail Road
+	 * @return value to pay
+	 */
+	public int getValueToPay() {
+		if (owner.getPropertiesNr(((Property) this)) == 2) 
+			return rentValues[1];
+		if (owner.getPropertiesNr(((Property) this)) == 3) 
+			return rentValues[2];
+		if (owner.getPropertiesNr(((Property) this)) == 4) 
+			return rentValues[3];
+		else
+			return rentValues[0];
+	}
 
 }
