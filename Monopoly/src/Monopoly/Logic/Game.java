@@ -481,7 +481,7 @@ public class Game {
 			checkIfPlayerHaveOutOfJailCard(player);
 			break;
 		case 10:
-			payPerEachHouseAndHotel(player, 25, 100);
+			payPerEachHouseAndHotels(player, 25, 100);
 			break;
 		case 11:
 			player.updateBalance(-15);
@@ -563,7 +563,7 @@ public class Game {
 			player.updateBalance(25);
 			break;
 		case 13:
-			payPerEachHouseAndHotel(player, 40, 115);
+			payPerEachHouseAndHotels(player, 40, 115);
 			break;
 		case 14:
 			player.updateBalance(10);
@@ -586,7 +586,7 @@ public class Game {
 	 * @param valueToPayPerHouse
 	 * @param valueToPayPerHotel
 	 */
-	private void payPerEachHouseAndHotel(Player player, int valueToPayPerHouse, int valueToPayPerHotel) {
+	private void payPerEachHouseAndHotels(Player player, int valueToPayPerHouse, int valueToPayPerHotel) {
 		int countHotel = 0;
 		int countHouse = 0;
 		for (Property np : player.getPropertiesOwned()) {
