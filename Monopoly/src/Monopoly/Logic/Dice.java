@@ -6,7 +6,7 @@ import java.util.Random;
  * Dice class 
  */
 public class Dice {
-	public int value;
+	private int value;
 	
     /**
      * Default constructor of dice

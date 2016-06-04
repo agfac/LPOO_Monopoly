@@ -3,44 +3,32 @@ package Monopoly.Logic;
 import java.util.*;
 
 /**
- * 
+ * ServiceProperty Class
  */
 public class ServiceProperty extends Property {
+	private int[] rentValue;
 
     /**
-     * Default constructor
+     * Constructor of ServiceProperty
+     * @param pos Position
+     * @param name Name
+     * @param idGroup IDGroup
+     * @param amount Value of service property
+     * @param mortgageValue Mortgage value
+     * @param rentValues Array of rent values
      */
-    public ServiceProperty(int pos, String name) {
-    	this.pos = pos;
-    	this.name = name;
-    	this.amount = 150;
-    	this.mortgageValue = 75;
-    }
-
-    /**
-     * 
-     */
-    public int[] rentValues;
-
-    /**
-     * @param idGroup 
-     * @param name 
-     * @param pos 
-     * @param amount 
-     * @param mortgageValue 
-     * @param mortgageValueBack 
-     * @param rentValues
-     */
-    public void ServiceProperty(int idGroup, String name, int pos, int amount, int mortgageValue, int mortgageValueBack, int[] rentValues) {
-        // TODO implement here
+    public ServiceProperty(int pos, String name, int idGroup, int amount, int mortgageValue, int[] rentValues) {
+    	super(name, pos, idGroup, amount, mortgageValue);
+    	this.rentValue = rentValues;
     }
 
     /**
      * @return
      */
-    public int getRentValues() {
-        // TODO implement here
-        return 0;
+    public int getValueToPay(int diceValue) {
+    	if (owner.getPropertiesNr(((Property) this)) == 2) 
+			return (rentValue[1]*diceValue);
+    	return (rentValue[0]*diceValue);
     }
 
 }

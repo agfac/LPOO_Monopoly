@@ -3,7 +3,7 @@ package Monopoly.Logic;
 import java.util.*;
 
 /**
- * 
+ * GoJailBox Class
  */
 public class GoJailBox extends BoardBox {
 
@@ -12,14 +12,6 @@ public class GoJailBox extends BoardBox {
      */
     public GoJailBox() {
     	this.pos = 30;
-    }
-
-    /**
-     * @param player 
-     * @return
-     */
-    public void behaviorWithPlayer(Player player) {
-        // TODO implement here
     }
 
 }

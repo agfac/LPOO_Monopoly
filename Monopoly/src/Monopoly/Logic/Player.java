@@ -1,6 +1,7 @@
 package Monopoly.Logic;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Vector;
 
 /**
  * Class Player
@@ -13,16 +14,13 @@ public class Player {
     private int balance;
     private PlayerSymbol symbol;
     private boolean inJail;
-    private Vector<Card> cardsOwned;
+    private int cardsJail;
     private Vector<Property> propertiesOwned;
     private int nrOfRolls;
     private int nrOfRollsInJail;
-
-	/**
-     * Default constructor of Player
-     */
-    public Player() {	
-    }
+    private HashMap <Integer,Integer> nrPropertyGroup = new HashMap<Integer,Integer>();
+    private HashMap <Integer,Boolean> blPropertyGroup = new HashMap<Integer,Boolean>();
+    private int dicesValue;
     
     /**
      * Constructor of Player
@@ -35,10 +33,10 @@ public class Player {
         this.symbol = piece;
         this.balance = balance;
         this.inJail = false;
-        this.cardsOwned = new Vector<Card>();
         this.propertiesOwned = new Vector<Property>();
         this.pos = pos;
         this.nrOfRolls = 0;
+        this.dicesValue = 0;
     }
 
     /**
@@ -75,7 +73,15 @@ public class Player {
     public void setBalance(int balance) {
     	this.balance = balance;
     }
-
+    
+    /**
+     * Update the balance from player
+     * @param value to be updated on balance
+     */
+    public void updateBalance(int value){
+    	this.balance += value; 
+    }
+    
     /**
      * @return Symbol of the player
      */
@@ -117,39 +123,40 @@ public class Player {
     public void setInJail(boolean inJail) {
     	this.inJail = inJail;
     }
-
+    
     /**
-     * @return Cards owned
+     * Get number of cards from out of jail
+     * @return number of cards from out of jail
      */
-    public Vector<Card> getCardsOwned() {
-        return cardsOwned;
-    }
-
-    /**
-     * @param card to be added to the player owned cards
-     */
-    public void addCardsOwned(Card card) {
-    	cardsOwned.addElement(card);
+    public int getNrCardJail(){
+    	return cardsJail;
     }
     
     /**
-     * @param card to be removed from player owned cards
+     * Update the cards from out of jail
+     * @param n 1 if receive a jail card, -1 if use the card
      */
-    public void removeCardsOwned(Card card) {
-    	cardsOwned.remove(card);
+    public void updateCardsJail(int n){
+    	cardsJail += n;
     }
 
     /**
+     * Method to buy property
      * @param property that will be purchased from Player
      */
     public void buyProperty(Property property) {
     	if ( balance >= property.getAmount() ){
     		balance -= property.getAmount();
     		propertiesOwned.add(property);
+    		property.setSold(true);
+    		property.setOwner(this);
+    		int count = nrPropertyGroup.containsKey(property.getIdGroup()) ? nrPropertyGroup.get(property.getIdGroup()) : 0;
+    		nrPropertyGroup.put(property.getIdGroup(), count + 1);
     	}
     }
-
+    
     /**
+     * Method to sell the property
      * @param property to be sold
      * @param amount to be sold
      */
@@ -157,10 +164,16 @@ public class Player {
     	if ( propertiesOwned.contains(property) ){
     		balance += amount;
     		propertiesOwned.remove(property);
+    		property.setSold(false);
+    		property.setOwner(null);
+    		int aux = nrPropertyGroup.get(property.getIdGroup());
+    		nrPropertyGroup.put(property.getIdGroup(), --aux);
+    		blPropertyGroup.put(property.getIdGroup(), false);
     	}
     }
 
     /**
+     * Method to mortgage the property
      * @param property to be mortgage
      */
     public void mortgageProperty(Property property) {
@@ -171,6 +184,7 @@ public class Player {
     }
 
     /**
+     * Method to "unmortgage" the property
      * @param property to be "unmortgage"
      */
     public void unMortgageProperty(Property property) {
@@ -178,6 +192,14 @@ public class Player {
     		balance -= property.getMortgageValueBack();
     		property.setMortgage(false);
     	}
+    }
+    
+    /**
+     * Get all properties owned
+     * @return properties owned
+     */
+    public Vector<Property> getPropertiesOwned(){
+    	return propertiesOwned;
     }
     
     /**
@@ -218,6 +240,45 @@ public class Player {
 			this.nrOfRollsInJail = 0;
 	}
 	
+	/**
+	 * Get number of properties per group
+	 * @param property
+	 * @return
+	 */
+	public int getPropertiesNr(Property property){
+		return nrPropertyGroup.get(property.getIdGroup());
+	}
+	
+	/**
+	 * Verify if have all property
+	 * @param key value of properties to be compared
+	 * @param value max of properties
+	 */
+	public void updateBlPropertyGroup(int key, int value){
+		if (nrPropertyGroup.get(key) == value ){
+			blPropertyGroup.put(key, true);
+		}
+		else
+    		blPropertyGroup.put(key, false);
+	}
+	
+	/**
+	 * Return true or false if have all properties or not
+	 * @param property
+	 * @return true if have all properties, false if not
+	 */
+	public boolean haveAllPropertiesGroup (Property property){
+		return blPropertyGroup.get(property.getIdGroup());
+	}
+
+	
+	public int getDicesValue() {
+		return dicesValue;
+	}
+
+	public void setDicesValue(int dicesValue) {
+		this.dicesValue = dicesValue;
+	}
 	
 	
 }

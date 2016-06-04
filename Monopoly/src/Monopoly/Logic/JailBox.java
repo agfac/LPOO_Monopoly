@@ -3,7 +3,7 @@ package Monopoly.Logic;
 import java.util.*;
 
 /**
- * 
+ * JailBox Class
  */
 public class JailBox extends BoardBox {
 
@@ -13,14 +13,6 @@ public class JailBox extends BoardBox {
     public JailBox() {
     	this.pos = 10;
     	this.name = "Jail Box";
-    }
-
-    /**
-     * @param player 
-     * @return
-     */
-    public void behaviorWithPlayer(Player player) {
-        // TODO implement here
     }
 
 }

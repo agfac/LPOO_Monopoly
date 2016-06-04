@@ -1,7 +1,7 @@
 package Monopoly.Logic;
 
 /**
- * 
+ * FreeParkingBox Class
  */
 public class FreeParkingBox extends BoardBox{
 	
@@ -12,14 +12,5 @@ public class FreeParkingBox extends BoardBox{
     	this.pos = 20;
     	this.name = "Free Parking Box";
     }
-
-    /**
-     * @param player 
-     * @return
-     */
-    public void behaviorWithPlayer(Player player) {
-        // TODO implement here
-    }
-
 
 }

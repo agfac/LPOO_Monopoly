@@ -15,12 +15,4 @@ public class ChanceBox extends BoardBox {
     	this.name = "Chance Box";
     }
 
-    /**
-     * @param player 
-     * @return
-     */
-    public void behaviorWithPlayer(Player player) {
-        // TODO implement here
-    }
-
 }

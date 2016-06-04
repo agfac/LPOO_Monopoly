@@ -7,28 +7,26 @@ import java.util.*;
  */
 public class Card {
 	
-    public String deckType;
-    public int nrCards;
+	private String deckType;
+	private int nrCard;
     
+
     /**
-     * Default constructor
+     * Card constructor
+     * @param deckType description of the card
+     * @param nrCards number of card
      */
-    public Card() {
+    public Card(String deckType, int nrCard) {
+        this.deckType = deckType;
+        this.nrCard = nrCard;
     }
 
     /**
-     * @param deckType 
-     * @param nrCards 
+     * Get the card number
+     * @return card number
      */
-    public void Card(String deckType, int nrCards) {
-        // TODO implement here
-    }
-
-    /**
-     * @param player 
-     */
-    public void behaviorWithPlayer(Player player) {
-        // TODO implement here
-    }
-
+	public int getNrCard() {
+		return nrCard;
+	}
+    
 }

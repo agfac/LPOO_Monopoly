@@ -3,7 +3,7 @@ package Monopoly.Logic;
 import java.util.*;
 
 /**
- * 
+ * Property class
  */
 public class Property extends BoardBox {
 
@@ -16,12 +16,13 @@ public class Property extends BoardBox {
     protected int mortgageValueBack;
 
     /**
-     * Default constructor
+     * Property Constructor
+     * @param name Name of property
+     * @param pos Position on board of property
+     * @param idGroup Id Group
+     * @param amount Property value
+     * @param mortgageValue Mortgage value
      */
-    public Property(){
-    	
-    }
-    
     public Property(String name, int pos, int idGroup, int amount, int mortgageValue) {
     	this.name = name;
     	this.pos = pos;
@@ -39,7 +40,7 @@ public class Property extends BoardBox {
      * @return
      */
     public boolean getSold() {
-        return false;
+        return this.sold;
     }
 
     /**
@@ -92,14 +93,7 @@ public class Property extends BoardBox {
     public int getMortgageValueBack() {
         return mortgageValueBack;
     }
-    /**
-     * @param player 
-     * @return
-     */
-    public void behaviorWithPlayer(Player player) {
-    	owner = player;
-    }
-
+    
     /**
      * @return
      */
@@ -113,18 +107,4 @@ public class Property extends BoardBox {
     public void setOwner(Player player) {
     	owner = player;
     }
-
-    /**
-     * 
-     */
-    public class AssociationClass1 {
-
-        /**
-         * Default constructor
-         */
-        public AssociationClass1() {
-        }
-
-    }
-
 }
