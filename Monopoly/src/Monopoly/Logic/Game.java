@@ -1,8 +1,13 @@
 package Monopoly.Logic;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Vector;
+
+import javax.imageio.ImageIO;
 
 public class Game {
 
@@ -24,22 +29,41 @@ public class Game {
 	private final int JAILVALUE = 500;
 	private final int GOVALUE = 2000;
 
+	protected static BufferedImage dogPiece;
+	protected static BufferedImage carPiece;
+	protected static BufferedImage shipPiece;
+	protected static BufferedImage bootPiece;
+	protected static BufferedImage hatPiece;
+	protected static BufferedImage ironPiece;
+	protected static BufferedImage thimblePiece;
+	protected static BufferedImage wheelbarrowPiece;
+	
+	
 	public Game() {
 		player = new Vector<Player>();
 
-		dog = new PlayerSymbol(1, "Dog");
-		car = new PlayerSymbol(2, "Car");
-		ship = new PlayerSymbol(3, "Ship");
-		boot = new PlayerSymbol(4, "Boot");
-		hat = new PlayerSymbol(5, "Hat");
-		iron = new PlayerSymbol(6, "Iron");
-		thimble = new PlayerSymbol(7, "Thimble");
-		wheelbarrow = new PlayerSymbol(8, "Wheelbarrow");
+		 try {
+			 dogPiece =  ImageIO.read(new File("resources/images/pieces/dog.png"));
+
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		dog = new PlayerSymbol(1, "Dog", dogPiece);
+		car = new PlayerSymbol(2, "Car", carPiece);
+		ship = new PlayerSymbol(3, "Ship", shipPiece);
+		boot = new PlayerSymbol(4, "Boot", bootPiece);
+		hat = new PlayerSymbol(5, "Hat", hatPiece);
+		iron = new PlayerSymbol(6, "Iron", ironPiece);
+		thimble = new PlayerSymbol(7, "Thimble", thimblePiece);
+		wheelbarrow = new PlayerSymbol(8, "Wheelbarrow", wheelbarrowPiece);
 
 		board = new Board();
 		dice1 = new Dice();
 		dice2 = new Dice();
-
+		
 	}
 
 	/**

@@ -21,10 +21,9 @@ public class Player {
     private HashMap <Integer,Integer> nrPropertyGroup = new HashMap<Integer,Integer>();
     private HashMap <Integer,Boolean> blPropertyGroup = new HashMap<Integer,Boolean>();
     private int dicesValue;
-<<<<<<< HEAD
+
     private Position position = new Position();
-=======
->>>>>>> branch 'Pedro' of https://github.com/agfac/LPOO_Monopoly.git
+
     
     /**
      * Constructor of Player
