@@ -12,7 +12,7 @@ public class Player {
     private int id;
     private String name;
     private int balance;
-    private int symbol;
+    private PlayerSymbol symbol;
     private boolean inJail;
     private int cardsJail;
     private Vector<Property> propertiesOwned;
@@ -22,6 +22,8 @@ public class Player {
     private HashMap <Integer,Boolean> blPropertyGroup = new HashMap<Integer,Boolean>();
     private int dicesValue;
 
+    private int symbol_1; //TODO apenas para testes do ANDRE
+    
     private Position position = new Position();
     private int valuePosittion;
     
@@ -42,19 +44,32 @@ public class Player {
 		valuePosittion = p;
 	}
 	
+	//TODO PARA TESTE APENAS, APAGAR !!!!!!!!!!!!!!!!!1111
+   public Player(String name, int piece, int balance) {
+        this.name = name;
+        this.symbol_1 = piece;
+        this.balance = balance;
+        this.inJail = false;
+        this.propertiesOwned = new Vector<Property>();
+        this.nrOfRolls = 0;
+        this.dicesValue = 0;
+        //TODO guardar o valor a posição em int
+        this.valuePosittion = pos.getPos();
+    }
+	   
 	/**
      * Constructor of Player
      * @param name of player
      * @param piece symbol that identify the player
      * @param balance value that player have in their wallet
      */
-    public Player(String name, int piece, int balance) {
+    public Player(String name, PlayerSymbol piece, int balance, BoardBox pos) {
         this.name = name;
         this.symbol = piece;
         this.balance = balance;
         this.inJail = false;
         this.propertiesOwned = new Vector<Property>();
-        //this.pos = pos;
+        this.pos = pos;
         this.nrOfRolls = 0;
         this.dicesValue = 0;
         //TODO guardar o valor a posição em int
@@ -107,14 +122,14 @@ public class Player {
     /**
      * @return Symbol of the player
      */
-    public int getSymbol() {
+    public PlayerSymbol getSymbol() {
         return symbol;
     }
 
     /**
      * @param symbol of the player
      */
-    public void setSymbol(int symbol) {
+    public void setSymbol(PlayerSymbol symbol) {
     	this.symbol = symbol;
     }
 

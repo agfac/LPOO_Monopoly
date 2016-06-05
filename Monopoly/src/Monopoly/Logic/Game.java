@@ -20,8 +20,15 @@ public class Game {
 
 	private final int JAILVALUE = 500;
 	private final int GOVALUE = 2000;
-
-<<<<<<< HEAD
+	//TODO APENAS PARA TESTE APAGAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
+	PlayerSymbol dog;
+	PlayerSymbol car;
+	PlayerSymbol ship;
+	PlayerSymbol boot;
+	PlayerSymbol hat;
+	PlayerSymbol iron;
+	PlayerSymbol thimble;
+	PlayerSymbol wheelbarrow;
 	protected static BufferedImage dogPiece;
 	protected static BufferedImage carPiece;
 	protected static BufferedImage shipPiece;
@@ -30,43 +37,39 @@ public class Game {
 	protected static BufferedImage ironPiece;
 	protected static BufferedImage thimblePiece;
 	protected static BufferedImage wheelbarrowPiece;
-	
+	//FIM CODIGO TESTES-------------------------------------------------------
 	
 	public Game() {
-		player = new Vector<Player>();
-=======
-	public Game(Vector<Player> players) {
->>>>>>> branch 'master' of https://github.com/agfac/LPOO_Monopoly.git
-
-<<<<<<< HEAD
-		 try {
-			 dogPiece =  ImageIO.read(new File("resources/images/pieces/dog.png"));
-
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		dog = new PlayerSymbol(1, "Dog", dogPiece);
-		car = new PlayerSymbol(2, "Car", carPiece);
-		ship = new PlayerSymbol(3, "Ship", shipPiece);
-		boot = new PlayerSymbol(4, "Boot", bootPiece);
-		hat = new PlayerSymbol(5, "Hat", hatPiece);
-		iron = new PlayerSymbol(6, "Iron", ironPiece);
-		thimble = new PlayerSymbol(7, "Thimble", thimblePiece);
-		wheelbarrow = new PlayerSymbol(8, "Wheelbarrow", wheelbarrowPiece);
-
-=======
-		this.players=players;
-		
->>>>>>> branch 'master' of https://github.com/agfac/LPOO_Monopoly.git
+		players = new Vector<Player>();
+		//TODO APENAS PARA TESTE APAGAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
+//		 try {
+//			 dogPiece =  ImageIO.read(new File("resources/images/pieces/dog.png"));
+//
+//
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		dog = new PlayerSymbol(1, "Dog", dogPiece);
+//		car = new PlayerSymbol(2, "Car", carPiece);
+//		ship = new PlayerSymbol(3, "Ship", shipPiece);
+//		boot = new PlayerSymbol(4, "Boot", bootPiece);
+//		hat = new PlayerSymbol(5, "Hat", hatPiece);
+//		iron = new PlayerSymbol(6, "Iron", ironPiece);
+//		thimble = new PlayerSymbol(7, "Thimble", thimblePiece);
+//		wheelbarrow = new PlayerSymbol(8, "Wheelbarrow", wheelbarrowPiece);
+		//FIM CODIGO TESTES-------------------------------------------------------
 		board = new Board();
 		dice1 = new Dice();
-		dice2 = new Dice();
-		
+		dice2 = new Dice();	
 	}
 
+	public Game(Vector<Player> players) {
+	 		this.players = players;
+	  		board = new Board();
+	  		dice1 = new Dice();
+	  		dice2 = new Dice();
+	}
 	/**
 	 * Get all players
 	 * 
@@ -529,7 +532,7 @@ public class Game {
 			}
 			break;
 		}
-		System.out.println("CHANCE CARD Nï¿½ -> " + option);
+		System.out.println("CHANCE CARD Nº -> " + option);
 	}
 
 	/**
@@ -600,7 +603,7 @@ public class Game {
 			player.updateBalance(100);
 			break;
 		}
-		System.out.println("COMMUNITY CHEST CARD Nï¿½ -> " + option);
+		System.out.println("COMMUNITY CHEST CARD Nº -> " + option);
 	}
 
 	/**
@@ -654,7 +657,7 @@ public class Game {
 	}
 
 	public static void main(String[] args) {
-		/*Game game = new Game();
+		Game game = new Game();
 		Scanner s = new Scanner(System.in);
 		int option = 1;
 
@@ -675,6 +678,6 @@ public class Game {
 			game.updateGame(player2);
 
 			System.out.println("======================================================================");
-		}*/
+		}
 	}
 }
