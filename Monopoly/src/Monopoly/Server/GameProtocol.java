@@ -1,29 +1,43 @@
 package Monopoly.Server;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map.Entry;
 import java.util.Vector;
 
 import Monopoly.Logic.Game;
+import Monopoly.Logic.GoBox;
 import Monopoly.Logic.Player;
+import Monopoly.Logic.PlayerSymbol;
 
 public class GameProtocol {
 
 	private static final int INIT = 0;
-	private static final int WAITINGNUMOFPLAYERS = 1;
-	private static final int WAITINGFIRSTPLAYER = 2;
-	private static final int WAITINGOTHERPLAYERS = 3;
-	private static final int READYTOPLAY = 4;
+	private static final int SETGAMEPROPERTIES = 1;
+	private static final int WAITINGNUMOFPLAYERS = 2;
+	private static final int WAITINGFIRSTPLAYER = 3;
+	private static final int WAITINGOTHERPLAYERS = 4;
+	private static final int READYTOPLAY = 5;
 
-	private static final int WAITING = 0;
+	/*private static final int WAITING = 0;
 	private static final int SENTKNOCKKNOCK = 1;
 	private static final int SENTCLUE = 2;
-	private static final int ANOTHER = 3;
+	private static final int ANOTHER = 3;*/
 
 	private static int numPlayers;
 	private static int balance;
-	private static Vector <Player> players;
+	private static Vector <Player> players = new Vector <>();
+	
+	private static Integer[] pieceNumbers = {1,2,3,4,5,6,7,8}; 
+	private static Vector pieces = new Vector(Arrays.asList(pieceNumbers));
+	
 	private static Game game;
 	
 	private int state = INIT;
+	private boolean gamePropertiesBegin = false;
+	
 	/*private int currentJoke = 0;
 
 	private String[] clues = { "Turnip", "Little Old Lady", "Atch", "Who", "Who" };
@@ -33,14 +47,25 @@ public class GameProtocol {
 			"Is there an owl in here?",
 	"Is there an echo in here?" };*/
 
+	
 	public String processInput(String theInput) {
 		String theOutput = null;
 
-		if(state == INIT){
-			theOutput = "Hello";
-			state = WAITINGNUMOFPLAYERS;
-		}
-		if(state == WAITINGNUMOFPLAYERS){
+		switch(state){
+			
+		case INIT:
+			if(!gamePropertiesBegin){
+				gamePropertiesBegin=true;
+				state = SETGAMEPROPERTIES;
+				theOutput = "Game properties begin";
+				break;
+			}
+				
+			else{
+				theOutput = "Another player defining the game properties. Please wait.";
+				break;
+			}
+			/*
 			String[] parts = theInput.split(";");
 			String numPlayersString = parts[0];
 			String balanceString = parts[1];
@@ -48,40 +73,60 @@ public class GameProtocol {
 			numPlayers = Integer.parseInt(numPlayersString);
 			balance = Integer.parseInt(balanceString);
 			
-			state = WAITINGFIRSTPLAYER;
-		}
-		if(state == WAITINGFIRSTPLAYER){
+			System.out.println(state);
+			System.out.println(numPlayers);
+			System.out.println(balance);
+
+			theOutput="sai";
+			state = WAITINGFIRSTPLAYER;*/
+			//break;
+		
+		case WAITINGFIRSTPLAYER:
 			
-			String[] parts = theInput.split(";");
-			String name = parts[0];
-			String piece = parts[1];
+			String[] firstParts = theInput.split(";");
+			String firstName = firstParts[0];
+			String firstPiece = firstParts[1];
 			
-			int pieceId = Integer.parseInt(piece);
-			Player player = new Player (name, pieceId, balance);
+			Integer firstPieceId = Integer.parseInt(firstPiece);
 			
-			players.addElement(player);
+			Player firstPlayer;
 			
-			state = WAITINGOTHERPLAYERS;
-		}
-		if(state == WAITINGOTHERPLAYERS){
+			if(pieces.contains(firstPieceId)){
+				firstPlayer = new Player (firstName, firstPieceId, balance);
+				players.add(firstPlayer);
+				pieces.remove(firstPieceId);
+				state = WAITINGOTHERPLAYERS;
+				break;
+			}
 			
-			if(players.size()<numPlayers){
-				String[] parts = theInput.split(";");
-				String name = parts[0];
-				String piece = parts[1];
-				
-				int pieceId = Integer.parseInt(piece);
-				Player player = new Player (name, pieceId, balance);
-				
-				players.addElement(player);
+			else{
+				theOutput = "That piece symbol already been choose!";
+				break;
+			}
+		
+		case WAITINGOTHERPLAYERS:
+			
+			String[] ohterParts = theInput.split(";");
+			String otherName = ohterParts[0];
+			String otherPiece = ohterParts[1];
+			
+			Integer otherPieceId = Integer.parseInt(otherPiece);
+			
+			Player otherPlayer;
+			
+			if(pieces.contains(otherPieceId)){
+				otherPlayer = new Player (otherName, otherPieceId, balance);
+				players.add(otherPlayer);
+				pieces.remove(otherPieceId);
 			}
 			
 			if(players.size() == numPlayers){
 				game = new Game (players);
 				state = READYTOPLAY;
 			}		
+			break;
 		}
-		
+			
 		/*if (state == WAITING) {
 			theOutput = "Knock! Knock!";
 			state = SENTKNOCKKNOCK;

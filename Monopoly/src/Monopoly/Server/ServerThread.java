@@ -6,10 +6,12 @@ import java.io.*;
 public class ServerThread extends Thread {
     
 	private Socket socket = null;
+	private GameProtocol gp;
 
-    public ServerThread(Socket socket) {
+    public ServerThread(Socket socket, GameProtocol gp) {
         super("ServerThread");
         this.socket = socket;
+        this.gp = gp;
     }
     
     public void run() {
@@ -21,8 +23,8 @@ public class ServerThread extends Thread {
                     socket.getInputStream()));
         ) {
             String inputLine, outputLine;
-            GameProtocol gp = new GameProtocol();
-            outputLine = gp.processInput(null);
+            
+            //outputLine = gp.processInput(null);
             //System.out.println(outputLine);
             //out.println(outputLine);
 
@@ -31,8 +33,8 @@ public class ServerThread extends Thread {
                 outputLine = gp.processInput(inputLine);
                 System.out.println(outputLine);
                 out.println(outputLine);
-                if (outputLine.equals("Bye"))
-                    break;
+                /*if (outputLine.equals("Bye"))
+                    break;*/
             }
             socket.close();
         } catch (IOException e) {

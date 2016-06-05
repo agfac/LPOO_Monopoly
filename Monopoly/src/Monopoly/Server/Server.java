@@ -10,9 +10,9 @@ public class Server {
 		boolean listening = true;
 
 		try (ServerSocket serverSocket = new ServerSocket(4444)){
-
+			GameProtocol gp = new GameProtocol();
 			while(listening){
-				new ServerThread(serverSocket.accept()).start();
+				new ServerThread(serverSocket.accept(), gp).start();
 			}
 		} catch (IOException e) {
 			System.out.println("Could not listen on port: 4444");

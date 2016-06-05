@@ -10,32 +10,16 @@ public class Game {
 	Dice dice2;
 	Board board;
 	BoardBox boardbox;
-	PlayerSymbol dog;
-	PlayerSymbol car;
-	PlayerSymbol ship;
-	PlayerSymbol boot;
-	PlayerSymbol hat;
-	PlayerSymbol iron;
-	PlayerSymbol thimble;
-	PlayerSymbol wheelbarrow;
 
-	Vector<Player> player;
+	Vector<Player> players;
 
 	private final int JAILVALUE = 500;
 	private final int GOVALUE = 2000;
 
-	public Game() {
-		player = new Vector<Player>();
+	public Game(Vector<Player> players) {
 
-		dog = new PlayerSymbol(1, "Dog");
-		car = new PlayerSymbol(2, "Car");
-		ship = new PlayerSymbol(3, "Ship");
-		boot = new PlayerSymbol(4, "Boot");
-		hat = new PlayerSymbol(5, "Hat");
-		iron = new PlayerSymbol(6, "Iron");
-		thimble = new PlayerSymbol(7, "Thimble");
-		wheelbarrow = new PlayerSymbol(8, "Wheelbarrow");
-
+		this.players=players;
+		
 		board = new Board();
 		dice1 = new Dice();
 		dice2 = new Dice();
@@ -48,7 +32,7 @@ public class Game {
 	 * @return all players
 	 */
 	public Vector<Player> getPlayers() {
-		return player;
+		return players;
 	}
 
 	/**
@@ -58,7 +42,7 @@ public class Game {
 	 *            to be added
 	 */
 	public void addPlayer(Player player) {
-		this.player.add(player);
+		this.players.add(player);
 	}
 
 	/**
@@ -68,7 +52,7 @@ public class Game {
 	 *            to be removed
 	 */
 	public void removePlayer(Player player) {
-		this.player.remove(player);
+		this.players.remove(player);
 	}
 
 	/**
@@ -498,13 +482,13 @@ public class Game {
 			player.updateBalance(150);
 			break;
 		case 15:
-			for (Player p : this.player) {
+			for (Player p : this.players) {
 				p.updateBalance(50);
 				player.updateBalance(-50);
 			}
 			break;
 		}
-		System.out.println("CHANCE CARD Nº -> " + option);
+		System.out.println("CHANCE CARD Nï¿½ -> " + option);
 	}
 
 	/**
@@ -545,7 +529,7 @@ public class Game {
 			player.updateBalance(20);
 			break;
 		case 8:
-			for (Player p : this.player) {
+			for (Player p : this.players) {
 				p.updateBalance(-10);
 				player.updateBalance(10);
 			}
@@ -575,7 +559,7 @@ public class Game {
 			player.updateBalance(100);
 			break;
 		}
-		System.out.println("COMMUNITY CHEST CARD Nº -> " + option);
+		System.out.println("COMMUNITY CHEST CARD Nï¿½ -> " + option);
 	}
 
 	/**
@@ -629,7 +613,7 @@ public class Game {
 	}
 
 	public static void main(String[] args) {
-		Game game = new Game();
+		/*Game game = new Game();
 		Scanner s = new Scanner(System.in);
 		int option = 1;
 
@@ -650,6 +634,6 @@ public class Game {
 			game.updateGame(player2);
 
 			System.out.println("======================================================================");
-		}
+		}*/
 	}
 }
