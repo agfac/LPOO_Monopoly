@@ -12,7 +12,7 @@ public class Player {
     private int id;
     private String name;
     private int balance;
-    private PlayerSymbol symbol;
+    private int symbol;
     private boolean inJail;
     private int cardsJail;
     private Vector<Property> propertiesOwned;
@@ -48,13 +48,13 @@ public class Player {
      * @param piece symbol that identify the player
      * @param balance value that player have in their wallet
      */
-    public Player(String name, PlayerSymbol piece, int balance, BoardBox pos) {
+    public Player(String name, int piece, int balance) {
         this.name = name;
         this.symbol = piece;
         this.balance = balance;
         this.inJail = false;
         this.propertiesOwned = new Vector<Property>();
-        this.pos = pos;
+        //this.pos = pos;
         this.nrOfRolls = 0;
         this.dicesValue = 0;
         //TODO guardar o valor a posição em int
@@ -107,14 +107,14 @@ public class Player {
     /**
      * @return Symbol of the player
      */
-    public PlayerSymbol getSymbol() {
+    public int getSymbol() {
         return symbol;
     }
 
     /**
      * @param symbol of the player
      */
-    public void setSymbol(PlayerSymbol symbol) {
+    public void setSymbol(int symbol) {
     	this.symbol = symbol;
     }
 
