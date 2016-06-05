@@ -22,17 +22,15 @@ import Monopoly.Logic.Board;
 import Monopoly.Logic.Player;
 import Monopoly.Logic.PlayerSymbol;
 
-public class GraphicsWindow {
+public class GraphicsWindow extends ImagesLoad{
 
 	private JFrame frame;
 
 	// TODO codigo para testes
 	PlayerSymbol dog = new PlayerSymbol(1, "Dog", dogPiece);
 	Board boardsdcdc = new Board();
-	Vector<Player> players = new Vector<Player>();
+	Vector<Player> players;
 	// fim do codigo para testes
-		
-	protected static BufferedImage dogPiece;
 
 	/**
 	 * Launch the application.
@@ -57,6 +55,13 @@ public class GraphicsWindow {
 	public GraphicsWindow() {
 		players = new Vector<Player>();
 		players.add(new Player("Pedro", dog, 10000, boardsdcdc.getBoardBox(0)));
+		players.get(0).setPosition(1120, 890);
+//		players.add(new Player("Faby", dog, 10000, boardsdcdc.getBoardBox(0)));
+//		players.get(1).setPosition(1120, 930);
+//		players.add(new Player("Andre", dog, 10000, boardsdcdc.getBoardBox(0)));
+//		players.get(2).setPosition(1170, 890);
+//		players.add(new Player("Paulo", dog, 10000, boardsdcdc.getBoardBox(0)));
+//		players.get(3).setPosition(1170, 930);
 		initialize();
 	}
 
@@ -75,13 +80,13 @@ public class GraphicsWindow {
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 
-		GamePanel panel = new GamePanel();
+		GamePanel panel = new GamePanel(players);
 		panel.setBounds(0, 0, (int) 2 * (frame.getWidth() / 3), frame.getHeight() - 40);
 		panel.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		frame.getContentPane().add(panel, BorderLayout.WEST);
 
-		InfoPanel panel_1 = new InfoPanel();
+		InfoPanel panel_1 = new InfoPanel(players);
 		panel_1.setBounds((int) 2 * (frame.getWidth() / 3), 0, (int) (frame.getWidth() / 3), frame.getHeight() - 40);
 		panel_1.setBorder(BorderFactory.createLineBorder(Color.black));
 		frame.getContentPane().add(panel_1, BorderLayout.EAST);

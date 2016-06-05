@@ -23,23 +23,11 @@ public class InfoPanel extends ImagesLoad {
 	private JTextField textField;
 	private JTextField textField_1;
 
-	// TODO codigo para testes
-	PlayerSymbol dog = new PlayerSymbol(1, "Dog", dogPiece);
-	Board boardsdcdc = new Board();
-	Vector<Player> players = new Vector<Player>();
-	// fim do codigo para testes
+	Vector<Player> players;
 
 	public InfoPanel(Vector<Player> players) {
 		super();
 		this.players = players;
-	}
-
-	public InfoPanel() {
-		super();
-		players.add(new Player("Pedro", dog, 10000, boardsdcdc.getBoardBox(0)));
-		players.add(new Player("Faby", dog, 10000, boardsdcdc.getBoardBox(0)));
-		players.add(new Player("Andre", dog, 10000, boardsdcdc.getBoardBox(0)));
-		players.add(new Player("Paulo", dog, 10000, boardsdcdc.getBoardBox(0)));
 	}
 
 	@Override

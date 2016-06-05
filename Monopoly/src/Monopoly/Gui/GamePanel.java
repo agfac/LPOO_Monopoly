@@ -13,8 +13,6 @@ import Monopoly.Logic.PlayerSymbol;
 
 public class GamePanel extends ImagesLoad implements MouseListener, MouseMotionListener {
 
-	private int dimXFrame;
-	private int dimYFrame;
 	private int piecesSize = 45;
 
 	private int deltaX = 105;
@@ -40,45 +38,12 @@ public class GamePanel extends ImagesLoad implements MouseListener, MouseMotionL
 	private int yPosUpE = 125;
 	private int yPosDownE = 170;
 
-	// TODO codigo para testes
-	PlayerSymbol dog = new PlayerSymbol(1, "Dog", dogPiece);
-	Board boardsdcdc = new Board();
-	Vector<Player> players = new Vector<Player>();
-	// fim do codigo para testes
-	
-	private int position = 0;
-
-	public GamePanel() {
-		super();
-		this.addMouseListener(this);
-		this.addMouseMotionListener(this);
-		players = new Vector<Player>();
-		players.add(new Player("Pedro", dog, 10000, boardsdcdc.getBoardBox(0)));
-		players.get(0).setPosition(xPosUpS, yPosUpS);// TODO importante definir
-														// está posição ao criar
-														// o jogador 1
-		players.add(new Player("Faby", dog, 10000, boardsdcdc.getBoardBox(0)));
-		players.get(1).setPosition(xPosUpS, yPosDownS);// TODO importante
-														// definir está posição
-														// ao criar o jogador 2
-		players.add(new Player("Andre", dog, 10000, boardsdcdc.getBoardBox(0)));
-		players.get(2).setPosition(xPosDownS, yPosUpS);// TODO importante
-														// definir está posição
-														// ao criar o jogador 3
-		players.add(new Player("Paulo", dog, 10000, boardsdcdc.getBoardBox(0)));
-		players.get(3).setPosition(xPosDownS, yPosDownS);// TODO importante
-															// definir está
-															// posição ao criar
-															// o jogador 4
-	}
+	Vector<Player> players;
 
 	public GamePanel(Vector<Player> players) {
 		super();
-		this.addMouseListener(this);
-		this.addMouseMotionListener(this);
-		this.players = players;
-	}
-	public void teste(Vector<Player> players){
+		this.addMouseListener(this); //TODO APAGAR
+		this.addMouseMotionListener(this);//TODO APAGAR
 		this.players = players;
 	}
 	
@@ -89,8 +54,6 @@ public class GamePanel extends ImagesLoad implements MouseListener, MouseMotionL
 		g.setColor(Color.white);
 		g.drawImage(board, 0, 0, this.getWidth(), this.getHeight(), 0, 0, board.getWidth(), board.getHeight(), null);
 
-		int x = 0;
-		int y = 0;
 		for (Player p : players)
 			draw(g, p, p.getPosition().getX(), p.getPosition().getY());
 	}
@@ -198,9 +161,12 @@ public class GamePanel extends ImagesLoad implements MouseListener, MouseMotionL
 		System.out.println("valeu position : " + p.getValuePosition());
 	}
 
+	
+	
+	
 	// APAGAR APOS TESTE
 	@Override
-	public void mousePressed(MouseEvent arg0) {
+	public void mousePressed(MouseEvent e) {
 		// System.out.println("x -> " + e.getX());
 		// System.out.println("y -> " + e.getY());
 		update(players.get(0));
