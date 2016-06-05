@@ -23,9 +23,26 @@ public class Player {
     private int dicesValue;
 
     private Position position = new Position();
-
+    private int valuePosittion;
     
-    /**
+    public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(int x, int y) {
+		this.position.setX(x);
+		this.position.setY(y);
+	}
+
+	public int getValuePosition(){
+		return valuePosittion;
+	}
+	
+	public void setValuePosition(int p){
+		valuePosittion = p;
+	}
+	
+	/**
      * Constructor of Player
      * @param name of player
      * @param piece symbol that identify the player
@@ -40,6 +57,8 @@ public class Player {
         this.pos = pos;
         this.nrOfRolls = 0;
         this.dicesValue = 0;
+        //TODO guardar o valor a posição em int
+        this.valuePosittion = pos.getPos();
     }
 
     /**

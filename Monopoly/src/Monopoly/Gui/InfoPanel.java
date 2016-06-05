@@ -4,11 +4,16 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import Monopoly.Logic.Board;
+import Monopoly.Logic.Player;
+import Monopoly.Logic.PlayerSymbol;
 
 public class InfoPanel extends ImagesLoad {
 
@@ -18,15 +23,23 @@ public class InfoPanel extends ImagesLoad {
 	private JTextField textField;
 	private JTextField textField_1;
 
-	public InfoPanel() {
+	// TODO codigo para testes
+	PlayerSymbol dog = new PlayerSymbol(1, "Dog", dogPiece);
+	Board boardsdcdc = new Board();
+	Vector<Player> players = new Vector<Player>();
+	// fim do codigo para testes
+
+	public InfoPanel(Vector<Player> players) {
 		super();
+		this.players = players;
 	}
 
-	public InfoPanel(int dimXFrame, int dimYFrame) {
+	public InfoPanel() {
 		super();
-		this.dimXFrame = dimXFrame;
-		this.dimYFrame = dimYFrame;
-
+		players.add(new Player("Pedro", dog, 10000, boardsdcdc.getBoardBox(0)));
+		players.add(new Player("Faby", dog, 10000, boardsdcdc.getBoardBox(0)));
+		players.add(new Player("Andre", dog, 10000, boardsdcdc.getBoardBox(0)));
+		players.add(new Player("Paulo", dog, 10000, boardsdcdc.getBoardBox(0)));
 	}
 
 	@Override
@@ -38,54 +51,52 @@ public class InfoPanel extends ImagesLoad {
 	}
 
 	private void doDrawing(Graphics g) {
-		int nPlayers = 4;
+		int nPlayers = players.size();
 		int boxWidht = this.getWidth();
-		int boxHeight = this.getHeight()/nPlayers;
+		int boxHeight = this.getHeight() / nPlayers;
 		int xIn = 0;
 		int yIn = 0;
-		
+
 		ArrayList<Graphics2D> g1 = new ArrayList<Graphics2D>();
-		int nProperties = 10;
-		
 
 		int propertySize = 132;
 		int xi = 100;
 		int yi = 10;
 		int xf = xi + propertySize;
 		int yf = 70;
-		for (int i = 0; i < nPlayers; i++) {
+		for (Player p : players) {
+			int nProperties = p.getPropertiesOwned().size();
+			g.drawImage(p.getSymbol().getPiece(), 0, yIn, 90, yIn + 90, 0, 0, p.getSymbol().getPiece().getWidth(),
+					p.getSymbol().getPiece().getHeight(), null);
 
-			g.drawImage(dogPiece, 0, yIn, 90, yIn+90, 0, 0, dogPiece.getWidth(),dogPiece.getHeight(), null);
-			
 			Graphics2D g2d = (Graphics2D) g;
-//			g2d.setColor(new Color(212, 212, 212));
 			g2d.setColor(Color.BLACK);
 			g2d.drawRect(xIn, yIn, boxWidht, boxHeight);
-			g2d.drawString("Player Name", 10, yIn+90+20);
-			g2d.drawString("Balance", 10, yIn+90+40);
-			
-			//TODO 
+			g2d.drawString(p.getName(), 10, yIn + 90 + 20);
+			g2d.drawString(String.valueOf(p.getBalance()), 10, yIn + 90 + 40);
+
+			// TODO
 			int yAuxI = yi;
 			int yAuxF = yf;
-			for(int j = 1; j <= nProperties; j++){
-				g.drawImage(teste, xi, yi, xf, yf, 0, 0, teste.getWidth(),teste.getHeight(), null);
+			for (int j = 1; j <= nProperties; j++) {
+				g.drawImage(teste, xi, yi, xf, yf, 0, 0, teste.getWidth(), teste.getHeight(), null);
 				xi += propertySize;
 				xf += propertySize;
-				if(j == 4 || j == 8 || j == 12 || j == 16){
+				if (j == 4 || j == 8 || j == 12 || j == 16) {
 					xi = 100;
 					xf = xi + propertySize;
 					yi += 60;
 					yf += 60;
 				}
 			}
-			
+			// Reset values
 			xi = 100;
 			xf = xi + propertySize;
 			yi = yAuxI + boxHeight;
 			yf = yAuxF + boxHeight;
-			
+
 			yIn += boxHeight;
-			
+
 		}
 	}
 

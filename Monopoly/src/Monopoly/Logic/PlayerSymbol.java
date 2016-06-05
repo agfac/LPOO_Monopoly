@@ -22,7 +22,7 @@ public class PlayerSymbol {
     	this.piece = piece;
     }
    
-    public BufferedImage getPiece() {
+	public BufferedImage getPiece() {
 		return piece;
 	}
 
