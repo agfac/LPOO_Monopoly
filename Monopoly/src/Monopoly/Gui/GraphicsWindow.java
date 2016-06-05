@@ -11,6 +11,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
@@ -26,8 +27,9 @@ import Monopoly.Logic.Game;
 import Monopoly.Logic.Player;
 import Monopoly.Logic.PlayerSymbol;
 
-public class GraphicsWindow extends ImagesLoad implements MouseListener, MouseMotionListener {
 
+public class GraphicsWindow extends ImagesLoad {
+	
 	private JFrame frame;
 	private GamePanel panel;
 	private InfoPanel panel_1 ;
@@ -106,46 +108,6 @@ public class GraphicsWindow extends ImagesLoad implements MouseListener, MouseMo
 
 		frame.pack();
 
-	}
-
-	
-	@Override
-	public void mousePressed(MouseEvent e) {
-	}
-	@Override
-	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

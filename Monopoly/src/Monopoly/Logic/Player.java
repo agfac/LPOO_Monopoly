@@ -20,9 +20,11 @@ public class Player {
     private int nrOfRollsInJail;
     private HashMap <Integer,Integer> nrPropertyGroup = new HashMap<Integer,Integer>();
     private HashMap <Integer,Boolean> blPropertyGroup = new HashMap<Integer,Boolean>();
-    private int dicesValue;
+    private int dicesValue = 0;
+    
+    private int cellsToMove = 0;
 
-    private int symbol_1; //TODO apenas para testes do ANDRE
+	private int symbol_1; //TODO apenas para testes do ANDRE
     
     private Position position = new Position();
     private int valuePosittion;
@@ -52,6 +54,13 @@ public class Player {
 	private int yPosDownE = 170;
 	//-----------------------------
 	
+    public int getCellsToMove() {
+		return cellsToMove;
+	}
+
+	public void setCellsToMove(int cellsToMove) {
+		this.cellsToMove = cellsToMove;
+	}
     public Position getPosition() {
 		return position;
 	}
@@ -163,11 +172,29 @@ public class Player {
 		}
 			 // TODO mudar tambem a boardBox
 		this.setPosition(x, y);
-
-		System.out.println("----------------------------------------------");
-		System.out.println("x -> " + x + " y -> " + y);
-		System.out.println("valeu position : " + this.getValuePosition());
-		System.out.println("----------------------------------------------");
+	}
+	
+	public void muitoAldrabado(){
+		int x = this.getPosition().getX();
+		int y = this.getPosition().getY();
+		
+		if (id == 1) {
+			x = xPosUpW;
+			y = yPosUpW;
+		}
+		if (id == 2) {
+			x = xPosUpW;
+			y = yPosDownW;
+		}
+		if (id == 3) {
+			x = xPosDownW;
+			y = yPosUpW;
+		}
+		if (id == 4) {
+			x = xPosDownW;
+			y = yPosDownW;
+		}
+		this.setValuePosition(10);
 	}
 	//TODO PARA TESTE APENAS, APAGAR !!!!!!!!!!!!!!!!!1111
    public Player(String name, int piece, int balance) {
@@ -177,7 +204,6 @@ public class Player {
         this.inJail = false;
         this.propertiesOwned = new Vector<Property>();
         this.nrOfRolls = 0;
-        this.dicesValue = 0;
         this.valuePosittion = pos.getPos();
     }
 	   
@@ -195,7 +221,6 @@ public class Player {
         this.propertiesOwned = new Vector<Property>();
         this.pos = pos;
         this.nrOfRolls = 0;
-        this.dicesValue = 0;
         this.id = id;
         this.valuePosittion = pos.getPos();
     }

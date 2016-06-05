@@ -42,7 +42,7 @@ public class InfoPanel extends ImagesLoad {
 		int xIn = 0;
 		int yIn = 0;
 
-//		ArrayList<Graphics2D> g1 = new ArrayList<Graphics2D>();
+		ArrayList<Graphics2D> g1 = new ArrayList<Graphics2D>();
 
 		int propertySize = 132;
 		int xi = 100;
@@ -62,11 +62,14 @@ public class InfoPanel extends ImagesLoad {
 			// TODO
 			int yAuxI = yi;
 			int yAuxF = yf;
-			for (Property pro: p.getPropertiesOwned()) {
-				g.drawImage(pro.getImage(), xi, yi, xf, yf, 0, 0, pro.getImage().getWidth(), pro.getImage().getHeight(), null);
+			for(int j = 0; j < p.getPropertiesOwned().size(); j++){
+			//for (Property pro: p.getPropertiesOwned()) {
+			//	g.drawImage(pro.getImage(), xi, yi, xf, yf, 0, 0, pro.getImage().getWidth(), pro.getImage().getHeight(), null);
+				g.drawImage(p.getPropertiesOwned().get(j).getImage(), xi, yi, xf, yf, 0, 0, p.getPropertiesOwned().get(j).getImage().getWidth(), p.getPropertiesOwned().get(j).getImage().getHeight(), null);
 				xi += propertySize;
 				xf += propertySize;
-				if (p.getPropertiesOwned().size() == 4 || p.getPropertiesOwned().size() == 8 || p.getPropertiesOwned().size() == 12 || p.getPropertiesOwned().size() == 16) {
+				//if (p.getPropertiesOwned().size() == 4 || p.getPropertiesOwned().size() == 8 || p.getPropertiesOwned().size() == 12 || p.getPropertiesOwned().size() == 16) {
+				if (j == 3 || j == 7 || j == 11 || j == 15) {
 					xi = 100;
 					xf = xi + propertySize;
 					yi += 60;
