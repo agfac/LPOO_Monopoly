@@ -1,5 +1,6 @@
 package Monopoly.Logic;
 
+import java.awt.image.BufferedImage;
 import java.util.*;
 
 /**
@@ -17,8 +18,8 @@ public class ServiceProperty extends Property {
      * @param mortgageValue Mortgage value
      * @param rentValues Array of rent values
      */
-    public ServiceProperty(int pos, String name, int idGroup, int amount, int mortgageValue, int[] rentValues) {
-    	super(name, pos, idGroup, amount, mortgageValue);
+    public ServiceProperty(int pos, String name, int idGroup, int amount, int mortgageValue, int[] rentValues, BufferedImage image) {
+    	super(name, pos, idGroup, amount, mortgageValue, image);
     	this.rentValue = rentValues;
     }
 

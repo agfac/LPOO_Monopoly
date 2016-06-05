@@ -27,6 +27,31 @@ public class Player {
     private Position position = new Position();
     private int valuePosittion;
     
+    //Players Initial Positions GUI
+	private int deltaX = 105;
+	private int deltaY = 81;
+	// SOUTH
+	private int xPosUpS = 1120;
+	private int xPosDownS = 1170;
+	private int yPosUpS = 890;
+	private int yPosDownS = 930;
+	// WEST
+	private int xPosUpW = 10;
+	private int xPosDownW = 60;
+	private int yPosUpW = 775;
+	private int yPosDownW = 820;
+	// NORTH
+	private int xPosUpN = 175;
+	private int xPosDownN = 225;
+	private int yPosUpN = 5;
+	private int yPosDownN = 55;
+	// EAST
+	private int xPosUpE = 1160;
+	private int xPosDownE = 1210;
+	private int yPosUpE = 125;
+	private int yPosDownE = 170;
+	//-----------------------------
+	
     public Position getPosition() {
 		return position;
 	}
@@ -44,6 +69,106 @@ public class Player {
 		valuePosittion = p;
 	}
 	
+	public void updateGUIPosition() { //pode ser colocada no player
+		int x = this.getPosition().getX();
+		int y = this.getPosition().getY();
+		// SOUTH
+		if (this.getValuePosition() >= 0 && this.getValuePosition() < 10)
+			x -= deltaX;
+		// WEST
+		if (this.getValuePosition() == 10) {
+			if (id == 1) {
+				x = xPosUpW;
+				y = yPosUpW;
+			}
+			if (id == 2) {
+				x = xPosUpW;
+				y = yPosDownW;
+			}
+			if (id == 3) {
+				x = xPosDownW;
+				y = yPosUpW;
+			}
+			if (id == 4) {
+				x = xPosDownW;
+				y = yPosDownW;
+			}
+		}
+		if (this.getValuePosition() > 10 && this.getValuePosition() < 20)
+			y -= deltaY;
+		// NORTH
+		if (this.getValuePosition() == 20) {
+			if (id == 1) {
+				x = xPosUpN;
+				y = yPosUpN;
+			}
+			if (id == 2) {
+				x = xPosUpN;
+				y = yPosDownN;
+			}
+			if (id == 3) {
+				x = xPosDownN;
+				y = yPosUpN;
+			}
+			if (id == 4) {
+				x = xPosDownN;
+				y = yPosDownN;
+			}
+		}
+		if (this.getValuePosition() > 20 && this.getValuePosition() < 30)
+			x += deltaX;
+		// EAST
+		if (this.getValuePosition() == 30) {
+			if (id == 1) {
+				x = xPosUpE;
+				y = yPosUpE;
+			}
+			if (id == 2) {
+				x = xPosUpE;
+				y = yPosDownE;
+			}
+			if (id == 3) {
+				x = xPosDownE;
+				y = yPosUpE;
+			}
+			if (id == 4) {
+				x = xPosDownE;
+				y = yPosDownE;
+			}
+		}
+		if (this.getValuePosition() > 30 && this.getValuePosition() < 39)
+			y += deltaY;
+
+		if (this.getValuePosition() == 39) {
+			if (id == 1) {
+				x = xPosUpS;
+				y = yPosUpS;
+			}
+			if (id == 2) {
+				x = xPosUpS;
+				y = yPosDownS;
+			}
+			if (id == 3) {
+				x = xPosDownS;
+				y = yPosUpS;
+			}
+			if (id == 4) {
+				x = xPosDownS;
+				y = yPosDownS;
+			}
+			this.setValuePosition(0);
+		} else{
+			this.setValuePosition(this.getValuePosition() + 1);
+			
+		}
+			 // TODO mudar tambem a boardBox
+		this.setPosition(x, y);
+
+		System.out.println("----------------------------------------------");
+		System.out.println("x -> " + x + " y -> " + y);
+		System.out.println("valeu position : " + this.getValuePosition());
+		System.out.println("----------------------------------------------");
+	}
 	//TODO PARA TESTE APENAS, APAGAR !!!!!!!!!!!!!!!!!1111
    public Player(String name, int piece, int balance) {
         this.name = name;
@@ -53,7 +178,6 @@ public class Player {
         this.propertiesOwned = new Vector<Property>();
         this.nrOfRolls = 0;
         this.dicesValue = 0;
-        //TODO guardar o valor a posição em int
         this.valuePosittion = pos.getPos();
     }
 	   
@@ -63,7 +187,7 @@ public class Player {
      * @param piece symbol that identify the player
      * @param balance value that player have in their wallet
      */
-    public Player(String name, PlayerSymbol piece, int balance, BoardBox pos) {
+    public Player(String name, PlayerSymbol piece, int balance, BoardBox pos, int id) {
         this.name = name;
         this.symbol = piece;
         this.balance = balance;
@@ -72,7 +196,7 @@ public class Player {
         this.pos = pos;
         this.nrOfRolls = 0;
         this.dicesValue = 0;
-        //TODO guardar o valor a posição em int
+        this.id = id;
         this.valuePosittion = pos.getPos();
     }
 

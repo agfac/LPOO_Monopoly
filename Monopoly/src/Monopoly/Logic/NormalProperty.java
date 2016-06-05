@@ -1,5 +1,6 @@
 package Monopoly.Logic;
 
+import java.awt.image.BufferedImage;
 import java.util.*;
 
 /**
@@ -30,8 +31,8 @@ public class NormalProperty extends Property {
 	 * @param rentValuesWithHotel Rent Cost with hotels
 	 */
 	public NormalProperty(int pos, String name, int idGroup, int amount, int mortgageValue, int rentValue,
-			int[] rentValuesWithHouses, int rentValuesWithHotel) {
-		super(name, pos, idGroup, amount, mortgageValue);
+			int[] rentValuesWithHouses, int rentValuesWithHotel, BufferedImage image) {
+		super(name, pos, idGroup, amount, mortgageValue, image);
 
 		this.rentValues = new int[2];
 		this.rentValues[0] = rentValue;

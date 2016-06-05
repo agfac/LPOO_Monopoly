@@ -1,5 +1,6 @@
 package Monopoly.Logic;
 
+import java.awt.image.BufferedImage;
 import java.util.*;
 
 /**
@@ -7,104 +8,117 @@ import java.util.*;
  */
 public class Property extends BoardBox {
 
-    protected int idGroup;
-    protected int amount;
-    protected boolean sold;
-    protected Player owner;
-    protected boolean mortgage;
-    protected int mortgageValue;
-    protected int mortgageValueBack;
+	protected int idGroup;
+	protected int amount;
+	protected boolean sold;
+	protected Player owner;
+	protected boolean mortgage;
+	protected int mortgageValue;
+	protected int mortgageValueBack;
 
-    /**
-     * Property Constructor
-     * @param name Name of property
-     * @param pos Position on board of property
-     * @param idGroup Id Group
-     * @param amount Property value
-     * @param mortgageValue Mortgage value
-     */
-    public Property(String name, int pos, int idGroup, int amount, int mortgageValue) {
-    	this.name = name;
-    	this.pos = pos;
-    	this.idGroup = idGroup;
-    	this.amount = amount;
-    	this.sold = false;
-    	this.owner = null;
-    	this.mortgage = false;
-    	this.mortgageValue = mortgageValue;
-    	this.mortgageValueBack = (int) (this.mortgageValue*0.8);
-    	
-    }
+	protected BufferedImage image;
 
-    /**
-     * @return
-     */
-    public boolean getSold() {
-        return this.sold;
-    }
+	/**
+	 * Property Constructor
+	 * 
+	 * @param name
+	 *            Name of property
+	 * @param pos
+	 *            Position on board of property
+	 * @param idGroup
+	 *            Id Group
+	 * @param amount
+	 *            Property value
+	 * @param mortgageValue
+	 *            Mortgage value
+	 */
+	public Property(String name, int pos, int idGroup, int amount, int mortgageValue, BufferedImage image) {
+		this.name = name;
+		this.pos = pos;
+		this.idGroup = idGroup;
+		this.amount = amount;
+		this.sold = false;
+		this.owner = null;
+		this.mortgage = false;
+		this.mortgageValue = mortgageValue;
+		this.mortgageValueBack = (int) (this.mortgageValue * 0.8);
+		this.image = image;
 
-    /**
-     * @param sold  
-     * @return
-     */
-    public void setSold(boolean sold ) {
-        this.sold = sold;
-    }
+	}
 
-    /**
-     * @return
-     */
-    public int getAmount() {
-        return amount;
-    }
+	public BufferedImage getImage() {
+		return image;
+	}
 
-    /**
-     * @return
-     */
-    public boolean getMortgage() {
-        return mortgage;
-    }
+	/**
+	 * @return
+	 */
+	public boolean getSold() {
+		return this.sold;
+	}
 
-    /**
-     * @param mortgage 
-     * @return
-     */
-    public void setMortgage(boolean mortgage) {
-        this.mortgage = mortgage;
-    }
+	/**
+	 * @param sold
+	 * @return
+	 */
+	public void setSold(boolean sold) {
+		this.sold = sold;
+	}
 
-    /**
-     * @return
-     */
-    public int getIdGroup() {
-        return idGroup;
-    }
+	/**
+	 * @return
+	 */
+	public int getAmount() {
+		return amount;
+	}
 
-    /**
-     * @return
-     */
-    public int getMortgageValue() {
-        return mortgageValue;
-    }
-    
-    /**
-     * @return
-     */
-    public int getMortgageValueBack() {
-        return mortgageValueBack;
-    }
-    
-    /**
-     * @return
-     */
-    public Player getOwner() {
-        return owner;
-    }
+	/**
+	 * @return
+	 */
+	public boolean getMortgage() {
+		return mortgage;
+	}
 
-    /**
-     * @param player
-     */
-    public void setOwner(Player player) {
-    	owner = player;
-    }
+	/**
+	 * @param mortgage
+	 * @return
+	 */
+	public void setMortgage(boolean mortgage) {
+		this.mortgage = mortgage;
+	}
+
+	/**
+	 * @return
+	 */
+	public int getIdGroup() {
+		return idGroup;
+	}
+
+	/**
+	 * @return
+	 */
+	public int getMortgageValue() {
+		return mortgageValue;
+	}
+
+	/**
+	 * @return
+	 */
+	public int getMortgageValueBack() {
+		return mortgageValueBack;
+	}
+
+	/**
+	 * @return
+	 */
+	public Player getOwner() {
+		return owner;
+	}
+
+	/**
+	 * @param player
+	 */
+	public void setOwner(Player player) {
+		owner = player;
+	}
 }

@@ -21,14 +21,14 @@ public class Game {
 	private final int JAILVALUE = 500;
 	private final int GOVALUE = 2000;
 	//TODO APENAS PARA TESTE APAGAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
-	PlayerSymbol dog;
-	PlayerSymbol car;
-	PlayerSymbol ship;
-	PlayerSymbol boot;
-	PlayerSymbol hat;
-	PlayerSymbol iron;
-	PlayerSymbol thimble;
-	PlayerSymbol wheelbarrow;
+	private PlayerSymbol dog;
+	private PlayerSymbol car;
+	private PlayerSymbol ship;
+	private PlayerSymbol boot;
+	private PlayerSymbol hat;
+	private PlayerSymbol iron;
+	private PlayerSymbol thimble;
+	private PlayerSymbol wheelbarrow;
 	protected static BufferedImage dogPiece;
 	protected static BufferedImage carPiece;
 	protected static BufferedImage shipPiece;
@@ -41,24 +41,7 @@ public class Game {
 	
 	public Game() {
 		players = new Vector<Player>();
-		//TODO APENAS PARA TESTE APAGAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
-//		 try {
-//			 dogPiece =  ImageIO.read(new File("resources/images/pieces/dog.png"));
-//
-//
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		dog = new PlayerSymbol(1, "Dog", dogPiece);
-//		car = new PlayerSymbol(2, "Car", carPiece);
-//		ship = new PlayerSymbol(3, "Ship", shipPiece);
-//		boot = new PlayerSymbol(4, "Boot", bootPiece);
-//		hat = new PlayerSymbol(5, "Hat", hatPiece);
-//		iron = new PlayerSymbol(6, "Iron", ironPiece);
-//		thimble = new PlayerSymbol(7, "Thimble", thimblePiece);
-//		wheelbarrow = new PlayerSymbol(8, "Wheelbarrow", wheelbarrowPiece);
-		//FIM CODIGO TESTES-------------------------------------------------------
+
 		board = new Board();
 		dice1 = new Dice();
 		dice2 = new Dice();	
@@ -146,7 +129,7 @@ public class Game {
 	 * @param player
 	 *            to be update on board
 	 */
-	private void updatePlayer(Player player) {
+	public void updatePlayer(Player player) {
 		int totalDiceValue, atualPlayerPos, dif;
 
 		// Store the value of 2 rolled dices
@@ -172,10 +155,14 @@ public class Game {
 		// Check if pass trough Go DoardBox and store the new player Position.
 		if (atualPlayerPos > 39 && !player.getInJail()) {
 			dif = atualPlayerPos - 39;
+			movePlayerGUI(player, totalDiceValue);
 			player.setPos(board.getBoardBox((dif - 1)));
 			player.updateBalance(GOVALUE);
-		} else
+		} else{
+			movePlayerGUI(player, totalDiceValue);
 			player.setPos(board.getBoardBox(atualPlayerPos));
+		}
+			
 
 		// Check if the new position is the JailBox, if yes goes to jail.
 		if (player.getPos() == board.getBoardBox(30)) {
@@ -200,13 +187,19 @@ public class Game {
 		System.out.println("Dice value: " + (dice1.getValue() + dice2.getValue()));
 	}
 
+	public void movePlayerGUI(Player player, int dicesValues){
+		for(int i = 0; i<dicesValues; i++ ){
+			player.updateGUIPosition();
+			
+		}
+	}
 	/**
 	 * Method to update the player in Jail
 	 * 
 	 * @param player
 	 *            to be updated on Jail
 	 */
-	private void updatePlayerInJail(Player player) {
+	public void updatePlayerInJail(Player player) {
 		int totalDiceValue, atualPlayerPos;
 
 		// Store the value of 2 rolled dices
@@ -238,6 +231,7 @@ public class Game {
 		// rolled dice.
 		if (!player.getInJail()) {
 			atualPlayerPos = player.getPos().getPos();
+			movePlayerGUI(player, totalDiceValue);
 			player.setPos(board.getBoardBox(atualPlayerPos + totalDiceValue));
 		}
 	}
@@ -253,10 +247,18 @@ public class Game {
 			System.out.println("You use one card out of jail");
 		} else {
 			player.setInJail(true);
+			movePlayerGUI(player, calcCellToMove(player, 10));
 			player.setPos(board.getBoardBox(10));
 			player.setNrOfRolls(false); // Reset number of rolls
 			System.out.println("You go to jail!!!");
 		}
+	}
+	
+	public int calcCellToMove(Player player, int destinationPos){
+		if( player.getPos().getPos() < destinationPos )
+			return (destinationPos - player.getPos().getPos());
+		else
+			return (40 - player.getPos().getPos() + destinationPos);
 	}
 
 	/**
@@ -265,7 +267,7 @@ public class Game {
 	 * @param player
 	 *            to buy property
 	 */
-	private void buyProperty(Player player) {
+	public void buyProperty(Player player) {
 		BoardBox boardToBuy = player.getPos();
 
 		Scanner s = new Scanner(System.in);
@@ -300,26 +302,6 @@ public class Game {
 	 * @param property
 	 *            property where player is on
 	 */
-	private void payBill(Player player, Property property) {
-		if ((property instanceof NormalProperty)) {
-			player.updateBalance(-((NormalProperty) (property)).getValueToPay());
-			((NormalProperty) (property)).getOwner().updateBalance(((NormalProperty) (property)).getValueToPay());
-			System.out.println("WARNING !!!! Value to pay: " + ((NormalProperty) (property)).getValueToPay());
-		}
-		if ((property instanceof RailRoadProperty)) {
-			player.updateBalance(-((RailRoadProperty) (property)).getValueToPay());
-			((RailRoadProperty) (property)).getOwner().updateBalance(((RailRoadProperty) (property)).getValueToPay());
-			System.out.println("WARNING !!!! Value to pay: " + ((RailRoadProperty) (property)).getValueToPay());
-		}
-		if ((property instanceof ServiceProperty)) {
-			player.updateBalance(-((ServiceProperty) (property)).getValueToPay(player.getDicesValue()));
-			((ServiceProperty) (property)).getOwner()
-					.updateBalance(((ServiceProperty) (property)).getValueToPay(player.getDicesValue()));
-			System.out.println("WARNING !!!! Value to pay: "
-					+ ((ServiceProperty) (property)).getValueToPay(player.getDicesValue()));
-		}
-	}
-
 	public void optimizedPayBill(Player player, Property property) {
 		int valueToPay = 0;
 
@@ -452,17 +434,20 @@ public class Game {
 
 		switch (option) {
 		case 1:
+			movePlayerGUI(player, calcCellToMove(player, 0));
 			player.setPos(board.getBoardBox(0));
 			player.updateBalance(200);
 			break;
 		case 2:
 			if (player.getPos().getPos() > 24)
 				player.updateBalance(200);
+			movePlayerGUI(player, calcCellToMove(player, 24));
 			player.setPos(board.getBoardBox(24));
 			break;
 		case 3:
 			if (player.getPos().getPos() > 11)
 				player.updateBalance(200);
+			movePlayerGUI(player, calcCellToMove(player, 11));
 			player.setPos(board.getBoardBox(11));
 			break;
 		case 4:
@@ -473,11 +458,12 @@ public class Game {
 				aux = 25;
 			if (player.getPos().getPos() == 36)
 				aux = 5;
-			player.setPos(board.getBoardBox(aux));
+			movePlayerGUI(player, calcCellToMove(player, aux));
+			player.setPos(board.getBoardBox(aux)); 
 
 			// If have owner, player will pay 2 times the value of the rent.
 			if (((Property) (board.getBoardBox(aux))).getSold())
-				payBill(player, ((Property) (board.getBoardBox(aux))));
+				optimizedPayBill(player, ((Property) (board.getBoardBox(aux))));
 			break;
 		case 5:
 			int val = 0;
@@ -485,7 +471,8 @@ public class Game {
 				val = 12;
 			if (player.getPos().getPos() == 22)
 				val = 28;
-			player.setPos(board.getBoardBox(val));
+			movePlayerGUI(player, calcCellToMove(player, val));
+			player.setPos(board.getBoardBox(val)); 
 
 			// If have owner, player roll dices and pay 10 times the value to
 			// owner
@@ -503,6 +490,7 @@ public class Game {
 			player.updateCardsJail(1);
 			break;
 		case 8:
+			movePlayerGUI(player, calcCellToMove(player, (player.getPos().getPos() - 3)));
 			player.setPos(board.getBoardBox(player.getPos().getPos() - 3));
 			break;
 		case 9:
@@ -517,9 +505,11 @@ public class Game {
 		case 12:
 			if (player.getPos().getPos() > 5)
 				player.updateBalance(200);
+			movePlayerGUI(player, calcCellToMove(player, 5));
 			player.setPos(board.getBoardBox(5));
 			break;
 		case 13:
+			movePlayerGUI(player, calcCellToMove(player, 39));
 			player.setPos(board.getBoardBox(39));
 			break;
 		case 14:
@@ -551,7 +541,8 @@ public class Game {
 
 		switch (option) {
 		case 1:
-			player.setPos(board.getBoardBox(0));
+			movePlayerGUI(player, calcCellToMove(player, 0));
+			player.setPos(board.getBoardBox(0)); 
 			player.updateBalance(200);
 			break;
 		case 2:
@@ -567,6 +558,7 @@ public class Game {
 			player.updateCardsJail(1);
 			break;
 		case 6:
+			movePlayerGUI(player, calcCellToMove(player, 10));
 			player.setPos(board.getBoardBox(10));
 			break;
 		case 7:
@@ -630,7 +622,7 @@ public class Game {
 	/**
 	 * Update all game - MAIN FUNCTION!!!!!
 	 */
-	private void updateGame(Player player) {
+	public  void updateGame(Player player) {
 
 		if (player.getInJail())
 			updatePlayerInJail(player);
@@ -649,7 +641,7 @@ public class Game {
 	 * @param player
 	 *            to be showed information
 	 */
-	private void infoPlayer(Player player) {
+	public void infoPlayer(Player player) {
 		System.out.println("Player balance: " + player.getBalance());
 		System.out.println("Player pos: " + player.getPos().getPos());
 		System.out.println("Player Double: " + player.getNrOfRolls());
@@ -661,10 +653,10 @@ public class Game {
 		Scanner s = new Scanner(System.in);
 		int option = 1;
 
-		Player player1 = new Player("Pedro", game.dog, 10000, game.board.getBoardBox(0));
+		Player player1 = new Player("Pedro", game.dog, 10000, game.board.getBoardBox(0), 1);
 		game.addPlayer(player1);
 
-		Player player2 = new Player("Faby", game.car, 10000, game.board.getBoardBox(0));
+		Player player2 = new Player("Faby", game.car, 10000, game.board.getBoardBox(0), 2);
 		game.addPlayer(player2);
 
 		while (option != 0) {

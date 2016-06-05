@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -12,22 +13,18 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import Monopoly.Logic.Board;
+import Monopoly.Logic.Game;
 import Monopoly.Logic.Player;
 import Monopoly.Logic.PlayerSymbol;
+import Monopoly.Logic.Property;
 
 public class InfoPanel extends ImagesLoad {
 
-	private int dimXFrame;
-	private int dimYFrame;
+	Game game;
 
-	private JTextField textField;
-	private JTextField textField_1;
-
-	Vector<Player> players;
-
-	public InfoPanel(Vector<Player> players) {
+	public InfoPanel(Game game) {
 		super();
-		this.players = players;
+		this.game = game;
 	}
 
 	@Override
@@ -39,21 +36,20 @@ public class InfoPanel extends ImagesLoad {
 	}
 
 	private void doDrawing(Graphics g) {
-		int nPlayers = players.size();
+		int nPlayers = game.getPlayers().size();
 		int boxWidht = this.getWidth();
 		int boxHeight = this.getHeight() / nPlayers;
 		int xIn = 0;
 		int yIn = 0;
 
-		ArrayList<Graphics2D> g1 = new ArrayList<Graphics2D>();
+//		ArrayList<Graphics2D> g1 = new ArrayList<Graphics2D>();
 
 		int propertySize = 132;
 		int xi = 100;
 		int yi = 10;
 		int xf = xi + propertySize;
 		int yf = 70;
-		for (Player p : players) {
-			int nProperties = p.getPropertiesOwned().size();
+		for (Player p : game.getPlayers()) {
 			g.drawImage(p.getSymbol().getPiece(), 0, yIn, 90, yIn + 90, 0, 0, p.getSymbol().getPiece().getWidth(),
 					p.getSymbol().getPiece().getHeight(), null);
 
@@ -66,11 +62,11 @@ public class InfoPanel extends ImagesLoad {
 			// TODO
 			int yAuxI = yi;
 			int yAuxF = yf;
-			for (int j = 1; j <= nProperties; j++) {
-				g.drawImage(teste, xi, yi, xf, yf, 0, 0, teste.getWidth(), teste.getHeight(), null);
+			for (Property pro: p.getPropertiesOwned()) {
+				g.drawImage(pro.getImage(), xi, yi, xf, yf, 0, 0, pro.getImage().getWidth(), pro.getImage().getHeight(), null);
 				xi += propertySize;
 				xf += propertySize;
-				if (j == 4 || j == 8 || j == 12 || j == 16) {
+				if (p.getPropertiesOwned().size() == 4 || p.getPropertiesOwned().size() == 8 || p.getPropertiesOwned().size() == 12 || p.getPropertiesOwned().size() == 16) {
 					xi = 100;
 					xf = xi + propertySize;
 					yi += 60;
