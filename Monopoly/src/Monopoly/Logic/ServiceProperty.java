@@ -18,8 +18,8 @@ public class ServiceProperty extends Property {
      * @param mortgageValue Mortgage value
      * @param rentValues Array of rent values
      */
-    public ServiceProperty(int pos, String name, int idGroup, int amount, int mortgageValue, int[] rentValues, BufferedImage image) {
-    	super(name, pos, idGroup, amount, mortgageValue, image);
+    public ServiceProperty(int pos, String name, int idGroup, int amount, int mortgageValue, int[] rentValues, BufferedImage icon, BufferedImage image) {
+    	super(name, pos, idGroup, amount, mortgageValue, icon, image);
     	this.rentValue = rentValues;
     }
 

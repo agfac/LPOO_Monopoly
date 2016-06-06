@@ -71,7 +71,7 @@ public class InfoPanel extends ImagesLoad implements ActionListener{
 			for(int j = 0; j < p.getPropertiesOwned().size(); j++){
 			//for (Property pro: p.getPropertiesOwned()) {
 			//	g.drawImage(pro.getImage(), xi, yi, xf, yf, 0, 0, pro.getImage().getWidth(), pro.getImage().getHeight(), null);
-				g.drawImage(p.getPropertiesOwned().get(j).getImage(), xi, yi, xf, yf, 0, 0, p.getPropertiesOwned().get(j).getImage().getWidth(), p.getPropertiesOwned().get(j).getImage().getHeight(), null);
+				g.drawImage(p.getPropertiesOwned().get(j).getIconImage(), xi, yi, xf, yf, 0, 0, p.getPropertiesOwned().get(j).getIconImage().getWidth(), p.getPropertiesOwned().get(j).getIconImage().getHeight(), null);
 				xi += propertySize;
 				xf += propertySize;
 				//if (p.getPropertiesOwned().size() == 4 || p.getPropertiesOwned().size() == 8 || p.getPropertiesOwned().size() == 12 || p.getPropertiesOwned().size() == 16) {

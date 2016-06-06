@@ -11,15 +11,17 @@ import javax.imageio.ImageIO;
 
 public class Game {
 
-	Dice dice1;
-	Dice dice2;
-	Board board;
-	BoardBox boardbox;
-
-	Vector<Player> players;
-
 	private final int JAILVALUE = 500;
 	private final int GOVALUE = 2000;
+	
+	private Dice dice1;
+	private Dice dice2;
+	private Board board;
+	private Vector<Player> players;
+	
+	private int chanceOption = 0;
+	private int communityOption = 0;
+
 	// TODO APENAS PARA TESTE APAGAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
 	private PlayerSymbol dog;
 	private PlayerSymbol car;
@@ -189,6 +191,7 @@ public class Game {
 		// Store the value of 2 rolled dices
 		totalDiceValue = get2RollDices(dice1, dice2);
 		
+		totalDiceValue = 1;
 		player.setDicesValue(totalDiceValue);
 
 		// Update number of tries from player, if get 3 times goes to jail.
@@ -487,7 +490,7 @@ public class Game {
 		// Generate the random Chance card to be choose
 		Random r = new Random();
 		option = r.nextInt(15) + 1;
-
+		option = 6;
 		switch (option) {
 		case 1:
 			movePlayerGUI(player, calcCellToMove(player, 0));
@@ -581,6 +584,7 @@ public class Game {
 			}
 			break;
 		}
+		chanceOption = option;
 		System.out.println("CHANCE CARD Nº -> " + option);
 	}
 
@@ -598,7 +602,7 @@ public class Game {
 		// Generate the random Community card to be choose
 		Random r = new Random();
 		option = r.nextInt(16) + 1;
-
+		option = 4;
 		switch (option) {
 		case 1:
 			movePlayerGUI(player, calcCellToMove(player, 0));
@@ -654,6 +658,7 @@ public class Game {
 			player.updateBalance(100);
 			break;
 		}
+		communityOption = option;
 		System.out.println("COMMUNITY CHEST CARD Nº -> " + option);
 	}
 
@@ -694,7 +699,26 @@ public class Game {
 			buyProperty(player);
 
 	}
+	
+	public int getCommunityOption() {
+		return communityOption;
+	}
 
+	public void setCommunityOption(int communityOption) {
+		this.communityOption = communityOption;
+	}
+	
+	public int getChanceOption() {
+		return chanceOption;
+	}
+
+	public void setChanceOption(int chanceOption) {
+		this.chanceOption = chanceOption;
+	}
+	
+	public Board getBoard() {
+		return board;
+	}
 	/**
 	 * Print player information
 	 * 
