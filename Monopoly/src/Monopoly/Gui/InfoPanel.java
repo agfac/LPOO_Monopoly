@@ -3,6 +3,8 @@ package Monopoly.Gui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Vector;
@@ -11,6 +13,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 
 import Monopoly.Logic.Board;
 import Monopoly.Logic.Game;
@@ -18,13 +21,14 @@ import Monopoly.Logic.Player;
 import Monopoly.Logic.PlayerSymbol;
 import Monopoly.Logic.Property;
 
-public class InfoPanel extends ImagesLoad {
-
+public class InfoPanel extends ImagesLoad implements ActionListener{
+	Timer timer = new Timer(200, this);
 	Game game;
 
 	public InfoPanel(Game game) {
 		super();
 		this.game = game;
+		timer.start();
 	}
 
 	@Override
@@ -69,7 +73,7 @@ public class InfoPanel extends ImagesLoad {
 				xi += propertySize;
 				xf += propertySize;
 				//if (p.getPropertiesOwned().size() == 4 || p.getPropertiesOwned().size() == 8 || p.getPropertiesOwned().size() == 12 || p.getPropertiesOwned().size() == 16) {
-				if (j == 3 || j == 7 || j == 11 || j == 15) {
+				if (j == 3 || j == 7 || j == 11 || j == 15 || j == 19 || j == 23 || j == 27) {
 					xi = 100;
 					xf = xi + propertySize;
 					yi += 60;
@@ -85,6 +89,10 @@ public class InfoPanel extends ImagesLoad {
 			yIn += boxHeight;
 
 		}
+	}
+	
+	public void actionPerformed(ActionEvent ev) {
+		repaint();
 	}
 
 }

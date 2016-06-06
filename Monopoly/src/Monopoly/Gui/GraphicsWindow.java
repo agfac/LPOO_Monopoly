@@ -64,8 +64,8 @@ public class GraphicsWindow extends ImagesLoad {
 		players = new Vector<Player>();
 		players.add(new Player("Pedro", dog, 10000, boardsdcdc.getBoardBox(0), 1));
 		players.get(0).setPosition(1120, 890);
-//		players.add(new Player("Faby", dog, 10000, boardsdcdc.getBoardBox(0), 2));
-//		players.get(1).setPosition(1120, 930);
+		players.add(new Player("Faby", dog, 10000, boardsdcdc.getBoardBox(0), 2));
+		players.get(1).setPosition(1120, 930);
 //		players.add(new Player("Andre", dog, 10000, boardsdcdc.getBoardBox(0), 3));
 //		players.get(2).setPosition(1170, 890);
 //		players.add(new Player("Paulo", dog, 10000, boardsdcdc.getBoardBox(0), 4));

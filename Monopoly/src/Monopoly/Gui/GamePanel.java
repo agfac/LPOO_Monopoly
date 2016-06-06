@@ -4,9 +4,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.Scanner;
 import java.util.Vector;
 
 import javax.swing.Timer;
@@ -17,16 +20,16 @@ import Monopoly.Logic.Game;
 import Monopoly.Logic.Player;
 import Monopoly.Logic.PlayerSymbol;
 
-public class GamePanel extends ImagesLoad implements MouseListener, MouseMotionListener, ActionListener {
+public class GamePanel extends ImagesLoad implements MouseListener, KeyListener, ActionListener {
 	Timer timer = new Timer(200, this);
 	private int piecesSize = 45;
-
+	
 	Game game;
 
 	public GamePanel(Game game) {
 		super();
+		this.addKeyListener(this);
 		this.addMouseListener(this); // TODO APAGAR
-		this.addMouseMotionListener(this);// TODO APAGAR
 		this.game = game;
 		timer.start();
 	}
@@ -50,28 +53,23 @@ public class GamePanel extends ImagesLoad implements MouseListener, MouseMotionL
 
 	public void actionPerformed(ActionEvent ev) {
 		if (ev.getSource() == timer) {
-			// for (Player p: game.getPlayers()){
-			// System.out.println("Hello");
-			// System.out.println(p.getValuePosition());
-			// System.out.println(p.getPosition().getX());
-			// System.out.println(p.getPosition().getY());
-			// p.updateGUIPosition();
-			// repaint();// this will call at every 1 second
-			// }
 			for (Player p : game.getPlayers()) {
-				if (p.getCellsToMove() != 0) {
-					//for (int i = 0; i < p.getCellsToMove(); i++) {
-						p.updateGUIPosition();
-						p.setCellsToMove(p.getCellsToMove() - 1);
-						System.out.println("p.getCellsToMove()" + p.getCellsToMove());
-						repaint();
-					//}
-				}
-				else 
-					//game.updateGame(p);
+				if (p.getCellsToMove() != 0) { // && !p.getInJail()
+					// for (int i = 0; i < p.getCellsToMove(); i++) {
+					p.updateGUIPosition();
+					p.setCellsToMove(p.getCellsToMove() - 1);
+					System.out.println("p.getCellsToMove()" + p.getCellsToMove());
+					repaint();
+					// }
+				} else{
+					// game.updateGame(p);
+					//fazer pequena pausa
+					game.verificarSeTemPlayers(p);
 					game.buyProperty(p);
+					continue;
+				}
 			}
-			
+
 		}
 	}
 
@@ -80,23 +78,23 @@ public class GamePanel extends ImagesLoad implements MouseListener, MouseMotionL
 	public void mousePressed(MouseEvent e) {
 		// System.out.println("x -> " + e.getX());
 		// System.out.println("y -> " + e.getY());
-		for (Player p : game.getPlayers()) {
-
-			game.updateGame(p);
-		}
+		// for (Player p : game.getPlayers()) {
+		//
+		// game.updateGame(p);
+		// }
+		 game.updateGame(game.getPlayers().get(0));
+//		game.secuenciaDoJogo(game.getPlayers().get(0));
 		repaint();
 		requestFocus();
 	}
 
 	@Override
-	public void mouseDragged(MouseEvent e) {
+	public void keyPressed(KeyEvent e) {
+		 game.updateGame(game.getPlayers().get(1));
 
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
+//		game.secuenciaDoJogo(game.getPlayers().get(1));
+		repaint();
+		requestFocus();
 	}
 
 	@Override
@@ -114,5 +112,17 @@ public class GamePanel extends ImagesLoad implements MouseListener, MouseMotionL
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 }
