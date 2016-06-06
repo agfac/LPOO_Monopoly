@@ -188,8 +188,6 @@ public class Game {
 
 		// Store the value of 2 rolled dices
 		totalDiceValue = get2RollDices(dice1, dice2);
-
-		totalDiceValue = 7;
 		
 		player.setDicesValue(totalDiceValue);
 
@@ -330,7 +328,6 @@ public class Game {
 
 		Scanner s = new Scanner(System.in);
 		char option;
-
 		if ((boardToBuy instanceof Property)) {
 			if (!((Property) (boardToBuy)).getSold()) {
 				System.out.print("Do you want to buy >" + boardToBuy.getName() + "< Property for a value of: "
@@ -360,7 +357,7 @@ public class Game {
 	 */
 	public void optimizedPayBill(Player player, Property property) {
 		int valueToPay = 0;
-
+		
 		if (!player.getPropertiesOwned().contains(property)) {
 			if ((property instanceof NormalProperty))
 				valueToPay = ((NormalProperty) (property)).getValueToPay();
@@ -490,7 +487,7 @@ public class Game {
 		// Generate the random Chance card to be choose
 		Random r = new Random();
 		option = r.nextInt(15) + 1;
-		option = 9;
+
 		switch (option) {
 		case 1:
 			movePlayerGUI(player, calcCellToMove(player, 0));

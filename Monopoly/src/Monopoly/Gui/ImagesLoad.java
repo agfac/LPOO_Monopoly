@@ -11,6 +11,8 @@ public class ImagesLoad extends JPanel {
 
 	protected static BufferedImage board;
 	protected static BufferedImage dogPiece;
+	protected static BufferedImage house;
+	protected static BufferedImage hotel;
 	//Group Properties
 //	protected static BufferedImage g1p1, g1p3, 
 //	g2p5, g2p15, g2p25, g2p35, 
@@ -31,7 +33,9 @@ public class ImagesLoad extends JPanel {
 		try {
 			dogPiece = ImageIO.read(new File("resources/images/pieces/dog.png"));
 			
-			board = ImageIO.read(new File("resources/Monopoly.jpg"));
+			board = ImageIO.read(new File("resources/images/Monopoly.jpg"));
+			house = ImageIO.read(new File("resources/images/house.png"));
+			hotel = ImageIO.read(new File("resources/images/hotel.png"));
 			
 //			g1p1 = ImageIO.read(new File("resources/images/propertiesOwned/group1/MediterraneanAvenue.png"));
 //			g1p3 = ImageIO.read(new File("resources/images/propertiesOwned/group1/BalticAvenue.png"));
