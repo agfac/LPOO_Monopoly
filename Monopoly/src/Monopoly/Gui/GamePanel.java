@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -76,61 +77,19 @@ public class GamePanel extends ImagesLoad implements MouseListener, KeyListener,
 					g.drawImage(((Property)p.getPos()).getImage(), 300, 300, 500, 500, 0, 0, ((Property)p.getPos()).getImage().getWidth(), ((Property)p.getPos()).getImage().getHeight(), null);
 			}
 			
-			for(Property pro: p.getPropertiesOwned()){
-				//TODO apagar depoie dos teste
-				if ( (pro instanceof NormalProperty)){
-					((NormalProperty)pro).setHouseN(4);
-					((NormalProperty)pro).setHotelN(1);
+			showPropertiesHousesAndHotels(g, p);
+			
+			if ( p.getPos().getPos() == 7 || p.getPos().getPos() == 22 || p.getPos().getPos() == 36){
+				BufferedImage auxImage =	game.getBoard().getCard(game.getChanceOption()).getImage();
+				g.drawImage(auxImage, 400, 200, 400+auxImage.getWidth(), 200+auxImage.getHeight(), 0, 0, auxImage.getWidth(), auxImage.getHeight(), null);
+				game.setChanceOption(0);
+				 try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				//-----------------------------------------
-				
-				int aux = ((pro.getPos()-1)*deltaX);   //SOUTH
-				int aux2 = ((pro.getPos()-11)*deltaY); //WEST
-				int aux3 = ((pro.getPos()-21)*deltaX); //NORTH
-				int aux4 = ((pro.getPos()-31)*deltaY); //EAST
-				if(pro.getPos() >= 1 && pro.getPos() <= 9){
-					//SOUTH
-					if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHotels() > 0){
-						g.drawImage(hotel, xInHotelS-aux, yInHotelS, xInHotelS+hotelWight-aux, yInHotelS+hotelWight, 0, 0, hotel.getWidth(), hotel.getHeight(), null);
-					}
-					if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHouses() > 0){
-						for(int i = 0; i < ((NormalProperty)pro).getNrHouses(); i++){
-							g.drawImage(house, xInHouseS+i*houseSize-aux, yInHouseS, xInHouseS+(i+1)*houseSize-aux, yInHouseS+houseSize, 0, 0, house.getWidth(), house.getHeight(), null);
-						}
-					}
-				}else if(pro.getPos() >= 11 && pro.getPos() <= 19){
-					//WEST
-					if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHotels() > 0){
-						g.drawImage(hotel, xInHotelW, yInHotelW-aux2, xInHotelW+hotelWight, yInHotelW+hotelWight-aux2, 0, 0, hotel.getWidth(), hotel.getHeight(), null);
-					}
-					if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHouses() > 0){
-						for(int i = 0; i < ((NormalProperty)pro).getNrHouses(); i++){
-							g.drawImage(house, xInHouseW, yInHouseW+i*houseSize-aux2, xInHouseW+houseSize, yInHouseW+(i+1)*houseSize-aux2, 0, 0, house.getWidth(), house.getHeight(), null);
-						}
-					}
-				}else if(pro.getPos() >= 21 && pro.getPos() <= 29){
-					//NORTH
-					if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHotels() > 0){
-						g.drawImage(hotel, xInHotelN+aux3, yInHotelN, xInHotelN+hotelWight+aux3, yInHotelN+hotelWight, 0, 0, hotel.getWidth(), hotel.getHeight(), null);
-					}
-					if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHouses() > 0){
-						for(int i = 0; i < ((NormalProperty)pro).getNrHouses(); i++){
-							g.drawImage(house, xInHouseN+i*houseSize+aux3, yInHouseN, xInHouseN+(i+1)*houseSize+aux3, yInHouseN+houseSize, 0, 0, house.getWidth(), house.getHeight(), null);
-						}
-					}
-				}else{
-					//EAST
-					if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHotels() > 0){
-						g.drawImage(hotel, xInHotelE, yInHotelE+aux4, xInHotelE+hotelWight, yInHotelE+hotelWight+aux4, 0, 0, hotel.getWidth(), hotel.getHeight(), null);
-					}
-					if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHouses() > 0){
-						for(int i = 0; i < ((NormalProperty)pro).getNrHouses(); i++){
-							g.drawImage(house, xInHouseE, yInHouseE+i*houseSize+aux4, xInHouseE+houseSize, yInHouseE+(i+1)*houseSize+aux4, 0, 0, house.getWidth(), house.getHeight(), null);
-						}
-					}
-				}
-				
-			}//for property
+			}
 		}
 	}
 
@@ -138,7 +97,7 @@ public class GamePanel extends ImagesLoad implements MouseListener, KeyListener,
 		g.drawImage(player.getSymbol().getPiece(), x, y, x + piecesSize, y + piecesSize, 0, 0,
 				player.getSymbol().getPiece().getWidth(), player.getSymbol().getPiece().getHeight(), null);
 	}
-
+	
 	public void actionPerformed(ActionEvent ev) {
 		if (ev.getSource() == timer) {
 			for (Player p : game.getPlayers()) {
@@ -161,6 +120,71 @@ public class GamePanel extends ImagesLoad implements MouseListener, KeyListener,
 		}
 	}
 
+	public void showPropertiesHousesAndHotels(Graphics g, Player p){
+		for(Property pro: p.getPropertiesOwned()){
+			//TODO apagar depoie dos teste
+			if ( (pro instanceof NormalProperty)){
+				((NormalProperty)pro).setHouseN(4);
+				((NormalProperty)pro).setHotelN(1);
+			}
+			//-----------------------------------------
+			
+			int aux = ((pro.getPos()-1)*deltaX);   //SOUTH
+			int aux2 = ((pro.getPos()-11)*deltaY); //WEST
+			int aux3 = ((pro.getPos()-21)*deltaX); //NORTH
+			int aux4 = ((pro.getPos()-31)*deltaY); //EAST
+			if(pro.getPos() >= 1 && pro.getPos() <= 9){
+				//SOUTH
+				if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHotels() > 0){
+					g.drawImage(hotel, xInHotelS-aux, yInHotelS, xInHotelS+hotelWight-aux, yInHotelS+hotelWight, 0, 0, hotel.getWidth(), hotel.getHeight(), null);
+				}
+				if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHouses() > 0){
+					for(int i = 0; i < ((NormalProperty)pro).getNrHouses(); i++){
+						g.drawImage(house, xInHouseS+i*houseSize-aux, yInHouseS, xInHouseS+(i+1)*houseSize-aux, yInHouseS+houseSize, 0, 0, house.getWidth(), house.getHeight(), null);
+					}
+				}
+			}else if(pro.getPos() >= 11 && pro.getPos() <= 19){
+				//WEST
+				if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHotels() > 0){
+					g.drawImage(hotel, xInHotelW, yInHotelW-aux2, xInHotelW+hotelWight, yInHotelW+hotelWight-aux2, 0, 0, hotel.getWidth(), hotel.getHeight(), null);
+				}
+				if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHouses() > 0){
+					for(int i = 0; i < ((NormalProperty)pro).getNrHouses(); i++){
+						g.drawImage(house, xInHouseW, yInHouseW+i*houseSize-aux2, xInHouseW+houseSize, yInHouseW+(i+1)*houseSize-aux2, 0, 0, house.getWidth(), house.getHeight(), null);
+					}
+				}
+			}else if(pro.getPos() >= 21 && pro.getPos() <= 29){
+				//NORTH
+				if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHotels() > 0){
+					g.drawImage(hotel, xInHotelN+aux3, yInHotelN, xInHotelN+hotelWight+aux3, yInHotelN+hotelWight, 0, 0, hotel.getWidth(), hotel.getHeight(), null);
+				}
+				if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHouses() > 0){
+					for(int i = 0; i < ((NormalProperty)pro).getNrHouses(); i++){
+						g.drawImage(house, xInHouseN+i*houseSize+aux3, yInHouseN, xInHouseN+(i+1)*houseSize+aux3, yInHouseN+houseSize, 0, 0, house.getWidth(), house.getHeight(), null);
+					}
+				}
+			}else{
+				//EAST
+				if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHotels() > 0){
+					g.drawImage(hotel, xInHotelE, yInHotelE+aux4, xInHotelE+hotelWight, yInHotelE+hotelWight+aux4, 0, 0, hotel.getWidth(), hotel.getHeight(), null);
+				}
+				if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHouses() > 0){
+					for(int i = 0; i < ((NormalProperty)pro).getNrHouses(); i++){
+						g.drawImage(house, xInHouseE, yInHouseE+i*houseSize+aux4, xInHouseE+houseSize, yInHouseE+(i+1)*houseSize+aux4, 0, 0, house.getWidth(), house.getHeight(), null);
+					}
+				}
+			}
+			
+		}//for property
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	// APAGAR APOS TESTE
 	@Override
 	public void mousePressed(MouseEvent e) {
