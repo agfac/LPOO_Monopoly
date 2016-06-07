@@ -24,11 +24,11 @@ public class GameProtocol {
 
 	private static int numPlayers;
 	private static int balance;
-	private static Vector <Player> players = new Vector <>();
+	private static Vector <Player> players = new Vector <Player>();
 	private static Integer idPlayer = 0;
 	private static Integer currentPlayer=1;
 	
-	private static String currentPosition="pennsylvania_railroad";
+	private static String currentPosition = "pennsylvania_railroad";
 	private static String finalPosition = "pennsylvania_railroad";
 	private static boolean positionSold = false;
 	
