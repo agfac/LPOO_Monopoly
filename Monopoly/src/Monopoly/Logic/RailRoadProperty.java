@@ -12,8 +12,8 @@ public class RailRoadProperty extends Property {
     /**
      * Default constructor
      */
-    public RailRoadProperty(int pos, String name, BufferedImage image) {
-    	super(name,pos, 2, 200, 100,image);
+    public RailRoadProperty(int pos, String name, BufferedImage icon, BufferedImage image) {
+    	super(name,pos, 2, 200, 100,icon, image);
     	this.rentValues = new int[] {25, 50, 100, 200};
     }
     

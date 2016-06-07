@@ -16,8 +16,9 @@ public class Property extends BoardBox {
 	protected int mortgageValue;
 	protected int mortgageValueBack;
 
+	protected BufferedImage iconImage;
 	protected BufferedImage image;
-
+	
 	/**
 	 * Property Constructor
 	 * 
@@ -32,7 +33,7 @@ public class Property extends BoardBox {
 	 * @param mortgageValue
 	 *            Mortgage value
 	 */
-	public Property(String name, int pos, int idGroup, int amount, int mortgageValue, BufferedImage image) {
+	public Property(String name, int pos, int idGroup, int amount, int mortgageValue, BufferedImage icon, BufferedImage image) {
 		this.name = name;
 		this.pos = pos;
 		this.idGroup = idGroup;
@@ -42,14 +43,18 @@ public class Property extends BoardBox {
 		this.mortgage = false;
 		this.mortgageValue = mortgageValue;
 		this.mortgageValueBack = (int) (this.mortgageValue * 0.8);
+		this.iconImage = icon;
 		this.image = image;
+	}
 
+	public BufferedImage getIconImage() {
+		return iconImage;
 	}
 
 	public BufferedImage getImage() {
 		return image;
 	}
-
+	
 	/**
 	 * @return
 	 */

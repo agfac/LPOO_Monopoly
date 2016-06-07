@@ -62,17 +62,28 @@ public class InfoPanel extends ImagesLoad implements ActionListener{
 			g2d.drawRect(xIn, yIn, boxWidht, boxHeight);
 			g2d.drawString(p.getName(), 10, yIn + 90 + 20);
 			g2d.drawString(String.valueOf(p.getBalance()), 10, yIn + 90 + 40);
+			g2d.drawString("Dice Value: "+String.valueOf(p.getDicesValue()), 10, yIn +90 + 60);
+			g2d.drawString(p.getPos().getName(), 10, yIn +90 + 80);
 
 			// TODO
 			int yAuxI = yi;
 			int yAuxF = yf;
 			for(int j = 0; j < p.getPropertiesOwned().size(); j++){
-			//for (Property pro: p.getPropertiesOwned()) {
-			//	g.drawImage(pro.getImage(), xi, yi, xf, yf, 0, 0, pro.getImage().getWidth(), pro.getImage().getHeight(), null);
-				g.drawImage(p.getPropertiesOwned().get(j).getImage(), xi, yi, xf, yf, 0, 0, p.getPropertiesOwned().get(j).getImage().getWidth(), p.getPropertiesOwned().get(j).getImage().getHeight(), null);
+				g.drawImage(p.getPropertiesOwned().get(j).getIconImage(), xi, yi, xf, yf, 0, 0, p.getPropertiesOwned().get(j).getIconImage().getWidth(), p.getPropertiesOwned().get(j).getIconImage().getHeight(), null);
 				xi += propertySize;
 				xf += propertySize;
-				//if (p.getPropertiesOwned().size() == 4 || p.getPropertiesOwned().size() == 8 || p.getPropertiesOwned().size() == 12 || p.getPropertiesOwned().size() == 16) {
+				if (j == 3 || j == 7 || j == 11 || j == 15 || j == 19 || j == 23 || j == 27) {
+					xi = 100;
+					xf = xi + propertySize;
+					yi += 60;
+					yf += 60;
+				}
+				
+			}
+			for(int j = 0; j < p.getNrCardJail(); j++){
+				g.drawImage(chanceJailCard, xi, yi, xf, yf, 0, 0, chanceJailCard.getWidth(), chanceJailCard.getHeight(), null);
+				xi += propertySize;
+				xf += propertySize;
 				if (j == 3 || j == 7 || j == 11 || j == 15 || j == 19 || j == 23 || j == 27) {
 					xi = 100;
 					xf = xi + propertySize;
@@ -80,6 +91,7 @@ public class InfoPanel extends ImagesLoad implements ActionListener{
 					yf += 60;
 				}
 			}
+			
 			// Reset values
 			xi = 100;
 			xf = xi + propertySize;
@@ -87,7 +99,6 @@ public class InfoPanel extends ImagesLoad implements ActionListener{
 			yf = yAuxF + boxHeight;
 
 			yIn += boxHeight;
-
 		}
 	}
 	
