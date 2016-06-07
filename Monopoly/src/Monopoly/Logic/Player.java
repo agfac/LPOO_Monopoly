@@ -51,6 +51,7 @@ public class Player {
 
 	// TODO PARA TESTE APENAS, APAGAR !!!!!!!!!!!!!!!!!1111
 	private int symbol_1; // TODO apenas para testes do ANDRE
+
 	public Player(String name, int piece, int balance) {
 		this.name = name;
 		this.symbol_1 = piece;
@@ -60,7 +61,8 @@ public class Player {
 		this.nrOfRolls = 0;
 		this.valuePosittion = pos.getPos();
 	}
-//--------------------------------------------------------------------
+
+	// --------------------------------------------------------------------
 	/**
 	 * Constructor of Player
 	 * 
@@ -70,6 +72,10 @@ public class Player {
 	 *            symbol that identify the player
 	 * @param balance
 	 *            value that player have in their wallet
+	 * @param pos
+	 *            position on Board
+	 * @param id
+	 *            Player
 	 */
 	public Player(String name, PlayerSymbol piece, int balance, BoardBox pos, int id) {
 		this.name = name;
@@ -83,6 +89,9 @@ public class Player {
 		this.valuePosittion = pos.getPos();
 	}
 
+	/**
+	 * Method to update player on graphic window
+	 */
 	public void updateGUIPosition() { // pode ser colocada no player
 		int x = this.getPosition().getX();
 		int y = this.getPosition().getY();
@@ -179,32 +188,65 @@ public class Player {
 		this.setPosition(x, y);
 	}
 
+	/**
+	 * Get how many boardBox positions need to move
+	 * 
+	 * @return number of positions to move
+	 */
 	public int getCellsToMove() {
 		return cellsToMove;
 	}
 
+	/**
+	 * Update how many boardBox positions need to move
+	 * 
+	 * @param cellsToMove
+	 */
 	public void setCellsToMove(int cellsToMove) {
 		this.cellsToMove = cellsToMove;
 	}
 
+	/**
+	 * Get (x,y) position of player on graphic window
+	 * 
+	 * @return position x and y
+	 */
 	public Position getPosition() {
 		return position;
 	}
 
+	/**
+	 * Update (x,y) position of player on graphic window
+	 * 
+	 * @param x
+	 * @param y
+	 */
 	public void setPosition(int x, int y) {
 		this.position.setX(x);
 		this.position.setY(y);
 	}
 
+	/**
+	 * Get BoardBox position value
+	 * 
+	 * @return int of boardbox position value
+	 */
 	public int getValuePosition() {
 		return valuePosittion;
 	}
 
+	/**
+	 * Update BoardBox position value
+	 * 
+	 * @param p
+	 */
 	public void setValuePosition(int p) {
 		valuePosittion = p;
 	}
 
 	/**
+	 * Get ID of the player
+	 * 
 	 * @return ID of the player
 	 */
 	public int getId() {
@@ -212,6 +254,8 @@ public class Player {
 	}
 
 	/**
+	 * Get player name
+	 * 
 	 * @return name of the player
 	 */
 	public String getName() {
@@ -219,30 +263,25 @@ public class Player {
 	}
 
 	/**
-	 * @param name
-	 *            of the player
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * @return balance of the player
+	 * Get player balance
+	 * 
+	 * @return player balance
 	 */
 	public int getBalance() {
 		return balance;
 	}
 
 	/**
+	 * Update all player balance
+	 * 
 	 * @param balance
-	 *            of the player
 	 */
 	public void setBalance(int balance) {
 		this.balance = balance;
 	}
 
 	/**
-	 * Update the balance from player
+	 * Update actual player balance
 	 * 
 	 * @param value
 	 *            to be updated on balance
@@ -252,6 +291,8 @@ public class Player {
 	}
 
 	/**
+	 * Get player symbol
+	 * 
 	 * @return Symbol of the player
 	 */
 	public PlayerSymbol getSymbol() {
@@ -259,6 +300,8 @@ public class Player {
 	}
 
 	/**
+	 * Update player symbol
+	 * 
 	 * @param symbol
 	 *            of the player
 	 */
@@ -267,21 +310,27 @@ public class Player {
 	}
 
 	/**
-	 * @return Position of the player
+	 * Get BoardBox position of player
+	 * 
+	 * @return BoardBox
 	 */
 	public BoardBox getPos() {
 		return pos;
 	}
 
 	/**
+	 * Update BoardBox position of player
+	 * 
 	 * @param pos
-	 *            Position of the player
+	 *            BoardBox
 	 */
 	public void setPos(BoardBox pos) {
 		this.pos = pos;
 	}
 
 	/**
+	 * Get player in jail boolean
+	 * 
 	 * @return True if player is in Jail, false if player not in jail
 	 */
 	public boolean getInJail() {
@@ -289,8 +338,10 @@ public class Player {
 	}
 
 	/**
+	 * Update player in jail boolean
+	 * 
 	 * @param inJail
-	 *            True if player goes to the jail
+	 *            True if player goes to the jail, false if leaves the jail
 	 */
 	public void setInJail(boolean inJail) {
 		this.inJail = inJail;
@@ -328,11 +379,13 @@ public class Player {
 		}
 	}
 
-    /**
+	/**
 	 * Method to buy property
 	 * 
 	 * @param property
 	 *            that will be purchased from Player
+	 * @param idGroup
+	 *            Group ID
 	 */
 	public void buyProperty(Property property, int idGroup) {
 		if (balance >= property.getAmount()) {
@@ -340,42 +393,46 @@ public class Player {
 			propertiesOwned.add(property);
 			property.setSold(true);
 			property.setOwner(this);
-			int count = nrPropertyGroup.containsKey(property.getIdGroup()) ? nrPropertyGroup.get(property.getIdGroup()): 0;
-			nrPropertyGroup.put(property.getIdGroup(), count + 1);		
-			this.updateBlPropertyGroup(property.getIdGroup(),idGroup);
+			int count = nrPropertyGroup.containsKey(property.getIdGroup()) ? nrPropertyGroup.get(property.getIdGroup())
+					: 0;
+			nrPropertyGroup.put(property.getIdGroup(), count + 1);
+			this.updateBlPropertyGroup(property.getIdGroup(), idGroup);
 		}
 	}
-    
-    /**
-     * Method to sell the property
-     * @param property to be sold
-     * @param amount to be sold
-     */
-    public void sellProperty(Property property, int amount) {
-    	if ( propertiesOwned.contains(property) ){
-    		balance += amount;
-    		propertiesOwned.remove(property);
-    		property.setSold(false);
-    		property.setOwner(null);
-    		int aux = nrPropertyGroup.get(property.getIdGroup());
-    		nrPropertyGroup.put(property.getIdGroup(), --aux);
-    		blPropertyGroup.put(property.getIdGroup(), false);
-    	}
-    }
 
 	/**
-	 * Get all properties owned
+	 * Method to sell the property
 	 * 
-	 * @return properties owned
+	 * @param property
+	 *            to be sold
+	 * @param amount
+	 *            to be sold
+	 */
+	public void sellProperty(Property property, int amount) {
+		if (propertiesOwned.contains(property)) {
+			balance += amount;
+			propertiesOwned.remove(property);
+			property.setSold(false);
+			property.setOwner(null);
+			int aux = nrPropertyGroup.get(property.getIdGroup());
+			nrPropertyGroup.put(property.getIdGroup(), --aux);
+			blPropertyGroup.put(property.getIdGroup(), false);
+		}
+	}
+
+	/**
+	 * Get all owned properties 
+	 * 
+	 * @return owned properties 
 	 */
 	public Vector<Property> getPropertiesOwned() {
 		return propertiesOwned;
 	}
 
 	/**
-	 * Number of roll dices tries by user
+	 * Number of tries rolled dices by user
 	 * 
-	 * @return Number of roll dices tries by user.
+	 * @return Number of tries rolled dices by user.
 	 */
 	public int getNrOfRolls() {
 		return nrOfRolls;
@@ -451,10 +508,18 @@ public class Player {
 		return blPropertyGroup.get(property.getIdGroup());
 	}
 
+	/**
+	 * Get dices value
+	 * @return dices value
+	 */
 	public int getDicesValue() {
 		return dicesValue;
 	}
 
+	/**
+	 * Update dice values
+	 * @param dicesValue
+	 */
 	public void setDicesValue(int dicesValue) {
 		this.dicesValue = dicesValue;
 	}

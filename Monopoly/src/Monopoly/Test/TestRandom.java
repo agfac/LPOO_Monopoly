@@ -232,7 +232,7 @@ public class TestRandom {
 	public void testChanceBox(){
 		do{
 			game.updateGame(players.get(0));
-			game.verificarSeTemPlayers(players.get(0));
+			game.checkSpecialBoardBox(players.get(0));
 		}while((players.get(0).getPos().getPos()!=((ChanceBox) board.getBoardBox(7)).getPos()) );
 		assertEquals(players.get(0).getPos().getPos(), ((ChanceBox) board.getBoardBox(7)).getPos());
 	}
@@ -244,7 +244,7 @@ public class TestRandom {
 	public void testCommunityBox(){
 		do{
 			game.updateGame(players.get(0));
-			game.verificarSeTemPlayers(players.get(0));
+			game.checkSpecialBoardBox(players.get(0));
 		}while((players.get(0).getPos().getPos()!=((CommunityBox) board.getBoardBox(2)).getPos()) );
 		assertEquals(players.get(0).getPos().getPos(), ((CommunityBox) board.getBoardBox(2)).getPos());
 	}

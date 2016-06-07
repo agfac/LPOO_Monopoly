@@ -1,0 +1,690 @@
+\hypertarget{class_monopoly_1_1_logic_1_1_game}{}\section{Monopoly.\+Logic.\+Game Class Reference}
+\label{class_monopoly_1_1_logic_1_1_game}\index{Monopoly.\+Logic.\+Game@{Monopoly.\+Logic.\+Game}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_game_a5f2946cff44df4b850dc41825029f353}{Game} ()
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_game_a6b50a9d7c49c5ca0d91c7816bd8acff1}{Game} (Vector$<$ \hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} $>$ \hyperlink{class_monopoly_1_1_logic_1_1_game_abc3b3d5d0514ad27889ffd8f80cb58e9}{players})
+\item 
+Vector$<$ \hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} $>$ \hyperlink{class_monopoly_1_1_logic_1_1_game_a057dfd53e851958229778a86c2981d7b}{get\+Players} ()
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_a349c8f09683bfc289c9dc4df4c276661}{add\+Player} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player)
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_aa229aa82e1a30f6e17bc10aaef31ba04}{remove\+Player} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player)
+\item 
+int \hyperlink{class_monopoly_1_1_logic_1_1_game_a39ddf33998efee021f9680b733017fb3}{roll\+Dice} (\hyperlink{class_monopoly_1_1_logic_1_1_dice}{Dice} dice)
+\item 
+int \hyperlink{class_monopoly_1_1_logic_1_1_game_ae9de8479abf1ab8fb0ad7811ebcf176c}{get2\+Roll\+Dices} (\hyperlink{class_monopoly_1_1_logic_1_1_dice}{Dice} \hyperlink{class_monopoly_1_1_logic_1_1_game_ade748d7293525398b9c16959dbb5dd30}{dice1}, \hyperlink{class_monopoly_1_1_logic_1_1_dice}{Dice} \hyperlink{class_monopoly_1_1_logic_1_1_game_af248656616e885a175559dc3a1131478}{dice2})
+\item 
+boolean \hyperlink{class_monopoly_1_1_logic_1_1_game_a8454773c0f8d469f9c6e6a2583cb2ce1}{same\+Values\+Dice} (\hyperlink{class_monopoly_1_1_logic_1_1_dice}{Dice} \hyperlink{class_monopoly_1_1_logic_1_1_game_ade748d7293525398b9c16959dbb5dd30}{dice1}, \hyperlink{class_monopoly_1_1_logic_1_1_dice}{Dice} \hyperlink{class_monopoly_1_1_logic_1_1_game_af248656616e885a175559dc3a1131478}{dice2})
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_a44fa0ecfe376ed217a51031210942d70}{check\+Special\+Board\+Box} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player)
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_a971fdb273d8d9a701bb7790c9cd83b39}{update\+Player} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player)
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_a54d5653cfde38bb733ec4e6152353d73}{move\+Player\+G\+UI} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player, int move\+Valeu)
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_a04e53f951804adcbcf299ff9e2848b3c}{update\+Player\+In\+Jail} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player)
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_aedd3da09478a78baec3b3b8dc91a3e88}{check\+If\+Player\+Have\+Out\+Of\+Jail\+Card} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player)
+\item 
+int \hyperlink{class_monopoly_1_1_logic_1_1_game_ab80a078ce9cc880d5f0cd341b6e244f2}{calc\+Cell\+To\+Move} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player, int destination\+Pos)
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_a762472efc27ce244e217ed4135691cd9}{buy\+Property} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player)
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_af1e3ab6c22df3aec8e5e70b14a72dc14}{optimized\+Pay\+Bill} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player, \hyperlink{class_monopoly_1_1_logic_1_1_property}{Property} property)
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_a789b698353bfb93d971523905b28060a}{show\+Properties} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player)
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_addf55b2a5c94e3de1ddfccd02a93258c}{mortgage} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player, \hyperlink{class_monopoly_1_1_logic_1_1_property}{Property} property)
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_aee26d88362845a791b854afedc94d508}{un\+Mortgage} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player, \hyperlink{class_monopoly_1_1_logic_1_1_property}{Property} property)
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_a561bd44e9360ce74e13ebd21731a1028}{sell\+Houses} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player, \hyperlink{class_monopoly_1_1_logic_1_1_normal_property}{Normal\+Property} n\+Property, int n)
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_a08a830d02dc40d9d7db469ea983b087e}{sell\+Hotel} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player, \hyperlink{class_monopoly_1_1_logic_1_1_normal_property}{Normal\+Property} n\+Property)
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_af3970811aaf35107963296dc1027498b}{create\+Houses} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player, \hyperlink{class_monopoly_1_1_logic_1_1_normal_property}{Normal\+Property} n\+Property, int n)
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_a98582c8754c164c49f32ea8d2a9e98c5}{create\+Hotel} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player, \hyperlink{class_monopoly_1_1_logic_1_1_normal_property}{Normal\+Property} n\+Property)
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_af9d00f09d3612c52c7980710713fed21}{gerate\+Chance} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player)
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_a14e8a8bc2aca1c01df75051511c7cc7b}{gerate\+Community} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player)
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_a54ac92c333ef0c7c963df44bac9f8506}{pay\+Per\+Each\+House\+And\+Hotels} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player, int value\+To\+Pay\+Per\+House, int value\+To\+Pay\+Per\+Hotel)
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_a62c4db7a3d1986bdd2e8f8b2938a5d63}{update\+Game} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player)
+\item 
+Integer \hyperlink{class_monopoly_1_1_logic_1_1_game_a360b16bdaea39cbbcae7a317b20c44c0}{get\+Community\+Option} ()
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_ac21ca645765f0c387a86b8294eaac8d8}{set\+Community\+Option} (Integer \hyperlink{class_monopoly_1_1_logic_1_1_game_af554ecfbf29629088223f2b39fd30957}{community\+Option})
+\item 
+Integer \hyperlink{class_monopoly_1_1_logic_1_1_game_a12cdb08d22a6f78a80aa06bf4c98a8ad}{get\+Chance\+Option} ()
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_a0a4fe65f77786ddee21709784b422b0a}{set\+Chance\+Option} (Integer \hyperlink{class_monopoly_1_1_logic_1_1_game_a31a86909fac3b9813f640e1bde0dca67}{chance\+Option})
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_board}{Board} \hyperlink{class_monopoly_1_1_logic_1_1_game_a01038718bb0a616035e99f9130f29b05}{get\+Board} ()
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_game_a8a78d2936440a32aa15b52cd90b0dd9b}{info\+Player} (\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} player)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_monopoly_1_1_logic_1_1_game_a944fe39164dad94b2db385b2b501f6a3}{main} (String\mbox{[}$\,$\mbox{]} args)
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Buffered\+Image \hyperlink{class_monopoly_1_1_logic_1_1_game_a82b844adcf008c16a9a93989965040c3}{dog\+Piece}
+\item 
+static Buffered\+Image \hyperlink{class_monopoly_1_1_logic_1_1_game_abeedc4029b760c065483e1d808e7a091}{car\+Piece}
+\item 
+static Buffered\+Image \hyperlink{class_monopoly_1_1_logic_1_1_game_ab84d4d846a47154e872a4e2498c2d72d}{ship\+Piece}
+\item 
+static Buffered\+Image \hyperlink{class_monopoly_1_1_logic_1_1_game_af5f0a46238effac27049e9c7136333e4}{boot\+Piece}
+\item 
+static Buffered\+Image \hyperlink{class_monopoly_1_1_logic_1_1_game_aa61ba9fcff6fbe176fe1506eb5486096}{hat\+Piece}
+\item 
+static Buffered\+Image \hyperlink{class_monopoly_1_1_logic_1_1_game_a6b695620411787654c8f02264d57d2ae}{iron\+Piece}
+\item 
+static Buffered\+Image \hyperlink{class_monopoly_1_1_logic_1_1_game_ac35a4e38762abc0ea54d062f7cde7643}{thimble\+Piece}
+\item 
+static Buffered\+Image \hyperlink{class_monopoly_1_1_logic_1_1_game_aa420c0448988b31e3b43a7181fbf957f}{wheelbarrow\+Piece}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final int \hyperlink{class_monopoly_1_1_logic_1_1_game_a0e9301a2ac7d3af022ec8f0846e3f96a}{J\+A\+I\+L\+V\+A\+L\+UE} = 500
+\item 
+final int \hyperlink{class_monopoly_1_1_logic_1_1_game_a56756d9c96a11f599e4abaed874b2cf9}{G\+O\+V\+A\+L\+UE} = 2000
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_dice}{Dice} \hyperlink{class_monopoly_1_1_logic_1_1_game_ade748d7293525398b9c16959dbb5dd30}{dice1}
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_dice}{Dice} \hyperlink{class_monopoly_1_1_logic_1_1_game_af248656616e885a175559dc3a1131478}{dice2}
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_board}{Board} \hyperlink{class_monopoly_1_1_logic_1_1_game_ac8c4913448cdb3e37b3ac102e9b115d2}{board}
+\item 
+Vector$<$ \hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} $>$ \hyperlink{class_monopoly_1_1_logic_1_1_game_abc3b3d5d0514ad27889ffd8f80cb58e9}{players}
+\item 
+Integer \hyperlink{class_monopoly_1_1_logic_1_1_game_a31a86909fac3b9813f640e1bde0dca67}{chance\+Option} = null
+\item 
+Integer \hyperlink{class_monopoly_1_1_logic_1_1_game_af554ecfbf29629088223f2b39fd30957}{community\+Option} = null
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_player_symbol}{Player\+Symbol} \hyperlink{class_monopoly_1_1_logic_1_1_game_adbdd554348dd81614993d80ac53d98c3}{dog}
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_player_symbol}{Player\+Symbol} \hyperlink{class_monopoly_1_1_logic_1_1_game_a057c4d7914dd124f288fc308c8ba33c2}{car}
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_player_symbol}{Player\+Symbol} \hyperlink{class_monopoly_1_1_logic_1_1_game_aa3284241255ce061e89c840372e9ace0}{ship}
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_player_symbol}{Player\+Symbol} \hyperlink{class_monopoly_1_1_logic_1_1_game_a16abdb90decd1f01e20ad2704ce7f8a2}{boot}
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_player_symbol}{Player\+Symbol} \hyperlink{class_monopoly_1_1_logic_1_1_game_accef44739797faa0c1acf5e916929fa7}{hat}
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_player_symbol}{Player\+Symbol} \hyperlink{class_monopoly_1_1_logic_1_1_game_a9c9c25462d000a6d7d1b954f100f7871}{iron}
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_player_symbol}{Player\+Symbol} \hyperlink{class_monopoly_1_1_logic_1_1_game_a3636c56c93a42f21ec3ff55405dcfb61}{thimble}
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_player_symbol}{Player\+Symbol} \hyperlink{class_monopoly_1_1_logic_1_1_game_a1374ad17918482f5489026d9e26bcd11}{wheelbarrow}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!Game@{Game}}
+\index{Game@{Game}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{Game()}{Game()}}]{\setlength{\rightskip}{0pt plus 5cm}Monopoly.\+Logic.\+Game.\+Game (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a5f2946cff44df4b850dc41825029f353}{}\label{class_monopoly_1_1_logic_1_1_game_a5f2946cff44df4b850dc41825029f353}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!Game@{Game}}
+\index{Game@{Game}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{Game(\+Vector$<$ Player $>$ players)}{Game(Vector< Player > players)}}]{\setlength{\rightskip}{0pt plus 5cm}Monopoly.\+Logic.\+Game.\+Game (
+\begin{DoxyParamCaption}
+\item[{Vector$<$ {\bf Player} $>$}]{players}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a6b50a9d7c49c5ca0d91c7816bd8acff1}{}\label{class_monopoly_1_1_logic_1_1_game_a6b50a9d7c49c5ca0d91c7816bd8acff1}
+Constructor of game 
+\begin{DoxyParams}{Parameters}
+{\em players} & vector \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!add\+Player@{add\+Player}}
+\index{add\+Player@{add\+Player}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{add\+Player(\+Player player)}{addPlayer(Player player)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+add\+Player (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a349c8f09683bfc289c9dc4df4c276661}{}\label{class_monopoly_1_1_logic_1_1_game_a349c8f09683bfc289c9dc4df4c276661}
+Add player
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & to be added \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!buy\+Property@{buy\+Property}}
+\index{buy\+Property@{buy\+Property}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{buy\+Property(\+Player player)}{buyProperty(Player player)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+buy\+Property (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a762472efc27ce244e217ed4135691cd9}{}\label{class_monopoly_1_1_logic_1_1_game_a762472efc27ce244e217ed4135691cd9}
+Method to buy property
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & to buy property \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!calc\+Cell\+To\+Move@{calc\+Cell\+To\+Move}}
+\index{calc\+Cell\+To\+Move@{calc\+Cell\+To\+Move}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{calc\+Cell\+To\+Move(\+Player player, int destination\+Pos)}{calcCellToMove(Player player, int destinationPos)}}]{\setlength{\rightskip}{0pt plus 5cm}int Monopoly.\+Logic.\+Game.\+calc\+Cell\+To\+Move (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player, }
+\item[{int}]{destination\+Pos}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_ab80a078ce9cc880d5f0cd341b6e244f2}{}\label{class_monopoly_1_1_logic_1_1_game_ab80a078ce9cc880d5f0cd341b6e244f2}
+Method to determinate how many boarbox (Positions) need to move a player 
+\begin{DoxyParams}{Parameters}
+{\em player} & to be moved \\
+\hline
+{\em destination\+Pos} & to be moved \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of boarbox (Positions) to move a player 
+\end{DoxyReturn}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!check\+If\+Player\+Have\+Out\+Of\+Jail\+Card@{check\+If\+Player\+Have\+Out\+Of\+Jail\+Card}}
+\index{check\+If\+Player\+Have\+Out\+Of\+Jail\+Card@{check\+If\+Player\+Have\+Out\+Of\+Jail\+Card}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{check\+If\+Player\+Have\+Out\+Of\+Jail\+Card(\+Player player)}{checkIfPlayerHaveOutOfJailCard(Player player)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+check\+If\+Player\+Have\+Out\+Of\+Jail\+Card (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_aedd3da09478a78baec3b3b8dc91a3e88}{}\label{class_monopoly_1_1_logic_1_1_game_aedd3da09478a78baec3b3b8dc91a3e88}
+Check if have out of jail card and leave the jail if yes
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!check\+Special\+Board\+Box@{check\+Special\+Board\+Box}}
+\index{check\+Special\+Board\+Box@{check\+Special\+Board\+Box}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{check\+Special\+Board\+Box(\+Player player)}{checkSpecialBoardBox(Player player)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+check\+Special\+Board\+Box (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a44fa0ecfe376ed217a51031210942d70}{}\label{class_monopoly_1_1_logic_1_1_game_a44fa0ecfe376ed217a51031210942d70}
+Check if player is on a special board\+Box 
+\begin{DoxyParams}{Parameters}
+{\em player} & \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!create\+Hotel@{create\+Hotel}}
+\index{create\+Hotel@{create\+Hotel}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{create\+Hotel(\+Player player, Normal\+Property n\+Property)}{createHotel(Player player, NormalProperty nProperty)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+create\+Hotel (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player, }
+\item[{{\bf Normal\+Property}}]{n\+Property}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a98582c8754c164c49f32ea8d2a9e98c5}{}\label{class_monopoly_1_1_logic_1_1_game_a98582c8754c164c49f32ea8d2a9e98c5}
+Method to create hotels
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & who will buy the hotel \\
+\hline
+{\em n\+Property} & to place the hotel \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!create\+Houses@{create\+Houses}}
+\index{create\+Houses@{create\+Houses}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{create\+Houses(\+Player player, Normal\+Property n\+Property, int n)}{createHouses(Player player, NormalProperty nProperty, int n)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+create\+Houses (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player, }
+\item[{{\bf Normal\+Property}}]{n\+Property, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_af3970811aaf35107963296dc1027498b}{}\label{class_monopoly_1_1_logic_1_1_game_af3970811aaf35107963296dc1027498b}
+Method to create houses
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & who will buy the houses \\
+\hline
+{\em n\+Property} & to place the houses \\
+\hline
+{\em n} & number of houses to be purchased \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!gerate\+Chance@{gerate\+Chance}}
+\index{gerate\+Chance@{gerate\+Chance}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{gerate\+Chance(\+Player player)}{gerateChance(Player player)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+gerate\+Chance (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_af9d00f09d3612c52c7980710713fed21}{}\label{class_monopoly_1_1_logic_1_1_game_af9d00f09d3612c52c7980710713fed21}
+Generate random number from 1 to 15 and associate to a chance card, player will have an action from that card generated.
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & that have an action \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!gerate\+Community@{gerate\+Community}}
+\index{gerate\+Community@{gerate\+Community}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{gerate\+Community(\+Player player)}{gerateCommunity(Player player)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+gerate\+Community (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a14e8a8bc2aca1c01df75051511c7cc7b}{}\label{class_monopoly_1_1_logic_1_1_game_a14e8a8bc2aca1c01df75051511c7cc7b}
+Generate random number from 1 to 15 and associate to a community card, player will have an action from that card generated.
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & that have an action \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Interrupted\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!get2\+Roll\+Dices@{get2\+Roll\+Dices}}
+\index{get2\+Roll\+Dices@{get2\+Roll\+Dices}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{get2\+Roll\+Dices(\+Dice dice1, Dice dice2)}{get2RollDices(Dice dice1, Dice dice2)}}]{\setlength{\rightskip}{0pt plus 5cm}int Monopoly.\+Logic.\+Game.\+get2\+Roll\+Dices (
+\begin{DoxyParamCaption}
+\item[{{\bf Dice}}]{dice1, }
+\item[{{\bf Dice}}]{dice2}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_ae9de8479abf1ab8fb0ad7811ebcf176c}{}\label{class_monopoly_1_1_logic_1_1_game_ae9de8479abf1ab8fb0ad7811ebcf176c}
+Sum of dice 1 and dice 2
+
+
+\begin{DoxyParams}{Parameters}
+{\em dice1} & dice one \\
+\hline
+{\em dice2} & dice two \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+total of dice1 + dice2 
+\end{DoxyReturn}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!get\+Board@{get\+Board}}
+\index{get\+Board@{get\+Board}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{get\+Board()}{getBoard()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Board} Monopoly.\+Logic.\+Game.\+get\+Board (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a01038718bb0a616035e99f9130f29b05}{}\label{class_monopoly_1_1_logic_1_1_game_a01038718bb0a616035e99f9130f29b05}
+Get the board of game \begin{DoxyReturn}{Returns}
+board 
+\end{DoxyReturn}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!get\+Chance\+Option@{get\+Chance\+Option}}
+\index{get\+Chance\+Option@{get\+Chance\+Option}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{get\+Chance\+Option()}{getChanceOption()}}]{\setlength{\rightskip}{0pt plus 5cm}Integer Monopoly.\+Logic.\+Game.\+get\+Chance\+Option (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a12cdb08d22a6f78a80aa06bf4c98a8ad}{}\label{class_monopoly_1_1_logic_1_1_game_a12cdb08d22a6f78a80aa06bf4c98a8ad}
+Get Chance card generated \begin{DoxyReturn}{Returns}
+id of chance card generated 
+\end{DoxyReturn}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!get\+Community\+Option@{get\+Community\+Option}}
+\index{get\+Community\+Option@{get\+Community\+Option}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{get\+Community\+Option()}{getCommunityOption()}}]{\setlength{\rightskip}{0pt plus 5cm}Integer Monopoly.\+Logic.\+Game.\+get\+Community\+Option (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a360b16bdaea39cbbcae7a317b20c44c0}{}\label{class_monopoly_1_1_logic_1_1_game_a360b16bdaea39cbbcae7a317b20c44c0}
+Get Community card generated \begin{DoxyReturn}{Returns}
+id of community card generated 
+\end{DoxyReturn}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!get\+Players@{get\+Players}}
+\index{get\+Players@{get\+Players}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{get\+Players()}{getPlayers()}}]{\setlength{\rightskip}{0pt plus 5cm}Vector$<${\bf Player}$>$ Monopoly.\+Logic.\+Game.\+get\+Players (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a057dfd53e851958229778a86c2981d7b}{}\label{class_monopoly_1_1_logic_1_1_game_a057dfd53e851958229778a86c2981d7b}
+Get all players
+
+\begin{DoxyReturn}{Returns}
+all players 
+\end{DoxyReturn}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!info\+Player@{info\+Player}}
+\index{info\+Player@{info\+Player}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{info\+Player(\+Player player)}{infoPlayer(Player player)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+info\+Player (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a8a78d2936440a32aa15b52cd90b0dd9b}{}\label{class_monopoly_1_1_logic_1_1_game_a8a78d2936440a32aa15b52cd90b0dd9b}
+Print player information
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & to be showed information \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!main@{main}}
+\index{main@{main}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{main(\+String[] args)}{main(String[] args)}}]{\setlength{\rightskip}{0pt plus 5cm}static void Monopoly.\+Logic.\+Game.\+main (
+\begin{DoxyParamCaption}
+\item[{String\mbox{[}$\,$\mbox{]}}]{args}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_a944fe39164dad94b2db385b2b501f6a3}{}\label{class_monopoly_1_1_logic_1_1_game_a944fe39164dad94b2db385b2b501f6a3}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!mortgage@{mortgage}}
+\index{mortgage@{mortgage}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{mortgage(\+Player player, Property property)}{mortgage(Player player, Property property)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+mortgage (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player, }
+\item[{{\bf Property}}]{property}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_addf55b2a5c94e3de1ddfccd02a93258c}{}\label{class_monopoly_1_1_logic_1_1_game_addf55b2a5c94e3de1ddfccd02a93258c}
+Method to mortgage a property 
+\begin{DoxyParams}{Parameters}
+{\em player} & to mortgage the property \\
+\hline
+{\em property} & to be mortgage \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!move\+Player\+G\+UI@{move\+Player\+G\+UI}}
+\index{move\+Player\+G\+UI@{move\+Player\+G\+UI}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{move\+Player\+G\+U\+I(\+Player player, int move\+Valeu)}{movePlayerGUI(Player player, int moveValeu)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+move\+Player\+G\+UI (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player, }
+\item[{int}]{move\+Valeu}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a54d5653cfde38bb733ec4e6152353d73}{}\label{class_monopoly_1_1_logic_1_1_game_a54d5653cfde38bb733ec4e6152353d73}
+Method to update payer on graphic window 
+\begin{DoxyParams}{Parameters}
+{\em player} & to be moved \\
+\hline
+{\em move\+Valeu} & to be moved \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!optimized\+Pay\+Bill@{optimized\+Pay\+Bill}}
+\index{optimized\+Pay\+Bill@{optimized\+Pay\+Bill}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{optimized\+Pay\+Bill(\+Player player, Property property)}{optimizedPayBill(Player player, Property property)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+optimized\+Pay\+Bill (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player, }
+\item[{{\bf Property}}]{property}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_af1e3ab6c22df3aec8e5e70b14a72dc14}{}\label{class_monopoly_1_1_logic_1_1_game_af1e3ab6c22df3aec8e5e70b14a72dc14}
+Method to pay a bill if a player is on other player property
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & that will pay the bill \\
+\hline
+{\em property} & property where player is on \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!pay\+Per\+Each\+House\+And\+Hotels@{pay\+Per\+Each\+House\+And\+Hotels}}
+\index{pay\+Per\+Each\+House\+And\+Hotels@{pay\+Per\+Each\+House\+And\+Hotels}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{pay\+Per\+Each\+House\+And\+Hotels(\+Player player, int value\+To\+Pay\+Per\+House, int value\+To\+Pay\+Per\+Hotel)}{payPerEachHouseAndHotels(Player player, int valueToPayPerHouse, int valueToPayPerHotel)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+pay\+Per\+Each\+House\+And\+Hotels (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player, }
+\item[{int}]{value\+To\+Pay\+Per\+House, }
+\item[{int}]{value\+To\+Pay\+Per\+Hotel}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a54ac92c333ef0c7c963df44bac9f8506}{}\label{class_monopoly_1_1_logic_1_1_game_a54ac92c333ef0c7c963df44bac9f8506}
+For each property owned by player, will check if have houses and hotels, and pay a value by a number of hoses and hotels
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & \\
+\hline
+{\em value\+To\+Pay\+Per\+House} & \\
+\hline
+{\em value\+To\+Pay\+Per\+Hotel} & \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!remove\+Player@{remove\+Player}}
+\index{remove\+Player@{remove\+Player}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{remove\+Player(\+Player player)}{removePlayer(Player player)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+remove\+Player (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_aa229aa82e1a30f6e17bc10aaef31ba04}{}\label{class_monopoly_1_1_logic_1_1_game_aa229aa82e1a30f6e17bc10aaef31ba04}
+Remove player
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & to be removed \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!roll\+Dice@{roll\+Dice}}
+\index{roll\+Dice@{roll\+Dice}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{roll\+Dice(\+Dice dice)}{rollDice(Dice dice)}}]{\setlength{\rightskip}{0pt plus 5cm}int Monopoly.\+Logic.\+Game.\+roll\+Dice (
+\begin{DoxyParamCaption}
+\item[{{\bf Dice}}]{dice}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a39ddf33998efee021f9680b733017fb3}{}\label{class_monopoly_1_1_logic_1_1_game_a39ddf33998efee021f9680b733017fb3}
+Will roll the dice1 and return an integer with value
+
+\begin{DoxyReturn}{Returns}
+dice value 
+\end{DoxyReturn}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!same\+Values\+Dice@{same\+Values\+Dice}}
+\index{same\+Values\+Dice@{same\+Values\+Dice}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{same\+Values\+Dice(\+Dice dice1, Dice dice2)}{sameValuesDice(Dice dice1, Dice dice2)}}]{\setlength{\rightskip}{0pt plus 5cm}boolean Monopoly.\+Logic.\+Game.\+same\+Values\+Dice (
+\begin{DoxyParamCaption}
+\item[{{\bf Dice}}]{dice1, }
+\item[{{\bf Dice}}]{dice2}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a8454773c0f8d469f9c6e6a2583cb2ce1}{}\label{class_monopoly_1_1_logic_1_1_game_a8454773c0f8d469f9c6e6a2583cb2ce1}
+Check if the values generated from dices are the same
+
+
+\begin{DoxyParams}{Parameters}
+{\em dice1} & \hyperlink{class_monopoly_1_1_logic_1_1_dice}{Dice} one \\
+\hline
+{\em dice2} & \hyperlink{class_monopoly_1_1_logic_1_1_dice}{Dice} two \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if they have the same value, if not return false 
+\end{DoxyReturn}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!sell\+Hotel@{sell\+Hotel}}
+\index{sell\+Hotel@{sell\+Hotel}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{sell\+Hotel(\+Player player, Normal\+Property n\+Property)}{sellHotel(Player player, NormalProperty nProperty)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+sell\+Hotel (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player, }
+\item[{{\bf Normal\+Property}}]{n\+Property}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a08a830d02dc40d9d7db469ea983b087e}{}\label{class_monopoly_1_1_logic_1_1_game_a08a830d02dc40d9d7db469ea983b087e}
+Method to sell hotel
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & who will sell the hotel \\
+\hline
+{\em n\+Property} & to sell the hotel \\
+\hline
+{\em n} & number of hotel to be sold \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!sell\+Houses@{sell\+Houses}}
+\index{sell\+Houses@{sell\+Houses}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{sell\+Houses(\+Player player, Normal\+Property n\+Property, int n)}{sellHouses(Player player, NormalProperty nProperty, int n)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+sell\+Houses (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player, }
+\item[{{\bf Normal\+Property}}]{n\+Property, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a561bd44e9360ce74e13ebd21731a1028}{}\label{class_monopoly_1_1_logic_1_1_game_a561bd44e9360ce74e13ebd21731a1028}
+Method to sell houses
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & who will sell the houses \\
+\hline
+{\em n\+Property} & to sell the houses \\
+\hline
+{\em n} & number of houses to be sold \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!set\+Chance\+Option@{set\+Chance\+Option}}
+\index{set\+Chance\+Option@{set\+Chance\+Option}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{set\+Chance\+Option(\+Integer chance\+Option)}{setChanceOption(Integer chanceOption)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+set\+Chance\+Option (
+\begin{DoxyParamCaption}
+\item[{Integer}]{chance\+Option}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a0a4fe65f77786ddee21709784b422b0a}{}\label{class_monopoly_1_1_logic_1_1_game_a0a4fe65f77786ddee21709784b422b0a}
+Update Chance card \index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!set\+Community\+Option@{set\+Community\+Option}}
+\index{set\+Community\+Option@{set\+Community\+Option}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{set\+Community\+Option(\+Integer community\+Option)}{setCommunityOption(Integer communityOption)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+set\+Community\+Option (
+\begin{DoxyParamCaption}
+\item[{Integer}]{community\+Option}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_ac21ca645765f0c387a86b8294eaac8d8}{}\label{class_monopoly_1_1_logic_1_1_game_ac21ca645765f0c387a86b8294eaac8d8}
+Update Community card \index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!show\+Properties@{show\+Properties}}
+\index{show\+Properties@{show\+Properties}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{show\+Properties(\+Player player)}{showProperties(Player player)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+show\+Properties (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a789b698353bfb93d971523905b28060a}{}\label{class_monopoly_1_1_logic_1_1_game_a789b698353bfb93d971523905b28060a}
+Method to show information about properties that a player have.
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & to be showed information \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!un\+Mortgage@{un\+Mortgage}}
+\index{un\+Mortgage@{un\+Mortgage}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{un\+Mortgage(\+Player player, Property property)}{unMortgage(Player player, Property property)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+un\+Mortgage (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player, }
+\item[{{\bf Property}}]{property}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_aee26d88362845a791b854afedc94d508}{}\label{class_monopoly_1_1_logic_1_1_game_aee26d88362845a791b854afedc94d508}
+Method to \textquotesingle{}unmortgage\textquotesingle{} a property 
+\begin{DoxyParams}{Parameters}
+{\em player} & to \textquotesingle{}unmortgage\textquotesingle{} the property \\
+\hline
+{\em property} & to be \textquotesingle{}unmortgage\textquotesingle{} \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!update\+Game@{update\+Game}}
+\index{update\+Game@{update\+Game}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{update\+Game(\+Player player)}{updateGame(Player player)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+update\+Game (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a62c4db7a3d1986bdd2e8f8b2938a5d63}{}\label{class_monopoly_1_1_logic_1_1_game_a62c4db7a3d1986bdd2e8f8b2938a5d63}
+Update all game -\/ M\+A\+IN F\+U\+N\+C\+T\+I\+O\+N!!!!! \index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!update\+Player@{update\+Player}}
+\index{update\+Player@{update\+Player}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{update\+Player(\+Player player)}{updatePlayer(Player player)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+update\+Player (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a971fdb273d8d9a701bb7790c9cd83b39}{}\label{class_monopoly_1_1_logic_1_1_game_a971fdb273d8d9a701bb7790c9cd83b39}
+Method to update the player on board
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & to be update on board \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!update\+Player\+In\+Jail@{update\+Player\+In\+Jail}}
+\index{update\+Player\+In\+Jail@{update\+Player\+In\+Jail}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{update\+Player\+In\+Jail(\+Player player)}{updatePlayerInJail(Player player)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Game.\+update\+Player\+In\+Jail (
+\begin{DoxyParamCaption}
+\item[{{\bf Player}}]{player}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_game_a04e53f951804adcbcf299ff9e2848b3c}{}\label{class_monopoly_1_1_logic_1_1_game_a04e53f951804adcbcf299ff9e2848b3c}
+Method to update the player in Jail
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & to be updated on Jail \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!board@{board}}
+\index{board@{board}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{board}{board}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Board} Monopoly.\+Logic.\+Game.\+board\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_ac8c4913448cdb3e37b3ac102e9b115d2}{}\label{class_monopoly_1_1_logic_1_1_game_ac8c4913448cdb3e37b3ac102e9b115d2}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!boot@{boot}}
+\index{boot@{boot}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{boot}{boot}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player\+Symbol} Monopoly.\+Logic.\+Game.\+boot\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_a16abdb90decd1f01e20ad2704ce7f8a2}{}\label{class_monopoly_1_1_logic_1_1_game_a16abdb90decd1f01e20ad2704ce7f8a2}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!boot\+Piece@{boot\+Piece}}
+\index{boot\+Piece@{boot\+Piece}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{boot\+Piece}{bootPiece}}]{\setlength{\rightskip}{0pt plus 5cm}Buffered\+Image Monopoly.\+Logic.\+Game.\+boot\+Piece\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_af5f0a46238effac27049e9c7136333e4}{}\label{class_monopoly_1_1_logic_1_1_game_af5f0a46238effac27049e9c7136333e4}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!car@{car}}
+\index{car@{car}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{car}{car}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player\+Symbol} Monopoly.\+Logic.\+Game.\+car\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_a057c4d7914dd124f288fc308c8ba33c2}{}\label{class_monopoly_1_1_logic_1_1_game_a057c4d7914dd124f288fc308c8ba33c2}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!car\+Piece@{car\+Piece}}
+\index{car\+Piece@{car\+Piece}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{car\+Piece}{carPiece}}]{\setlength{\rightskip}{0pt plus 5cm}Buffered\+Image Monopoly.\+Logic.\+Game.\+car\+Piece\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_abeedc4029b760c065483e1d808e7a091}{}\label{class_monopoly_1_1_logic_1_1_game_abeedc4029b760c065483e1d808e7a091}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!chance\+Option@{chance\+Option}}
+\index{chance\+Option@{chance\+Option}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{chance\+Option}{chanceOption}}]{\setlength{\rightskip}{0pt plus 5cm}Integer Monopoly.\+Logic.\+Game.\+chance\+Option = null\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_a31a86909fac3b9813f640e1bde0dca67}{}\label{class_monopoly_1_1_logic_1_1_game_a31a86909fac3b9813f640e1bde0dca67}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!community\+Option@{community\+Option}}
+\index{community\+Option@{community\+Option}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{community\+Option}{communityOption}}]{\setlength{\rightskip}{0pt plus 5cm}Integer Monopoly.\+Logic.\+Game.\+community\+Option = null\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_af554ecfbf29629088223f2b39fd30957}{}\label{class_monopoly_1_1_logic_1_1_game_af554ecfbf29629088223f2b39fd30957}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!dice1@{dice1}}
+\index{dice1@{dice1}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{dice1}{dice1}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dice} Monopoly.\+Logic.\+Game.\+dice1\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_ade748d7293525398b9c16959dbb5dd30}{}\label{class_monopoly_1_1_logic_1_1_game_ade748d7293525398b9c16959dbb5dd30}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!dice2@{dice2}}
+\index{dice2@{dice2}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{dice2}{dice2}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dice} Monopoly.\+Logic.\+Game.\+dice2\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_af248656616e885a175559dc3a1131478}{}\label{class_monopoly_1_1_logic_1_1_game_af248656616e885a175559dc3a1131478}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!dog@{dog}}
+\index{dog@{dog}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{dog}{dog}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player\+Symbol} Monopoly.\+Logic.\+Game.\+dog\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_adbdd554348dd81614993d80ac53d98c3}{}\label{class_monopoly_1_1_logic_1_1_game_adbdd554348dd81614993d80ac53d98c3}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!dog\+Piece@{dog\+Piece}}
+\index{dog\+Piece@{dog\+Piece}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{dog\+Piece}{dogPiece}}]{\setlength{\rightskip}{0pt plus 5cm}Buffered\+Image Monopoly.\+Logic.\+Game.\+dog\+Piece\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_a82b844adcf008c16a9a93989965040c3}{}\label{class_monopoly_1_1_logic_1_1_game_a82b844adcf008c16a9a93989965040c3}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!G\+O\+V\+A\+L\+UE@{G\+O\+V\+A\+L\+UE}}
+\index{G\+O\+V\+A\+L\+UE@{G\+O\+V\+A\+L\+UE}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{G\+O\+V\+A\+L\+UE}{GOVALUE}}]{\setlength{\rightskip}{0pt plus 5cm}final int Monopoly.\+Logic.\+Game.\+G\+O\+V\+A\+L\+UE = 2000\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_a56756d9c96a11f599e4abaed874b2cf9}{}\label{class_monopoly_1_1_logic_1_1_game_a56756d9c96a11f599e4abaed874b2cf9}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!hat@{hat}}
+\index{hat@{hat}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{hat}{hat}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player\+Symbol} Monopoly.\+Logic.\+Game.\+hat\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_accef44739797faa0c1acf5e916929fa7}{}\label{class_monopoly_1_1_logic_1_1_game_accef44739797faa0c1acf5e916929fa7}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!hat\+Piece@{hat\+Piece}}
+\index{hat\+Piece@{hat\+Piece}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{hat\+Piece}{hatPiece}}]{\setlength{\rightskip}{0pt plus 5cm}Buffered\+Image Monopoly.\+Logic.\+Game.\+hat\+Piece\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_aa61ba9fcff6fbe176fe1506eb5486096}{}\label{class_monopoly_1_1_logic_1_1_game_aa61ba9fcff6fbe176fe1506eb5486096}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!iron@{iron}}
+\index{iron@{iron}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{iron}{iron}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player\+Symbol} Monopoly.\+Logic.\+Game.\+iron\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_a9c9c25462d000a6d7d1b954f100f7871}{}\label{class_monopoly_1_1_logic_1_1_game_a9c9c25462d000a6d7d1b954f100f7871}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!iron\+Piece@{iron\+Piece}}
+\index{iron\+Piece@{iron\+Piece}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{iron\+Piece}{ironPiece}}]{\setlength{\rightskip}{0pt plus 5cm}Buffered\+Image Monopoly.\+Logic.\+Game.\+iron\+Piece\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_a6b695620411787654c8f02264d57d2ae}{}\label{class_monopoly_1_1_logic_1_1_game_a6b695620411787654c8f02264d57d2ae}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!J\+A\+I\+L\+V\+A\+L\+UE@{J\+A\+I\+L\+V\+A\+L\+UE}}
+\index{J\+A\+I\+L\+V\+A\+L\+UE@{J\+A\+I\+L\+V\+A\+L\+UE}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{J\+A\+I\+L\+V\+A\+L\+UE}{JAILVALUE}}]{\setlength{\rightskip}{0pt plus 5cm}final int Monopoly.\+Logic.\+Game.\+J\+A\+I\+L\+V\+A\+L\+UE = 500\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_a0e9301a2ac7d3af022ec8f0846e3f96a}{}\label{class_monopoly_1_1_logic_1_1_game_a0e9301a2ac7d3af022ec8f0846e3f96a}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!players@{players}}
+\index{players@{players}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{players}{players}}]{\setlength{\rightskip}{0pt plus 5cm}Vector$<${\bf Player}$>$ Monopoly.\+Logic.\+Game.\+players\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_abc3b3d5d0514ad27889ffd8f80cb58e9}{}\label{class_monopoly_1_1_logic_1_1_game_abc3b3d5d0514ad27889ffd8f80cb58e9}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!ship@{ship}}
+\index{ship@{ship}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{ship}{ship}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player\+Symbol} Monopoly.\+Logic.\+Game.\+ship\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_aa3284241255ce061e89c840372e9ace0}{}\label{class_monopoly_1_1_logic_1_1_game_aa3284241255ce061e89c840372e9ace0}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!ship\+Piece@{ship\+Piece}}
+\index{ship\+Piece@{ship\+Piece}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{ship\+Piece}{shipPiece}}]{\setlength{\rightskip}{0pt plus 5cm}Buffered\+Image Monopoly.\+Logic.\+Game.\+ship\+Piece\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_ab84d4d846a47154e872a4e2498c2d72d}{}\label{class_monopoly_1_1_logic_1_1_game_ab84d4d846a47154e872a4e2498c2d72d}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!thimble@{thimble}}
+\index{thimble@{thimble}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{thimble}{thimble}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player\+Symbol} Monopoly.\+Logic.\+Game.\+thimble\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_a3636c56c93a42f21ec3ff55405dcfb61}{}\label{class_monopoly_1_1_logic_1_1_game_a3636c56c93a42f21ec3ff55405dcfb61}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!thimble\+Piece@{thimble\+Piece}}
+\index{thimble\+Piece@{thimble\+Piece}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{thimble\+Piece}{thimblePiece}}]{\setlength{\rightskip}{0pt plus 5cm}Buffered\+Image Monopoly.\+Logic.\+Game.\+thimble\+Piece\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_ac35a4e38762abc0ea54d062f7cde7643}{}\label{class_monopoly_1_1_logic_1_1_game_ac35a4e38762abc0ea54d062f7cde7643}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!wheelbarrow@{wheelbarrow}}
+\index{wheelbarrow@{wheelbarrow}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{wheelbarrow}{wheelbarrow}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player\+Symbol} Monopoly.\+Logic.\+Game.\+wheelbarrow\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_a1374ad17918482f5489026d9e26bcd11}{}\label{class_monopoly_1_1_logic_1_1_game_a1374ad17918482f5489026d9e26bcd11}
+\index{Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}!wheelbarrow\+Piece@{wheelbarrow\+Piece}}
+\index{wheelbarrow\+Piece@{wheelbarrow\+Piece}!Monopoly\+::\+Logic\+::\+Game@{Monopoly\+::\+Logic\+::\+Game}}
+\subsubsection[{\texorpdfstring{wheelbarrow\+Piece}{wheelbarrowPiece}}]{\setlength{\rightskip}{0pt plus 5cm}Buffered\+Image Monopoly.\+Logic.\+Game.\+wheelbarrow\+Piece\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\hypertarget{class_monopoly_1_1_logic_1_1_game_aa420c0448988b31e3b43a7181fbf957f}{}\label{class_monopoly_1_1_logic_1_1_game_aa420c0448988b31e3b43a7181fbf957f}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Monopoly/\+Logic/\hyperlink{_game_8java}{Game.\+java}\end{DoxyCompactItemize}

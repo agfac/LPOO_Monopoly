@@ -1,0 +1,135 @@
+\hypertarget{class_monopoly_1_1_server_1_1_game_protocol}{}\section{Monopoly.\+Server.\+Game\+Protocol Class Reference}
+\label{class_monopoly_1_1_server_1_1_game_protocol}\index{Monopoly.\+Server.\+Game\+Protocol@{Monopoly.\+Server.\+Game\+Protocol}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+String \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_ac145ed5c76fbff79218a9d9c6ced0698}{process\+Input} (String the\+Input)
+\item 
+Integer \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_aa2af1d78e88ffd885ea18b67b82d2be7}{get\+State} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Integer \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_ad96dd410c80756d63c446a70222dec2d}{state} = \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_a3a3f1fded8c4f1f318e17e12ab184611}{I\+N\+IT}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static final int \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_a3a3f1fded8c4f1f318e17e12ab184611}{I\+N\+IT} = 0
+\item 
+static final int \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_a08a159e70f29fbac3d5c34c3bb06a0f7}{S\+E\+T\+G\+A\+M\+E\+P\+R\+O\+P\+E\+R\+T\+I\+ES} = 1
+\item 
+static final int \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_aaefb144ef04b6626e85327e05d61e3b5}{W\+A\+I\+T\+I\+N\+G\+P\+L\+A\+Y\+E\+RS} = 2
+\item 
+static final int \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_a371d01ccb2c3660c6122d7703447f6c6}{R\+E\+A\+D\+Y\+T\+O\+P\+L\+AY} = 3
+\item 
+static final int \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_a5078e6a0fa8bddf15f6e995e5d2b40a3}{P\+L\+A\+Y\+I\+NG} = 4
+\item 
+static final int \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_ac5ba79972e1e2d496ed779fdd7ed36f3}{B\+U\+Y\+I\+N\+G\+P\+R\+O\+P\+E\+R\+TY} = 5
+\item 
+static final int \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_aff46964565cfd870509e3e39dc8c86d1}{M\+A\+N\+A\+G\+E\+A\+C\+T\+I\+V\+I\+TY} = 6
+\item 
+static int \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_aa9b4699a2e82882951136ffb1e01c64e}{num\+Players}
+\item 
+static int \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_ad4eb56f1494064341fbf3556f17bd67a}{balance}
+\item 
+static Vector$<$ \hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} $>$ \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_ab7cff2b620c79623d1787e36ec5850f0}{players} = new Vector $<$\hyperlink{class_monopoly_1_1_logic_1_1_player}{Player}$>$()
+\item 
+static Integer \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_a3ed87b0a6d4b81cd98ac415312a6fb75}{id\+Player} = 0
+\item 
+static Integer \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_a1b2098ae57b398cc7920ccfd19e5399c}{current\+Player} =1
+\item 
+static String \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_a2836de7e0db6a740323f302ad99f0dad}{current\+Position} = \char`\"{}pennsylvania\+\_\+railroad\char`\"{}
+\item 
+static String \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_abca23f4c631a113de137490147d2d864}{final\+Position} = \char`\"{}pennsylvania\+\_\+railroad\char`\"{}
+\item 
+static boolean \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_a7a108655c8d49a9de792390d901664ba}{position\+Sold} = false
+\item 
+static Integer\mbox{[}$\,$\mbox{]} \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_a7a9dd148b369440f03acb2411d229f73}{piece\+Numbers} = \{0,1,2,3,4,5,6,7\}
+\item 
+static Vector \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_acb6614eed8c28cabb459d7b7c914e84d}{pieces} = new Vector(Arrays.\+as\+List(\hyperlink{class_monopoly_1_1_server_1_1_game_protocol_a7a9dd148b369440f03acb2411d229f73}{piece\+Numbers}))
+\item 
+static \hyperlink{class_monopoly_1_1_logic_1_1_game}{Game} \hyperlink{class_monopoly_1_1_server_1_1_game_protocol_a2496f74982ea2cc8730f1871c1406542}{game}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!get\+State@{get\+State}}
+\index{get\+State@{get\+State}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{get\+State()}{getState()}}]{\setlength{\rightskip}{0pt plus 5cm}Integer Monopoly.\+Server.\+Game\+Protocol.\+get\+State (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_aa2af1d78e88ffd885ea18b67b82d2be7}{}\label{class_monopoly_1_1_server_1_1_game_protocol_aa2af1d78e88ffd885ea18b67b82d2be7}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!process\+Input@{process\+Input}}
+\index{process\+Input@{process\+Input}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{process\+Input(\+String the\+Input)}{processInput(String theInput)}}]{\setlength{\rightskip}{0pt plus 5cm}String Monopoly.\+Server.\+Game\+Protocol.\+process\+Input (
+\begin{DoxyParamCaption}
+\item[{String}]{the\+Input}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_ac145ed5c76fbff79218a9d9c6ced0698}{}\label{class_monopoly_1_1_server_1_1_game_protocol_ac145ed5c76fbff79218a9d9c6ced0698}
+
+
+\subsection{Member Data Documentation}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!balance@{balance}}
+\index{balance@{balance}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{balance}{balance}}]{\setlength{\rightskip}{0pt plus 5cm}int Monopoly.\+Server.\+Game\+Protocol.\+balance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_ad4eb56f1494064341fbf3556f17bd67a}{}\label{class_monopoly_1_1_server_1_1_game_protocol_ad4eb56f1494064341fbf3556f17bd67a}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!B\+U\+Y\+I\+N\+G\+P\+R\+O\+P\+E\+R\+TY@{B\+U\+Y\+I\+N\+G\+P\+R\+O\+P\+E\+R\+TY}}
+\index{B\+U\+Y\+I\+N\+G\+P\+R\+O\+P\+E\+R\+TY@{B\+U\+Y\+I\+N\+G\+P\+R\+O\+P\+E\+R\+TY}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{B\+U\+Y\+I\+N\+G\+P\+R\+O\+P\+E\+R\+TY}{BUYINGPROPERTY}}]{\setlength{\rightskip}{0pt plus 5cm}final int Monopoly.\+Server.\+Game\+Protocol.\+B\+U\+Y\+I\+N\+G\+P\+R\+O\+P\+E\+R\+TY = 5\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_ac5ba79972e1e2d496ed779fdd7ed36f3}{}\label{class_monopoly_1_1_server_1_1_game_protocol_ac5ba79972e1e2d496ed779fdd7ed36f3}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!current\+Player@{current\+Player}}
+\index{current\+Player@{current\+Player}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{current\+Player}{currentPlayer}}]{\setlength{\rightskip}{0pt plus 5cm}Integer Monopoly.\+Server.\+Game\+Protocol.\+current\+Player =1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_a1b2098ae57b398cc7920ccfd19e5399c}{}\label{class_monopoly_1_1_server_1_1_game_protocol_a1b2098ae57b398cc7920ccfd19e5399c}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!current\+Position@{current\+Position}}
+\index{current\+Position@{current\+Position}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{current\+Position}{currentPosition}}]{\setlength{\rightskip}{0pt plus 5cm}String Monopoly.\+Server.\+Game\+Protocol.\+current\+Position = \char`\"{}pennsylvania\+\_\+railroad\char`\"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_a2836de7e0db6a740323f302ad99f0dad}{}\label{class_monopoly_1_1_server_1_1_game_protocol_a2836de7e0db6a740323f302ad99f0dad}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!final\+Position@{final\+Position}}
+\index{final\+Position@{final\+Position}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{final\+Position}{finalPosition}}]{\setlength{\rightskip}{0pt plus 5cm}String Monopoly.\+Server.\+Game\+Protocol.\+final\+Position = \char`\"{}pennsylvania\+\_\+railroad\char`\"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_abca23f4c631a113de137490147d2d864}{}\label{class_monopoly_1_1_server_1_1_game_protocol_abca23f4c631a113de137490147d2d864}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!game@{game}}
+\index{game@{game}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{game}{game}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Game} Monopoly.\+Server.\+Game\+Protocol.\+game\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_a2496f74982ea2cc8730f1871c1406542}{}\label{class_monopoly_1_1_server_1_1_game_protocol_a2496f74982ea2cc8730f1871c1406542}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!id\+Player@{id\+Player}}
+\index{id\+Player@{id\+Player}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{id\+Player}{idPlayer}}]{\setlength{\rightskip}{0pt plus 5cm}Integer Monopoly.\+Server.\+Game\+Protocol.\+id\+Player = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_a3ed87b0a6d4b81cd98ac415312a6fb75}{}\label{class_monopoly_1_1_server_1_1_game_protocol_a3ed87b0a6d4b81cd98ac415312a6fb75}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!I\+N\+IT@{I\+N\+IT}}
+\index{I\+N\+IT@{I\+N\+IT}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{I\+N\+IT}{INIT}}]{\setlength{\rightskip}{0pt plus 5cm}final int Monopoly.\+Server.\+Game\+Protocol.\+I\+N\+IT = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_a3a3f1fded8c4f1f318e17e12ab184611}{}\label{class_monopoly_1_1_server_1_1_game_protocol_a3a3f1fded8c4f1f318e17e12ab184611}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!M\+A\+N\+A\+G\+E\+A\+C\+T\+I\+V\+I\+TY@{M\+A\+N\+A\+G\+E\+A\+C\+T\+I\+V\+I\+TY}}
+\index{M\+A\+N\+A\+G\+E\+A\+C\+T\+I\+V\+I\+TY@{M\+A\+N\+A\+G\+E\+A\+C\+T\+I\+V\+I\+TY}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{M\+A\+N\+A\+G\+E\+A\+C\+T\+I\+V\+I\+TY}{MANAGEACTIVITY}}]{\setlength{\rightskip}{0pt plus 5cm}final int Monopoly.\+Server.\+Game\+Protocol.\+M\+A\+N\+A\+G\+E\+A\+C\+T\+I\+V\+I\+TY = 6\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_aff46964565cfd870509e3e39dc8c86d1}{}\label{class_monopoly_1_1_server_1_1_game_protocol_aff46964565cfd870509e3e39dc8c86d1}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!num\+Players@{num\+Players}}
+\index{num\+Players@{num\+Players}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{num\+Players}{numPlayers}}]{\setlength{\rightskip}{0pt plus 5cm}int Monopoly.\+Server.\+Game\+Protocol.\+num\+Players\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_aa9b4699a2e82882951136ffb1e01c64e}{}\label{class_monopoly_1_1_server_1_1_game_protocol_aa9b4699a2e82882951136ffb1e01c64e}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!piece\+Numbers@{piece\+Numbers}}
+\index{piece\+Numbers@{piece\+Numbers}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{piece\+Numbers}{pieceNumbers}}]{\setlength{\rightskip}{0pt plus 5cm}Integer \mbox{[}$\,$\mbox{]} Monopoly.\+Server.\+Game\+Protocol.\+piece\+Numbers = \{0,1,2,3,4,5,6,7\}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_a7a9dd148b369440f03acb2411d229f73}{}\label{class_monopoly_1_1_server_1_1_game_protocol_a7a9dd148b369440f03acb2411d229f73}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!pieces@{pieces}}
+\index{pieces@{pieces}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{pieces}{pieces}}]{\setlength{\rightskip}{0pt plus 5cm}Vector Monopoly.\+Server.\+Game\+Protocol.\+pieces = new Vector(Arrays.\+as\+List({\bf piece\+Numbers}))\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_acb6614eed8c28cabb459d7b7c914e84d}{}\label{class_monopoly_1_1_server_1_1_game_protocol_acb6614eed8c28cabb459d7b7c914e84d}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!players@{players}}
+\index{players@{players}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{players}{players}}]{\setlength{\rightskip}{0pt plus 5cm}Vector$<${\bf Player}$>$ Monopoly.\+Server.\+Game\+Protocol.\+players = new Vector $<${\bf Player}$>$()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_ab7cff2b620c79623d1787e36ec5850f0}{}\label{class_monopoly_1_1_server_1_1_game_protocol_ab7cff2b620c79623d1787e36ec5850f0}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!P\+L\+A\+Y\+I\+NG@{P\+L\+A\+Y\+I\+NG}}
+\index{P\+L\+A\+Y\+I\+NG@{P\+L\+A\+Y\+I\+NG}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{P\+L\+A\+Y\+I\+NG}{PLAYING}}]{\setlength{\rightskip}{0pt plus 5cm}final int Monopoly.\+Server.\+Game\+Protocol.\+P\+L\+A\+Y\+I\+NG = 4\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_a5078e6a0fa8bddf15f6e995e5d2b40a3}{}\label{class_monopoly_1_1_server_1_1_game_protocol_a5078e6a0fa8bddf15f6e995e5d2b40a3}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!position\+Sold@{position\+Sold}}
+\index{position\+Sold@{position\+Sold}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{position\+Sold}{positionSold}}]{\setlength{\rightskip}{0pt plus 5cm}boolean Monopoly.\+Server.\+Game\+Protocol.\+position\+Sold = false\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_a7a108655c8d49a9de792390d901664ba}{}\label{class_monopoly_1_1_server_1_1_game_protocol_a7a108655c8d49a9de792390d901664ba}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!R\+E\+A\+D\+Y\+T\+O\+P\+L\+AY@{R\+E\+A\+D\+Y\+T\+O\+P\+L\+AY}}
+\index{R\+E\+A\+D\+Y\+T\+O\+P\+L\+AY@{R\+E\+A\+D\+Y\+T\+O\+P\+L\+AY}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{R\+E\+A\+D\+Y\+T\+O\+P\+L\+AY}{READYTOPLAY}}]{\setlength{\rightskip}{0pt plus 5cm}final int Monopoly.\+Server.\+Game\+Protocol.\+R\+E\+A\+D\+Y\+T\+O\+P\+L\+AY = 3\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_a371d01ccb2c3660c6122d7703447f6c6}{}\label{class_monopoly_1_1_server_1_1_game_protocol_a371d01ccb2c3660c6122d7703447f6c6}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!S\+E\+T\+G\+A\+M\+E\+P\+R\+O\+P\+E\+R\+T\+I\+ES@{S\+E\+T\+G\+A\+M\+E\+P\+R\+O\+P\+E\+R\+T\+I\+ES}}
+\index{S\+E\+T\+G\+A\+M\+E\+P\+R\+O\+P\+E\+R\+T\+I\+ES@{S\+E\+T\+G\+A\+M\+E\+P\+R\+O\+P\+E\+R\+T\+I\+ES}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{S\+E\+T\+G\+A\+M\+E\+P\+R\+O\+P\+E\+R\+T\+I\+ES}{SETGAMEPROPERTIES}}]{\setlength{\rightskip}{0pt plus 5cm}final int Monopoly.\+Server.\+Game\+Protocol.\+S\+E\+T\+G\+A\+M\+E\+P\+R\+O\+P\+E\+R\+T\+I\+ES = 1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_a08a159e70f29fbac3d5c34c3bb06a0f7}{}\label{class_monopoly_1_1_server_1_1_game_protocol_a08a159e70f29fbac3d5c34c3bb06a0f7}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!state@{state}}
+\index{state@{state}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{state}{state}}]{\setlength{\rightskip}{0pt plus 5cm}Integer Monopoly.\+Server.\+Game\+Protocol.\+state = {\bf I\+N\+IT}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_ad96dd410c80756d63c446a70222dec2d}{}\label{class_monopoly_1_1_server_1_1_game_protocol_ad96dd410c80756d63c446a70222dec2d}
+\index{Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}!W\+A\+I\+T\+I\+N\+G\+P\+L\+A\+Y\+E\+RS@{W\+A\+I\+T\+I\+N\+G\+P\+L\+A\+Y\+E\+RS}}
+\index{W\+A\+I\+T\+I\+N\+G\+P\+L\+A\+Y\+E\+RS@{W\+A\+I\+T\+I\+N\+G\+P\+L\+A\+Y\+E\+RS}!Monopoly\+::\+Server\+::\+Game\+Protocol@{Monopoly\+::\+Server\+::\+Game\+Protocol}}
+\subsubsection[{\texorpdfstring{W\+A\+I\+T\+I\+N\+G\+P\+L\+A\+Y\+E\+RS}{WAITINGPLAYERS}}]{\setlength{\rightskip}{0pt plus 5cm}final int Monopoly.\+Server.\+Game\+Protocol.\+W\+A\+I\+T\+I\+N\+G\+P\+L\+A\+Y\+E\+RS = 2\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{class_monopoly_1_1_server_1_1_game_protocol_aaefb144ef04b6626e85327e05d61e3b5}{}\label{class_monopoly_1_1_server_1_1_game_protocol_aaefb144ef04b6626e85327e05d61e3b5}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Monopoly/\+Server/\hyperlink{_game_protocol_8java}{Game\+Protocol.\+java}\end{DoxyCompactItemize}
