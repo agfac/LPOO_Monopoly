@@ -35,6 +35,7 @@ public class GraphicsWindow extends ImagesLoad {
 	private InfoPanel panel_1 ;
 	// TODO codigo para testes
 	PlayerSymbol dog = new PlayerSymbol(1, "Dog", dogPiece);
+	PlayerSymbol ship = new PlayerSymbol(2, "Ship", carPiece);
 	Board boardsdcdc = new Board();
 	Vector<Player> players;
 	Game game;
@@ -64,7 +65,7 @@ public class GraphicsWindow extends ImagesLoad {
 		players = new Vector<Player>();
 		players.add(new Player("Pedro", dog, 10000, boardsdcdc.getBoardBox(0), 1));
 		players.get(0).setPosition(1120, 890);
-		players.add(new Player("Faby", dog, 10000, boardsdcdc.getBoardBox(0), 2));
+		players.add(new Player("Faby", ship, 10000, boardsdcdc.getBoardBox(0), 2));
 		players.get(1).setPosition(1120, 930);
 //		players.add(new Player("Andre", dog, 10000, boardsdcdc.getBoardBox(0), 3));
 //		players.get(2).setPosition(1170, 890);
@@ -102,6 +103,8 @@ public class GraphicsWindow extends ImagesLoad {
 		frame.getContentPane().add(panel, BorderLayout.WEST);
 
 		panel_1 = new InfoPanel(game);
+
+		System.out.println("x ini-> " + (int) 2 * (frame.getWidth() / 3));
 		panel_1.setBounds((int) 2 * (frame.getWidth() / 3), 0, (int) (frame.getWidth() / 3), frame.getHeight() - 40);
 		panel_1.setBorder(BorderFactory.createLineBorder(Color.black));
 		frame.getContentPane().add(panel_1, BorderLayout.EAST);

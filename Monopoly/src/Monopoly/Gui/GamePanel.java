@@ -59,6 +59,8 @@ public class GamePanel extends ImagesLoad implements MouseListener, KeyListener,
 		this.addMouseListener(this); // TODO APAGAR
 		this.game = game;
 		timer.start();
+		
+		
 	}
 
 	@Override
@@ -72,18 +74,19 @@ public class GamePanel extends ImagesLoad implements MouseListener, KeyListener,
 			draw(g, p, p.getPosition().getX(), p.getPosition().getY());
 			
 			if ( (p.getPos() instanceof Property) && p.getDicesValue() !=  0 && !p.getInJail()){
-				g.drawImage(((Property)p.getPos()).getImage(), 524, 340, 754, 648, 0, 0, ((Property)p.getPos()).getImage().getWidth(), ((Property)p.getPos()).getImage().getHeight(), null);
-//				g.drawImage(((Property)p.getPos()).getImage(), 524, 330, 524+((Property)p.getPos()).getImage().getWidth(), 330+((Property)p.getPos()).getImage().getHeight(), 0, 0, ((Property)p.getPos()).getImage().getWidth(), ((Property)p.getPos()).getImage().getHeight(), null);
+				g.drawImage(((Property)p.getPos()).getImage(), 524, 330, 524+((Property)p.getPos()).getImage().getWidth(), 330+((Property)p.getPos()).getImage().getHeight(), 0, 0, ((Property)p.getPos()).getImage().getWidth(), ((Property)p.getPos()).getImage().getHeight(), null);
 			}
 			
 			showPropertiesHousesAndHotels(g, p);
 	
 			if(game.getChanceOption() != null){
 				teste(game.getBoard().getChanceCard(game.getChanceOption()).getImage(), "chance"); //x->171 y->133
+//				g.drawImage(game.getBoard().getChanceCard(game.getChanceOption()).getImage(), 175, 158, 175+game.getBoard().getChanceCard(game.getChanceOption()).getImage().getWidth(), 158+game.getBoard().getChanceCard(game.getChanceOption()).getImage().getHeight(), 0, 0, game.getBoard().getChanceCard(game.getChanceOption()).getImage().getWidth(), game.getBoard().getChanceCard(game.getChanceOption()).getImage().getHeight(), null);
 //				game.setChanceOption(null);
 			}
 			if(game.getCommunityOption() != null){
 				teste(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), "community");
+//				g.drawImage(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), 713, 689, 713+game.getBoard().getCommunityCard(game.getCommunityOption()).getImage().getWidth(), 689+game.getBoard().getCommunityCard(game.getCommunityOption()).getImage().getHeight(), 0, 0, board.getWidth(), board.getHeight(), null);
 //				game.setCommunityOption(null);
 			}
 		}
@@ -102,8 +105,6 @@ public class GamePanel extends ImagesLoad implements MouseListener, KeyListener,
 					p.setCellsToMove(p.getCellsToMove() - 1);
 					System.out.println("p.getCellsToMove()" + p.getCellsToMove());
 					
-					repaint();
-					// }
 				} else{
 					// game.updateGame(p);
 					//fazer pequena pausa
@@ -111,11 +112,9 @@ public class GamePanel extends ImagesLoad implements MouseListener, KeyListener,
 							|| ((p.getPos().getPos() == 7 ||  p.getPos().getPos() == 22  || p.getPos().getPos() == 36) && game.getChanceOption()== null)  ) 
 						game.verificarSeTemPlayers(p);
 					game.buyProperty(p);
-					repaint();
-					continue;
 				}
 			}
-
+			repaint();
 		}
 	}
 
@@ -132,14 +131,22 @@ public class GamePanel extends ImagesLoad implements MouseListener, KeyListener,
 		dialog.add( picLabel );
 		dialog.pack();
 		dialog.setVisible(true);
+
 	}
-	public void showPropertiesHousesAndHotels(Graphics g, Player p){
+	public void showPropertiesHousesAndHotels(Graphics g, Player p){			
 		for(Property pro: p.getPropertiesOwned()){
-			//TODO apagar depoie dos teste
-			if ( (pro instanceof NormalProperty)){
-				((NormalProperty)pro).setHouseN(4);
-				((NormalProperty)pro).setHotelN(1);
-			}
+			//TODO tambem é para apagar
+//			if (game.getPlayers().get(0).haveAllPropertiesGroup((Property) game.getBoard().getBoardBox(1))){
+//				game.createHouses(game.getPlayers().get(0), (NormalProperty) game.getBoard().getBoardBox(1), 4);
+//				
+//				game.createHotel(game.getPlayers().get(0), ((NormalProperty) game.getBoard().getBoardBox(1)));
+//				((NormalProperty)pro).setHouseN(0);}
+//				
+			//TODO apagar depoie dos teste // apagar tambem linha 22 a 29 NP
+//			if ( (pro instanceof NormalProperty)){
+//				((NormalProperty)pro).setHouseN(4);
+//				((NormalProperty)pro).setHotelN(1);
+//			}
 			//-----------------------------------------
 			
 			int aux = ((pro.getPos()-1)*deltaX);   //SOUTH
@@ -206,14 +213,15 @@ public class GamePanel extends ImagesLoad implements MouseListener, KeyListener,
 
 		game.updateGame(game.getPlayers().get(0));
 		repaint();
-		requestFocus();
+
+		this.requestFocus();
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		game.updateGame(game.getPlayers().get(1));
 		repaint();
-		requestFocus();
+		this.requestFocus();
 	}
 
 	@Override
