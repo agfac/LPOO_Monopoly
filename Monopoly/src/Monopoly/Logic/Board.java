@@ -36,6 +36,9 @@ public class Board {
 			community8, community9, community10, community11, community12, community13, community14, community15,
 			community16;
 
+	protected static BufferedImage dog, boot, car, hat,  iron, ship, thimble, wheelbarrow;
+	
+	 public PlayerSymbol dogPiece, hatPiece, shipPiece;
 	/**
 	 * Board Constructor
 	 */
@@ -50,6 +53,8 @@ public class Board {
 		generateChance();
 
 		generateCommunity();
+		
+		generatePieces();
 	}
 
 	/**
@@ -150,7 +155,16 @@ public class Board {
 			community14 = ImageIO.read(new File("resources/images/cards/community/14.jpg"));
 			community15 = ImageIO.read(new File("resources/images/cards/community/15.jpg"));
 			community16 = ImageIO.read(new File("resources/images/cards/community/15.jpg"));
-
+			
+			dog = ImageIO.read(new File("resources/images/pieces/dog.jpg"));
+			boot = ImageIO.read(new File("resources/images/pieces/boot.jpg"));
+			car = ImageIO.read(new File("resources/images/pieces/car.jpg"));
+			hat = ImageIO.read(new File("resources/images/pieces/hat.jpg"));
+			iron = ImageIO.read(new File("resources/images/pieces/iron.jpg"));
+			ship = ImageIO.read(new File("resources/images/pieces/ship.jpg"));
+			thimble = ImageIO.read(new File("resources/images/pieces/thimble.jpg"));
+			wheelbarrow = ImageIO.read(new File("resources/images/pieces/wheelbarrow.jpg"));
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -328,6 +342,11 @@ public class Board {
 		communityCards.add(new Card("Receive 100", 16, community16));
 	}
 
+	public void generatePieces(){
+		 PlayerSymbol dogPiece = new PlayerSymbol(0, "Dog", dog);
+		 PlayerSymbol hatPiece = new PlayerSymbol(0, "Hat", hat);
+		 PlayerSymbol shipPiece = new PlayerSymbol(0, "Ship", ship);
+	}
 	/**
 	 * Get number max of properties per group
 	 * 

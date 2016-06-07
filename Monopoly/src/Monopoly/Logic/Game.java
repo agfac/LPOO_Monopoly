@@ -21,35 +21,6 @@ public class Game {
 	
 	private Integer chanceOption = null;
 	private Integer communityOption = null;
-
-	// TODO APENAS PARA TESTE APAGAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
-	private PlayerSymbol dog;
-	private PlayerSymbol car;
-	private PlayerSymbol ship;
-	private PlayerSymbol boot;
-	private PlayerSymbol hat;
-	private PlayerSymbol iron;
-	private PlayerSymbol thimble;
-	private PlayerSymbol wheelbarrow;
-	protected static BufferedImage dogPiece;
-	protected static BufferedImage carPiece;
-	protected static BufferedImage shipPiece;
-	protected static BufferedImage bootPiece;
-	protected static BufferedImage hatPiece;
-	protected static BufferedImage ironPiece;
-	protected static BufferedImage thimblePiece;
-	protected static BufferedImage wheelbarrowPiece;
-	
-	public Game() {
-		players = new Vector<Player>();
-
-		board = new Board();
-		dice1 = new Dice();
-		dice2 = new Dice();
-	}
-
-	// FIM CODIGO TESTES-------------------------------------------------------
-
 	
 	/**
 	 * Constructor of game
@@ -725,30 +696,5 @@ public class Game {
 		System.out.println("Player Double: " + player.getNrOfRolls());
 		System.out.println("Player in jail: " + player.getInJail());
 		// showProperties(player);
-	}
-
-	public static void main(String[] args) {
-		Game game = new Game();
-		Scanner s = new Scanner(System.in);
-		int option = 1;
-
-		Player player1 = new Player("Pedro", game.dog, 10000, game.board.getBoardBox(0), 1);
-		game.addPlayer(player1);
-
-		Player player2 = new Player("Faby", game.car, 10000, game.board.getBoardBox(0), 2);
-		game.addPlayer(player2);
-
-		while (option != 0) {
-
-			System.out.print("Generate dice " + player1.getName() + " (0 to leave) > ");
-			option = s.nextInt();
-			game.updateGame(player1);
-			System.out.println("====================================");
-			System.out.print("Generate dice " + player2.getName() + " (0 to leave) > ");
-			option = s.nextInt();
-			game.updateGame(player2);
-
-			System.out.println("======================================================================");
-		}
 	}
 }

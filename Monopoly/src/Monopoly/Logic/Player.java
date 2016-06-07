@@ -49,9 +49,8 @@ public class Player {
 	private int yPosDownE = 170;
 	// -----------------------------
 
-	// TODO PARA TESTE APENAS, APAGAR !!!!!!!!!!!!!!!!!1111
-	private int symbol_1; // TODO apenas para testes do ANDRE
-
+	
+	private int symbol_1; 
 	public Player(String name, int piece, int balance) {
 		this.name = name;
 		this.symbol_1 = piece;
@@ -91,7 +90,7 @@ public class Player {
 	/**
 	 * Method to update player on graphic window
 	 */
-	public void updateGUIPosition() { // pode ser colocada no player
+	public void updateGUIPosition() { 
 		int x = this.getPosition().getX();
 		int y = this.getPosition().getY();
 		// SOUTH
@@ -183,7 +182,6 @@ public class Player {
 			this.setValuePosition(this.getValuePosition() + 1);
 
 		}
-		// TODO mudar tambem a boardBox
 		this.setPosition(x, y);
 	}
 

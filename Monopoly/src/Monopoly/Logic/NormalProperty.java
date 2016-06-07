@@ -19,14 +19,6 @@ public class NormalProperty extends Property {
 	private int hotelCost;
 	private int houseCost;
 
-	// TODO apagar
-	public void setHouseN(int n) {
-		nrHouses = n;
-	}
-	public void setHotelN(int n) {
-		nrHotels = n;
-	}
-	// ---------------------------------
 
 	/**
 	 * NormalProperty Constructor
