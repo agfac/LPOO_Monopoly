@@ -16,37 +16,28 @@ public class GameProtocol {
 
 	private static final int INIT = 0;
 	private static final int SETGAMEPROPERTIES = 1;
-	private static final int WAITINGNUMOFPLAYERS = 2;
-	private static final int WAITINGFIRSTPLAYER = 3;
-	private static final int WAITINGOTHERPLAYERS = 4;
-	private static final int READYTOPLAY = 5;
-
-	/*private static final int WAITING = 0;
-	private static final int SENTKNOCKKNOCK = 1;
-	private static final int SENTCLUE = 2;
-	private static final int ANOTHER = 3;*/
+	private static final int WAITINGPLAYERS = 2;
+	private static final int READYTOPLAY = 3;
+	private static final int PLAYING = 4;
+	private static final int BUYINGPROPERTY = 5;
+	private static final int MANAGEACTIVITY = 6;
 
 	private static int numPlayers;
 	private static int balance;
-	private static Vector <Player> players = new Vector <>();
+	private static Vector <Player> players = new Vector <Player>();
+	private static Integer idPlayer = 0;
+	private static Integer currentPlayer=1;
 	
-	private static Integer[] pieceNumbers = {1,2,3,4,5,6,7,8}; 
+	private static String currentPosition = "pennsylvania_railroad";
+	private static String finalPosition = "pennsylvania_railroad";
+	private static boolean positionSold = false;
+	
+	private static Integer[] pieceNumbers = {0,1,2,3,4,5,6,7}; 
 	private static Vector pieces = new Vector(Arrays.asList(pieceNumbers));
 	
 	private static Game game;
 	
-	private int state = INIT;
-	private boolean gamePropertiesBegin = false;
-	
-	/*private int currentJoke = 0;
-
-	private String[] clues = { "Turnip", "Little Old Lady", "Atch", "Who", "Who" };
-	private String[] answers = { "Turnip the heat, it's cold in here!",
-			"I didn't know you could yodel!",
-			"Bless you!",
-			"Is there an owl in here?",
-	"Is there an echo in here?" };*/
-
+	private Integer state = INIT;
 	
 	public String processInput(String theInput) {
 		String theOutput = null;
@@ -54,115 +45,661 @@ public class GameProtocol {
 		switch(state){
 			
 		case INIT:
-			if(!gamePropertiesBegin){
-				gamePropertiesBegin=true;
-				state = SETGAMEPROPERTIES;
-				theOutput = "Game properties begin";
+			
+			if(theInput.equalsIgnoreCase("Could play?")){
+				theOutput = "Yes, you could set game properties";
 				break;
 			}
 				
-			else{
+			else if(theInput.equalsIgnoreCase("Set game properties begin")){
+				state=SETGAMEPROPERTIES;
+				break;
+			}
+		
+		case SETGAMEPROPERTIES:
+			if (theInput.equalsIgnoreCase("Could play?")){
 				theOutput = "Another player defining the game properties. Please wait.";
 				break;
 			}
-			/*
-			String[] parts = theInput.split(";");
-			String numPlayersString = parts[0];
-			String balanceString = parts[1];
-			
-			numPlayers = Integer.parseInt(numPlayersString);
-			balance = Integer.parseInt(balanceString);
-			
-			System.out.println(state);
-			System.out.println(numPlayers);
-			System.out.println(balance);
-
-			theOutput="sai";
-			state = WAITINGFIRSTPLAYER;*/
-			//break;
-		
-		case WAITINGFIRSTPLAYER:
-			
-			String[] firstParts = theInput.split(";");
-			String firstName = firstParts[0];
-			String firstPiece = firstParts[1];
-			
-			Integer firstPieceId = Integer.parseInt(firstPiece);
-			
-			Player firstPlayer;
-			
-			if(pieces.contains(firstPieceId)){
-				firstPlayer = new Player (firstName, firstPieceId, balance);
-				players.add(firstPlayer);
-				pieces.remove(firstPieceId);
-				state = WAITINGOTHERPLAYERS;
-				break;
-			}
 			
 			else{
-				theOutput = "That piece symbol already been choose!";
+				String[] propertiesParts = theInput.split(";");
+				String numPlayersString = propertiesParts[0];
+				String balanceString = propertiesParts[1];
+				
+				int numPlayersInt = Integer.parseInt(numPlayersString);
+				int balanceInt = Integer.parseInt(balanceString);
+				
+				numPlayers=numPlayersInt;
+				balance = balanceInt;
+				
+				theOutput = "Game properties set correctly!";
+				state = WAITINGPLAYERS;
 				break;
 			}
-		
-		case WAITINGOTHERPLAYERS:
 			
-			String[] ohterParts = theInput.split(";");
-			String otherName = ohterParts[0];
-			String otherPiece = ohterParts[1];
+		case WAITINGPLAYERS:
 			
-			Integer otherPieceId = Integer.parseInt(otherPiece);
+			switch(theInput){
+				case "Could play?":
+				if(players.size()<numPlayers){
+					theOutput = "Yes, you could set player properties";
+					break;
+				}
+				else
+					theOutput = "Sorry, the limit numbers of player have been reached. You have to wait next game.";
+				break;
+				
+				case "1;Is it my turn?":
+					theOutput = "It is not your turn";
+				break;
+					
+				case "2;Is it my turn?":
+					theOutput = "It is not your turn";
+				break;
+				
+				case "3;Is it my turn?":
+					theOutput = "It is not your turn";
+				break;
+				
+				case "4;Is it my turn?":
+					theOutput = "It is not your turn";
+				break;
 			
-			Player otherPlayer;
-			
-			if(pieces.contains(otherPieceId)){
-				otherPlayer = new Player (otherName, otherPieceId, balance);
-				players.add(otherPlayer);
-				pieces.remove(otherPieceId);
+				default:
+					String[] playerParts = theInput.split(";");
+					String firstName = playerParts[0];
+					String firstPiece = playerParts[1];
+					
+					Integer firstPieceId = Integer.parseInt(firstPiece);
+					
+					Player firstPlayer;
+					
+					if(players.size()<numPlayers){
+					
+						if(pieces.contains(firstPieceId)){
+							firstPlayer = new Player (firstName, firstPieceId, balance);
+							players.add(firstPlayer);
+							pieces.remove(firstPieceId);
+							theOutput = "Your ID is "+Integer.toString(++idPlayer);
+							if(players.size()==numPlayers){
+								state=READYTOPLAY;
+								break;
+							}
+							break;
+							}
+						else{
+							theOutput = "That piece symbol already been choose! Please choose another piece.";
+							break;
+						}
+					}
+					else{
+						theOutput = "Sorry, the limit numbers of player have been reached. You have to wait next game.";
+						break;
+					}
+				
 			}
-			
-			if(players.size() == numPlayers){
-				game = new Game (players);
-				state = READYTOPLAY;
-			}		
 			break;
+			
+		case READYTOPLAY:
+			
+			switch(theInput){
+			case "1;Is it my turn?":
+				String[] question = theInput.split(";");
+				String playerId = question[0];
+				
+				Integer playerInteger = Integer.parseInt(playerId);
+				
+				if(playerInteger==currentPlayer)
+					theOutput = "It is your turn";
+				else
+					theOutput = "It is not your turn";
+			break;
+				
+			case "2;Is it my turn?":
+				String[] question2 = theInput.split(";");
+				String playerId2 = question2[0];
+				
+				Integer playerInteger2 = Integer.parseInt(playerId2);
+				
+				if(playerInteger2==currentPlayer)
+					theOutput = "It is your turn";
+				else
+					theOutput = "It is not your turn";
+			break;
+			
+			case "3;Is it my turn?":
+				String[] question3 = theInput.split(";");
+				String playerId3 = question3[0];
+				
+				Integer playerInteger3 = Integer.parseInt(playerId3);
+				
+				if(playerInteger3==currentPlayer)
+					theOutput = "It is your turn";
+				else
+					theOutput = "It is not your turn";
+			break;
+			
+			case "4;Is it my turn?":
+				String[] question4 = theInput.split(";");
+				String playerId4 = question4[0];
+				
+				Integer playerInteger4 = Integer.parseInt(playerId4);
+				
+				if(playerInteger4==currentPlayer)
+					theOutput = "It is your turn";
+				else
+					theOutput = "It is not your turn";
+			break;
+			
+			case "Playing begins":
+				state = PLAYING;
+				break;
 		}
 			
-		/*if (state == WAITING) {
-			theOutput = "Knock! Knock!";
-			state = SENTKNOCKKNOCK;
-		} else if (state == SENTKNOCKKNOCK) {
-			if (theInput.equalsIgnoreCase("Who's there?")) {
-				theOutput = clues[currentJoke];
-				state = SENTCLUE;
-			} else {
-				theOutput = "You're supposed to say \"Who's there?\"! " +
-						"Try again. Knock! Knock!";
-			}
-		} else if (state == SENTCLUE) {
-			if (theInput.equalsIgnoreCase(clues[currentJoke] + " who?")) {
-				theOutput = answers[currentJoke] + " Want another? (y/n)";
-				state = ANOTHER;
-			} else {
-				theOutput = "You're supposed to say \"" + 
-						clues[currentJoke] + 
-						" who?\"" + 
-						"! Try again. Knock! Knock!";
-				state = SENTKNOCKKNOCK;
-			}
-		} else if (state == ANOTHER) {
-			if (theInput.equalsIgnoreCase("y")) {
-				theOutput = "Knock! Knock!";
-				if (currentJoke == (NUMJOKES - 1))
-					currentJoke = 0;
+			break;
+			
+		case PLAYING:
+			switch(theInput){
+			case "1;Is it my turn?":
+				String[] question = theInput.split(";");
+				String playerId = question[0];
+				
+				Integer playerInteger = Integer.parseInt(playerId);
+				
+				if(playerInteger==currentPlayer)
+					theOutput = "It is your turn";
 				else
-					currentJoke++;
-				state = SENTKNOCKKNOCK;
-			} else {
-				theOutput = "Bye.";
-				state = WAITING;
+					theOutput = "It is not your turn";
+			break;
+				
+			case "2;Is it my turn?":
+				String[] question2 = theInput.split(";");
+				String playerId2 = question2[0];
+				
+				Integer playerInteger2 = Integer.parseInt(playerId2);
+				
+				if(playerInteger2==currentPlayer)
+					theOutput = "It is your turn";
+				else
+					theOutput = "It is not your turn";
+			break;
+			
+			case "3;Is it my turn?":
+				String[] question3 = theInput.split(";");
+				String playerId3 = question3[0];
+				
+				Integer playerInteger3 = Integer.parseInt(playerId3);
+				
+				if(playerInteger3==currentPlayer)
+					theOutput = "It is your turn";
+				else
+					theOutput = "It is not your turn";
+			break;
+			
+			case "4;Is it my turn?":
+				String[] question4 = theInput.split(";");
+				String playerId4 = question4[0];
+				
+				Integer playerInteger4 = Integer.parseInt(playerId4);
+				
+				if(playerInteger4==currentPlayer)
+					theOutput = "It is your turn";
+				else
+					theOutput = "It is not your turn";
+			break;
+			
+			case "Which picture may I show?":
+				if (currentPosition.equalsIgnoreCase(finalPosition) && !positionSold){
+					theOutput = "Do you want to buy this property?";
+					state=BUYINGPROPERTY;
+					break;
+				}
+				else{
+					theOutput = currentPosition;
+					break;
+				}
+				
+			case "Manage activity":
+				state = MANAGEACTIVITY;
+				break;
 			}
-		}*/
+			break;
+			
+		case BUYINGPROPERTY:
+			switch(theInput){
+			case "Yes":
+				state=PLAYING;
+				break;
+			case "No":
+				state=PLAYING;
+				break;
+			}
+	
+			break;
+			
+		case MANAGEACTIVITY:
+			switch(theInput){
+			
+			//MORTGAGE
+			case "Play":
+				state=PLAYING;
+				break;
+		
+			case "Mortgage atlantic_avenue":
+                break;
+            case "Mortgage baltic_avenue":
+                break;
+            case "Mortgage bo_railroad":
+                break;
+            case "Mortgage board_walk":
+                break;
+            case "Mortgage connecticut_avenue":
+                break;
+            case "Mortgage electric_company":
+                break;
+            case "Mortgage illinois_avenue":
+                break;
+            case "Mortgage indiana_avenue":
+                break;
+            case "Mortgage kentucky_avenue":
+                break;
+            case "Mortgage marvin_gardens":
+                break;
+            case "Mortgage mediterranean_avenue":
+                break;
+            case "Mortgage new_york_avenue":
+                break;
+            case "Mortgage north_carolina_avenue":
+                break;
+            case "Mortgage oriental_avenue":
+                break;
+            case "Mortgage pacific_avenue":
+                break;
+            case "Mortgage park_place":
+                break;
+            case "Mortgage pennsylvania_avenue":
+                break;
+            case "Mortgage pennsylvania_railroad":
+                break;
+            case "Mortgage reading_railroad":
+                break;
+            case "Mortgage short_line_railroad":
+                break;
+            case "Mortgage st_charles_place":
+                break;
+            case "Mortgage st_james_place":
+                break;
+            case "Mortgage states_avenue":
+                break;
+            case "Mortgage tennesse_avenue":
+                break;
+            case "Mortgage ventnor_avenue":
+                break;
+            case "Mortgage vermont_avenue":
+                break;
+            case "Mortgage virginia_avenue":
+                break;
+            case "Mortgage water_works":
+            	break;
+            	
+            //UNMORTGAGE
+            case "Unmortgage atlantic_avenue":
+                break;
+            case "Unmortgage baltic_avenue":
+                break;
+            case "Unmortgage bo_railroad":
+                break;
+            case "Unmortgage board_walk":
+                break;
+            case "Unmortgage connecticut_avenue":
+                break;
+            case "Unmortgage electric_company":
+                break;
+            case "Unmortgage illinois_avenue":
+                break;
+            case "Unmortgage indiana_avenue":
+                break;
+            case "Unmortgage kentucky_avenue":
+                break;
+            case "Unmortgage marvin_gardens":
+                break;
+            case "Unmortgage mediterranean_avenue":
+                break;
+            case "Unmortgage new_york_avenue":
+                break;
+            case "Unmortgage north_carolina_avenue":
+                break;
+            case "Unmortgage oriental_avenue":
+                break;
+            case "Unmortgage pacific_avenue":
+                break;
+            case "Unmortgage park_place":
+                break;
+            case "Unmortgage pennsylvania_avenue":
+                break;
+            case "Unmortgage pennsylvania_railroad":
+                break;
+            case "Unmortgage reading_railroad":
+                break;
+            case "Unmortgage short_line_railroad":
+                break;
+            case "Unmortgage st_charles_place":
+                break;
+            case "Unmortgage st_james_place":
+                break;
+            case "Unmortgage states_avenue":
+                break;
+            case "Unmortgage tennesse_avenue":
+                break;
+            case "Unmortgage ventnor_avenue":
+                break;
+            case "Unmortgage vermont_avenue":
+                break;
+            case "Unmortgage virginia_avenue":
+                break;
+            case "Unmortgage water_works":
+                break; 
+                
+            //BUILD 1 HOUSE
+            case "Build 1 house atlantic_avenue":
+                break;
+            case "Build 1 house baltic_avenue":
+                break;
+            case "Build 1 house bo_railroad":
+                break;
+            case "Build 1 house board_walk":
+                break;
+            case "Build 1 house connecticut_avenue":
+                break;
+            case "Build 1 house electric_company":
+                break;
+            case "Build 1 house illinois_avenue":
+                break;
+            case "Build 1 house indiana_avenue":
+                break;
+            case "Build 1 house kentucky_avenue":
+                break;
+            case "Build 1 house marvin_gardens":
+                break;
+            case "Build 1 house mediterranean_avenue":
+                break;
+            case "Build 1 house new_york_avenue":
+                break;
+            case "Build 1 house north_carolina_avenue":
+                break;
+            case "Build 1 house oriental_avenue":
+                break;
+            case "Build 1 house pacific_avenue":
+                break;
+            case "Build 1 house park_place":
+                break;
+            case "Build 1 house pennsylvania_avenue":
+                break;
+            case "Build 1 house pennsylvania_railroad":
+                break;
+            case "Build 1 house reading_railroad":
+                break;
+            case "Build 1 house short_line_railroad":
+                break;
+            case "Build 1 house st_charles_place":
+                break;
+            case "Build 1 house st_james_place":
+                break;
+            case "Build 1 house states_avenue":
+                break;
+            case "Build 1 house tennesse_avenue":
+                break;
+            case "Build 1 house ventnor_avenue":
+                break;
+            case "Build 1 house vermont_avenue":
+                break;
+            case "Build 1 house virginia_avenue":
+                break;
+            case "Build 1 house water_works":
+                break;
+                
+              //BUILD 2 HOUSES
+            case "Build 2 houses atlantic_avenue":
+                break;
+            case "Build 2 houses baltic_avenue":
+                break;
+            case "Build 2 houses bo_railroad":
+                break;
+            case "Build 2 houses board_walk":
+                break;
+            case "Build 2 houses connecticut_avenue":
+                break;
+            case "Build 2 houses electric_company":
+                break;
+            case "Build 2 houses illinois_avenue":
+                break;
+            case "Build 2 houses indiana_avenue":
+                break;
+            case "Build 2 houses kentucky_avenue":
+                break;
+            case "Build 2 houses marvin_gardens":
+                break;
+            case "Build 2 houses mediterranean_avenue":
+                break;
+            case "Build 2 houses new_york_avenue":
+                break;
+            case "Build 2 houses north_carolina_avenue":
+                break;
+            case "Build 2 houses oriental_avenue":
+                break;
+            case "Build 2 houses pacific_avenue":
+                break;
+            case "Build 2 houses park_place":
+                break;
+            case "Build 2 houses pennsylvania_avenue":
+                break;
+            case "Build 2 houses pennsylvania_railroad":
+                break;
+            case "Build 2 houses reading_railroad":
+                break;
+            case "Build 2 houses short_line_railroad":
+                break;
+            case "Build 2 houses st_charles_place":
+                break;
+            case "Build 2 houses st_james_place":
+                break;
+            case "Build 2 houses states_avenue":
+                break;
+            case "Build 2 houses tennesse_avenue":
+                break;
+            case "Build 2 houses ventnor_avenue":
+                break;
+            case "Build 2 houses vermont_avenue":
+                break;
+            case "Build 2 houses virginia_avenue":
+                break;
+            case "Build 2 houses water_works":
+                break;
+                
+              //BUILD 3 HOUSES
+            case "Build 3 houses atlantic_avenue":
+                break;
+            case "Build 3 houses baltic_avenue":
+                break;
+            case "Build 3 houses bo_railroad":
+                break;
+            case "Build 3 houses board_walk":
+                break;
+            case "Build 3 houses connecticut_avenue":
+                break;
+            case "Build 3 houses electric_company":
+                break;
+            case "Build 3 houses illinois_avenue":
+                break;
+            case "Build 3 houses indiana_avenue":
+                break;
+            case "Build 3 houses kentucky_avenue":
+                break;
+            case "Build 3 houses marvin_gardens":
+                break;
+            case "Build 3 houses mediterranean_avenue":
+                break;
+            case "Build 3 houses new_york_avenue":
+                break;
+            case "Build 3 houses north_carolina_avenue":
+                break;
+            case "Build 3 houses oriental_avenue":
+                break;
+            case "Build 3 houses pacific_avenue":
+                break;
+            case "Build 3 houses park_place":
+                break;
+            case "Build 3 houses pennsylvania_avenue":
+                break;
+            case "Build 3 houses pennsylvania_railroad":
+                break;
+            case "Build 3 houses reading_railroad":
+                break;
+            case "Build 3 houses short_line_railroad":
+                break;
+            case "Build 3 houses st_charles_place":
+                break;
+            case "Build 3 houses st_james_place":
+                break;
+            case "Build 3 houses states_avenue":
+                break;
+            case "Build 3 houses tennesse_avenue":
+                break;
+            case "Build 3 houses ventnor_avenue":
+                break;
+            case "Build 3 houses vermont_avenue":
+                break;
+            case "Build 3 houses virginia_avenue":
+                break;
+            case "Build 3 houses water_works":
+                break;
+                
+              //BUILD 4 HOUSES
+            case "Build 4 houses atlantic_avenue":
+                break;
+            case "Build 4 houses baltic_avenue":
+                break;
+            case "Build 4 houses bo_railroad":
+                break;
+            case "Build 4 houses board_walk":
+                break;
+            case "Build 4 houses connecticut_avenue":
+                break;
+            case "Build 4 houses electric_company":
+                break;
+            case "Build 4 houses illinois_avenue":
+                break;
+            case "Build 4 houses indiana_avenue":
+                break;
+            case "Build 4 houses kentucky_avenue":
+                break;
+            case "Build 4 houses marvin_gardens":
+                break;
+            case "Build 4 houses mediterranean_avenue":
+                break;
+            case "Build 4 houses new_york_avenue":
+                break;
+            case "Build 4 houses north_carolina_avenue":
+                break;
+            case "Build 4 houses oriental_avenue":
+                break;
+            case "Build 4 houses pacific_avenue":
+                break;
+            case "Build 4 houses park_place":
+                break;
+            case "Build 4 houses pennsylvania_avenue":
+                break;
+            case "Build 4 houses pennsylvania_railroad":
+                break;
+            case "Build 4 houses reading_railroad":
+                break;
+            case "Build 4 houses short_line_railroad":
+                break;
+            case "Build 4 houses st_charles_place":
+                break;
+            case "Build 4 houses st_james_place":
+                break;
+            case "Build 4 houses states_avenue":
+                break;
+            case "Build 4 houses tennesse_avenue":
+                break;
+            case "Build 4 houses ventnor_avenue":
+                break;
+            case "Build 4 houses vermont_avenue":
+                break;
+            case "Build 4 houses virginia_avenue":
+                break;
+            case "Build 4 houses water_works":
+                break;
+                
+              //BUILD HOTEL
+            case "Build hotel atlantic_avenue":
+                break;
+            case "Build hotel baltic_avenue":
+                break;
+            case "Build hotel bo_railroad":
+                break;
+            case "Build hotel board_walk":
+                break;
+            case "Build hotel connecticut_avenue":
+                break;
+            case "Build hotel electric_company":
+                break;
+            case "Build hotel illinois_avenue":
+                break;
+            case "Build hotel indiana_avenue":
+                break;
+            case "Build hotel kentucky_avenue":
+                break;
+            case "Build hotel marvin_gardens":
+                break;
+            case "Build hotel mediterranean_avenue":
+                break;
+            case "Build hotel new_york_avenue":
+                break;
+            case "Build hotel north_carolina_avenue":
+                break;
+            case "Build hotel oriental_avenue":
+                break;
+            case "Build hotel pacific_avenue":
+                break;
+            case "Build hotel park_place":
+                break;
+            case "Build hotel pennsylvania_avenue":
+                break;
+            case "Build hotel pennsylvania_railroad":
+                break;
+            case "Build hotel reading_railroad":
+                break;
+            case "Build hotel short_line_railroad":
+                break;
+            case "Build hotel st_charles_place":
+                break;
+            case "Build hotel st_james_place":
+                break;
+            case "Build hotel states_avenue":
+                break;
+            case "Build hotel tennesse_avenue":
+                break;
+            case "Build hotel ventnor_avenue":
+                break;
+            case "Build hotel vermont_avenue":
+                break;
+            case "Build hotel virginia_avenue":
+                break;
+            case "Build hotel water_works":
+                break;
+			}
+		
+			break;
+			
+	}
 		return theOutput;
+	}
+	
+	public Integer getState(){
+		return state;
 	}
 }
 

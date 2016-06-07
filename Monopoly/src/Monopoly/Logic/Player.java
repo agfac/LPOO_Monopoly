@@ -197,6 +197,7 @@ public class Player {
 		}
 		this.setValuePosition(10);
 	}
+	   
 
 	// TODO PARA TESTE APENAS, APAGAR !!!!!!!!!!!!!!!!!1111
 	public Player(String name, int piece, int balance) {
@@ -343,6 +344,19 @@ public class Player {
 	}
 
 	/**
+	 * Method to mortgage the property
+	 * 
+	 * @param property
+	 *            to be mortgage
+	 */
+	public void mortgageProperty(Property property) {
+		if (propertiesOwned.contains(property)) {
+			balance += property.getMortgageValue();
+			property.setMortgage(true);
+		}
+	}
+
+    /**
 	 * Method to buy property
 	 * 
 	 * @param property
@@ -359,52 +373,23 @@ public class Player {
 			this.updateBlPropertyGroup(property.getIdGroup(),idGroup);
 		}
 	}
-
-	/**
-	 * Method to sell the property
-	 * 
-	 * @param property
-	 *            to be sold
-	 * @param amount
-	 *            to be sold
-	 */
-	public void sellProperty(Property property, int amount) {
-		if (propertiesOwned.contains(property)) {
-			balance += amount;
-			propertiesOwned.remove(property);
-			property.setSold(false);
-			property.setOwner(null);
-			int aux = nrPropertyGroup.get(property.getIdGroup());
-			nrPropertyGroup.put(property.getIdGroup(), --aux);
-			blPropertyGroup.put(property.getIdGroup(), false);
-		}
-	}
-
-	/**
-	 * Method to mortgage the property
-	 * 
-	 * @param property
-	 *            to be mortgage
-	 */
-	public void mortgageProperty(Property property) {
-		if (propertiesOwned.contains(property)) {
-			balance += property.getMortgageValue();
-			property.setMortgage(true);
-		}
-	}
-
-	/**
-	 * Method to "unmortgage" the property
-	 * 
-	 * @param property
-	 *            to be "unmortgage"
-	 */
-	public void unMortgageProperty(Property property) {
-		if (propertiesOwned.contains(property)) {
-			balance -= property.getMortgageValueBack();
-			property.setMortgage(false);
-		}
-	}
+    
+    /**
+     * Method to sell the property
+     * @param property to be sold
+     * @param amount to be sold
+     */
+    public void sellProperty(Property property, int amount) {
+    	if ( propertiesOwned.contains(property) ){
+    		balance += amount;
+    		propertiesOwned.remove(property);
+    		property.setSold(false);
+    		property.setOwner(null);
+    		int aux = nrPropertyGroup.get(property.getIdGroup());
+    		nrPropertyGroup.put(property.getIdGroup(), --aux);
+    		blPropertyGroup.put(property.getIdGroup(), false);
+    	}
+    }
 
 	/**
 	 * Get all properties owned
