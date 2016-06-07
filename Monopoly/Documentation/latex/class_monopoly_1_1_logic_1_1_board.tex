@@ -1,0 +1,206 @@
+\hypertarget{class_monopoly_1_1_logic_1_1_board}{}\section{Monopoly.\+Logic.\+Board Class Reference}
+\label{class_monopoly_1_1_logic_1_1_board}\index{Monopoly.\+Logic.\+Board@{Monopoly.\+Logic.\+Board}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_board_a6167b16558607aa3fc71cf3f3fa146ae}{Board} ()
+\item 
+int \hyperlink{class_monopoly_1_1_logic_1_1_board_a8cb936eb34bc5fdd5bbe0a4105c0be29}{get\+Max\+Properties\+Per\+Group} (int index)
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_board_box}{Board\+Box} \hyperlink{class_monopoly_1_1_logic_1_1_board_a836d88dbde44833965456754821edf96}{get\+Board\+Box} (int pos)
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_card}{Card} \hyperlink{class_monopoly_1_1_logic_1_1_board_abc388b28666367962233ac118d4d744f}{get\+Community\+Card} (int val)
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_card}{Card} \hyperlink{class_monopoly_1_1_logic_1_1_board_a077b7d4572891ce441be503451725e8d}{get\+Chance\+Card} (int val)
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Buffered\+Image \hyperlink{class_monopoly_1_1_logic_1_1_board_a79ef8aae1c6b842096b29f3db5080423}{g1p1}
+\item 
+static Buffered\+Image \hyperlink{class_monopoly_1_1_logic_1_1_board_aaeeda9f5c80e5ed76e67289cb3f22ea7}{g1p1\+RP}
+\item 
+static Buffered\+Image \hyperlink{class_monopoly_1_1_logic_1_1_board_a06ab408e2e521277d7ef90c5b1129939}{chance1}
+\item 
+static Buffered\+Image \hyperlink{class_monopoly_1_1_logic_1_1_board_a5cb4d4c2e50425ce6e342d8c35e4ed0f}{community1}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_board_a41b55ad25adfcb623babe8617cef8d85}{image\+Loader} ()
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_board_a5a87f17bb63a04330d75c0044cdd16cf}{generate\+Board\+Boxs} ()
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_board_a3b3b8740be9137223c6f802daa753d9d}{generate\+Group\+Property} ()
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_board_ac4b80ff5f150d6119dba1a201e2c49ea}{generate\+Chance} ()
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_board_acfeda00714d80e32b9163a1493fa0e8d}{generate\+Community} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Vector$<$ \hyperlink{class_monopoly_1_1_logic_1_1_player}{Player} $>$ \hyperlink{class_monopoly_1_1_logic_1_1_board_ae0af8df9bdefdb9dad582cab0abd1abe}{players}
+\item 
+Vector$<$ \hyperlink{class_monopoly_1_1_logic_1_1_group_property}{Group\+Property} $>$ \hyperlink{class_monopoly_1_1_logic_1_1_board_a6861185113e9efbff62d0c02ad1aafad}{group\+Property} = new Vector$<$\hyperlink{class_monopoly_1_1_logic_1_1_group_property}{Group\+Property}$>$()
+\item 
+\hyperlink{class_monopoly_1_1_logic_1_1_board_box}{Board\+Box}\mbox{[}$\,$\mbox{]} \hyperlink{class_monopoly_1_1_logic_1_1_board_a3ef95f74f882c732d9747a957341aad1}{boxs}
+\item 
+Vector$<$ \hyperlink{class_monopoly_1_1_logic_1_1_card}{Card} $>$ \hyperlink{class_monopoly_1_1_logic_1_1_board_aaebf7a0020990db049c286e5778b0809}{chance\+Cards} = new Vector$<$\hyperlink{class_monopoly_1_1_logic_1_1_card}{Card}$>$()
+\item 
+Vector$<$ \hyperlink{class_monopoly_1_1_logic_1_1_card}{Card} $>$ \hyperlink{class_monopoly_1_1_logic_1_1_board_a48b98e8f6f9319826d2faf5ff88172a2}{community\+Cards} = new Vector$<$\hyperlink{class_monopoly_1_1_logic_1_1_card}{Card}$>$()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_monopoly_1_1_logic_1_1_board}{Board} Class 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!Board@{Board}}
+\index{Board@{Board}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{Board()}{Board()}}]{\setlength{\rightskip}{0pt plus 5cm}Monopoly.\+Logic.\+Board.\+Board (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_board_a6167b16558607aa3fc71cf3f3fa146ae}{}\label{class_monopoly_1_1_logic_1_1_board_a6167b16558607aa3fc71cf3f3fa146ae}
+\hyperlink{class_monopoly_1_1_logic_1_1_board}{Board} Constructor 
+
+\subsection{Member Function Documentation}
+\index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!generate\+Board\+Boxs@{generate\+Board\+Boxs}}
+\index{generate\+Board\+Boxs@{generate\+Board\+Boxs}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{generate\+Board\+Boxs()}{generateBoardBoxs()}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Board.\+generate\+Board\+Boxs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_board_a5a87f17bb63a04330d75c0044cdd16cf}{}\label{class_monopoly_1_1_logic_1_1_board_a5a87f17bb63a04330d75c0044cdd16cf}
+Generate and add \hyperlink{class_monopoly_1_1_logic_1_1_board}{Board} Boxs \index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!generate\+Chance@{generate\+Chance}}
+\index{generate\+Chance@{generate\+Chance}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{generate\+Chance()}{generateChance()}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Board.\+generate\+Chance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_board_ac4b80ff5f150d6119dba1a201e2c49ea}{}\label{class_monopoly_1_1_logic_1_1_board_ac4b80ff5f150d6119dba1a201e2c49ea}
+Generate Chance Cards \index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!generate\+Community@{generate\+Community}}
+\index{generate\+Community@{generate\+Community}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{generate\+Community()}{generateCommunity()}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Board.\+generate\+Community (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_board_acfeda00714d80e32b9163a1493fa0e8d}{}\label{class_monopoly_1_1_logic_1_1_board_acfeda00714d80e32b9163a1493fa0e8d}
+Generate Community Cards \index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!generate\+Group\+Property@{generate\+Group\+Property}}
+\index{generate\+Group\+Property@{generate\+Group\+Property}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{generate\+Group\+Property()}{generateGroupProperty()}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Board.\+generate\+Group\+Property (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_board_a3b3b8740be9137223c6f802daa753d9d}{}\label{class_monopoly_1_1_logic_1_1_board_a3b3b8740be9137223c6f802daa753d9d}
+Generate Group Properties \index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!get\+Board\+Box@{get\+Board\+Box}}
+\index{get\+Board\+Box@{get\+Board\+Box}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{get\+Board\+Box(int pos)}{getBoardBox(int pos)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Board\+Box} Monopoly.\+Logic.\+Board.\+get\+Board\+Box (
+\begin{DoxyParamCaption}
+\item[{int}]{pos}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_board_a836d88dbde44833965456754821edf96}{}\label{class_monopoly_1_1_logic_1_1_board_a836d88dbde44833965456754821edf96}
+Get \hyperlink{class_monopoly_1_1_logic_1_1_board}{Board} Box
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & integer of position of the board box \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{class_monopoly_1_1_logic_1_1_board}{Board} Box 
+\end{DoxyReturn}
+\index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!get\+Chance\+Card@{get\+Chance\+Card}}
+\index{get\+Chance\+Card@{get\+Chance\+Card}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{get\+Chance\+Card(int val)}{getChanceCard(int val)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Card} Monopoly.\+Logic.\+Board.\+get\+Chance\+Card (
+\begin{DoxyParamCaption}
+\item[{int}]{val}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_board_a077b7d4572891ce441be503451725e8d}{}\label{class_monopoly_1_1_logic_1_1_board_a077b7d4572891ce441be503451725e8d}
+Get Chance card
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & index position from Chance Cards Vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+card 
+\end{DoxyReturn}
+\index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!get\+Community\+Card@{get\+Community\+Card}}
+\index{get\+Community\+Card@{get\+Community\+Card}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{get\+Community\+Card(int val)}{getCommunityCard(int val)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Card} Monopoly.\+Logic.\+Board.\+get\+Community\+Card (
+\begin{DoxyParamCaption}
+\item[{int}]{val}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_board_abc388b28666367962233ac118d4d744f}{}\label{class_monopoly_1_1_logic_1_1_board_abc388b28666367962233ac118d4d744f}
+Get Community \hyperlink{class_monopoly_1_1_logic_1_1_card}{Card}
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & index position from Community Cards Vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+card 
+\end{DoxyReturn}
+\index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!get\+Max\+Properties\+Per\+Group@{get\+Max\+Properties\+Per\+Group}}
+\index{get\+Max\+Properties\+Per\+Group@{get\+Max\+Properties\+Per\+Group}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{get\+Max\+Properties\+Per\+Group(int index)}{getMaxPropertiesPerGroup(int index)}}]{\setlength{\rightskip}{0pt plus 5cm}int Monopoly.\+Logic.\+Board.\+get\+Max\+Properties\+Per\+Group (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_board_a8cb936eb34bc5fdd5bbe0a4105c0be29}{}\label{class_monopoly_1_1_logic_1_1_board_a8cb936eb34bc5fdd5bbe0a4105c0be29}
+Get number max of properties per group
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Id of group \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number max of properties per group 
+\end{DoxyReturn}
+\index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!image\+Loader@{image\+Loader}}
+\index{image\+Loader@{image\+Loader}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{image\+Loader()}{imageLoader()}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Board.\+image\+Loader (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_board_a41b55ad25adfcb623babe8617cef8d85}{}\label{class_monopoly_1_1_logic_1_1_board_a41b55ad25adfcb623babe8617cef8d85}
+Method to load the necessary images 
+
+\subsection{Member Data Documentation}
+\index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!boxs@{boxs}}
+\index{boxs@{boxs}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{boxs}{boxs}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Board\+Box} \mbox{[}$\,$\mbox{]} Monopoly.\+Logic.\+Board.\+boxs\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_board_a3ef95f74f882c732d9747a957341aad1}{}\label{class_monopoly_1_1_logic_1_1_board_a3ef95f74f882c732d9747a957341aad1}
+\index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!chance1@{chance1}}
+\index{chance1@{chance1}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{chance1}{chance1}}]{\setlength{\rightskip}{0pt plus 5cm}Buffered\+Image Monopoly.\+Logic.\+Board.\+chance1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\hypertarget{class_monopoly_1_1_logic_1_1_board_a06ab408e2e521277d7ef90c5b1129939}{}\label{class_monopoly_1_1_logic_1_1_board_a06ab408e2e521277d7ef90c5b1129939}
+\index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!chance\+Cards@{chance\+Cards}}
+\index{chance\+Cards@{chance\+Cards}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{chance\+Cards}{chanceCards}}]{\setlength{\rightskip}{0pt plus 5cm}Vector$<${\bf Card}$>$ Monopoly.\+Logic.\+Board.\+chance\+Cards = new Vector$<${\bf Card}$>$()\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_board_aaebf7a0020990db049c286e5778b0809}{}\label{class_monopoly_1_1_logic_1_1_board_aaebf7a0020990db049c286e5778b0809}
+\index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!community1@{community1}}
+\index{community1@{community1}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{community1}{community1}}]{\setlength{\rightskip}{0pt plus 5cm}Buffered\+Image Monopoly.\+Logic.\+Board.\+community1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\hypertarget{class_monopoly_1_1_logic_1_1_board_a5cb4d4c2e50425ce6e342d8c35e4ed0f}{}\label{class_monopoly_1_1_logic_1_1_board_a5cb4d4c2e50425ce6e342d8c35e4ed0f}
+\index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!community\+Cards@{community\+Cards}}
+\index{community\+Cards@{community\+Cards}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{community\+Cards}{communityCards}}]{\setlength{\rightskip}{0pt plus 5cm}Vector$<${\bf Card}$>$ Monopoly.\+Logic.\+Board.\+community\+Cards = new Vector$<${\bf Card}$>$()\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_board_a48b98e8f6f9319826d2faf5ff88172a2}{}\label{class_monopoly_1_1_logic_1_1_board_a48b98e8f6f9319826d2faf5ff88172a2}
+\index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!g1p1@{g1p1}}
+\index{g1p1@{g1p1}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{g1p1}{g1p1}}]{\setlength{\rightskip}{0pt plus 5cm}Buffered\+Image Monopoly.\+Logic.\+Board.\+g1p1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\hypertarget{class_monopoly_1_1_logic_1_1_board_a79ef8aae1c6b842096b29f3db5080423}{}\label{class_monopoly_1_1_logic_1_1_board_a79ef8aae1c6b842096b29f3db5080423}
+\index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!g1p1\+RP@{g1p1\+RP}}
+\index{g1p1\+RP@{g1p1\+RP}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{g1p1\+RP}{g1p1RP}}]{\setlength{\rightskip}{0pt plus 5cm}Buffered\+Image Monopoly.\+Logic.\+Board.\+g1p1\+RP\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\hypertarget{class_monopoly_1_1_logic_1_1_board_aaeeda9f5c80e5ed76e67289cb3f22ea7}{}\label{class_monopoly_1_1_logic_1_1_board_aaeeda9f5c80e5ed76e67289cb3f22ea7}
+\index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!group\+Property@{group\+Property}}
+\index{group\+Property@{group\+Property}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{group\+Property}{groupProperty}}]{\setlength{\rightskip}{0pt plus 5cm}Vector$<${\bf Group\+Property}$>$ Monopoly.\+Logic.\+Board.\+group\+Property = new Vector$<${\bf Group\+Property}$>$()\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_board_a6861185113e9efbff62d0c02ad1aafad}{}\label{class_monopoly_1_1_logic_1_1_board_a6861185113e9efbff62d0c02ad1aafad}
+\index{Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}!players@{players}}
+\index{players@{players}!Monopoly\+::\+Logic\+::\+Board@{Monopoly\+::\+Logic\+::\+Board}}
+\subsubsection[{\texorpdfstring{players}{players}}]{\setlength{\rightskip}{0pt plus 5cm}Vector$<${\bf Player}$>$ Monopoly.\+Logic.\+Board.\+players\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_board_ae0af8df9bdefdb9dad582cab0abd1abe}{}\label{class_monopoly_1_1_logic_1_1_board_ae0af8df9bdefdb9dad582cab0abd1abe}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Monopoly/\+Logic/\hyperlink{_board_8java}{Board.\+java}\end{DoxyCompactItemize}

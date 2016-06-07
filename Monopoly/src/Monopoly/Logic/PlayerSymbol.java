@@ -27,16 +27,19 @@ public class PlayerSymbol {
 		this.name = name;
 		this.piece = piece;
 	}
-/**
- * Get symbol image
- * @return symbol image
- */
+
+	/**
+	 * Get symbol image
+	 * 
+	 * @return symbol image
+	 */
 	public BufferedImage getPiece() {
 		return piece;
 	}
 
 	/**
 	 * Get id of player symbol
+	 * 
 	 * @return id of player symbol
 	 */
 	public int getId() {
@@ -45,6 +48,7 @@ public class PlayerSymbol {
 
 	/**
 	 * Set symbol ID
+	 * 
 	 * @param value
 	 *            id to be set
 	 */
@@ -53,18 +57,12 @@ public class PlayerSymbol {
 	}
 
 	/**
+	 * Get symbol name
+	 * 
 	 * @return name
 	 */
 	public String getName() {
 		return this.name;
-	}
-
-	/**
-	 * @param value
-	 *            name to be set
-	 */
-	public void setName(String value) {
-		this.name = value;
 	}
 
 }

@@ -110,7 +110,7 @@ public class GamePanel extends ImagesLoad implements MouseListener, KeyListener,
 					//fazer pequena pausa
 					if ( ((p.getPos().getPos() == 2 ||  p.getPos().getPos() == 17  || p.getPos().getPos() == 33) && game.getCommunityOption()== null) 
 							|| ((p.getPos().getPos() == 7 ||  p.getPos().getPos() == 22  || p.getPos().getPos() == 36) && game.getChanceOption()== null)  ) 
-						game.verificarSeTemPlayers(p);
+						game.checkSpecialBoardBox(p);
 					game.buyProperty(p);
 				}
 			}

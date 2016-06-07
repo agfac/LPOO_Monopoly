@@ -19,28 +19,38 @@ public class NormalProperty extends Property {
 	private int hotelCost;
 	private int houseCost;
 
-	//TODO apagar
-	public void setHouseN(int n){
+	// TODO apagar
+	public void setHouseN(int n) {
 		nrHouses = n;
 	}
-	
-	public void setHotelN(int n){
+	public void setHotelN(int n) {
 		nrHotels = n;
 	}
-	
+	// ---------------------------------
 
-	//---------------------------------
-	
 	/**
 	 * NormalProperty Constructor
-	 * @param pos Position on board
-	 * @param name Name of the property
-	 * @param idGroup Id Group
-	 * @param amount Cost property
-	 * @param mortgageValue Mortgage cost
-	 * @param rentValue Rent Cost
-	 * @param rentValuesWithHouses Rent Cost with houses 
-	 * @param rentValuesWithHotel Rent Cost with hotels
+	 * 
+	 * @param pos
+	 *            Position on board
+	 * @param name
+	 *            Name of the property
+	 * @param idGroup
+	 *            Id Group
+	 * @param amount
+	 *            Cost property
+	 * @param mortgageValue
+	 *            Mortgage cost
+	 * @param rentValue
+	 *            Rent Cost
+	 * @param rentValuesWithHouses
+	 *            Rent Cost with houses
+	 * @param rentValuesWithHotel
+	 *            Rent Cost with hotels
+	 * @param icon
+	 *            Property header
+	 * @param image
+	 *            Full property image
 	 */
 	public NormalProperty(int pos, String name, int idGroup, int amount, int mortgageValue, int rentValue,
 			int[] rentValuesWithHouses, int rentValuesWithHotel, BufferedImage icon, BufferedImage image) {
@@ -52,7 +62,7 @@ public class NormalProperty extends Property {
 
 		this.rentValuesWithHouses = rentValuesWithHouses;
 		this.rentValuesWithHotel = rentValuesWithHotel;
-		
+
 		switch (idGroup) {
 		case 1:
 			this.houseCost = 50;
@@ -90,26 +100,30 @@ public class NormalProperty extends Property {
 		this.nrHouses = 0;
 		this.nrHotels = 0;
 	}
-	
+
 	/**
 	 * Method to check if can build houses or not
+	 * 
 	 * @return true if number of houses is less than 4, false if not
 	 */
-	public boolean canBuildHouse(){
-		return (nrHouses < 4)? true : false;
+	public boolean canBuildHouse() {
+		return (nrHouses < 4) ? true : false;
 	}
 
 	/**
 	 * Method to check if can build hotel or not
+	 * 
 	 * @return true if number of houses is 4, false if not
 	 */
 	public boolean canBuildHotel() {
-		return (nrHouses == 4)? true : false;
+		return (nrHouses == 4) ? true : false;
 	}
 
 	/**
-	 * Method to add houses
-	 * @param n number of houses to be added
+	 * Method to add number of houses
+	 * 
+	 * @param n
+	 *            number of houses to be added
 	 */
 	public void buildHouse(int n) {
 		nrHouses += n;
@@ -123,8 +137,10 @@ public class NormalProperty extends Property {
 	}
 
 	/**
-	 * Sell houses
-	 * @param n number of houses to be sold
+	 * Sell a number of houses
+	 * 
+	 * @param n
+	 *            number of houses to be sold
 	 * @return
 	 */
 	public void sellHouse(int n) {
@@ -133,6 +149,7 @@ public class NormalProperty extends Property {
 
 	/**
 	 * Sell hotel
+	 * 
 	 * @return
 	 */
 	public void sellHotel() {
@@ -141,6 +158,7 @@ public class NormalProperty extends Property {
 
 	/**
 	 * Get number of houses
+	 * 
 	 * @return number of houses
 	 */
 	public int getNrHouses() {
@@ -149,6 +167,7 @@ public class NormalProperty extends Property {
 
 	/**
 	 * Get number of hotels
+	 * 
 	 * @return number of hotels
 	 */
 	public int getNrHotels() {
@@ -157,6 +176,7 @@ public class NormalProperty extends Property {
 
 	/**
 	 * Get house cost
+	 * 
 	 * @return house cost
 	 */
 	public int getHouseCost() {
@@ -165,14 +185,16 @@ public class NormalProperty extends Property {
 
 	/**
 	 * Get hotel cost
+	 * 
 	 * @return hotel cost
 	 */
 	public int getHotelCost() {
 		return hotelCost;
 	}
-	
+
 	/**
 	 * Get the value to pay on this property
+	 * 
 	 * @return value to pay
 	 */
 	public int getValueToPay() {

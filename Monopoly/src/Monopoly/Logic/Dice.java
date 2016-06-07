@@ -3,30 +3,34 @@ package Monopoly.Logic;
 import java.util.Random;
 
 /**
- * Dice class 
+ * Dice class
  */
 public class Dice {
 	private int value;
-	
-    /**
-     * Default constructor of dice
-     */
-    public Dice() {
-    }
 
-    /**
-     * @return value of dice generated
-     */
-    public int getValue() {
-        return this.value;
-    }
+	/**
+	 * Default constructor of dice
+	 */
+	public Dice() {
+	}
 
-    /**
-     * @return value generated randomly
-     */
-    public void rollDice() {
-        Random gerador = new Random();
-        this.value = gerador.nextInt(6)+1;
-    }
+	/**
+	 * Get generated dice values
+	 * 
+	 * @return generated dice values
+	 */
+	public int getValue() {
+		return this.value;
+	}
+
+	/**
+	 * Roll a dice and generate a number
+	 * 
+	 * @return value generated randomly
+	 */
+	public void rollDice() {
+		Random gerador = new Random();
+		this.value = gerador.nextInt(6) + 1;
+	}
 
 }
