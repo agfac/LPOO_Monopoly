@@ -339,7 +339,12 @@ public class Board {
 	 * @param val index position from Cards Vector
 	 * @return card
 	 */
-	public Card getCard(int val){
+	public Card getCommunityCard(int val){
 		return communityCards.get(val-1);
+	}
+	
+	public Card getChanceCard(int val){
+		System.out.println("variaver recebida (getChanceCard )" + val);
+		return chanceCards.get(val-1);
 	}
 }
