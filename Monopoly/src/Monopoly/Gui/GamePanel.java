@@ -1,6 +1,7 @@
 package Monopoly.Gui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,19 +9,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
-import java.util.Scanner;
-import java.util.Vector;
 
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
-import Monopoly.Logic.Board;
-import Monopoly.Logic.BoardBox;
 import Monopoly.Logic.Game;
 import Monopoly.Logic.NormalProperty;
 import Monopoly.Logic.Player;
-import Monopoly.Logic.PlayerSymbol;
 import Monopoly.Logic.Property;
 
 public class GamePanel extends ImagesLoad implements MouseListener, KeyListener, ActionListener {
@@ -67,28 +66,25 @@ public class GamePanel extends ImagesLoad implements MouseListener, KeyListener,
 		super.paintComponent(g);
 
 		g.setColor(Color.white);
-		g.drawImage(board, 0, 0, this.getWidth(), this.getHeight(), 0, 0, board.getWidth(), board.getHeight(), null);
-		
+		g.drawImage(board, 0, 0, board.getWidth(), board.getHeight(), 0, 0, board.getWidth(), board.getHeight(), null);
 		
 		for (Player p : game.getPlayers()){
 			draw(g, p, p.getPosition().getX(), p.getPosition().getY());
 			
 			if ( (p.getPos() instanceof Property) && p.getDicesValue() !=  0 && !p.getInJail()){
-					g.drawImage(((Property)p.getPos()).getImage(), 300, 300, 500, 500, 0, 0, ((Property)p.getPos()).getImage().getWidth(), ((Property)p.getPos()).getImage().getHeight(), null);
+				g.drawImage(((Property)p.getPos()).getImage(), 524, 340, 754, 648, 0, 0, ((Property)p.getPos()).getImage().getWidth(), ((Property)p.getPos()).getImage().getHeight(), null);
+//				g.drawImage(((Property)p.getPos()).getImage(), 524, 330, 524+((Property)p.getPos()).getImage().getWidth(), 330+((Property)p.getPos()).getImage().getHeight(), 0, 0, ((Property)p.getPos()).getImage().getWidth(), ((Property)p.getPos()).getImage().getHeight(), null);
 			}
 			
 			showPropertiesHousesAndHotels(g, p);
-			
-			if ( p.getPos().getPos() == 7 || p.getPos().getPos() == 22 || p.getPos().getPos() == 36){
-				BufferedImage auxImage =	game.getBoard().getCard(game.getChanceOption()).getImage();
-				g.drawImage(auxImage, 400, 200, 400+auxImage.getWidth(), 200+auxImage.getHeight(), 0, 0, auxImage.getWidth(), auxImage.getHeight(), null);
-				game.setChanceOption(0);
-				 try {
-					Thread.sleep(500);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+	
+			if(game.getChanceOption() != null){
+				teste(game.getBoard().getChanceCard(game.getChanceOption()).getImage(), "chance"); //x->171 y->133
+//				game.setChanceOption(null);
+			}
+			if(game.getCommunityOption() != null){
+				teste(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), "community");
+//				game.setCommunityOption(null);
 			}
 		}
 	}
@@ -102,17 +98,20 @@ public class GamePanel extends ImagesLoad implements MouseListener, KeyListener,
 		if (ev.getSource() == timer) {
 			for (Player p : game.getPlayers()) {
 				if (p.getCellsToMove() != 0) { // && !p.getInJail()
-					// for (int i = 0; i < p.getCellsToMove(); i++) {
 					p.updateGUIPosition();
 					p.setCellsToMove(p.getCellsToMove() - 1);
 					System.out.println("p.getCellsToMove()" + p.getCellsToMove());
+					
 					repaint();
 					// }
 				} else{
 					// game.updateGame(p);
 					//fazer pequena pausa
-					game.verificarSeTemPlayers(p);
+					if ( ((p.getPos().getPos() == 2 ||  p.getPos().getPos() == 17  || p.getPos().getPos() == 33) && game.getCommunityOption()== null) 
+							|| ((p.getPos().getPos() == 7 ||  p.getPos().getPos() == 22  || p.getPos().getPos() == 36) && game.getChanceOption()== null)  ) 
+						game.verificarSeTemPlayers(p);
 					game.buyProperty(p);
+					repaint();
 					continue;
 				}
 			}
@@ -120,6 +119,20 @@ public class GamePanel extends ImagesLoad implements MouseListener, KeyListener,
 		}
 	}
 
+	public void teste(BufferedImage image, String cardTipe){
+		JDialog dialog = new JDialog();
+		dialog.setPreferredSize(new Dimension(400,200));
+		dialog.setUndecorated(true);
+		if (cardTipe == "chance")
+			dialog.setBounds(175, 158, 400, 200);
+		else
+			dialog.setBounds(713, 685, 400, 200);
+		JLabel picLabel = new JLabel(new ImageIcon(image));
+//		JOptionPane.showMessageDialog(null, picLabel, "About", JOptionPane.PLAIN_MESSAGE, null);
+		dialog.add( picLabel );
+		dialog.pack();
+		dialog.setVisible(true);
+	}
 	public void showPropertiesHousesAndHotels(Graphics g, Player p){
 		for(Property pro: p.getPropertiesOwned()){
 			//TODO apagar depoie dos teste

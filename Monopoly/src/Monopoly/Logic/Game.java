@@ -19,8 +19,8 @@ public class Game {
 	private Board board;
 	private Vector<Player> players;
 	
-	private int chanceOption = 0;
-	private int communityOption = 0;
+	private Integer chanceOption = null;
+	private Integer communityOption = null;
 
 	// TODO APENAS PARA TESTE APAGAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
 	private PlayerSymbol dog;
@@ -127,14 +127,12 @@ public class Game {
 	}
 
 	public void verificarSeTemPlayers(Player player) {
-		if ((player.getPos() == board.getBoardBox(7)) || (player.getPos() == board.getBoardBox(22))
-				|| (player.getPos() == board.getBoardBox(36))) {
+		if ((player.getPos() == board.getBoardBox(7)) || (player.getPos() == board.getBoardBox(22) || (player.getPos() == board.getBoardBox(36))) && chanceOption == null) {
 			System.out.println("CHANCE BOX");
 			gerateChance(player);
 		}
 
-		if ((player.getPos() == board.getBoardBox(2)) || (player.getPos() == board.getBoardBox(17))
-				|| (player.getPos() == board.getBoardBox(33))) {
+		if ((player.getPos() == board.getBoardBox(2)) || (player.getPos() == board.getBoardBox(17) || (player.getPos() == board.getBoardBox(33))) && communityOption == null) {
 			System.out.println("COMMUNITY BOX");
 			gerateCommunity(player);
 		}
@@ -186,6 +184,8 @@ public class Game {
 	 *            to be update on board
 	 */
 	public void updatePlayer(Player player) {
+		chanceOption = null;
+		communityOption = null;
 		int totalDiceValue, atualPlayerPos, dif;
 
 		// Store the value of 2 rolled dices
@@ -337,9 +337,7 @@ public class Game {
 						+ ((Property) (boardToBuy)).getAmount() + " (y or n) >");
 				option = 'y';// TODO s.next().charAt(0);
 				if (option == 'y') {
-					player.buyProperty(((Property) (boardToBuy)));
-					player.updateBlPropertyGroup(((Property) (boardToBuy)).getIdGroup(),
-							board.getMaxPropertiesPerGroup(((Property) (boardToBuy)).getIdGroup()));
+					player.buyProperty(((Property) (boardToBuy)), board.getMaxPropertiesPerGroup(((Property) (boardToBuy)).getIdGroup()));
 				} else {
 					// TODO LEILAOO!!!!!!
 				}
@@ -361,7 +359,7 @@ public class Game {
 	public void optimizedPayBill(Player player, Property property) {
 		int valueToPay = 0;
 		
-		if (!player.getPropertiesOwned().contains(property)) {
+		if (!player.getPropertiesOwned().contains(property) && !property.getMortgage()) {
 			if ((property instanceof NormalProperty))
 				valueToPay = ((NormalProperty) (property)).getValueToPay();
 			if ((property instanceof RailRoadProperty))
@@ -476,6 +474,11 @@ public class Game {
 		}
 	}
 
+	public int randomGenerate(){
+		// Generate the random Chance card to be choose
+		Random r = new Random();
+		return (r.nextInt(15) + 1);
+	}
 	/**
 	 * Generate random number from 1 to 15 and associate to a chance card,
 	 * player will have an action from that card generated.
@@ -484,13 +487,11 @@ public class Game {
 	 *            that have an action
 	 */
 	private void gerateChance(Player player) {
-
 		int option = 0;
-
 		// Generate the random Chance card to be choose
 		Random r = new Random();
 		option = r.nextInt(15) + 1;
-		option = 6;
+		chanceOption = option; 
 		switch (option) {
 		case 1:
 			movePlayerGUI(player, calcCellToMove(player, 0));
@@ -584,8 +585,8 @@ public class Game {
 			}
 			break;
 		}
-		chanceOption = option;
 		System.out.println("CHANCE CARD Nº -> " + option);
+		System.out.println("chance option valeu -> " + chanceOption);
 	}
 
 	/**
@@ -602,7 +603,7 @@ public class Game {
 		// Generate the random Community card to be choose
 		Random r = new Random();
 		option = r.nextInt(16) + 1;
-		option = 4;
+		communityOption = option;
 		switch (option) {
 		case 1:
 			movePlayerGUI(player, calcCellToMove(player, 0));
@@ -658,7 +659,6 @@ public class Game {
 			player.updateBalance(100);
 			break;
 		}
-		communityOption = option;
 		System.out.println("COMMUNITY CHEST CARD Nº -> " + option);
 	}
 
@@ -700,19 +700,19 @@ public class Game {
 
 	}
 	
-	public int getCommunityOption() {
+	public Integer getCommunityOption() {
 		return communityOption;
 	}
 
-	public void setCommunityOption(int communityOption) {
+	public void setCommunityOption(Integer communityOption) {
 		this.communityOption = communityOption;
 	}
 	
-	public int getChanceOption() {
+	public Integer getChanceOption() {
 		return chanceOption;
 	}
 
-	public void setChanceOption(int chanceOption) {
+	public void setChanceOption(Integer chanceOption) {
 		this.chanceOption = chanceOption;
 	}
 	
