@@ -197,6 +197,17 @@ public class Player {
 		}
 		this.setValuePosition(10);
 	}
+	//TODO PARA TESTE APENAS, APAGAR !!!!!!!!!!!!!!!!!1111
+   public Player(String name, int piece, int balance) {
+        this.name = name;
+        this.symbol_1 = piece;
+        this.balance = balance;
+        this.inJail = false;
+        this.propertiesOwned = new Vector<Property>();
+        this.nrOfRolls = 0;
+        //this.valuePosittion = pos.getPos();
+    }
+	   
 
 	// TODO PARA TESTE APENAS, APAGAR !!!!!!!!!!!!!!!!!1111
 	public Player(String name, int piece, int balance) {
