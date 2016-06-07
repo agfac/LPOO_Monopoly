@@ -26,52 +26,55 @@ import Monopoly.Logic.Board;
 import Monopoly.Logic.Game;
 import Monopoly.Logic.Player;
 import Monopoly.Logic.PlayerSymbol;
+import Monopoly.Server.Server;
 
 
 public class GraphicsWindow extends ImagesLoad {
 	
-	private JFrame frame;
+	public JFrame frame;
 	private GamePanel panel;
 	private InfoPanel panel_1 ;
-	// TODO codigo para testes
-	PlayerSymbol dog = new PlayerSymbol(1, "Dog", dogPiece);
-	PlayerSymbol ship = new PlayerSymbol(2, "Ship", carPiece);
-	Board boardsdcdc = new Board();
-	Vector<Player> players;
+//	// TODO codigo para testes
+//	PlayerSymbol dog = new PlayerSymbol(1, "Dog", dogPiece);
+//	PlayerSymbol ship = new PlayerSymbol(2, "Ship", carPiece);
+//	Board boardsdcdc = new Board();
+//	Vector<Player> players;
 	Game game;
 	// fim do codigo para testes
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GraphicsWindow window = new GraphicsWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	/**
+//	 * Launch the application.
+//	 */
+//	public static void main(String[] args) {
+//
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					GraphicsWindow window = new GraphicsWindow();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
 	 */
-	public GraphicsWindow() {
-		players = new Vector<Player>();
-		players.add(new Player("Pedro", dog, 10000, boardsdcdc.getBoardBox(0), 1));
-		players.get(0).setPosition(1120, 890);
-		players.add(new Player("Faby", ship, 10000, boardsdcdc.getBoardBox(0), 2));
-		players.get(1).setPosition(1120, 930);
+	public GraphicsWindow(Game game) {
+//		players = new Vector<Player>();
+//		players.add(new Player("Pedro", dog, 10000, boardsdcdc.getBoardBox(0), 1));
+//		players.get(0).setPosition(1120, 890);
+//		players.add(new Player("Faby", ship, 10000, boardsdcdc.getBoardBox(0), 2));
+//		players.get(1).setPosition(1120, 930);
 //		players.add(new Player("Andre", dog, 10000, boardsdcdc.getBoardBox(0), 3));
 //		players.get(2).setPosition(1170, 890);
 //		players.add(new Player("Paulo", dog, 10000, boardsdcdc.getBoardBox(0), 4));
 //		players.get(3).setPosition(1170, 930);
-		game = new Game(players);
+//		game = new Game(players);
+		
+		this.game = game;
 		initialize();
 	}
 

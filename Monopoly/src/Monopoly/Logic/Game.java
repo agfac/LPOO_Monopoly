@@ -62,6 +62,9 @@ public class Game {
 		dice2 = new Dice();
 	}
 
+	public void receivePlayerVector(Vector<Player> players){
+		this.players = players;
+	}
 	/**
 	 * Get all players
 	 * 
@@ -166,7 +169,7 @@ public class Game {
 
 		// Store the value of 2 rolled dices
 		totalDiceValue = get2RollDices(dice1, dice2);
-		totalDiceValue = 1;
+
 		player.setDicesValue(totalDiceValue);
 
 		// Update number of tries from player, if get 3 times goes to jail.

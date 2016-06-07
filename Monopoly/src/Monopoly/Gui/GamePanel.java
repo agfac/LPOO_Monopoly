@@ -70,6 +70,7 @@ public class GamePanel extends ImagesLoad implements MouseListener, KeyListener,
 		g.setColor(Color.white);
 		g.drawImage(board, 0, 0, board.getWidth(), board.getHeight(), 0, 0, board.getWidth(), board.getHeight(), null);
 		
+		if (game.getPlayers() != null){
 		for (Player p : game.getPlayers()){
 			draw(g, p, p.getPosition().getX(), p.getPosition().getY());
 			
@@ -81,14 +82,11 @@ public class GamePanel extends ImagesLoad implements MouseListener, KeyListener,
 	
 			if(game.getChanceOption() != null){
 				teste(game.getBoard().getChanceCard(game.getChanceOption()).getImage(), "chance"); //x->171 y->133
-//				g.drawImage(game.getBoard().getChanceCard(game.getChanceOption()).getImage(), 175, 158, 175+game.getBoard().getChanceCard(game.getChanceOption()).getImage().getWidth(), 158+game.getBoard().getChanceCard(game.getChanceOption()).getImage().getHeight(), 0, 0, game.getBoard().getChanceCard(game.getChanceOption()).getImage().getWidth(), game.getBoard().getChanceCard(game.getChanceOption()).getImage().getHeight(), null);
-//				game.setChanceOption(null);
 			}
 			if(game.getCommunityOption() != null){
 				teste(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), "community");
-//				g.drawImage(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), 713, 689, 713+game.getBoard().getCommunityCard(game.getCommunityOption()).getImage().getWidth(), 689+game.getBoard().getCommunityCard(game.getCommunityOption()).getImage().getHeight(), 0, 0, board.getWidth(), board.getHeight(), null);
-//				game.setCommunityOption(null);
 			}
+		}
 		}
 	}
 
@@ -98,7 +96,7 @@ public class GamePanel extends ImagesLoad implements MouseListener, KeyListener,
 	}
 	
 	public void actionPerformed(ActionEvent ev) {
-		if (ev.getSource() == timer) {
+		if (ev.getSource() == timer && game.getPlayers() != null) {
 			for (Player p : game.getPlayers()) {
 				if (p.getCellsToMove() != 0) { // && !p.getInJail()
 					p.updateGUIPosition();

@@ -22,7 +22,8 @@ public class GameProtocol {
 	private static final int BUYINGPROPERTY = 5;
 	private static final int MANAGEACTIVITY = 6;
 
-	private static int numPlayers;
+	private static int numPlayers = 0;
+
 	private static int balance;
 	private static Vector <Player> players = new Vector <Player>();
 	private static Integer idPlayer = 0;
@@ -39,6 +40,9 @@ public class GameProtocol {
 	
 	private Integer state = INIT;
 	
+	public GameProtocol(Game game){
+		this.game = game;
+	}
 	public String processInput(String theInput) {
 		String theOutput = null;
 
@@ -134,6 +138,7 @@ public class GameProtocol {
 						}
 					}
 					else{
+						game.receivePlayerVector(players);
 						theOutput = "Sorry, the limit numbers of player have been reached. You have to wait next game.";
 						break;
 					}
@@ -700,6 +705,10 @@ public class GameProtocol {
 	
 	public Integer getState(){
 		return state;
+	}
+	
+	public int getNumPlayers() {
+		return numPlayers;
 	}
 }
 
