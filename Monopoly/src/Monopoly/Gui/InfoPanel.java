@@ -46,6 +46,7 @@ public class InfoPanel extends ImagesLoad implements ActionListener{
 		int xIn = 0;
 		int yIn = 0;
 
+		if (game.getPlayers() != null){
 		ArrayList<Graphics2D> g1 = new ArrayList<Graphics2D>();
 
 		int propertySize = 132;
@@ -54,8 +55,7 @@ public class InfoPanel extends ImagesLoad implements ActionListener{
 		int xf = xi + propertySize;
 		int yf = 70;
 		for (Player p : game.getPlayers()) {
-			g.drawImage(p.getSymbol().getPiece(), 0, yIn, 90, yIn + 90, 0, 0, p.getSymbol().getPiece().getWidth(),
-					p.getSymbol().getPiece().getHeight(), null);
+			g.drawImage(p.getSymbol().getPiece(), 0, yIn, 90, yIn + 90, 0, 0, p.getSymbol().getPiece().getWidth(),p.getSymbol().getPiece().getHeight(), null);
 
 			Graphics2D g2d = (Graphics2D) g;
 			g2d.setColor(Color.BLACK);
@@ -100,6 +100,10 @@ public class InfoPanel extends ImagesLoad implements ActionListener{
 
 			yIn += boxHeight;
 		}
+		
+		}else
+			g.drawImage(wait, 0, 0, wait.getWidth(), wait.getHeight(), 0, 0, wait.getWidth(), wait.getHeight(), null);
+			
 	}
 	
 	public void actionPerformed(ActionEvent ev) {

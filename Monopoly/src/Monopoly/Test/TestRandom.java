@@ -136,7 +136,7 @@ public class TestRandom {
 	@Test
 	public void testTaxBox() {
 		do {
-			game.updatePlayer(players.get(0));
+			game.updateGame(players.get(0));
 		} while (players.get(0).getPos().getPos() != ((TaxBox) board.getBoardBox(4)).getPos());
 		assertEquals(players.get(0).getPos().getPos(), ((TaxBox) board.getBoardBox(4)).getPos());
 	}
@@ -216,14 +216,14 @@ public class TestRandom {
 	}
 
 	/**
-	 * Test if player can create an hotel without having all properties of the
-	 * group
+	 * Test if player can create an hotel without having 4 houses
 	 */
 	@Test
 	public void testBuildHotelWithoutPermission() {
 		players.get(0).setPos(board.getBoardBox(1));
 		game.buyProperty(players.get(0));
-
+		
+		game.createHouses(players.get(0), ((NormalProperty) board.getBoardBox(1)), 3);
 		game.createHotel(players.get(0), ((NormalProperty) board.getBoardBox(1)));
 
 		assertEquals(0, ((NormalProperty) board.getBoardBox(1)).getNrHotels());
