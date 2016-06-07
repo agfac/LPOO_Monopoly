@@ -21,14 +21,9 @@ public class Player {
 	private HashMap<Integer, Integer> nrPropertyGroup = new HashMap<Integer, Integer>();
 	private HashMap<Integer, Boolean> blPropertyGroup = new HashMap<Integer, Boolean>();
 	private int dicesValue = 0;
-
 	private int cellsToMove = 0;
-
-	private int symbol_1; // TODO apenas para testes do ANDRE
-
 	private Position position = new Position();
 	private int valuePosittion;
-
 	// Players Initial Positions GUI
 	private int deltaX = 105;
 	private int deltaY = 81;
@@ -54,29 +49,38 @@ public class Player {
 	private int yPosDownE = 170;
 	// -----------------------------
 
-	public int getCellsToMove() {
-		return cellsToMove;
+	// TODO PARA TESTE APENAS, APAGAR !!!!!!!!!!!!!!!!!1111
+	private int symbol_1; // TODO apenas para testes do ANDRE
+	public Player(String name, int piece, int balance) {
+		this.name = name;
+		this.symbol_1 = piece;
+		this.balance = balance;
+		this.inJail = false;
+		this.propertiesOwned = new Vector<Property>();
+		this.nrOfRolls = 0;
+		this.valuePosittion = pos.getPos();
 	}
-
-	public void setCellsToMove(int cellsToMove) {
-		this.cellsToMove = cellsToMove;
-	}
-
-	public Position getPosition() {
-		return position;
-	}
-
-	public void setPosition(int x, int y) {
-		this.position.setX(x);
-		this.position.setY(y);
-	}
-
-	public int getValuePosition() {
-		return valuePosittion;
-	}
-
-	public void setValuePosition(int p) {
-		valuePosittion = p;
+//--------------------------------------------------------------------
+	/**
+	 * Constructor of Player
+	 * 
+	 * @param name
+	 *            of player
+	 * @param piece
+	 *            symbol that identify the player
+	 * @param balance
+	 *            value that player have in their wallet
+	 */
+	public Player(String name, PlayerSymbol piece, int balance, BoardBox pos, int id) {
+		this.name = name;
+		this.symbol = piece;
+		this.balance = balance;
+		this.inJail = false;
+		this.propertiesOwned = new Vector<Property>();
+		this.pos = pos;
+		this.nrOfRolls = 0;
+		this.id = id;
+		this.valuePosittion = pos.getPos();
 	}
 
 	public void updateGUIPosition() { // pode ser colocada no player
@@ -175,61 +179,29 @@ public class Player {
 		this.setPosition(x, y);
 	}
 
-	public void muitoAldrabado() {
-		int x = this.getPosition().getX();
-		int y = this.getPosition().getY();
-
-		if (id == 1) {
-			x = xPosUpW;
-			y = yPosUpW;
-		}
-		if (id == 2) {
-			x = xPosUpW;
-			y = yPosDownW;
-		}
-		if (id == 3) {
-			x = xPosDownW;
-			y = yPosUpW;
-		}
-		if (id == 4) {
-			x = xPosDownW;
-			y = yPosDownW;
-		}
-		this.setValuePosition(10);
-	}
-	   
-
-	// TODO PARA TESTE APENAS, APAGAR !!!!!!!!!!!!!!!!!1111
-	public Player(String name, int piece, int balance) {
-		this.name = name;
-		this.symbol_1 = piece;
-		this.balance = balance;
-		this.inJail = false;
-		this.propertiesOwned = new Vector<Property>();
-		this.nrOfRolls = 0;
-		this.valuePosittion = pos.getPos();
+	public int getCellsToMove() {
+		return cellsToMove;
 	}
 
-	/**
-	 * Constructor of Player
-	 * 
-	 * @param name
-	 *            of player
-	 * @param piece
-	 *            symbol that identify the player
-	 * @param balance
-	 *            value that player have in their wallet
-	 */
-	public Player(String name, PlayerSymbol piece, int balance, BoardBox pos, int id) {
-		this.name = name;
-		this.symbol = piece;
-		this.balance = balance;
-		this.inJail = false;
-		this.propertiesOwned = new Vector<Property>();
-		this.pos = pos;
-		this.nrOfRolls = 0;
-		this.id = id;
-		this.valuePosittion = pos.getPos();
+	public void setCellsToMove(int cellsToMove) {
+		this.cellsToMove = cellsToMove;
+	}
+
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(int x, int y) {
+		this.position.setX(x);
+		this.position.setY(y);
+	}
+
+	public int getValuePosition() {
+		return valuePosittion;
+	}
+
+	public void setValuePosition(int p) {
+		valuePosittion = p;
 	}
 
 	/**
@@ -462,7 +434,7 @@ public class Player {
 	 * @param value
 	 *            max of properties
 	 */
-	public void updateBlPropertyGroup(int key, int value) {
+	private void updateBlPropertyGroup(int key, int value) {
 		if (nrPropertyGroup.get(key) == value) {
 			blPropertyGroup.put(key, true);
 		} else
