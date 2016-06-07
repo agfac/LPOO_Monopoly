@@ -90,7 +90,7 @@ public class Game {
 	 * 
 	 * @return dice value
 	 */
-	private int rollDice(Dice dice) {
+	public int rollDice(Dice dice) {
 		dice.rollDice();
 		return dice.getValue();
 	}
@@ -104,7 +104,7 @@ public class Game {
 	 *            dice two
 	 * @return total of dice1 + dice2
 	 */
-	private int get2RollDices(Dice dice1, Dice dice2) {
+	public int get2RollDices(Dice dice1, Dice dice2) {
 		int dice1Value, dice2Value;
 
 		// Roll dices 2 times and store the value in totalDiceValue
@@ -122,7 +122,7 @@ public class Game {
 	 *            Dice two
 	 * @return true if they have the same value, if not return false
 	 */
-	private boolean sameValuesDice(Dice dice1, Dice dice2) {
+	public boolean sameValuesDice(Dice dice1, Dice dice2) {
 		return (dice1.getValue() == dice2.getValue()) ? true : false;
 	}
 
@@ -190,8 +190,7 @@ public class Game {
 
 		// Store the value of 2 rolled dices
 		totalDiceValue = get2RollDices(dice1, dice2);
-		
-		totalDiceValue = 1;
+
 		player.setDicesValue(totalDiceValue);
 
 		// Update number of tries from player, if get 3 times goes to jail.
@@ -335,12 +334,10 @@ public class Game {
 			if (!((Property) (boardToBuy)).getSold()) {
 				System.out.print("Do you want to buy >" + boardToBuy.getName() + "< Property for a value of: "
 						+ ((Property) (boardToBuy)).getAmount() + " (y or n) >");
-				option = 'y';// TODO s.next().charAt(0);
+				option = 'y';
 				if (option == 'y') {
-					player.buyProperty(((Property) (boardToBuy)));
-					player.updateBlPropertyGroup(((Property) (boardToBuy)).getIdGroup(),
-							board.getMaxPropertiesPerGroup(((Property) (boardToBuy)).getIdGroup()));
-				} else {
+					player.buyProperty(((Property) (boardToBuy)), board.getMaxPropertiesPerGroup(((Property) (boardToBuy)).getIdGroup()));
+					} else {
 					// TODO LEILAOO!!!!!!
 				}
 			} else if (!player.equals(((Property) (boardToBuy)).getOwner())
@@ -361,7 +358,7 @@ public class Game {
 	public void optimizedPayBill(Player player, Property property) {
 		int valueToPay = 0;
 		
-		if (!player.getPropertiesOwned().contains(property)) {
+		if (!player.getPropertiesOwned().contains(property) && !property.getMortgage()) {
 			if ((property instanceof NormalProperty))
 				valueToPay = ((NormalProperty) (property)).getValueToPay();
 			if ((property instanceof RailRoadProperty))
@@ -381,7 +378,7 @@ public class Game {
 	 * @param player
 	 *            to be showed information
 	 */
-	private void showProperties(Player player) {
+	public void showProperties(Player player) {
 		for (Property vp : player.getPropertiesOwned()) {
 			System.out.println("Property name: " + vp.getName() + " Nr: " + player.getPropertiesNr(vp));
 		}
@@ -411,7 +408,7 @@ public class Game {
 	 * @param n
 	 *            number of houses to be sold
 	 */
-	private void sellHouses(Player player, NormalProperty nProperty, int n) {
+	public void sellHouses(Player player, NormalProperty nProperty, int n) {
 		if (player.equals(nProperty.getOwner()) && nProperty.getNrHouses() >= n) {
 			nProperty.sellHouse(n);
 			player.updateBalance(n * (nProperty.getHouseCost() / 2));
@@ -429,7 +426,7 @@ public class Game {
 	 * @param n
 	 *            number of hotel to be sold
 	 */
-	private void sellHotel(Player player, NormalProperty nProperty) {
+	public void sellHotel(Player player, NormalProperty nProperty) {
 		if (player.equals(nProperty.getOwner()) && nProperty.getNrHotels() == 1) {
 			nProperty.sellHotel();
 			player.updateBalance(nProperty.getHotelCost() / 2);
@@ -447,7 +444,7 @@ public class Game {
 	 * @param n
 	 *            number of houses to be purchased
 	 */
-	private void createHouses(Player player, NormalProperty nProperty, int n) {
+	public void createHouses(Player player, NormalProperty nProperty, int n) {
 		if (player.haveAllPropertiesGroup(nProperty)) {
 			if ((player.getBalance() >= nProperty.getHouseCost() * n) && (n > 0 && n <= 4)
 					&& nProperty.canBuildHouse()) {
@@ -467,7 +464,7 @@ public class Game {
 	 * @param nProperty
 	 *            to place the hotel
 	 */
-	private void createHotel(Player player, NormalProperty nProperty) {
+	public void createHotel(Player player, NormalProperty nProperty) {
 		if (nProperty.canBuildHotel() && (player.getBalance() >= nProperty.getHotelCost())) {
 			player.updateBalance(-nProperty.getHotelCost());
 			nProperty.buildHotel();
@@ -483,14 +480,14 @@ public class Game {
 	 * @param player
 	 *            that have an action
 	 */
-	private void gerateChance(Player player) {
+	public void gerateChance(Player player) {
 
 		int option = 0;
 
 		// Generate the random Chance card to be choose
 		Random r = new Random();
 		option = r.nextInt(15) + 1;
-		option = 6;
+
 		switch (option) {
 		case 1:
 			movePlayerGUI(player, calcCellToMove(player, 0));
@@ -596,13 +593,13 @@ public class Game {
 	 *            that have an action
 	 * @throws InterruptedException
 	 */
-	private void gerateCommunity(Player player) {
+	public void gerateCommunity(Player player) {
 		int option = 0;
 
 		// Generate the random Community card to be choose
 		Random r = new Random();
 		option = r.nextInt(16) + 1;
-		option = 4;
+
 		switch (option) {
 		case 1:
 			movePlayerGUI(player, calcCellToMove(player, 0));
@@ -670,7 +667,7 @@ public class Game {
 	 * @param valueToPayPerHouse
 	 * @param valueToPayPerHotel
 	 */
-	private void payPerEachHouseAndHotels(Player player, int valueToPayPerHouse, int valueToPayPerHotel) {
+	public void payPerEachHouseAndHotels(Player player, int valueToPayPerHouse, int valueToPayPerHotel) {
 		int countHotel = 0;
 		int countHouse = 0;
 		for (Property np : player.getPropertiesOwned()) {
@@ -733,6 +730,11 @@ public class Game {
 		// showProperties(player);
 	}
 
+	
+	/**
+	 * Methods for test's
+	 */
+	
 	public static void main(String[] args) {
 		Game game = new Game();
 		Scanner s = new Scanner(System.in);

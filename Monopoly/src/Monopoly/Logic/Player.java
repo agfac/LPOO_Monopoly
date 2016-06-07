@@ -327,19 +327,22 @@ public class Player {
     }
 
     /**
-     * Method to buy property
-     * @param property that will be purchased from Player
-     */
-    public void buyProperty(Property property) {
-    	if ( balance >= property.getAmount() ){
-    		balance -= property.getAmount();
-    		propertiesOwned.add(property);
-    		property.setSold(true);
-    		property.setOwner(this);
-    		int count = nrPropertyGroup.containsKey(property.getIdGroup()) ? nrPropertyGroup.get(property.getIdGroup()) : 0;
-    		nrPropertyGroup.put(property.getIdGroup(), count + 1);
-    	}
-    }
+	 * Method to buy property
+	 * 
+	 * @param property
+	 *            that will be purchased from Player
+	 */
+	public void buyProperty(Property property, int idGroup) {
+		if (balance >= property.getAmount()) {
+			balance -= property.getAmount();
+			propertiesOwned.add(property);
+			property.setSold(true);
+			property.setOwner(this);
+			int count = nrPropertyGroup.containsKey(property.getIdGroup()) ? nrPropertyGroup.get(property.getIdGroup()): 0;
+			nrPropertyGroup.put(property.getIdGroup(), count + 1);		
+			this.updateBlPropertyGroup(property.getIdGroup(),idGroup);
+		}
+	}
     
     /**
      * Method to sell the property
