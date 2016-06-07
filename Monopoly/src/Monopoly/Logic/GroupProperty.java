@@ -13,9 +13,9 @@ public class GroupProperty {
 
 	/**
 	 * Constructor of GroupProperty
-     * @param id 
-     * @param color 
-     * @param totalProperty
+     * @param id of gGroup
+     * @param color of group
+     * @param totalProperty per group
      */
     public GroupProperty(int id, String color, int totalProperty) {
         this.id = id;

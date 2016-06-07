@@ -3,6 +3,8 @@ package Monopoly.Logic;
 import java.awt.image.BufferedImage;
 import java.util.*;
 
+import org.omg.IOP.Codec;
+
 /**
  * Property class
  */
@@ -18,7 +20,7 @@ public class Property extends BoardBox {
 
 	protected BufferedImage iconImage;
 	protected BufferedImage image;
-	
+
 	/**
 	 * Property Constructor
 	 * 
@@ -32,8 +34,13 @@ public class Property extends BoardBox {
 	 *            Property value
 	 * @param mortgageValue
 	 *            Mortgage value
+	 * @param icon
+	 *            Property header
+	 * @param image
+	 *            Full property image
 	 */
-	public Property(String name, int pos, int idGroup, int amount, int mortgageValue, BufferedImage icon, BufferedImage image) {
+	public Property(String name, int pos, int idGroup, int amount, int mortgageValue, BufferedImage icon,
+			BufferedImage image) {
 		this.name = name;
 		this.pos = pos;
 		this.idGroup = idGroup;
@@ -47,80 +54,106 @@ public class Property extends BoardBox {
 		this.image = image;
 	}
 
+	/**
+	 * Get property header image
+	 * 
+	 * @return header image
+	 */
+
 	public BufferedImage getIconImage() {
 		return iconImage;
 	}
 
+	/**
+	 * Get property image
+	 * 
+	 * @return property image
+	 */
 	public BufferedImage getImage() {
 		return image;
 	}
-	
+
 	/**
-	 * @return
+	 * Check if property is sold
+	 * 
+	 * @return <code>true</code> if sold <code>false</code> if not
 	 */
 	public boolean getSold() {
 		return this.sold;
 	}
 
 	/**
+	 * Update property sold boolean
+	 * 
 	 * @param sold
-	 * @return
 	 */
 	public void setSold(boolean sold) {
 		this.sold = sold;
 	}
 
 	/**
-	 * @return
+	 * Get property amount value
+	 * 
+	 * @return amount
 	 */
 	public int getAmount() {
 		return amount;
 	}
 
 	/**
-	 * @return
+	 * Check if property is mortgage
+	 * 
+	 * @return <code>true</code> if mortgage <code>false</code> if not
 	 */
 	public boolean getMortgage() {
 		return mortgage;
 	}
 
 	/**
+	 * Update property mortgage boolean 
 	 * @param mortgage
-	 * @return
 	 */
 	public void setMortgage(boolean mortgage) {
 		this.mortgage = mortgage;
 	}
 
 	/**
-	 * @return
+	 * Get group ID
+	 * 
+	 * @return ID
 	 */
 	public int getIdGroup() {
 		return idGroup;
 	}
 
 	/**
-	 * @return
+	 * Get property mortgage value
+	 * 
+	 * @return mortgage
 	 */
 	public int getMortgageValue() {
 		return mortgageValue;
 	}
 
 	/**
-	 * @return
+	 * Get property mortgage back value
+	 * 
+	 * @return mortgage back
 	 */
 	public int getMortgageValueBack() {
 		return mortgageValueBack;
 	}
 
 	/**
-	 * @return
+	 * Get property owner
+	 * @return property owner
 	 */
 	public Player getOwner() {
 		return owner;
 	}
 
 	/**
+	 * Update property owner
 	 * @param player
 	 */
 	public void setOwner(Player player) {

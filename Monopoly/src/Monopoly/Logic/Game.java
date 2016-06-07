@@ -39,8 +39,7 @@ public class Game {
 	protected static BufferedImage ironPiece;
 	protected static BufferedImage thimblePiece;
 	protected static BufferedImage wheelbarrowPiece;
-	// FIM CODIGO TESTES-------------------------------------------------------
-
+	
 	public Game() {
 		players = new Vector<Player>();
 
@@ -49,6 +48,13 @@ public class Game {
 		dice2 = new Dice();
 	}
 
+	// FIM CODIGO TESTES-------------------------------------------------------
+
+	
+	/**
+	 * Constructor of game
+	 * @param players vector
+	 */
 	public Game(Vector<Player> players) {
 		this.players = players;
 		board = new Board();
@@ -126,7 +132,11 @@ public class Game {
 		return (dice1.getValue() == dice2.getValue()) ? true : false;
 	}
 
-	public void verificarSeTemPlayers(Player player) {
+	/**
+	 * Check if player is on a special boardBox
+	 * @param player
+	 */
+	public void checkSpecialBoardBox(Player player) {
 		if ((player.getPos() == board.getBoardBox(7)) || (player.getPos() == board.getBoardBox(22) || (player.getPos() == board.getBoardBox(36))) && chanceOption == null) {
 			System.out.println("CHANCE BOX");
 			gerateChance(player);
@@ -142,40 +152,6 @@ public class Game {
 			checkIfPlayerHaveOutOfJailCard(player);
 		}
 	}
-	/*
-	 * public void secuenciaDoJogo(Player player) { int dicesValue =
-	 * get2RollDices(dice1, dice2); System.out.println("Dice valeu -> " +
-	 * dicesValue);
-	 * 
-	 * dicesValue = 22;
-	 * 
-	 * player.setCellsToMove(dicesValue);
-	 * 
-	 * // atualizo posição if (player.getPos().getPos() + dicesValue > 39) {
-	 * player.setBalance(GOVALUE);
-	 * player.setPos(board.getBoardBox((player.getPos().getPos() + dicesValue -
-	 * 39) - 1)); } else {
-	 * player.setPos(board.getBoardBox(player.getPos().getPos() + dicesValue));
-	 * }
-	 * 
-	 * // if ((player.getPos() == board.getBoardBox(7)) || (player.getPos() ==
-	 * board.getBoardBox(22)) // || (player.getPos() == board.getBoardBox(36)))
-	 * { // System.out.println("CHANCE BOX"); // gerateChance(player); // } //
-	 * // if ((player.getPos() == board.getBoardBox(2)) || (player.getPos() ==
-	 * board.getBoardBox(17)) // || (player.getPos() == board.getBoardBox(33)))
-	 * { // System.out.println("COMMUNITY BOX"); // gerateCommunity(player); //
-	 * }
-	 * 
-	 * if ((player.getPos() == board.getBoardBox(4)) || (player.getPos() ==
-	 * board.getBoardBox(38))) player.updateBalance(-((TaxBox)
-	 * board.getBoardBox(4)).getTaxValue());
-	 * 
-	 * // ----------------------------------------- if (sameValuesDice(dice1,
-	 * dice2)) { nOfTimesGetDoubleValue++; secuenciaDoJogo(player); //
-	 * RECURSIVAMENTE } else nOfTimesGetDoubleValue = 0;
-	 * 
-	 * }
-	 */
 
 	/**
 	 * Method to update the player on board
@@ -219,31 +195,17 @@ public class Game {
 			player.setPos(board.getBoardBox(atualPlayerPos));
 		}
 
-		// // Check if the new position is the JailBox, if yes goes to jail.
-		// if (player.getPos() == board.getBoardBox(30)) {
-		// checkIfPlayerHaveOutOfJailCard(player);
-		// }
-
-		// if ((player.getPos() == board.getBoardBox(7)) || (player.getPos() ==
-		// board.getBoardBox(22))
-		// || (player.getPos() == board.getBoardBox(36))) {
-		// System.out.println("CHANCE BOX");
-		// gerateChance(player);
-		// }
-		//
-		// if ((player.getPos() == board.getBoardBox(2)) || (player.getPos() ==
-		// board.getBoardBox(17))
-		// || (player.getPos() == board.getBoardBox(33))) {
-		// System.out.println("COMMUNITY BOX");
-		// gerateCommunity(player);
-		// }
-
 		if ((player.getPos() == board.getBoardBox(4)) || (player.getPos() == board.getBoardBox(38)))
 			player.updateBalance(-((TaxBox) board.getBoardBox(4)).getTaxValue());
 
 		System.out.println("Dice value: " + (dice1.getValue() + dice2.getValue()));
 	}
 
+	/**
+	 * Method to update payer on graphic window
+	 * @param player to be moved
+	 * @param moveValeu to be moved
+	 */
 	public void movePlayerGUI(Player player, int moveValeu) {
 		player.setCellsToMove(moveValeu);
 	}
@@ -310,8 +272,13 @@ public class Game {
 		}
 	}
 
-	public int calcCellToMove(Player player, int destinationPos) {// TODO
-																	// correguir
+	/**
+	 * Method to determinate how many boarbox (Positions) need to move a player
+	 * @param player to be moved
+	 * @param destinationPos to be moved
+	 * @return number of boarbox (Positions) to move a player
+	 */
+	public int calcCellToMove(Player player, int destinationPos) {
 		if (player.getPos().getPos() < destinationPos)
 			return (destinationPos - player.getPos().getPos());
 		else if (player.getPos().getPos() > destinationPos)
@@ -384,6 +351,11 @@ public class Game {
 		}
 	}
 
+	/**
+	 * Method to mortgage a property
+	 * @param player to mortgage the property
+	 * @param property to be mortgage
+	 */
 	public void mortgage(Player player, Property property) {
 		if (player.equals(property.getOwner()) && !property.getMortgage()) {
 			property.setMortgage(true);
@@ -391,6 +363,11 @@ public class Game {
 		}
 	}
 
+	/**
+	 * Method to 'unmortgage' a property
+	 * @param player to 'unmortgage' the property
+	 * @param property to be 'unmortgage'
+	 */
 	public void unMortgage(Player player, Property property) {
 		if (player.equals(property.getOwner()) && property.getMortgage()) {
 			property.setMortgage(false);
@@ -473,11 +450,6 @@ public class Game {
 		}
 	}
 
-	public int randomGenerate(){
-		// Generate the random Chance card to be choose
-		Random r = new Random();
-		return (r.nextInt(15) + 1);
-	}
 	/**
 	 * Generate random number from 1 to 15 and associate to a chance card,
 	 * player will have an action from that card generated.
@@ -700,25 +672,44 @@ public class Game {
 
 	}
 	
+	/**
+	 * Get Community card generated
+	 * @return id of community card generated
+	 */
 	public Integer getCommunityOption() {
 		return communityOption;
 	}
 
+	/**
+	 * Update Community card
+	 */
 	public void setCommunityOption(Integer communityOption) {
 		this.communityOption = communityOption;
 	}
 	
+	/**
+	 * Get Chance card generated
+	 * @return id of chance card generated
+	 */
 	public Integer getChanceOption() {
 		return chanceOption;
 	}
 
+	/**
+	 * Update Chance card
+	 */
 	public void setChanceOption(Integer chanceOption) {
 		this.chanceOption = chanceOption;
 	}
 	
+	/**
+	 * Get the board of game
+	 * @return board
+	 */
 	public Board getBoard() {
 		return board;
 	}
+	
 	/**
 	 * Print player information
 	 * 
@@ -733,11 +724,6 @@ public class Game {
 		// showProperties(player);
 	}
 
-	
-	/**
-	 * Methods for test's
-	 */
-	
 	public static void main(String[] args) {
 		Game game = new Game();
 		Scanner s = new Scanner(System.in);

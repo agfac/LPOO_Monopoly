@@ -28,7 +28,7 @@ public class GameProtocol {
 	private static Integer idPlayer = 0;
 	private static Integer currentPlayer=1;
 	
-	private static String currentPosition="pennsylvania_railroad";
+	private static String currentPosition = "pennsylvania_railroad";
 	private static String finalPosition = "pennsylvania_railroad";
 	private static boolean positionSold = false;
 	
