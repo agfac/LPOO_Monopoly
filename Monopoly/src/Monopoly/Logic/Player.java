@@ -204,7 +204,7 @@ public class Player {
         this.inJail = false;
         this.propertiesOwned = new Vector<Property>();
         this.nrOfRolls = 0;
-        this.valuePosittion = pos.getPos();
+        //this.valuePosittion = pos.getPos();
     }
 	   
 	/**
