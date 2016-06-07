@@ -24,7 +24,7 @@ public class GameProtocol {
 
 	private static int numPlayers;
 	private static int balance;
-	private static Vector <Player> players = new Vector <>();
+	private static Vector <Player> players = new Vector <Player>();
 	private static Integer idPlayer = 0;
 	private static Integer currentPlayer=1;
 	
