@@ -311,7 +311,7 @@ public class GameProtocol {
 			case "Which picture may I show?":
 				
 				if ((currentPosition == finalPosition) && !positionSold){
-					theOutput = ""+currentPosition;
+					theOutput = "Do you want to buy this property?";
 					state=BUYINGPROPERTY;
 					break;
 				}else if((currentPosition == finalPosition) && positionSold){
@@ -320,6 +320,7 @@ public class GameProtocol {
 						currentPosition = currentPlayer.getValuePosition();
 						finalPosition = currentPlayer.getPos().getPos();
 						theOutput = ""+currentPosition;
+						break;
 					}else{
 						theOutput = ""+currentPosition;
 						state = PAYBILL;
@@ -328,7 +329,6 @@ public class GameProtocol {
 //					game.checkSpecialBoardBox(game.getCurrentPlayer());
 					//theOutput="Next Player";
 					//state=READYTOPLAY;
-					break;
 				}
 				else{
 					theOutput = ""+currentPosition;
@@ -347,11 +347,10 @@ public class GameProtocol {
 			state=READYTOPLAY;
 			break;
 		case BUYINGPROPERTY:
+			//theOutput = "Do you want to buy this property?";
+			theOutput = ""+currentPosition;
 			System.out.println("theInput-> " + theInput);
 			switch(theInput){
-			case"BuyingActivty":
-				theOutput="Do you want to buy this property?";
-				break;
 			case "Yes":
 				game.setBuyPropertyOption("yes");
 				game.buyProperty(currentPlayer);
