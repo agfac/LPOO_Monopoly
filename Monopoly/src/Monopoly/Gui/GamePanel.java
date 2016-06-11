@@ -72,22 +72,12 @@ public class GamePanel extends ImagesLoad implements ActionListener {
 		
 				showPropertiesHousesAndHotels(g, p);
 
-<<<<<<< HEAD
-				if (game.getChanceOption() != null){// && game.getTimeToShowChanceCard()) {
-					teste(game.getBoard().getChanceCard(game.getChanceOption()).getImage(), "chance"); // x->171
-=======
-				if (game.getChanceOption() != null) {
-				//	teste(game.getBoard().getChanceCard(game.getChanceOption()).getImage(), "chance"); // x->171
->>>>>>> branch 'Pedro' of https://github.com/agfac/LPOO_Monopoly.git
-																										// y->133
-				}
-<<<<<<< HEAD
 				if (game.getCommunityOption() != null){// && game.getTimeToShowCoomunityCard()) {
 					teste(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), "community");
-=======
+
 				if (game.getCommunityOption() != null) {
 				//	teste(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), "community");
->>>>>>> branch 'Pedro' of https://github.com/agfac/LPOO_Monopoly.git
+
 				}
 			}
 			if (game.getCurrentPlayer().getDicesValue() != 0 && !game.getCurrentPlayer().getInJail() && game.getCurrentPlayer().getCellsToMove() != 0) {
