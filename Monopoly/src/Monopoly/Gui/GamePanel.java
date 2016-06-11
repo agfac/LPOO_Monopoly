@@ -23,7 +23,7 @@ import Monopoly.Logic.Player;
 import Monopoly.Logic.Property;
 
 public class GamePanel extends ImagesLoad implements ActionListener {
-	Timer timer = new Timer(200, this);
+	Timer timer = new Timer(500, this);
 	private int piecesSize = 45;
 	private int houseSize = 20;
 	private int hotelWight = 35;
@@ -57,28 +57,19 @@ public class GamePanel extends ImagesLoad implements ActionListener {
 		super();
 		this.game = game;
 		timer.start();
-
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
+		BufferedImage aux;
 		g.setColor(Color.white);
 		g.drawImage(board, 0, 0, board.getWidth(), board.getHeight(), 0, 0, board.getWidth(), board.getHeight(), null);
 
 		if (game.getPlayers() != null) {
 			for (Player p : game.getPlayers()) {
 				draw(g, p, p.getPosition().getX(), p.getPosition().getY());
-
-				if ((p.getPos() instanceof Property) && p.getDicesValue() != 0 && !p.getInJail()) {
-					g.drawImage(((Property) p.getPos()).getImage(), 524, 330,
-							524 + ((Property) p.getPos()).getImage().getWidth(),
-							330 + ((Property) p.getPos()).getImage().getHeight(), 0, 0,
-							((Property) p.getPos()).getImage().getWidth(),
-							((Property) p.getPos()).getImage().getHeight(), null);
-				}
-
+		
 				showPropertiesHousesAndHotels(g, p);
 
 				if (game.getChanceOption() != null) {
@@ -88,6 +79,14 @@ public class GamePanel extends ImagesLoad implements ActionListener {
 				if (game.getCommunityOption() != null) {
 					teste(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), "community");
 				}
+			}
+			if (game.getCurrentPlayer().getDicesValue() != 0 && !game.getCurrentPlayer().getInJail() && game.getCurrentPlayer().getCellsToMove() != 0) {
+				aux = game.getBoard().getBoardBox(game.getCurrentPlayer().getValuePosition()).getImage();
+				g.drawImage(aux, 524, 330,524 + aux.getWidth(),330 + aux.getHeight(), 0, 0,aux.getWidth(),aux.getHeight(), null);
+			}
+			else if(game.getCurrentPlayer().getDicesValue() != 0  && game.getCurrentPlayer().getValuePosition() == game.getCurrentPlayer().getPos().getPos()){
+				aux = game.getBoard().getBoardBox(game.getCurrentPlayer().getValuePosition()).getImage();
+				g.drawImage(aux, 524, 330,524 + aux.getWidth(),330 + aux.getHeight(), 0, 0,aux.getWidth(),aux.getHeight(), null);
 			}
 		}
 	}
@@ -99,21 +98,19 @@ public class GamePanel extends ImagesLoad implements ActionListener {
 
 	public void actionPerformed(ActionEvent ev) {
 		if (ev.getSource() == timer && game.getPlayers() != null) {
-			for (Player p : game.getPlayers()) {
-				if (p.getCellsToMove() != 0) { // && !p.getInJail()
-					p.updateGUIPosition();
-					p.setCellsToMove(p.getCellsToMove() - 1);
-					System.out.println("p.getCellsToMove()" + p.getCellsToMove());
+			
+				if (game.getCurrentPlayer().getCellsToMove() != 0) { // && !p.getInJail()
+					game.getCurrentPlayer().updateGUIPosition();
+					game.getCurrentPlayer().setCellsToMove(game.getCurrentPlayer().getCellsToMove() - 1);
 
-				} else {
-					if (((p.getPos().getPos() == 2 || p.getPos().getPos() == 17 || p.getPos().getPos() == 33)
+				} 
+				else {
+					if (((game.getCurrentPlayer().getPos().getPos() == 2 || game.getCurrentPlayer().getPos().getPos() == 17 || game.getCurrentPlayer().getPos().getPos() == 33)
 							&& game.getCommunityOption() == null)
-							|| ((p.getPos().getPos() == 7 || p.getPos().getPos() == 22 || p.getPos().getPos() == 36)
+							|| ((game.getCurrentPlayer().getPos().getPos() == 7 || game.getCurrentPlayer().getPos().getPos() == 22 || game.getCurrentPlayer().getPos().getPos() == 36)
 									&& game.getChanceOption() == null))
-						game.checkSpecialBoardBox(p);
-					game.buyProperty(p);
+						game.checkSpecialBoardBox(game.getCurrentPlayer());
 				}
-			}
 			repaint();
 		}
 	}

@@ -19,7 +19,6 @@ public class Property extends BoardBox {
 	protected int mortgageValueBack;
 
 	protected BufferedImage iconImage;
-	protected BufferedImage image;
 
 	/**
 	 * Property Constructor
@@ -62,15 +61,6 @@ public class Property extends BoardBox {
 
 	public BufferedImage getIconImage() {
 		return iconImage;
-	}
-
-	/**
-	 * Get property image
-	 * 
-	 * @return property image
-	 */
-	public BufferedImage getImage() {
-		return image;
 	}
 
 	/**

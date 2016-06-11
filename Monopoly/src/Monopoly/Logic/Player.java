@@ -75,16 +75,17 @@ public class Player {
 	 * @param id
 	 *            Player
 	 */
-	public Player(String name, PlayerSymbol piece, int balance, BoardBox pos, int id) {
+	public Player(String name, PlayerSymbol piece, int balance, int id) {
 		this.name = name;
 		this.symbol = piece;
 		this.balance = balance;
 		this.inJail = false;
 		this.propertiesOwned = new Vector<Property>();
-		this.pos = pos;
+		this.pos = new GoBox();
 		this.nrOfRolls = 0;
 		this.id = id;
 		this.valuePosittion = pos.getPos();
+		
 	}
 
 	/**

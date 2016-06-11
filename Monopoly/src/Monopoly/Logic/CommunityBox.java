@@ -1,5 +1,6 @@
 package Monopoly.Logic;
 
+import java.awt.image.BufferedImage;
 import java.util.*;
 
 /**
@@ -10,9 +11,10 @@ public class CommunityBox extends BoardBox {
 	/**
 	 * Default constructor
 	 */
-	public CommunityBox(int pos) {
+	public CommunityBox(int pos, BufferedImage image) {
 		this.pos = pos;
 		this.name = "Community Box";
+		this.image = image;
 	}
 
 }

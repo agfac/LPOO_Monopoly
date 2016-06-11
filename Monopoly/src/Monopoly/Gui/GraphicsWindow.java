@@ -51,7 +51,6 @@ public class GraphicsWindow extends ImagesLoad {
 
 		panel_1 = new InfoPanel(game);
 
-		System.out.println("x ini-> " + (int) 2 * (frame.getWidth() / 3));
 		panel_1.setBounds((int) 2 * (frame.getWidth() / 3), 0, (int) (frame.getWidth() / 3), frame.getHeight() - 40);
 		panel_1.setBorder(BorderFactory.createLineBorder(Color.black));
 		frame.getContentPane().add(panel_1, BorderLayout.EAST);
