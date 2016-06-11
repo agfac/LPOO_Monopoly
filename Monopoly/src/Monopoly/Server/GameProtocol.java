@@ -308,8 +308,8 @@ public class GameProtocol {
 					theOutput = "It is not your turn";
 			break;
 			
-			case "Which picture may I show?":
-				
+			case "1;Which picture may I show?":
+				if(players.get(0).getId()==currentPlayer.getId()){
 				if ((currentPosition == finalPosition) && !positionSold){
 					theOutput = ""+currentPlayer.getId()+";"+"Do you want to buy this property?";
 					state=BUYINGPROPERTY;
@@ -339,7 +339,107 @@ public class GameProtocol {
 					theOutput = ""+currentPosition;
 					break;
 				}
-				
+				}
+				break;
+			case "2;Which picture may I show?":
+				if(players.get(1).getId()==currentPlayer.getId()){
+				if ((currentPosition == finalPosition) && !positionSold){
+					theOutput = ""+currentPlayer.getId()+";"+"Do you want to buy this property?";
+					state=BUYINGPROPERTY;
+					break;
+				}else if((currentPosition == finalPosition) && positionSold){
+					if ( currentPlayer.getPos() instanceof ChanceBox || currentPlayer.getPos() instanceof CommunityBox || currentPlayer.getPos() instanceof GoJailBox){
+						game.checkSpecialBoardBox(game.getCurrentPlayer());
+						currentPosition = currentPlayer.getValuePosition();
+						finalPosition = currentPlayer.getPos().getPos();
+						theOutput = ""+currentPosition;
+						if ( currentPlayer.getCellsToMove() == 0){
+							game.updateCurrentPlayer();
+							theOutput="Next Player";
+							state = READYTOPLAY;
+						}
+						break;
+					}else{
+						theOutput = ""+currentPosition;
+						state = PAYBILL;
+						break;
+					}
+//					game.checkSpecialBoardBox(game.getCurrentPlayer());
+					//theOutput="Next Player";
+					//state=READYTOPLAY;
+				}
+				else{
+					theOutput = ""+currentPosition;
+					break;
+				}
+				}
+				break;
+			case "3;Which picture may I show?":
+				if(players.get(2).getId()==currentPlayer.getId()){
+				if ((currentPosition == finalPosition) && !positionSold){
+					theOutput = ""+currentPlayer.getId()+";"+"Do you want to buy this property?";
+					state=BUYINGPROPERTY;
+					break;
+				}else if((currentPosition == finalPosition) && positionSold){
+					if ( currentPlayer.getPos() instanceof ChanceBox || currentPlayer.getPos() instanceof CommunityBox || currentPlayer.getPos() instanceof GoJailBox){
+						game.checkSpecialBoardBox(game.getCurrentPlayer());
+						currentPosition = currentPlayer.getValuePosition();
+						finalPosition = currentPlayer.getPos().getPos();
+						theOutput = ""+currentPosition;
+						if ( currentPlayer.getCellsToMove() == 0){
+							game.updateCurrentPlayer();
+							theOutput="Next Player";
+							state = READYTOPLAY;
+						}
+						break;
+					}else{
+						theOutput = ""+currentPosition;
+						state = PAYBILL;
+						break;
+					}
+//					game.checkSpecialBoardBox(game.getCurrentPlayer());
+					//theOutput="Next Player";
+					//state=READYTOPLAY;
+				}
+				else{
+					theOutput = ""+currentPosition;
+					break;
+				}
+				}
+				break;
+			case "4;Which picture may I show?":
+				if(players.get(3).getId()==currentPlayer.getId()){
+				if ((currentPosition == finalPosition) && !positionSold){
+					theOutput = ""+currentPlayer.getId()+";"+"Do you want to buy this property?";
+					state=BUYINGPROPERTY;
+					break;
+				}else if((currentPosition == finalPosition) && positionSold){
+					if ( currentPlayer.getPos() instanceof ChanceBox || currentPlayer.getPos() instanceof CommunityBox || currentPlayer.getPos() instanceof GoJailBox){
+						game.checkSpecialBoardBox(game.getCurrentPlayer());
+						currentPosition = currentPlayer.getValuePosition();
+						finalPosition = currentPlayer.getPos().getPos();
+						theOutput = ""+currentPosition;
+						if ( currentPlayer.getCellsToMove() == 0){
+							game.updateCurrentPlayer();
+							theOutput="Next Player";
+							state = READYTOPLAY;
+						}
+						break;
+					}else{
+						theOutput = ""+currentPosition;
+						state = PAYBILL;
+						break;
+					}
+//					game.checkSpecialBoardBox(game.getCurrentPlayer());
+					//theOutput="Next Player";
+					//state=READYTOPLAY;
+				}
+				else{
+					theOutput = ""+currentPosition;
+					break;
+				}
+				}
+				break;
 			case "Manage activity":
 				state = MANAGEACTIVITY;
 				break;
@@ -410,9 +510,30 @@ public class GameProtocol {
 				if(!(players.get(3).getId()==currentPlayer.getId()))
 					theOutput = "It is not your turn";
 			break;
-			
-			case "Which picture may I show?":
+				
+			case "1;Which picture may I show?":
+				if((players.get(0).getId()==currentPlayer.getId())){
 				theOutput = ""+currentPosition;
+				break;
+				}
+				break;
+			case "2;Which picture may I show?":
+				if((players.get(1).getId()==currentPlayer.getId())){
+				theOutput = ""+currentPosition;
+				break;
+				}
+				break;
+			case "3;Which picture may I show?":
+				if((players.get(2).getId()==currentPlayer.getId())){
+				theOutput = ""+currentPosition;
+				break;
+				}
+				break;
+			case "4;Which picture may I show?":
+				if((players.get(3).getId()==currentPlayer.getId())){
+				theOutput = ""+currentPosition;
+				break;
+				}
 				break;
 			}
 			break;
