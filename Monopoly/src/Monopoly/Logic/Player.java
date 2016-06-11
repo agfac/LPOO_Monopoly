@@ -273,7 +273,7 @@ public class Player {
 	public int getValuePosition() {
 		return valuePosittion;
 	}
-
+ 
 	/**
 	 * Update BoardBox position value
 	 * 
