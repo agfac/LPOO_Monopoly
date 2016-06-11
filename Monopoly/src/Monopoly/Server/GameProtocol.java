@@ -407,6 +407,10 @@ public class GameProtocol {
 				if(!(players.get(3).getId()==currentPlayer.getId()))
 					theOutput = "It is not your turn";
 			break;
+			
+			case "Which picture may I show?":
+				theOutput = ""+currentPosition;
+				break;
 			}
 			break;
 			
