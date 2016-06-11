@@ -72,12 +72,13 @@ public class GamePanel extends ImagesLoad implements ActionListener {
 		
 				showPropertiesHousesAndHotels(g, p);
 
-				if (game.getCommunityOption() != null){// && game.getTimeToShowCoomunityCard()) {
-					teste(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), "community");
+				if (game.getChanceOption() != null && game.getTimeToShowChanceCard() != 0) {
+					g.drawImage(game.getBoard().getChanceCard(game.getChanceOption()).getImage(), 170, 135, 400+175, 200+158, 0, 0, game.getBoard().getChanceCard(game.getChanceOption()).getImage().getWidth(), game.getBoard().getChanceCard(game.getChanceOption()).getImage().getHeight(), null);
+					game.decTimeToShowChanceCard();
 				}
-				if (game.getCommunityOption() != null) {
-				//	teste(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), "community");
-
+				if (game.getCommunityOption() != null && game.getTimeToShowCommunityCard() != 0) {
+					g.drawImage(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), 713, 685, 400+713, 200+685, 0, 0, game.getBoard().getCommunityCard(game.getCommunityOption()).getImage().getWidth(), game.getBoard().getCommunityCard(game.getCommunityOption()).getImage().getHeight(), null);
+					game.decTimeToShowCommunityCard();
 				}
 			}
 			if (game.getCurrentPlayer().getDicesValue() != 0 && !game.getCurrentPlayer().getInJail() && game.getCurrentPlayer().getCellsToMove() != 0) {

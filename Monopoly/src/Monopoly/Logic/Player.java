@@ -49,6 +49,8 @@ public class Player {
 	private int xPosDownE = 1210;
 	private int yPosUpE = 125;
 	private int yPosDownE = 170;
+	
+	private String direction = "forward";
 	// -----------------------------
 
 	
@@ -97,8 +99,12 @@ public class Player {
 		int x = this.getPosition().getX();
 		int y = this.getPosition().getY();
 		// SOUTH
-		if (this.getValuePosition() >= 0 && this.getValuePosition() < 10)
-			x -= deltaX;
+		if (this.getValuePosition() >= 0 && this.getValuePosition() < 10){
+			if (direction == "forward")
+				x -= deltaX;
+			else
+				x += deltaX;
+		}	
 		// WEST
 		if (this.getValuePosition() == 10) {
 			if (id == 1) {
@@ -118,10 +124,33 @@ public class Player {
 				y = yPosDownW;
 			}
 		}
-		if (this.getValuePosition() > 10 && this.getValuePosition() < 20)
-			y -= deltaY;
+		if (this.getValuePosition() > 10 && this.getValuePosition() < 20){
+			if (direction == "forward")
+				y -= deltaY;
+			else
+				y += deltaY;
+		}
+		//BACK WEST
+		if(this.getValuePosition() == 20 && direction == "back"){
+			if (id == 1) {
+				x = xPosUpW;
+				y = yPosUpW-(8*deltaY);
+			}
+			if (id == 2) {
+				x = xPosUpW;
+				y = yPosDownW-(8*deltaY);
+			}
+			if (id == 3) {
+				x = xPosDownW;
+				y = yPosUpW-(8*deltaY);
+			}
+			if (id == 4) {
+				x = xPosDownW;
+				y = yPosDownW-(10*deltaY);
+			}
+		}
 		// NORTH
-		if (this.getValuePosition() == 20) {
+		if (this.getValuePosition() == 20 && !(direction == "back")) {
 			if (id == 1) {
 				x = xPosUpN;
 				y = yPosUpN;
@@ -139,8 +168,12 @@ public class Player {
 				y = yPosDownN;
 			}
 		}
-		if (this.getValuePosition() > 20 && this.getValuePosition() < 30)
-			x += deltaX;
+		if (this.getValuePosition() > 20 && this.getValuePosition() < 30){
+			if (direction == "forward")
+				x += deltaX;
+			else
+				x -= deltaX;
+		}
 		// EAST
 		if (this.getValuePosition() == 30) {
 			if (id == 1) {
@@ -160,9 +193,14 @@ public class Player {
 				y = yPosDownE;
 			}
 		}
-		if (this.getValuePosition() > 30 && this.getValuePosition() < 39)
-			y += deltaY;
-
+		if (this.getValuePosition() > 30 && this.getValuePosition() < 39){
+			if (direction == "forward")
+				y += deltaY;
+			else
+				y -= deltaY;
+		}
+		
+		
 		if (this.getValuePosition() == 39) {
 			if (id == 1) {
 				x = xPosUpS;
@@ -181,10 +219,11 @@ public class Player {
 				y = yPosDownS;
 			}
 			this.setValuePosition(0);
-		} else {
-			this.setValuePosition(this.getValuePosition() + 1);
-
-		}
+		} else if (direction == "forward")
+				this.setValuePosition(this.getValuePosition() + 1);
+			else
+				this.setValuePosition(this.getValuePosition() - 1);
+		
 		this.setPosition(x, y);
 	}
 
@@ -531,5 +570,8 @@ public class Player {
 	public void setMensage(String mensage) {
 		this.mensage = mensage;
 	}
-
+	
+	public void setDirection(String s){
+		direction = s;
+	}
 }
