@@ -248,6 +248,22 @@ public class GameProtocol {
 				game.updateGame(currentPlayer);
 				state = PLAYING;
 				break;
+				
+			case "Manage activity":
+				theOutput="Properties:";
+				for(Property p:currentPlayer.getPropertiesOwned()){
+					if(!(p.equals(currentPlayer.getPropertiesOwned().lastElement()))){
+						theOutput+=p.getName();
+						theOutput+=";";
+					}
+					else{
+						theOutput=p.getName();
+						theOutput+=".";
+					}
+						
+				}
+				state = MANAGEACTIVITY;
+				break;
 		}
 			
 			break;
@@ -442,9 +458,7 @@ public class GameProtocol {
 				}
 				}
 				break;
-			case "Manage activity":
-				state = MANAGEACTIVITY;
-				break;
+			
 			}
 			break;
 		case PAYBILL:
