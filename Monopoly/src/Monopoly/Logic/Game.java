@@ -482,7 +482,6 @@ public class Game {
 		// Generate the random Chance card to be choose
 		Random r = new Random();
 		option = r.nextInt(15) + 1;
-
 		chanceOption = option;
 		switch (option) {
 		case 1:
@@ -591,7 +590,6 @@ public class Game {
 		// Generate the random Community card to be choose
 		Random r = new Random();
 		option = r.nextInt(16) + 1;
-
 		communityOption = option;
 		switch (option) {
 		case 1:
