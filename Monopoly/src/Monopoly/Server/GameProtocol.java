@@ -348,7 +348,7 @@ public class GameProtocol {
 			break;
 		case BUYINGPROPERTY:
 			//theOutput = "Do you want to buy this property?";
-			
+			theOutput = ""+currentPosition;
 			System.out.println("theInput-> " + theInput);
 			switch(theInput){
 			case "Yes":
