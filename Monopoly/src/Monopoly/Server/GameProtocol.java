@@ -322,6 +322,7 @@ public class GameProtocol {
 						theOutput = ""+currentPosition;
 						if ( currentPlayer.getCellsToMove() == 0){
 							game.updateCurrentPlayer();
+							theOutput="Next Player";
 							state = READYTOPLAY;
 						}
 						break;
@@ -352,7 +353,7 @@ public class GameProtocol {
 			break;
 		case BUYINGPROPERTY:
 			//theOutput = "Do you want to buy this property?";
-			theOutput = ""+currentPosition;
+			//theOutput = ""+currentPosition;
 			System.out.println("theInput-> " + theInput);
 			switch(theInput){
 			case "Yes":
