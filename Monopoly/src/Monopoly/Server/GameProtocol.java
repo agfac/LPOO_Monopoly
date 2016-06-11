@@ -311,7 +311,7 @@ public class GameProtocol {
 			case "Which picture may I show?":
 				
 				if ((currentPosition == finalPosition) && !positionSold){
-					theOutput = "Do you want to buy this property?";
+					theOutput = ""+currentPlayer.getId()+";"+"Do you want to buy this property?";
 					state=BUYINGPROPERTY;
 					break;
 				}else if((currentPosition == finalPosition) && positionSold){
