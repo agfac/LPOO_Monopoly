@@ -53,9 +53,9 @@ public class InfoPanel extends ImagesLoad implements ActionListener {
 
 			int propertySize = 132;
 			int xi = 100;
-			int yi = 10;
+			int yi = 60;//10;
 			int xf = xi + propertySize;
-			int yf = 70;
+			int yf = 130;//70;
 			for (Player p : game.getPlayers()) {
 				g.drawImage(p.getSymbol().getPiece(), 0, yIn, 90, yIn + 90, 0, 0, p.getSymbol().getPiece().getWidth(),
 						p.getSymbol().getPiece().getHeight(), null);
@@ -66,8 +66,9 @@ public class InfoPanel extends ImagesLoad implements ActionListener {
 				g2d.drawString(p.getName(), 10, yIn + 90 + 20);
 				g2d.drawString(String.valueOf(p.getBalance()), 10, yIn + 90 + 40);
 				g2d.drawString("Dice Value: " + String.valueOf(p.getDicesValue()), 10, yIn + 90 + 60);
-				g2d.drawString(p.getPos().getName(), 10, yIn + 90 + 80);
-
+				g2d.drawString(p.getPos().getName(), xi, yIn + 20);
+				//if(!p.getMensage().equals(""))
+					g2d.drawString(p.getMensage(), xi, yIn + 40);
 				// TODO
 				int yAuxI = yi;
 				int yAuxF = yf;

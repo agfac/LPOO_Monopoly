@@ -24,6 +24,8 @@ public class Player {
 	private int cellsToMove = 0;
 	private Position position = new Position();
 	private int valuePosittion;
+	private String mensage = "";
+	
 	// Players Initial Positions GUI
 	private int deltaX = 105;
 	private int deltaY = 81;
@@ -520,6 +522,14 @@ public class Player {
 	 */
 	public void setDicesValue(int dicesValue) {
 		this.dicesValue = dicesValue;
+	}
+	
+	public String getMensage() {
+		return mensage;
+	}
+
+	public void setMensage(String mensage) {
+		this.mensage = mensage;
 	}
 
 }
