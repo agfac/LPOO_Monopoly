@@ -202,7 +202,7 @@ public class GameProtocol {
 				Integer playerInteger = Integer.parseInt(playerId);
 				
 				if(players.get(0).getId()==currentPlayer.getId())
-					theOutput = "It is your turn";
+					theOutput = "1;It is your turn";
 				else
 					theOutput = "It is not your turn";
 			break;
@@ -214,7 +214,7 @@ public class GameProtocol {
 				Integer playerInteger2 = Integer.parseInt(playerId2);
 				
 				if(players.get(1).getId()==currentPlayer.getId())
-					theOutput = "It is your turn";
+					theOutput = "2;It is your turn";
 				else
 					theOutput = "It is not your turn";
 			break;
@@ -226,7 +226,7 @@ public class GameProtocol {
 				Integer playerInteger3 = Integer.parseInt(playerId3);
 				
 				if(players.get(2).getId()==currentPlayer.getId())
-					theOutput = "It is your turn";
+					theOutput = "3;It is your turn";
 				else
 					theOutput = "It is not your turn";
 			break;
@@ -238,7 +238,7 @@ public class GameProtocol {
 				Integer playerInteger4 = Integer.parseInt(playerId4);
 				
 				if(players.get(3).getId()==currentPlayer.getId())
-					theOutput = "It is your turn";
+					theOutput = "4;It is your turn";
 				else
 					theOutput = "It is not your turn";
 			break;
@@ -267,7 +267,7 @@ public class GameProtocol {
 				Integer playerInteger = Integer.parseInt(playerId);
 				
 				if(players.get(0).getId()==currentPlayer.getId())
-					theOutput = "It is your turn";
+					theOutput = "1;It is your turn";
 				else
 					theOutput = "It is not your turn";
 			break;
@@ -279,7 +279,7 @@ public class GameProtocol {
 				Integer playerInteger2 = Integer.parseInt(playerId2);
 				
 				if(players.get(1).getId()==currentPlayer.getId())
-					theOutput = "It is your turn";
+					theOutput = "2;It is your turn";
 				else
 					theOutput = "It is not your turn";
 			break;
@@ -291,7 +291,7 @@ public class GameProtocol {
 				Integer playerInteger3 = Integer.parseInt(playerId3);
 				
 				if(players.get(2).getId()==currentPlayer.getId())
-					theOutput = "It is your turn";
+					theOutput = "3;It is your turn";
 				else
 					theOutput = "It is not your turn";
 			break;
@@ -303,14 +303,15 @@ public class GameProtocol {
 				Integer playerInteger4 = Integer.parseInt(playerId4);
 				
 				if(players.get(3).getId()==currentPlayer.getId())
-					theOutput = "It is your turn";
+					theOutput = "4;It is your turn";
 				else
 					theOutput = "It is not your turn";
 			break;
 			
 			case "Which picture may I show?":
-				theOutput = ""+currentPosition;
+				
 				if ((currentPosition == finalPosition) && !positionSold){
+					theOutput = ""+currentPosition;
 					state=BUYINGPROPERTY;
 					break;
 				}else if((currentPosition == finalPosition) && positionSold){
@@ -318,14 +319,22 @@ public class GameProtocol {
 						game.checkSpecialBoardBox(game.getCurrentPlayer());
 						currentPosition = currentPlayer.getValuePosition();
 						finalPosition = currentPlayer.getPos().getPos();
-					}else
+						theOutput = ""+currentPosition;
+					}else{
+						theOutput = ""+currentPosition;
 						state = PAYBILL;
+						break;
+					}
 //					game.checkSpecialBoardBox(game.getCurrentPlayer());
 					//theOutput="Next Player";
 					//state=READYTOPLAY;
 					break;
 				}
-				break;
+				else{
+					theOutput = ""+currentPosition;
+					break;
+				}
+				
 			case "Manage activity":
 				state = MANAGEACTIVITY;
 				break;
@@ -338,9 +347,11 @@ public class GameProtocol {
 			state=READYTOPLAY;
 			break;
 		case BUYINGPROPERTY:
-			theOutput = "Do you want to buy this property?";
 			System.out.println("theInput-> " + theInput);
 			switch(theInput){
+			case"BuyingActivty":
+				theOutput="Do you want to buy this property?";
+				break;
 			case "Yes":
 				game.setBuyPropertyOption("yes");
 				game.buyProperty(currentPlayer);
@@ -348,12 +359,53 @@ public class GameProtocol {
 				game.updateCurrentPlayer();
 				state=READYTOPLAY;
 				break;
+				
 			case "No":
 				game.setBuyPropertyOption("no");
 				game.updateCurrentPlayer();
 				theOutput="Not bought";
 				state=READYTOPLAY;
 				break;
+				
+			case "1;Is it my turn?":
+				String[] question = theInput.split(";");
+				String playerId = question[0];
+				
+				Integer playerInteger = Integer.parseInt(playerId);
+				
+				if(!(players.get(0).getId()==currentPlayer.getId()))
+					theOutput = "It is not your turn";
+			break;
+				
+			case "2;Is it my turn?":
+				String[] question2 = theInput.split(";");
+				String playerId2 = question2[0];
+				
+				Integer playerInteger2 = Integer.parseInt(playerId2);
+				
+				if(!(players.get(1).getId()==currentPlayer.getId()))
+					theOutput = "It is not your turn";
+			break;
+			
+			case "3;Is it my turn?":
+				String[] question3 = theInput.split(";");
+				String playerId3 = question3[0];
+				
+				Integer playerInteger3 = Integer.parseInt(playerId3);
+				
+				if(!(players.get(2).getId()==currentPlayer.getId()))
+					theOutput = "It is not your turn";
+			break;
+			
+			case "4;Is it my turn?":
+				String[] question4 = theInput.split(";");
+				String playerId4 = question4[0];
+				
+				Integer playerInteger4 = Integer.parseInt(playerId4);
+				
+				if(!(players.get(3).getId()==currentPlayer.getId()))
+					theOutput = "It is not your turn";
+			break;
 			}
 			break;
 			
