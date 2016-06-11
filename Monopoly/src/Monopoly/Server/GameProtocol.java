@@ -348,7 +348,7 @@ public class GameProtocol {
 			break;
 		case BUYINGPROPERTY:
 			//theOutput = "Do you want to buy this property?";
-			theOutput = ""+currentPosition;
+			
 			System.out.println("theInput-> " + theInput);
 			switch(theInput){
 			case "Yes":
@@ -405,6 +405,10 @@ public class GameProtocol {
 				if(!(players.get(3).getId()==currentPlayer.getId()))
 					theOutput = "It is not your turn";
 			break;
+			
+			case "Which picture may I show?":
+				theOutput = ""+currentPosition;
+				break;
 			}
 			break;
 			
