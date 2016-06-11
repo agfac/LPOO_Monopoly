@@ -22,7 +22,8 @@ public class Game {
 	private Integer chanceOption = null;
 	private Integer communityOption = null;
 	private String buyPropertyOption = null;
-
+	private int timeToShowChanceCard = 0;
+	private int timeToShowCommunityCard = 0;
 	private Player currentPlayer;
 
 	/**

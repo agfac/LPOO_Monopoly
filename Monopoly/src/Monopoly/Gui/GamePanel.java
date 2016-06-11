@@ -72,11 +72,11 @@ public class GamePanel extends ImagesLoad implements ActionListener {
 		
 				showPropertiesHousesAndHotels(g, p);
 
-				if (game.getChanceOption() != null) {
+				if (game.getChanceOption() != null){// && game.getTimeToShowChanceCard()) {
 					teste(game.getBoard().getChanceCard(game.getChanceOption()).getImage(), "chance"); // x->171
 																										// y->133
 				}
-				if (game.getCommunityOption() != null) {
+				if (game.getCommunityOption() != null){// && game.getTimeToShowCoomunityCard()) {
 					teste(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), "community");
 				}
 			}
