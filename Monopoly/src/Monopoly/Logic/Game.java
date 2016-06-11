@@ -172,12 +172,12 @@ public class Game {
 	public void updatePlayer(Player player) {
 		chanceOption = null;
 		communityOption = null;
+		player.setMensage("");
 		int totalDiceValue, atualPlayerPos, dif;
-
+		
 		// Store the value of 2 rolled dices
 		totalDiceValue = get2RollDices(dice1, dice2);
-
-
+		
 		player.setDicesValue(totalDiceValue);
 
 		// Update number of tries from player, if get 3 times goes to jail.
