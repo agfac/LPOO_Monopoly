@@ -104,13 +104,13 @@ public class GamePanel extends ImagesLoad implements ActionListener {
 					game.getCurrentPlayer().setCellsToMove(game.getCurrentPlayer().getCellsToMove() - 1);
 
 				} 
-				else {
-					if (((game.getCurrentPlayer().getPos().getPos() == 2 || game.getCurrentPlayer().getPos().getPos() == 17 || game.getCurrentPlayer().getPos().getPos() == 33)
-							&& game.getCommunityOption() == null)
-							|| ((game.getCurrentPlayer().getPos().getPos() == 7 || game.getCurrentPlayer().getPos().getPos() == 22 || game.getCurrentPlayer().getPos().getPos() == 36)
-									&& game.getChanceOption() == null))
-						game.checkSpecialBoardBox(game.getCurrentPlayer());
-				}
+//				else {
+//					if (((game.getCurrentPlayer().getPos().getPos() == 2 || game.getCurrentPlayer().getPos().getPos() == 17 || game.getCurrentPlayer().getPos().getPos() == 33)
+//							&& game.getCommunityOption() == null)
+//							|| ((game.getCurrentPlayer().getPos().getPos() == 7 || game.getCurrentPlayer().getPos().getPos() == 22 || game.getCurrentPlayer().getPos().getPos() == 36)
+//									&& game.getChanceOption() == null))
+//						game.checkSpecialBoardBox(game.getCurrentPlayer());
+//				}
 			repaint();
 		}
 	}
