@@ -13,53 +13,41 @@ public class Game {
 
 	private final int JAILVALUE = 500;
 	private final int GOVALUE = 2000;
-	
+
 	private Dice dice1;
 	private Dice dice2;
 	private Board board;
 	private Vector<Player> players;
-	
+
 	private Integer chanceOption = null;
 	private Integer communityOption = null;
+	private String buyPropertyOption = null;
 
-	// TODO APENAS PARA TESTE APAGAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
-	private PlayerSymbol dog;
-	private PlayerSymbol car;
-	private PlayerSymbol ship;
-	private PlayerSymbol boot;
-	private PlayerSymbol hat;
-	private PlayerSymbol iron;
-	private PlayerSymbol thimble;
-	private PlayerSymbol wheelbarrow;
-	protected static BufferedImage dogPiece;
-	protected static BufferedImage carPiece;
-	protected static BufferedImage shipPiece;
-	protected static BufferedImage bootPiece;
-	protected static BufferedImage hatPiece;
-	protected static BufferedImage ironPiece;
-	protected static BufferedImage thimblePiece;
-	protected static BufferedImage wheelbarrowPiece;
-	
-	public Game() {
-		players = new Vector<Player>();
+	private Player currentPlayer;
 
-		board = new Board();
-		dice1 = new Dice();
-		dice2 = new Dice();
-	}
-
-	// FIM CODIGO TESTES-------------------------------------------------------
-
-	
 	/**
 	 * Constructor of game
-	 * @param players vector
+	 * 
+	 * @param players
+	 *            vector
 	 */
 	public Game(Vector<Player> players) {
 		this.players = players;
 		board = new Board();
 		dice1 = new Dice();
 		dice2 = new Dice();
+	}
+
+	public void updateCurrentPlayer() {
+		int aux = players.indexOf(currentPlayer);
+		if (aux == players.size() - 1)
+			currentPlayer = players.get(0);
+		else
+			currentPlayer = players.get(aux + 1);
+	}
+
+	public Player getCurrentPlayer() {
+		return currentPlayer;
 	}
 
 	/**
@@ -69,6 +57,22 @@ public class Game {
 	 */
 	public Vector<Player> getPlayers() {
 		return players;
+	}
+
+	public void setPlayers(Vector<Player> players) {
+		this.players = players;
+
+		Random generator = new Random();
+		int randomInt = generator.nextInt(players.size());
+		this.currentPlayer = players.get(randomInt);
+	}
+
+	public void setBuyPropertyOption(String buyPropertyOption) {
+		this.buyPropertyOption = buyPropertyOption;
+	}
+
+	public String getBuyPropertyOption() {
+		return buyPropertyOption;
 	}
 
 	/**
@@ -134,15 +138,20 @@ public class Game {
 
 	/**
 	 * Check if player is on a special boardBox
+	 * 
 	 * @param player
 	 */
 	public void checkSpecialBoardBox(Player player) {
-		if ((player.getPos() == board.getBoardBox(7)) || (player.getPos() == board.getBoardBox(22) || (player.getPos() == board.getBoardBox(36))) && chanceOption == null) {
+		if ((player.getPos() == board.getBoardBox(7))
+				|| (player.getPos() == board.getBoardBox(22) || (player.getPos() == board.getBoardBox(36)))
+						&& chanceOption == null) {
 			System.out.println("CHANCE BOX");
 			gerateChance(player);
 		}
 
-		if ((player.getPos() == board.getBoardBox(2)) || (player.getPos() == board.getBoardBox(17) || (player.getPos() == board.getBoardBox(33))) && communityOption == null) {
+		if ((player.getPos() == board.getBoardBox(2))
+				|| (player.getPos() == board.getBoardBox(17) || (player.getPos() == board.getBoardBox(33)))
+						&& communityOption == null) {
 			System.out.println("COMMUNITY BOX");
 			gerateCommunity(player);
 		}
@@ -167,6 +176,7 @@ public class Game {
 		// Store the value of 2 rolled dices
 		totalDiceValue = get2RollDices(dice1, dice2);
 
+		totalDiceValue = 9;
 		player.setDicesValue(totalDiceValue);
 
 		// Update number of tries from player, if get 3 times goes to jail.
@@ -203,8 +213,11 @@ public class Game {
 
 	/**
 	 * Method to update payer on graphic window
-	 * @param player to be moved
-	 * @param moveValeu to be moved
+	 * 
+	 * @param player
+	 *            to be moved
+	 * @param moveValeu
+	 *            to be moved
 	 */
 	public void movePlayerGUI(Player player, int moveValeu) {
 		player.setCellsToMove(moveValeu);
@@ -265,7 +278,7 @@ public class Game {
 		} else {
 			player.setInJail(true);
 			movePlayerGUI(player, calcCellToMove(player, 10));
-			//player.muitoAldrabado();
+			// player.muitoAldrabado();
 			player.setPos(board.getBoardBox(10));
 			player.setNrOfRolls(false); // Reset number of rolls
 			System.out.println("You go to jail!!!");
@@ -274,8 +287,11 @@ public class Game {
 
 	/**
 	 * Method to determinate how many boarbox (Positions) need to move a player
-	 * @param player to be moved
-	 * @param destinationPos to be moved
+	 * 
+	 * @param player
+	 *            to be moved
+	 * @param destinationPos
+	 *            to be moved
 	 * @return number of boarbox (Positions) to move a player
 	 */
 	public int calcCellToMove(Player player, int destinationPos) {
@@ -295,21 +311,13 @@ public class Game {
 	public void buyProperty(Player player) {
 		BoardBox boardToBuy = player.getPos();
 
-		Scanner s = new Scanner(System.in);
-		char option;
 		if ((boardToBuy instanceof Property)) {
 			if (!((Property) (boardToBuy)).getSold()) {
-				System.out.print("Do you want to buy >" + boardToBuy.getName() + "< Property for a value of: "
-						+ ((Property) (boardToBuy)).getAmount() + " (y or n) >");
-				option = 'y';// TODO s.next().charAt(0);
-				if (option == 'y') {
-					player.buyProperty(((Property) (boardToBuy)), board.getMaxPropertiesPerGroup(((Property) (boardToBuy)).getIdGroup()));
-					} else {
-					// TODO LEILAOO!!!!!!
+				if (buyPropertyOption.equals("yes")) {
+					player.buyProperty(((Property) (boardToBuy)),
+							board.getMaxPropertiesPerGroup(((Property) (boardToBuy)).getIdGroup()));
+					buyPropertyOption = null;
 				}
-			} else if (!player.equals(((Property) (boardToBuy)).getOwner())
-					&& !((Property) (boardToBuy)).getMortgage()) {
-				optimizedPayBill(player, (Property) (boardToBuy));
 			}
 		}
 	}
@@ -322,20 +330,25 @@ public class Game {
 	 * @param property
 	 *            property where player is on
 	 */
-	public void optimizedPayBill(Player player, Property property) {
-		int valueToPay = 0;
-		
-		if (!player.getPropertiesOwned().contains(property) && !property.getMortgage()) {
-			if ((property instanceof NormalProperty))
-				valueToPay = ((NormalProperty) (property)).getValueToPay();
-			if ((property instanceof RailRoadProperty))
-				valueToPay = ((RailRoadProperty) (property)).getValueToPay();
-			if ((property instanceof ServiceProperty))
-				valueToPay = ((ServiceProperty) (property)).getValueToPay(player.getDicesValue());
+	public void optimizedPayBill(Player player, BoardBox property) {
 
-			player.updateBalance(-valueToPay);
-			property.getOwner().updateBalance(valueToPay);
-			System.out.println("WARNING !!!! Value to pay: " + valueToPay);
+		if ((property instanceof Property)) {
+			if (!player.equals(((Property)(property)).getOwner()) && !((Property)(property)).getMortgage()) {
+				int valueToPay = 0;
+
+				if (!player.getPropertiesOwned().contains(property) && !((Property)(property)).getMortgage()) {
+					if ((property instanceof NormalProperty))
+						valueToPay = ((NormalProperty) (property)).getValueToPay();
+					if ((property instanceof RailRoadProperty))
+						valueToPay = ((RailRoadProperty) (property)).getValueToPay();
+					if ((property instanceof ServiceProperty))
+						valueToPay = ((ServiceProperty) (property)).getValueToPay(player.getDicesValue());
+
+					player.updateBalance(-valueToPay);
+					((Property)(property)).getOwner().updateBalance(valueToPay);
+					System.out.println("WARNING !!!! Value to pay: " + valueToPay);
+				}
+			}
 		}
 	}
 
@@ -353,8 +366,11 @@ public class Game {
 
 	/**
 	 * Method to mortgage a property
-	 * @param player to mortgage the property
-	 * @param property to be mortgage
+	 * 
+	 * @param player
+	 *            to mortgage the property
+	 * @param property
+	 *            to be mortgage
 	 */
 	public void mortgage(Player player, Property property) {
 		if (player.equals(property.getOwner()) && !property.getMortgage()) {
@@ -365,8 +381,11 @@ public class Game {
 
 	/**
 	 * Method to 'unmortgage' a property
-	 * @param player to 'unmortgage' the property
-	 * @param property to be 'unmortgage'
+	 * 
+	 * @param player
+	 *            to 'unmortgage' the property
+	 * @param property
+	 *            to be 'unmortgage'
 	 */
 	public void unMortgage(Player player, Property property) {
 		if (player.equals(property.getOwner()) && property.getMortgage()) {
@@ -463,7 +482,7 @@ public class Game {
 		Random r = new Random();
 		option = r.nextInt(15) + 1;
 
-		chanceOption = option; 
+		chanceOption = option;
 		switch (option) {
 		case 1:
 			movePlayerGUI(player, calcCellToMove(player, 0));
@@ -471,50 +490,48 @@ public class Game {
 			player.updateBalance(200);
 			break;
 		case 2:
-			 if (player.getPos().getPos() > 24)
-			 player.updateBalance(200);
-			 movePlayerGUI(player, calcCellToMove(player, 24));
-			 player.setPos(board.getBoardBox(24));
+			if (player.getPos().getPos() > 24)
+				player.updateBalance(200);
+			movePlayerGUI(player, calcCellToMove(player, 24));
+			player.setPos(board.getBoardBox(24));
 			break;
 		case 3:
-			 if (player.getPos().getPos() > 11)
-			 player.updateBalance(200);
-			 movePlayerGUI(player, calcCellToMove(player, 11));
-			 player.setPos(board.getBoardBox(11));
+			if (player.getPos().getPos() > 11)
+				player.updateBalance(200);
+			movePlayerGUI(player, calcCellToMove(player, 11));
+			player.setPos(board.getBoardBox(11));
 			break;
 		case 4:
-			 int aux = 0;
-			 if (player.getPos().getPos() == 7)
-			 aux = 15;
-			 if (player.getPos().getPos() == 22)
-			 aux = 25;
-			 if (player.getPos().getPos() == 36)
-			 aux = 5;
-			 movePlayerGUI(player, calcCellToMove(player, aux));
-			 player.setPos(board.getBoardBox(aux));
-			
-			 // If have owner, player will pay 2 times the value of the rent.
-			 if (((Property) (board.getBoardBox(aux))).getSold())
-			 optimizedPayBill(player, ((Property) (board.getBoardBox(aux))));
+			int aux = 0;
+			if (player.getPos().getPos() == 7)
+				aux = 15;
+			if (player.getPos().getPos() == 22)
+				aux = 25;
+			if (player.getPos().getPos() == 36)
+				aux = 5;
+			movePlayerGUI(player, calcCellToMove(player, aux));
+			player.setPos(board.getBoardBox(aux));
+
+			// If have owner, player will pay 2 times the value of the rent.
+			if (((Property) (board.getBoardBox(aux))).getSold())
+				optimizedPayBill(player, ((Property) (board.getBoardBox(aux))));
 			break;
 		case 5:
-			 int val = 0;
-			 if (player.getPos().getPos() == 7 || player.getPos().getPos() ==
-			 36)
-			 val = 12;
-			 if (player.getPos().getPos() == 22)
-			 val = 28;
-			 movePlayerGUI(player, calcCellToMove(player, val));
-			 player.setPos(board.getBoardBox(val));
-			
-			 // If have owner, player roll dices and pay 10 times the value to
-			 // owner
-			 if (((Property) (board.getBoardBox(val))).getSold()) {
-			 int num = (rollDice(dice1) + rollDice(dice2));
-			 ((Property)
-			 (board.getBoardBox(val))).getOwner().updateBalance(num * 10);
-			 player.updateBalance(-(num * 10));
-			 }
+			int val = 0;
+			if (player.getPos().getPos() == 7 || player.getPos().getPos() == 36)
+				val = 12;
+			if (player.getPos().getPos() == 22)
+				val = 28;
+			movePlayerGUI(player, calcCellToMove(player, val));
+			player.setPos(board.getBoardBox(val));
+
+			// If have owner, player roll dices and pay 10 times the value to
+			// owner
+			if (((Property) (board.getBoardBox(val))).getSold()) {
+				int num = (rollDice(dice1) + rollDice(dice2));
+				((Property) (board.getBoardBox(val))).getOwner().updateBalance(num * 10);
+				player.updateBalance(-(num * 10));
+			}
 
 			break;
 		case 6:
@@ -524,12 +541,11 @@ public class Game {
 			player.updateCardsJail(1);
 			break;
 		case 8:
-			 movePlayerGUI(player, calcCellToMove(player,
-			 (player.getPos().getPos() - 3)));
-			 player.setPos(board.getBoardBox(player.getPos().getPos() - 3));
+			movePlayerGUI(player, calcCellToMove(player, (player.getPos().getPos() - 3)));
+			player.setPos(board.getBoardBox(player.getPos().getPos() - 3));
 			break;
 		case 9:
-			 checkIfPlayerHaveOutOfJailCard(player);
+			checkIfPlayerHaveOutOfJailCard(player);
 			break;
 		case 10:
 			payPerEachHouseAndHotels(player, 25, 100);
@@ -538,14 +554,14 @@ public class Game {
 			player.updateBalance(-15);
 			break;
 		case 12:
-			 if (player.getPos().getPos() > 5)
-			 player.updateBalance(200);
-			 movePlayerGUI(player, calcCellToMove(player, 5));
-			 player.setPos(board.getBoardBox(5));
+			if (player.getPos().getPos() > 5)
+				player.updateBalance(200);
+			movePlayerGUI(player, calcCellToMove(player, 5));
+			player.setPos(board.getBoardBox(5));
 			break;
 		case 13:
-			 movePlayerGUI(player, calcCellToMove(player, 39));
-			 player.setPos(board.getBoardBox(39));
+			movePlayerGUI(player, calcCellToMove(player, 39));
+			player.setPos(board.getBoardBox(39));
 			break;
 		case 14:
 			player.updateBalance(150);
@@ -595,7 +611,7 @@ public class Game {
 			player.updateCardsJail(1);
 			break;
 		case 6:
-			 checkIfPlayerHaveOutOfJailCard(player);
+			checkIfPlayerHaveOutOfJailCard(player);
 			break;
 		case 7:
 			player.updateBalance(20);
@@ -665,15 +681,11 @@ public class Game {
 		else
 			updatePlayer(player);
 
-		infoPlayer(player);
-
-		if (player.getCellsToMove() == 0)
-			buyProperty(player);
-
 	}
-	
+
 	/**
 	 * Get Community card generated
+	 * 
 	 * @return id of community card generated
 	 */
 	public Integer getCommunityOption() {
@@ -686,9 +698,10 @@ public class Game {
 	public void setCommunityOption(Integer communityOption) {
 		this.communityOption = communityOption;
 	}
-	
+
 	/**
 	 * Get Chance card generated
+	 * 
 	 * @return id of chance card generated
 	 */
 	public Integer getChanceOption() {
@@ -701,15 +714,16 @@ public class Game {
 	public void setChanceOption(Integer chanceOption) {
 		this.chanceOption = chanceOption;
 	}
-	
+
 	/**
 	 * Get the board of game
+	 * 
 	 * @return board
 	 */
 	public Board getBoard() {
 		return board;
 	}
-	
+
 	/**
 	 * Print player information
 	 * 
@@ -722,30 +736,5 @@ public class Game {
 		System.out.println("Player Double: " + player.getNrOfRolls());
 		System.out.println("Player in jail: " + player.getInJail());
 		// showProperties(player);
-	}
-
-	public static void main(String[] args) {
-		Game game = new Game();
-		Scanner s = new Scanner(System.in);
-		int option = 1;
-
-		Player player1 = new Player("Pedro", game.dog, 10000, game.board.getBoardBox(0), 1);
-		game.addPlayer(player1);
-
-		Player player2 = new Player("Faby", game.car, 10000, game.board.getBoardBox(0), 2);
-		game.addPlayer(player2);
-
-		while (option != 0) {
-
-			System.out.print("Generate dice " + player1.getName() + " (0 to leave) > ");
-			option = s.nextInt();
-			game.updateGame(player1);
-			System.out.println("====================================");
-			System.out.print("Generate dice " + player2.getName() + " (0 to leave) > ");
-			option = s.nextInt();
-			game.updateGame(player2);
-
-			System.out.println("======================================================================");
-		}
 	}
 }

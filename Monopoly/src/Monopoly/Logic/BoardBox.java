@@ -1,5 +1,6 @@
 package Monopoly.Logic;
 
+import java.awt.image.BufferedImage;
 import java.util.*;
 
 /**
@@ -9,6 +10,8 @@ public class BoardBox {
 
     protected String name;
     protected int pos ;
+    
+    protected BufferedImage image;
 
     /**
      * Default constructor of BoardBox
@@ -42,4 +45,12 @@ public class BoardBox {
         return this.pos;
     }
 
+	/**
+	 * Get boardbox image
+	 * 
+	 * @return property image
+	 */
+	public BufferedImage getImage() {
+		return image;
+	}
 }

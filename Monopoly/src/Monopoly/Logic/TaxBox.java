@@ -1,5 +1,6 @@
 package Monopoly.Logic;
 
+import java.awt.image.BufferedImage;
 import java.util.*;
 
 /**
@@ -11,10 +12,11 @@ public class TaxBox extends BoardBox {
     /**
      * Default constructor
      */
-    public TaxBox(int pos, String name,int taxValue) {
+    public TaxBox(int pos, String name,int taxValue, BufferedImage image) {
     	this.pos = pos;
     	this.name = name;
     	this.taxValue = taxValue;
+		this.image = image;
     }
     
     /**

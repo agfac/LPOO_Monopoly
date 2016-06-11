@@ -22,41 +22,39 @@ import Monopoly.Logic.NormalProperty;
 import Monopoly.Logic.Player;
 import Monopoly.Logic.Property;
 
-public class GamePanel extends ImagesLoad implements MouseListener, KeyListener, ActionListener {
-	Timer timer = new Timer(200, this);
+public class GamePanel extends ImagesLoad implements ActionListener {
+	Timer timer = new Timer(500, this);
 	private int piecesSize = 45;
 	private int houseSize = 20;
 	private int hotelWight = 35;
 	private int deltaX = 105;
 	private int deltaY = 81;
-	
-	//SOUTH
+
+	// SOUTH
 	private int xInHouseS = 1015;
 	private int yInHouseS = 865;
 	private int xInHotelS = 1040;
 	private int yInHotelS = 856;
-	//WEST
+	// WEST
 	private int xInHouseW = 137;
 	private int yInHouseW = 780;
 	private int xInHotelW = 130;
 	private int yInHotelW = 800;
-	//NORTH
+	// NORTH
 	private int xInHouseN = 180;
 	private int yInHouseN = 105;
 	private int xInHotelN = 197;
 	private int yInHotelN = 97;
-	//EAST
+	// EAST
 	private int xInHouseE = 1120;
 	private int yInHouseE = 132;
 	private int xInHotelE = 1113;
 	private int yInHotelE = 156;
-	
+
 	Game game;
 
 	public GamePanel(Game game) {
 		super();
-		this.addKeyListener(this);
-		this.addMouseListener(this); // TODO APAGAR
 		this.game = game;
 		timer.start();
 	}
@@ -64,27 +62,31 @@ public class GamePanel extends ImagesLoad implements MouseListener, KeyListener,
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
+		BufferedImage aux;
 		g.setColor(Color.white);
 		g.drawImage(board, 0, 0, board.getWidth(), board.getHeight(), 0, 0, board.getWidth(), board.getHeight(), null);
+
+		if (game.getPlayers() != null) {
+			for (Player p : game.getPlayers()) {
+				draw(g, p, p.getPosition().getX(), p.getPosition().getY());
 		
-		for (Player p : game.getPlayers()){
-			draw(g, p, p.getPosition().getX(), p.getPosition().getY());
-			
-			if ( (p.getPos() instanceof Property) && p.getDicesValue() !=  0 && !p.getInJail()){
-				g.drawImage(((Property)p.getPos()).getImage(), 524, 340, 754, 648, 0, 0, ((Property)p.getPos()).getImage().getWidth(), ((Property)p.getPos()).getImage().getHeight(), null);
-//				g.drawImage(((Property)p.getPos()).getImage(), 524, 330, 524+((Property)p.getPos()).getImage().getWidth(), 330+((Property)p.getPos()).getImage().getHeight(), 0, 0, ((Property)p.getPos()).getImage().getWidth(), ((Property)p.getPos()).getImage().getHeight(), null);
+				showPropertiesHousesAndHotels(g, p);
+
+				if (game.getChanceOption() != null) {
+					teste(game.getBoard().getChanceCard(game.getChanceOption()).getImage(), "chance"); // x->171
+																										// y->133
+				}
+				if (game.getCommunityOption() != null) {
+					teste(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), "community");
+				}
 			}
-			
-			showPropertiesHousesAndHotels(g, p);
-	
-			if(game.getChanceOption() != null){
-				teste(game.getBoard().getChanceCard(game.getChanceOption()).getImage(), "chance"); //x->171 y->133
-//				game.setChanceOption(null);
+			if (game.getCurrentPlayer().getDicesValue() != 0 && !game.getCurrentPlayer().getInJail() && game.getCurrentPlayer().getCellsToMove() != 0) {
+				aux = game.getBoard().getBoardBox(game.getCurrentPlayer().getValuePosition()).getImage();
+				g.drawImage(aux, 524, 330,524 + aux.getWidth(),330 + aux.getHeight(), 0, 0,aux.getWidth(),aux.getHeight(), null);
 			}
-			if(game.getCommunityOption() != null){
-				teste(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), "community");
-//				game.setCommunityOption(null);
+			else if(game.getCurrentPlayer().getDicesValue() != 0  && game.getCurrentPlayer().getValuePosition() == game.getCurrentPlayer().getPos().getPos()){
+				aux = game.getBoard().getBoardBox(game.getCurrentPlayer().getValuePosition()).getImage();
+				g.drawImage(aux, 524, 330,524 + aux.getWidth(),330 + aux.getHeight(), 0, 0,aux.getWidth(),aux.getHeight(), null);
 			}
 		}
 	}
@@ -93,155 +95,104 @@ public class GamePanel extends ImagesLoad implements MouseListener, KeyListener,
 		g.drawImage(player.getSymbol().getPiece(), x, y, x + piecesSize, y + piecesSize, 0, 0,
 				player.getSymbol().getPiece().getWidth(), player.getSymbol().getPiece().getHeight(), null);
 	}
-	
-	public void actionPerformed(ActionEvent ev) {
-		if (ev.getSource() == timer) {
-			for (Player p : game.getPlayers()) {
-				if (p.getCellsToMove() != 0) { // && !p.getInJail()
-					p.updateGUIPosition();
-					p.setCellsToMove(p.getCellsToMove() - 1);
-					System.out.println("p.getCellsToMove()" + p.getCellsToMove());
-					
-					repaint();
-					// }
-				} else{
-					// game.updateGame(p);
-					//fazer pequena pausa
-					if ( ((p.getPos().getPos() == 2 ||  p.getPos().getPos() == 17  || p.getPos().getPos() == 33) && game.getCommunityOption()== null) 
-							|| ((p.getPos().getPos() == 7 ||  p.getPos().getPos() == 22  || p.getPos().getPos() == 36) && game.getChanceOption()== null)  ) 
-						game.checkSpecialBoardBox(p);
-					game.buyProperty(p);
-					repaint();
-					continue;
-				}
-			}
 
+	public void actionPerformed(ActionEvent ev) {
+		if (ev.getSource() == timer && game.getPlayers() != null) {
+			
+				if (game.getCurrentPlayer().getCellsToMove() != 0) { // && !p.getInJail()
+					game.getCurrentPlayer().updateGUIPosition();
+					game.getCurrentPlayer().setCellsToMove(game.getCurrentPlayer().getCellsToMove() - 1);
+
+				} 
+				else {
+					if (((game.getCurrentPlayer().getPos().getPos() == 2 || game.getCurrentPlayer().getPos().getPos() == 17 || game.getCurrentPlayer().getPos().getPos() == 33)
+							&& game.getCommunityOption() == null)
+							|| ((game.getCurrentPlayer().getPos().getPos() == 7 || game.getCurrentPlayer().getPos().getPos() == 22 || game.getCurrentPlayer().getPos().getPos() == 36)
+									&& game.getChanceOption() == null))
+						game.checkSpecialBoardBox(game.getCurrentPlayer());
+				}
+			repaint();
 		}
 	}
 
-	public void teste(BufferedImage image, String cardTipe){
+	public void teste(BufferedImage image, String cardTipe) {
 		JDialog dialog = new JDialog();
-		dialog.setPreferredSize(new Dimension(400,200));
+		dialog.setPreferredSize(new Dimension(400, 200));
 		dialog.setUndecorated(true);
 		if (cardTipe == "chance")
 			dialog.setBounds(175, 158, 400, 200);
 		else
 			dialog.setBounds(713, 685, 400, 200);
 		JLabel picLabel = new JLabel(new ImageIcon(image));
-//		JOptionPane.showMessageDialog(null, picLabel, "About", JOptionPane.PLAIN_MESSAGE, null);
-		dialog.add( picLabel );
+		// JOptionPane.showMessageDialog(null, picLabel, "About",
+		// JOptionPane.PLAIN_MESSAGE, null);
+		dialog.add(picLabel);
 		dialog.pack();
 		dialog.setVisible(true);
+
 	}
-	public void showPropertiesHousesAndHotels(Graphics g, Player p){
-		for(Property pro: p.getPropertiesOwned()){
-			//TODO apagar depoie dos teste
-			if ( (pro instanceof NormalProperty)){
-				((NormalProperty)pro).setHouseN(4);
-				((NormalProperty)pro).setHotelN(1);
+
+	public void showPropertiesHousesAndHotels(Graphics g, Player p) {
+		for (Property pro : p.getPropertiesOwned()) {
+			int aux = ((pro.getPos() - 1) * deltaX); // SOUTH
+			int aux2 = ((pro.getPos() - 11) * deltaY); // WEST
+			int aux3 = ((pro.getPos() - 21) * deltaX); // NORTH
+			int aux4 = ((pro.getPos() - 31) * deltaY); // EAST
+			if (pro.getPos() >= 1 && pro.getPos() <= 9) {
+				// SOUTH
+				if ((pro instanceof NormalProperty) && ((NormalProperty) pro).getNrHotels() > 0) {
+					g.drawImage(hotel, xInHotelS - aux, yInHotelS, xInHotelS + hotelWight - aux, yInHotelS + hotelWight,
+							0, 0, hotel.getWidth(), hotel.getHeight(), null);
+				}
+				if ((pro instanceof NormalProperty) && ((NormalProperty) pro).getNrHouses() > 0) {
+					for (int i = 0; i < ((NormalProperty) pro).getNrHouses(); i++) {
+						g.drawImage(house, xInHouseS + i * houseSize - aux, yInHouseS,
+								xInHouseS + (i + 1) * houseSize - aux, yInHouseS + houseSize, 0, 0, house.getWidth(),
+								house.getHeight(), null);
+					}
+				}
+			} else if (pro.getPos() >= 11 && pro.getPos() <= 19) {
+				// WEST
+				if ((pro instanceof NormalProperty) && ((NormalProperty) pro).getNrHotels() > 0) {
+					g.drawImage(hotel, xInHotelW, yInHotelW - aux2, xInHotelW + hotelWight,
+							yInHotelW + hotelWight - aux2, 0, 0, hotel.getWidth(), hotel.getHeight(), null);
+				}
+				if ((pro instanceof NormalProperty) && ((NormalProperty) pro).getNrHouses() > 0) {
+					for (int i = 0; i < ((NormalProperty) pro).getNrHouses(); i++) {
+						g.drawImage(house, xInHouseW, yInHouseW + i * houseSize - aux2, xInHouseW + houseSize,
+								yInHouseW + (i + 1) * houseSize - aux2, 0, 0, house.getWidth(), house.getHeight(),
+								null);
+					}
+				}
+			} else if (pro.getPos() >= 21 && pro.getPos() <= 29) {
+				// NORTH
+				if ((pro instanceof NormalProperty) && ((NormalProperty) pro).getNrHotels() > 0) {
+					g.drawImage(hotel, xInHotelN + aux3, yInHotelN, xInHotelN + hotelWight + aux3,
+							yInHotelN + hotelWight, 0, 0, hotel.getWidth(), hotel.getHeight(), null);
+				}
+				if ((pro instanceof NormalProperty) && ((NormalProperty) pro).getNrHouses() > 0) {
+					for (int i = 0; i < ((NormalProperty) pro).getNrHouses(); i++) {
+						g.drawImage(house, xInHouseN + i * houseSize + aux3, yInHouseN,
+								xInHouseN + (i + 1) * houseSize + aux3, yInHouseN + houseSize, 0, 0, house.getWidth(),
+								house.getHeight(), null);
+					}
+				}
+			} else {
+				// EAST
+				if ((pro instanceof NormalProperty) && ((NormalProperty) pro).getNrHotels() > 0) {
+					g.drawImage(hotel, xInHotelE, yInHotelE + aux4, xInHotelE + hotelWight,
+							yInHotelE + hotelWight + aux4, 0, 0, hotel.getWidth(), hotel.getHeight(), null);
+				}
+				if ((pro instanceof NormalProperty) && ((NormalProperty) pro).getNrHouses() > 0) {
+					for (int i = 0; i < ((NormalProperty) pro).getNrHouses(); i++) {
+						g.drawImage(house, xInHouseE, yInHouseE + i * houseSize + aux4, xInHouseE + houseSize,
+								yInHouseE + (i + 1) * houseSize + aux4, 0, 0, house.getWidth(), house.getHeight(),
+								null);
+					}
+				}
 			}
-			//-----------------------------------------
-			
-			int aux = ((pro.getPos()-1)*deltaX);   //SOUTH
-			int aux2 = ((pro.getPos()-11)*deltaY); //WEST
-			int aux3 = ((pro.getPos()-21)*deltaX); //NORTH
-			int aux4 = ((pro.getPos()-31)*deltaY); //EAST
-			if(pro.getPos() >= 1 && pro.getPos() <= 9){
-				//SOUTH
-				if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHotels() > 0){
-					g.drawImage(hotel, xInHotelS-aux, yInHotelS, xInHotelS+hotelWight-aux, yInHotelS+hotelWight, 0, 0, hotel.getWidth(), hotel.getHeight(), null);
-				}
-				if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHouses() > 0){
-					for(int i = 0; i < ((NormalProperty)pro).getNrHouses(); i++){
-						g.drawImage(house, xInHouseS+i*houseSize-aux, yInHouseS, xInHouseS+(i+1)*houseSize-aux, yInHouseS+houseSize, 0, 0, house.getWidth(), house.getHeight(), null);
-					}
-				}
-			}else if(pro.getPos() >= 11 && pro.getPos() <= 19){
-				//WEST
-				if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHotels() > 0){
-					g.drawImage(hotel, xInHotelW, yInHotelW-aux2, xInHotelW+hotelWight, yInHotelW+hotelWight-aux2, 0, 0, hotel.getWidth(), hotel.getHeight(), null);
-				}
-				if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHouses() > 0){
-					for(int i = 0; i < ((NormalProperty)pro).getNrHouses(); i++){
-						g.drawImage(house, xInHouseW, yInHouseW+i*houseSize-aux2, xInHouseW+houseSize, yInHouseW+(i+1)*houseSize-aux2, 0, 0, house.getWidth(), house.getHeight(), null);
-					}
-				}
-			}else if(pro.getPos() >= 21 && pro.getPos() <= 29){
-				//NORTH
-				if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHotels() > 0){
-					g.drawImage(hotel, xInHotelN+aux3, yInHotelN, xInHotelN+hotelWight+aux3, yInHotelN+hotelWight, 0, 0, hotel.getWidth(), hotel.getHeight(), null);
-				}
-				if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHouses() > 0){
-					for(int i = 0; i < ((NormalProperty)pro).getNrHouses(); i++){
-						g.drawImage(house, xInHouseN+i*houseSize+aux3, yInHouseN, xInHouseN+(i+1)*houseSize+aux3, yInHouseN+houseSize, 0, 0, house.getWidth(), house.getHeight(), null);
-					}
-				}
-			}else{
-				//EAST
-				if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHotels() > 0){
-					g.drawImage(hotel, xInHotelE, yInHotelE+aux4, xInHotelE+hotelWight, yInHotelE+hotelWight+aux4, 0, 0, hotel.getWidth(), hotel.getHeight(), null);
-				}
-				if ( (pro instanceof NormalProperty) && ((NormalProperty)pro).getNrHouses() > 0){
-					for(int i = 0; i < ((NormalProperty)pro).getNrHouses(); i++){
-						g.drawImage(house, xInHouseE, yInHouseE+i*houseSize+aux4, xInHouseE+houseSize, yInHouseE+(i+1)*houseSize+aux4, 0, 0, house.getWidth(), house.getHeight(), null);
-					}
-				}
-			}
-			
-		}//for property
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	// APAGAR APOS TESTE
-	@Override
-	public void mousePressed(MouseEvent e) {
-		 System.out.println("x -> " + e.getX());
-		 System.out.println("y -> " + e.getY());
 
-		game.updateGame(game.getPlayers().get(0));
-		repaint();
-		requestFocus();
+		} // for property
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		game.updateGame(game.getPlayers().get(1));
-		repaint();
-		requestFocus();
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-
-	}
 }

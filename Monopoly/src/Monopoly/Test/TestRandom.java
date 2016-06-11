@@ -31,9 +31,9 @@ public class TestRandom {
 		}
 
 		players = new Vector<Player>();
-		players.add(new Player("Pedro", dog, 10000, board.getBoardBox(0), 1));
+		players.add(new Player("Pedro", dog, 10000, 1));
 		players.get(0).setPosition(1120, 890);
-		players.add(new Player("Faby", dog, 10000, board.getBoardBox(0), 2));
+		players.add(new Player("Faby", dog, 10000, 2));
 		players.get(1).setPosition(1120, 930);
 
 	}
@@ -136,7 +136,7 @@ public class TestRandom {
 	@Test
 	public void testTaxBox() {
 		do {
-			game.updatePlayer(players.get(0));
+			game.updateGame(players.get(0));
 		} while (players.get(0).getPos().getPos() != ((TaxBox) board.getBoardBox(4)).getPos());
 		assertEquals(players.get(0).getPos().getPos(), ((TaxBox) board.getBoardBox(4)).getPos());
 	}
@@ -216,14 +216,14 @@ public class TestRandom {
 	}
 
 	/**
-	 * Test if player can create an hotel without having all properties of the
-	 * group
+	 * Test if player can create an hotel without having 4 houses
 	 */
 	@Test
 	public void testBuildHotelWithoutPermission() {
 		players.get(0).setPos(board.getBoardBox(1));
 		game.buyProperty(players.get(0));
-
+		
+		game.createHouses(players.get(0), ((NormalProperty) board.getBoardBox(1)), 3);
 		game.createHotel(players.get(0), ((NormalProperty) board.getBoardBox(1)));
 
 		assertEquals(0, ((NormalProperty) board.getBoardBox(1)).getNrHotels());

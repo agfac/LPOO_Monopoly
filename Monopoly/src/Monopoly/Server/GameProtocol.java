@@ -1,16 +1,27 @@
 package Monopoly.Server;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map.Entry;
+
+import javax.imageio.ImageIO;
+
 import java.util.Vector;
 
+import Monopoly.Logic.BoardBox;
+import Monopoly.Logic.ChanceBox;
+import Monopoly.Logic.CommunityBox;
 import Monopoly.Logic.Game;
 import Monopoly.Logic.GoBox;
+import Monopoly.Logic.GoJailBox;
 import Monopoly.Logic.Player;
 import Monopoly.Logic.PlayerSymbol;
+import Monopoly.Logic.Property;
 
 public class GameProtocol {
 
@@ -21,15 +32,17 @@ public class GameProtocol {
 	private static final int PLAYING = 4;
 	private static final int BUYINGPROPERTY = 5;
 	private static final int MANAGEACTIVITY = 6;
+	private static final int PAYBILL = 7;
 
-	private static int numPlayers;
+	private static int numPlayers = 0;
+	private static boolean gameSettings = false;
 	private static int balance;
 	private static Vector <Player> players = new Vector <Player>();
 	private static Integer idPlayer = 0;
-	private static Integer currentPlayer=1;
+	private static Player currentPlayer;
 	
-	private static String currentPosition = "pennsylvania_railroad";
-	private static String finalPosition = "pennsylvania_railroad";
+	private static int currentPosition;
+	private static int finalPosition;
 	private static boolean positionSold = false;
 	
 	private static Integer[] pieceNumbers = {0,1,2,3,4,5,6,7}; 
@@ -39,6 +52,42 @@ public class GameProtocol {
 	
 	private Integer state = INIT;
 	
+	
+	private Vector<PlayerSymbol> playerPieces = new Vector<PlayerSymbol>() ;
+	 
+	
+	public GameProtocol(Game game){
+		this.game = game;
+		imageLoader();
+	}
+	
+	public void imageLoader(){
+		BufferedImage dog, boot, car, hat,  iron, ship, thimble, wheelbarrow;
+		try {
+			dog = ImageIO.read(new File("resources/images/pieces/dog.png"));
+			boot = ImageIO.read(new File("resources/images/pieces/boot.png"));
+			car = ImageIO.read(new File("resources/images/pieces/car.png"));
+			hat = ImageIO.read(new File("resources/images/pieces/hat.png"));
+			iron = ImageIO.read(new File("resources/images/pieces/iron.png"));
+			ship = ImageIO.read(new File("resources/images/pieces/ship.png"));
+			thimble = ImageIO.read(new File("resources/images/pieces/thimble.png"));
+			wheelbarrow = ImageIO.read(new File("resources/images/pieces/wheelbarrow.png"));
+			playerPieces.add(new PlayerSymbol(0, "Dog", dog));
+			playerPieces.add(new PlayerSymbol(2, "Car", car));	
+			playerPieces.add(new PlayerSymbol(5, "Ship", ship)); 
+			playerPieces.add(new PlayerSymbol(1, "Boot", boot));
+			playerPieces.add(new PlayerSymbol(3, "Hat", hat));
+			playerPieces.add(new PlayerSymbol(4, "Iron", iron));
+			playerPieces.add(new PlayerSymbol(6, "Thimble", thimble));
+			playerPieces.add(new PlayerSymbol(7, "Wheelbarrow", wheelbarrow));
+			 
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		 
+	}
 	public String processInput(String theInput) {
 		String theOutput = null;
 
@@ -74,6 +123,7 @@ public class GameProtocol {
 				balance = balanceInt;
 				
 				theOutput = "Game properties set correctly!";
+				gameSettings = true;
 				state = WAITINGPLAYERS;
 				break;
 			}
@@ -113,16 +163,17 @@ public class GameProtocol {
 					
 					Integer firstPieceId = Integer.parseInt(firstPiece);
 					
-					Player firstPlayer;
+					
 					
 					if(players.size()<numPlayers){
 					
 						if(pieces.contains(firstPieceId)){
-							firstPlayer = new Player (firstName, firstPieceId, balance);
-							players.add(firstPlayer);
+							players.add(new Player (firstName, playerPieces.get(firstPieceId), balance, ++idPlayer));
+							setPlayerInitialPosition();
 							pieces.remove(firstPieceId);
-							theOutput = "Your ID is "+Integer.toString(++idPlayer);
+							theOutput = "Your ID is "+Integer.toString(idPlayer);
 							if(players.size()==numPlayers){
+								game.setPlayers(players);
 								state=READYTOPLAY;
 								break;
 							}
@@ -142,7 +193,7 @@ public class GameProtocol {
 			break;
 			
 		case READYTOPLAY:
-			
+			currentPlayer = game.getCurrentPlayer();
 			switch(theInput){
 			case "1;Is it my turn?":
 				String[] question = theInput.split(";");
@@ -150,7 +201,7 @@ public class GameProtocol {
 				
 				Integer playerInteger = Integer.parseInt(playerId);
 				
-				if(playerInteger==currentPlayer)
+				if(players.get(0).getId()==currentPlayer.getId())
 					theOutput = "It is your turn";
 				else
 					theOutput = "It is not your turn";
@@ -162,7 +213,7 @@ public class GameProtocol {
 				
 				Integer playerInteger2 = Integer.parseInt(playerId2);
 				
-				if(playerInteger2==currentPlayer)
+				if(players.get(1).getId()==currentPlayer.getId())
 					theOutput = "It is your turn";
 				else
 					theOutput = "It is not your turn";
@@ -174,7 +225,7 @@ public class GameProtocol {
 				
 				Integer playerInteger3 = Integer.parseInt(playerId3);
 				
-				if(playerInteger3==currentPlayer)
+				if(players.get(2).getId()==currentPlayer.getId())
 					theOutput = "It is your turn";
 				else
 					theOutput = "It is not your turn";
@@ -186,13 +237,14 @@ public class GameProtocol {
 				
 				Integer playerInteger4 = Integer.parseInt(playerId4);
 				
-				if(playerInteger4==currentPlayer)
+				if(players.get(3).getId()==currentPlayer.getId())
 					theOutput = "It is your turn";
 				else
 					theOutput = "It is not your turn";
 			break;
 			
 			case "Playing begins":
+				game.updateGame(currentPlayer);
 				state = PLAYING;
 				break;
 		}
@@ -200,6 +252,13 @@ public class GameProtocol {
 			break;
 			
 		case PLAYING:
+			currentPlayer = game.getCurrentPlayer();
+			currentPosition = currentPlayer.getValuePosition();
+			finalPosition = currentPlayer.getPos().getPos();
+			if(currentPlayer.getPos() instanceof Property)
+				positionSold = ((Property) (currentPlayer.getPos())).getSold();
+			else
+				positionSold = true;
 			switch(theInput){
 			case "1;Is it my turn?":
 				String[] question = theInput.split(";");
@@ -207,7 +266,7 @@ public class GameProtocol {
 				
 				Integer playerInteger = Integer.parseInt(playerId);
 				
-				if(playerInteger==currentPlayer)
+				if(players.get(0).getId()==currentPlayer.getId())
 					theOutput = "It is your turn";
 				else
 					theOutput = "It is not your turn";
@@ -219,7 +278,7 @@ public class GameProtocol {
 				
 				Integer playerInteger2 = Integer.parseInt(playerId2);
 				
-				if(playerInteger2==currentPlayer)
+				if(players.get(1).getId()==currentPlayer.getId())
 					theOutput = "It is your turn";
 				else
 					theOutput = "It is not your turn";
@@ -231,7 +290,7 @@ public class GameProtocol {
 				
 				Integer playerInteger3 = Integer.parseInt(playerId3);
 				
-				if(playerInteger3==currentPlayer)
+				if(players.get(2).getId()==currentPlayer.getId())
 					theOutput = "It is your turn";
 				else
 					theOutput = "It is not your turn";
@@ -243,39 +302,59 @@ public class GameProtocol {
 				
 				Integer playerInteger4 = Integer.parseInt(playerId4);
 				
-				if(playerInteger4==currentPlayer)
+				if(players.get(3).getId()==currentPlayer.getId())
 					theOutput = "It is your turn";
 				else
 					theOutput = "It is not your turn";
 			break;
 			
 			case "Which picture may I show?":
-				if (currentPosition.equalsIgnoreCase(finalPosition) && !positionSold){
-					theOutput = "Do you want to buy this property?";
+				theOutput = ""+currentPosition;
+				if ((currentPosition == finalPosition) && !positionSold){
 					state=BUYINGPROPERTY;
 					break;
-				}
-				else{
-					theOutput = currentPosition;
+				}else if((currentPosition == finalPosition) && positionSold){
+					if ( currentPlayer.getPos() instanceof ChanceBox || currentPlayer.getPos() instanceof CommunityBox || currentPlayer.getPos() instanceof GoJailBox){
+						game.checkSpecialBoardBox(game.getCurrentPlayer());
+						currentPosition = currentPlayer.getValuePosition();
+						finalPosition = currentPlayer.getPos().getPos();
+					}else
+						state = PAYBILL;
+//					game.checkSpecialBoardBox(game.getCurrentPlayer());
+					//theOutput="Next Player";
+					//state=READYTOPLAY;
 					break;
 				}
-				
+				break;
 			case "Manage activity":
 				state = MANAGEACTIVITY;
 				break;
 			}
 			break;
-			
+		case PAYBILL:
+			game.optimizedPayBill(currentPlayer, currentPlayer.getPos());
+			theOutput="Next Player";
+			game.updateCurrentPlayer();
+			state=READYTOPLAY;
+			break;
 		case BUYINGPROPERTY:
+			theOutput = "Do you want to buy this property?";
+			System.out.println("theInput-> " + theInput);
 			switch(theInput){
 			case "Yes":
-				state=PLAYING;
+				game.setBuyPropertyOption("yes");
+				game.buyProperty(currentPlayer);
+				theOutput="Bought";
+				game.updateCurrentPlayer();
+				state=READYTOPLAY;
 				break;
 			case "No":
-				state=PLAYING;
+				game.setBuyPropertyOption("no");
+				game.updateCurrentPlayer();
+				theOutput="Not bought";
+				state=READYTOPLAY;
 				break;
 			}
-	
 			break;
 			
 		case MANAGEACTIVITY:
@@ -698,8 +777,43 @@ public class GameProtocol {
 		return theOutput;
 	}
 	
+	public void setPlayerInitialPosition(){
+		switch (idPlayer){
+		case 1:
+			players.get(0).setPosition(1120, 890);
+			break;
+		case 2:
+			players.get(1).setPosition(1120, 930);
+			break;
+		case 3:
+			players.get(2).setPosition(1170, 890);
+			break;
+		case 4:
+			players.get(3).setPosition(1170, 930);
+			break;
+		}		
+	}
+	
+	public void setCurrentPlayer(){
+		
+	}
+	public Player getCurrentPlayer(){
+		return currentPlayer;
+	}
 	public Integer getState(){
 		return state;
+	}
+	
+	public int getNumPlayers() {
+		return numPlayers;
+	}
+	
+	public boolean getGameSettings(){
+		return gameSettings;
+	}
+	
+	public Vector<Player> getPlayers(){
+		return players;
 	}
 }
 

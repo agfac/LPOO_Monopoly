@@ -26,7 +26,8 @@ public class Board {
 	protected static BufferedImage g1p1RP, g1p3RP, g2p5RP, g2p15RP, g2p25RP, g2p35RP, g3p6RP, g3p8RP, g3p9RP, g4p11RP,
 			g4p13RP, g4p14RP, g5p16RP, g5p18RP, g5p19RP, g6p21RP, g6p23RP, g6p24RP, g7p26RP, g7p27RP, g7p29RP, g8p31RP,
 			g8p32RP, g8p34RP, g9p37RP, g9p39RP, g10p12RP, g10p28RP;
-
+	//OtherBoxs
+	protected static BufferedImage chanceImage, communityImage, goToJailImage, jailImage, freeParkingImage, luxuryTaxImage, incomeTaxImage, goImage;
 	// Chance Cards
 	protected static BufferedImage chance1, chance2, chance3, chance4, chance5, chance6, chance7, chance8, chance9,
 			chance10, chance11, chance12, chance13, chance14, chance15;
@@ -36,6 +37,11 @@ public class Board {
 			community8, community9, community10, community11, community12, community13, community14, community15,
 			community16;
 
+	
+	
+	 public PlayerSymbol dogPiece, hatPiece, shipPiece;
+	 
+	 
 	/**
 	 * Board Constructor
 	 */
@@ -50,6 +56,7 @@ public class Board {
 		generateChance();
 
 		generateCommunity();
+		
 	}
 
 	/**
@@ -116,6 +123,16 @@ public class Board {
 			g10p12RP = ImageIO.read(new File("resources/images/properties/group10/ElectricCompany.png"));
 			g10p28RP = ImageIO.read(new File("resources/images/properties/group10/WaterWorks.png"));
 
+			//OtherBoxs
+			chanceImage = ImageIO.read(new File("resources/images/properties/Chance.png"));
+			communityImage = ImageIO.read(new File("resources/images/properties/CommunityChest.jpg")); 
+			goToJailImage  = ImageIO.read(new File("resources/images/properties/GoToJail.png")); 
+			jailImage = ImageIO.read(new File("resources/images/properties/JustVisiting.png")); 
+			freeParkingImage = ImageIO.read(new File("resources/images/properties/FreeParking.png"));
+			luxuryTaxImage = ImageIO.read(new File("resources/images/properties/LuxuryTax.png"));
+			incomeTaxImage = ImageIO.read(new File("resources/images/properties/IncomeTax.jpg"));
+			goImage = ImageIO.read(new File("resources/images/properties/GoBox.png"));
+			
 			// Chance cards
 			chance1 = ImageIO.read(new File("resources/images/cards/chance/1.jpg"));
 			chance2 = ImageIO.read(new File("resources/images/cards/chance/2.jpg"));
@@ -150,7 +167,7 @@ public class Board {
 			community14 = ImageIO.read(new File("resources/images/cards/community/14.jpg"));
 			community15 = ImageIO.read(new File("resources/images/cards/community/15.jpg"));
 			community16 = ImageIO.read(new File("resources/images/cards/community/15.jpg"));
-
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -163,108 +180,108 @@ public class Board {
 	private void generateBoardBoxs() {
 		boxs = new BoardBox[40];
 
-		GoBox Go = new GoBox();
+		GoBox Go = new GoBox(goImage);
 		boxs[0] = Go;
-		NormalProperty MediterraneanAvenue = new NormalProperty(1, "Mediterranean Avenue", 1, 60, 30, 2,
+		NormalProperty MediterraneanAvenue = new NormalProperty(1, "mediterranean_avenue", 1, 60, 30, 2,
 				new int[] { 10, 30, 90, 160 }, 250, g1p1, g1p1RP);
 		boxs[1] = MediterraneanAvenue;
-		CommunityBox CommunityBox1 = new CommunityBox(2);
+		CommunityBox CommunityBox1 = new CommunityBox(2,communityImage);
 		boxs[2] = CommunityBox1;
-		NormalProperty BalticAvenue = new NormalProperty(3, "Baltic Avenue", 1, 60, 30, 4,
+		NormalProperty BalticAvenue = new NormalProperty(3, "baltic_avenue", 1, 60, 30, 4,
 				new int[] { 20, 60, 180, 320 }, 450, g1p3, g1p3RP);
 		boxs[3] = BalticAvenue;
-		TaxBox IncomeTax = new TaxBox(4, "Income Tax", 200);
+		TaxBox IncomeTax = new TaxBox(4, "Income Tax", 200, incomeTaxImage);
 		boxs[4] = IncomeTax;
-		RailRoadProperty ReadingRailRoad = new RailRoadProperty(5, "Reading RailRoad", g2p5, g2p5RP);
+		RailRoadProperty ReadingRailRoad = new RailRoadProperty(5, "reading_railroad", g2p5, g2p5RP);
 		boxs[5] = ReadingRailRoad;
-		NormalProperty OrientalAvenue = new NormalProperty(6, "Oriental Avenue", 3, 100, 50, 6,
+		NormalProperty OrientalAvenue = new NormalProperty(6, "oriental_avenue", 3, 100, 50, 6,
 				new int[] { 30, 90, 270, 400 }, 550, g3p6, g3p6RP);
 		boxs[6] = OrientalAvenue;
-		ChanceBox ChanceBox1 = new ChanceBox(7);
+		ChanceBox ChanceBox1 = new ChanceBox(7, chanceImage);
 		boxs[7] = ChanceBox1;
-		NormalProperty VermontAvenue = new NormalProperty(8, "Vermont Avenue", 3, 100, 50, 6,
+		NormalProperty VermontAvenue = new NormalProperty(8, "vermont_avenue", 3, 100, 50, 6,
 				new int[] { 30, 90, 270, 400 }, 550, g3p8, g3p8RP);
 		boxs[8] = VermontAvenue;
-		NormalProperty ConnecticutAvenue = new NormalProperty(9, "Connecticut Avenue", 3, 120, 60, 8,
+		NormalProperty ConnecticutAvenue = new NormalProperty(9, "connecticut_avenue", 3, 120, 60, 8,
 				new int[] { 40, 100, 300, 450 }, 600, g3p9, g3p9RP);
 		boxs[9] = ConnecticutAvenue;
-		JailBox JailBox1 = new JailBox();
+		JailBox JailBox1 = new JailBox(jailImage);
 		boxs[10] = JailBox1;
-		NormalProperty STCharlesPlace = new NormalProperty(11, "ST Charles Place", 4, 140, 70, 10,
+		NormalProperty STCharlesPlace = new NormalProperty(11, "st_charles_place", 4, 140, 70, 10,
 				new int[] { 50, 150, 450, 625 }, 750, g4p11, g4p11RP);
 		boxs[11] = STCharlesPlace;
-		ServiceProperty ElectricCompany = new ServiceProperty(12, "Electric Company", 10, 150, 75, new int[] { 4, 10 },
+		ServiceProperty ElectricCompany = new ServiceProperty(12, "electric_company", 10, 150, 75, new int[] { 4, 10 },
 				g10p12, g10p12RP);
 		boxs[12] = ElectricCompany;
-		NormalProperty StatesAvenue = new NormalProperty(13, "States Avenue", 4, 140, 70, 10,
+		NormalProperty StatesAvenue = new NormalProperty(13, "states_avenue", 4, 140, 70, 10,
 				new int[] { 50, 150, 450, 625 }, 750, g4p13, g4p13RP);
 		boxs[13] = StatesAvenue;
-		NormalProperty VirginiaAvenue = new NormalProperty(14, "Virginia Avenue", 4, 160, 80, 12,
+		NormalProperty VirginiaAvenue = new NormalProperty(14, "virginia_avenue", 4, 160, 80, 12,
 				new int[] { 60, 180, 500, 700 }, 900, g4p14, g4p14RP);
 		boxs[14] = VirginiaAvenue;
-		RailRoadProperty PennsylvaniaRailRoad = new RailRoadProperty(15, "Pennsylvania RailRoad", g2p15, g2p15RP);
+		RailRoadProperty PennsylvaniaRailRoad = new RailRoadProperty(15, "pennsylvania_railroad", g2p15, g2p15RP);
 		boxs[15] = PennsylvaniaRailRoad;
-		NormalProperty STJamesPlace = new NormalProperty(16, "ST James Place", 5, 180, 90, 14,
+		NormalProperty STJamesPlace = new NormalProperty(16, "st_james_place", 5, 180, 90, 14,
 				new int[] { 70, 200, 550, 750 }, 950, g5p16, g5p16RP);
 		boxs[16] = STJamesPlace;
-		CommunityBox CommunityBox2 = new CommunityBox(17);
+		CommunityBox CommunityBox2 = new CommunityBox(17, communityImage);
 		boxs[17] = CommunityBox2;
-		NormalProperty TennesseAvenue = new NormalProperty(18, "Tennesse Avenue", 5, 180, 90, 14,
+		NormalProperty TennesseAvenue = new NormalProperty(18, "tennesse_avenue", 5, 180, 90, 14,
 				new int[] { 70, 200, 550, 750 }, 950, g5p18, g5p18RP);
 		boxs[18] = TennesseAvenue;
-		NormalProperty NewYorkAvenue = new NormalProperty(19, "New York Avenue", 5, 200, 100, 16,
+		NormalProperty NewYorkAvenue = new NormalProperty(19, "new_york_avenue", 5, 200, 100, 16,
 				new int[] { 80, 220, 600, 800 }, 1000, g5p19, g5p19RP);
 		boxs[19] = NewYorkAvenue;
-		FreeParkingBox FreeParking = new FreeParkingBox();
+		FreeParkingBox FreeParking = new FreeParkingBox(freeParkingImage);
 		boxs[20] = FreeParking;
-		NormalProperty KentuckyAvenue = new NormalProperty(21, "Kentucky Avenue", 6, 220, 110, 18,
+		NormalProperty KentuckyAvenue = new NormalProperty(21, "kentucky_avenue", 6, 220, 110, 18,
 				new int[] { 90, 250, 700, 875 }, 1050, g6p21, g6p21RP);
 		boxs[21] = KentuckyAvenue;
-		ChanceBox ChanceBox2 = new ChanceBox(22);
+		ChanceBox ChanceBox2 = new ChanceBox(22, chanceImage);
 		boxs[22] = ChanceBox2;
-		NormalProperty IndianaAvenue = new NormalProperty(23, "Indiana Avenue", 6, 220, 110, 18,
+		NormalProperty IndianaAvenue = new NormalProperty(23, "indiana_avenue", 6, 220, 110, 18,
 				new int[] { 90, 250, 700, 875 }, 1050, g6p23, g6p23RP);
 		boxs[23] = IndianaAvenue;
-		NormalProperty IllinoisAvenue = new NormalProperty(24, "Illinois Avenue", 6, 240, 120, 20,
+		NormalProperty IllinoisAvenue = new NormalProperty(24, "illinois_avenue", 6, 240, 120, 20,
 				new int[] { 100, 300, 750, 925 }, 1100, g6p24, g6p24RP);
 		boxs[24] = IllinoisAvenue;
-		RailRoadProperty BORailRoad = new RailRoadProperty(25, "B&O RailRoad", g2p25, g2p25RP);
+		RailRoadProperty BORailRoad = new RailRoadProperty(25, "bo_railroad", g2p25, g2p25RP);
 		boxs[25] = BORailRoad;
-		NormalProperty AtlanticAvenue = new NormalProperty(26, "Atlantic Avenue", 7, 260, 130, 22,
+		NormalProperty AtlanticAvenue = new NormalProperty(26, "atlantic_avenue", 7, 260, 130, 22,
 				new int[] { 110, 330, 800, 975 }, 1150, g7p26, g7p26RP);
 		boxs[26] = AtlanticAvenue;
-		NormalProperty VentnorAvenue = new NormalProperty(27, "Ventnor Avenue", 7, 260, 130, 22,
+		NormalProperty VentnorAvenue = new NormalProperty(27, "ventnor_avenue", 7, 260, 130, 22,
 				new int[] { 110, 330, 800, 975 }, 1150, g7p27, g7p27RP);
 		boxs[27] = VentnorAvenue;
-		ServiceProperty WaterWorks = new ServiceProperty(28, "Water Works", 10, 150, 75, new int[] { 4, 10 }, g10p28,
+		ServiceProperty WaterWorks = new ServiceProperty(28, "water_works", 10, 150, 75, new int[] { 4, 10 }, g10p28,
 				g10p28RP);
 		boxs[28] = WaterWorks;
-		NormalProperty MarvinGardens = new NormalProperty(29, "Marvin Gardens", 7, 280, 140, 24,
+		NormalProperty MarvinGardens = new NormalProperty(29, "marvin_gardens", 7, 280, 140, 24,
 				new int[] { 120, 360, 850, 1025 }, 1200, g7p29, g7p29RP);
 		boxs[29] = MarvinGardens;
-		GoJailBox GoJail = new GoJailBox();
+		GoJailBox GoJail = new GoJailBox(goToJailImage);
 		boxs[30] = GoJail;
-		NormalProperty PacificAvenue = new NormalProperty(31, "Pacific Avenue", 8, 300, 150, 26,
+		NormalProperty PacificAvenue = new NormalProperty(31, "pacific_avenue", 8, 300, 150, 26,
 				new int[] { 130, 390, 900, 1100 }, 1275, g8p31, g8p31RP);
 		boxs[31] = PacificAvenue;
-		NormalProperty NorthCarolinaAvenue = new NormalProperty(32, "North Carolina Avenue", 8, 300, 150, 26,
+		NormalProperty NorthCarolinaAvenue = new NormalProperty(32, "north_carolina_avenue", 8, 300, 150, 26,
 				new int[] { 130, 390, 900, 1100 }, 1275, g8p32, g8p32RP);
 		boxs[32] = NorthCarolinaAvenue;
-		CommunityBox CommunityBox3 = new CommunityBox(33);
+		CommunityBox CommunityBox3 = new CommunityBox(33, communityImage);
 		boxs[33] = CommunityBox3;
-		NormalProperty PennsylvaniaAvenue = new NormalProperty(34, "Pennsylvania Avenue", 8, 320, 160, 28,
+		NormalProperty PennsylvaniaAvenue = new NormalProperty(34, "pennsylvania_avenue", 8, 320, 160, 28,
 				new int[] { 150, 450, 1000, 1200 }, 1400, g8p34, g8p34RP);
 		boxs[34] = PennsylvaniaAvenue;
-		RailRoadProperty ShortLineRailRoad = new RailRoadProperty(35, "Short Line RailRoad", g2p35, g2p35RP);
+		RailRoadProperty ShortLineRailRoad = new RailRoadProperty(35, "short_line_railroad", g2p35, g2p35RP);
 		boxs[35] = ShortLineRailRoad;
-		ChanceBox ChanceBox3 = new ChanceBox(36);
+		ChanceBox ChanceBox3 = new ChanceBox(36, chanceImage);
 		boxs[36] = ChanceBox3;
-		NormalProperty ParkPlace = new NormalProperty(37, "Park Place", 9, 350, 175, 35,
+		NormalProperty ParkPlace = new NormalProperty(37, "park_place", 9, 350, 175, 35,
 				new int[] { 175, 500, 1100, 1300 }, 1500, g9p37, g9p37RP);
 		boxs[37] = ParkPlace;
-		TaxBox LuxuryTax = new TaxBox(38, "Luxury Tax", 100);
+		TaxBox LuxuryTax = new TaxBox(38, "Luxury Tax", 100, luxuryTaxImage);
 		boxs[38] = LuxuryTax;
-		NormalProperty BoardWalk = new NormalProperty(39, "Board Walk", 9, 400, 200, 50,
+		NormalProperty BoardWalk = new NormalProperty(39, "board_walk", 9, 400, 200, 50,
 				new int[] { 200, 600, 1400, 1700 }, 2000, g9p39, g9p39RP);
 		boxs[39] = BoardWalk;
 	}
@@ -327,7 +344,7 @@ public class Board {
 		communityCards.add(new Card("Receive 100", 15, community15));
 		communityCards.add(new Card("Receive 100", 16, community16));
 	}
-
+	
 	/**
 	 * Get number max of properties per group
 	 * 
@@ -373,7 +390,6 @@ public class Board {
 	 * @return card
 	 */
 	public Card getChanceCard(int val) {
-		System.out.println("variaver recebida (getChanceCard )" + val);
 		return chanceCards.get(val - 1);
 	}
 }
