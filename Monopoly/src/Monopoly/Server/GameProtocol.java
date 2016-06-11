@@ -320,8 +320,10 @@ public class GameProtocol {
 						currentPosition = currentPlayer.getValuePosition();
 						finalPosition = currentPlayer.getPos().getPos();
 						theOutput = ""+currentPosition;
-						if ( currentPlayer.getCellsToMove() == 0)
+						if ( currentPlayer.getCellsToMove() == 0){
+							game.updateCurrentPlayer();
 							state = READYTOPLAY;
+						}
 						break;
 					}else{
 						theOutput = ""+currentPosition;
