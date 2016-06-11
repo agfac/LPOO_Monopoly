@@ -19,6 +19,7 @@ import Monopoly.Logic.CommunityBox;
 import Monopoly.Logic.Game;
 import Monopoly.Logic.GoBox;
 import Monopoly.Logic.GoJailBox;
+import Monopoly.Logic.JailBox;
 import Monopoly.Logic.Player;
 import Monopoly.Logic.PlayerSymbol;
 import Monopoly.Logic.Property;
@@ -328,10 +329,11 @@ public class GameProtocol {
 				if(players.get(0).getId()==currentPlayer.getId()){
 				if ((currentPosition == finalPosition) && !positionSold){
 					theOutput = ""+currentPlayer.getId()+";"+"Do you want to buy this property?";
+					System.out.println("Queres comprar ou n?");
 					state=BUYINGPROPERTY;
 					break;
 				}else if((currentPosition == finalPosition) && positionSold){
-					if ( currentPlayer.getPos() instanceof ChanceBox || currentPlayer.getPos() instanceof CommunityBox || currentPlayer.getPos() instanceof GoJailBox){
+					if ( currentPlayer.getPos() instanceof ChanceBox || currentPlayer.getPos() instanceof CommunityBox || currentPlayer.getPos() instanceof GoJailBox || (currentPlayer.getPos() instanceof JailBox && currentPlayer.getInJail())){
 						game.checkSpecialBoardBox(game.getCurrentPlayer());
 						currentPosition = currentPlayer.getValuePosition();
 						finalPosition = currentPlayer.getPos().getPos();
