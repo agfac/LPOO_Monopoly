@@ -74,7 +74,7 @@ public class GamePanel extends ImagesLoad implements ActionListener {
 
 				if (game.getCommunityOption() != null){// && game.getTimeToShowCoomunityCard()) {
 					teste(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), "community");
-
+				}
 				if (game.getCommunityOption() != null) {
 				//	teste(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), "community");
 
