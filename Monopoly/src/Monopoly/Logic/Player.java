@@ -24,6 +24,8 @@ public class Player {
 	private int cellsToMove = 0;
 	private Position position = new Position();
 	private int valuePosittion;
+	private String mensage = "";
+	
 	// Players Initial Positions GUI
 	private int deltaX = 105;
 	private int deltaY = 81;
@@ -49,9 +51,8 @@ public class Player {
 	private int yPosDownE = 170;
 	// -----------------------------
 
-	// TODO PARA TESTE APENAS, APAGAR !!!!!!!!!!!!!!!!!1111
-	private int symbol_1; // TODO apenas para testes do ANDRE
-
+	
+	private int symbol_1; 
 	public Player(String name, int piece, int balance) {
 		this.name = name;
 		this.symbol_1 = piece;
@@ -59,7 +60,6 @@ public class Player {
 		this.inJail = false;
 		this.propertiesOwned = new Vector<Property>();
 		this.nrOfRolls = 0;
-		this.valuePosittion = pos.getPos();
 	}
 
 	// --------------------------------------------------------------------
@@ -77,22 +77,23 @@ public class Player {
 	 * @param id
 	 *            Player
 	 */
-	public Player(String name, PlayerSymbol piece, int balance, BoardBox pos, int id) {
+	public Player(String name, PlayerSymbol piece, int balance, int id) {
 		this.name = name;
 		this.symbol = piece;
 		this.balance = balance;
 		this.inJail = false;
 		this.propertiesOwned = new Vector<Property>();
-		this.pos = pos;
+		this.pos = new GoBox();
 		this.nrOfRolls = 0;
 		this.id = id;
 		this.valuePosittion = pos.getPos();
+		
 	}
 
 	/**
 	 * Method to update player on graphic window
 	 */
-	public void updateGUIPosition() { // pode ser colocada no player
+	public void updateGUIPosition() { 
 		int x = this.getPosition().getX();
 		int y = this.getPosition().getY();
 		// SOUTH
@@ -184,7 +185,6 @@ public class Player {
 			this.setValuePosition(this.getValuePosition() + 1);
 
 		}
-		// TODO mudar tambem a boardBox
 		this.setPosition(x, y);
 	}
 
@@ -522,6 +522,14 @@ public class Player {
 	 */
 	public void setDicesValue(int dicesValue) {
 		this.dicesValue = dicesValue;
+	}
+	
+	public String getMensage() {
+		return mensage;
+	}
+
+	public void setMensage(String mensage) {
+		this.mensage = mensage;
 	}
 
 }

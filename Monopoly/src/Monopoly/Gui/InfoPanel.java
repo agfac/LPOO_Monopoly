@@ -21,7 +21,7 @@ import Monopoly.Logic.Player;
 import Monopoly.Logic.PlayerSymbol;
 import Monopoly.Logic.Property;
 
-public class InfoPanel extends ImagesLoad implements ActionListener{
+public class InfoPanel extends ImagesLoad implements ActionListener {
 	Timer timer = new Timer(200, this);
 	Game game;
 
@@ -40,72 +40,78 @@ public class InfoPanel extends ImagesLoad implements ActionListener{
 	}
 
 	private void doDrawing(Graphics g) {
-		int nPlayers = game.getPlayers().size();
-		int boxWidht = this.getWidth();
-		int boxHeight = this.getHeight() / nPlayers;
-		int xIn = 0;
-		int yIn = 0;
 
-		if (game.getPlayers() != null){
-		ArrayList<Graphics2D> g1 = new ArrayList<Graphics2D>();
+		if (game.getPlayers() != null) {
 
-		int propertySize = 132;
-		int xi = 100;
-		int yi = 10;
-		int xf = xi + propertySize;
-		int yf = 70;
-		for (Player p : game.getPlayers()) {
-			g.drawImage(p.getSymbol().getPiece(), 0, yIn, 90, yIn + 90, 0, 0, p.getSymbol().getPiece().getWidth(),p.getSymbol().getPiece().getHeight(), null);
+			int nPlayers = game.getPlayers().size();
+			int boxWidht = this.getWidth();
+			int boxHeight = this.getHeight() / nPlayers;
+			int xIn = 0;
+			int yIn = 0;
 
-			Graphics2D g2d = (Graphics2D) g;
-			g2d.setColor(Color.BLACK);
-			g2d.drawRect(xIn, yIn, boxWidht, boxHeight);
-			g2d.drawString(p.getName(), 10, yIn + 90 + 20);
-			g2d.drawString(String.valueOf(p.getBalance()), 10, yIn + 90 + 40);
-			g2d.drawString("Dice Value: "+String.valueOf(p.getDicesValue()), 10, yIn +90 + 60);
-			g2d.drawString(p.getPos().getName(), 10, yIn +90 + 80);
+			ArrayList<Graphics2D> g1 = new ArrayList<Graphics2D>();
 
-			// TODO
-			int yAuxI = yi;
-			int yAuxF = yf;
-			for(int j = 0; j < p.getPropertiesOwned().size(); j++){
-				g.drawImage(p.getPropertiesOwned().get(j).getIconImage(), xi, yi, xf, yf, 0, 0, p.getPropertiesOwned().get(j).getIconImage().getWidth(), p.getPropertiesOwned().get(j).getIconImage().getHeight(), null);
-				xi += propertySize;
-				xf += propertySize;
-				if (j == 3 || j == 7 || j == 11 || j == 15 || j == 19 || j == 23 || j == 27) {
-					xi = 100;
-					xf = xi + propertySize;
-					yi += 60;
-					yf += 60;
+			int propertySize = 132;
+			int xi = 100;
+			int yi = 60;//10;
+			int xf = xi + propertySize;
+			int yf = 130;//70;
+			for (Player p : game.getPlayers()) {
+				g.drawImage(p.getSymbol().getPiece(), 0, yIn, 90, yIn + 90, 0, 0, p.getSymbol().getPiece().getWidth(),
+						p.getSymbol().getPiece().getHeight(), null);
+
+				Graphics2D g2d = (Graphics2D) g;
+				g2d.setColor(Color.BLACK);
+				g2d.drawRect(xIn, yIn, boxWidht, boxHeight);
+				g2d.drawString(p.getName(), 10, yIn + 90 + 20);
+				g2d.drawString(String.valueOf(p.getBalance()), 10, yIn + 90 + 40);
+				g2d.drawString("Dice Value: " + String.valueOf(p.getDicesValue()), 10, yIn + 90 + 60);
+				g2d.drawString(p.getPos().getName(), xi, yIn + 20);
+					g2d.drawString(p.getMensage(), xi, yIn + 40);
+				// TODO
+				int yAuxI = yi;
+				int yAuxF = yf;
+				for (int j = 0; j < p.getPropertiesOwned().size(); j++) {
+					g.drawImage(p.getPropertiesOwned().get(j).getIconImage(), xi, yi, xf, yf, 0, 0,
+							p.getPropertiesOwned().get(j).getIconImage().getWidth(),
+							p.getPropertiesOwned().get(j).getIconImage().getHeight(), null);
+					xi += propertySize;
+					xf += propertySize;
+					if (j == 3 || j == 7 || j == 11 || j == 15 || j == 19 || j == 23 || j == 27) {
+						xi = 100;
+						xf = xi + propertySize;
+						yi += 60;
+						yf += 60;
+					}
+
 				}
-				
-			}
-			for(int j = 0; j < p.getNrCardJail(); j++){
-				g.drawImage(chanceJailCard, xi, yi, xf, yf, 0, 0, chanceJailCard.getWidth(), chanceJailCard.getHeight(), null);
-				xi += propertySize;
-				xf += propertySize;
-				if (j == 3 || j == 7 || j == 11 || j == 15 || j == 19 || j == 23 || j == 27) {
-					xi = 100;
-					xf = xi + propertySize;
-					yi += 60;
-					yf += 60;
+				for (int j = 0; j < p.getNrCardJail(); j++) {
+					g.drawImage(chanceJailCard, xi, yi, xf, yf, 0, 0, chanceJailCard.getWidth(),
+							chanceJailCard.getHeight(), null);
+					xi += propertySize;
+					xf += propertySize;
+					if (j == 3 || j == 7 || j == 11 || j == 15 || j == 19 || j == 23 || j == 27) {
+						xi = 100;
+						xf = xi + propertySize;
+						yi += 60;
+						yf += 60;
+					}
 				}
-			}
-			
-			// Reset values
-			xi = 100;
-			xf = xi + propertySize;
-			yi = yAuxI + boxHeight;
-			yf = yAuxF + boxHeight;
 
-			yIn += boxHeight;
-		}
-		
-		}else
+				// Reset values
+				xi = 100;
+				xf = xi + propertySize;
+				yi = yAuxI + boxHeight;
+				yf = yAuxF + boxHeight;
+
+				yIn += boxHeight;
+			}
+
+		} else
 			g.drawImage(wait, 0, 0, wait.getWidth(), wait.getHeight(), 0, 0, wait.getWidth(), wait.getHeight(), null);
-			
+
 	}
-	
+
 	public void actionPerformed(ActionEvent ev) {
 		repaint();
 	}

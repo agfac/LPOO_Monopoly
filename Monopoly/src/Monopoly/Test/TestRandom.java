@@ -31,9 +31,9 @@ public class TestRandom {
 		}
 
 		players = new Vector<Player>();
-		players.add(new Player("Pedro", dog, 10000, board.getBoardBox(0), 1));
+		players.add(new Player("Pedro", dog, 10000, 1));
 		players.get(0).setPosition(1120, 890);
-		players.add(new Player("Faby", dog, 10000, board.getBoardBox(0), 2));
+		players.add(new Player("Faby", dog, 10000, 2));
 		players.get(1).setPosition(1120, 930);
 
 	}
