@@ -2,7 +2,9 @@ package Monopoly.Gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -61,6 +63,7 @@ public class GamePanel extends ImagesLoad implements ActionListener {
 
 	@Override
 	protected void paintComponent(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
 		super.paintComponent(g);
 		BufferedImage aux;
 		g.setColor(Color.white);
@@ -77,17 +80,20 @@ public class GamePanel extends ImagesLoad implements ActionListener {
 					game.decTimeToShowChanceCard();
 				}
 				if (game.getCommunityOption() != null && game.getTimeToShowCommunityCard() != 0) {
-					g.drawImage(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), 713, 685, 400+713, 200+685, 0, 0, game.getBoard().getCommunityCard(game.getCommunityOption()).getImage().getWidth(), game.getBoard().getCommunityCard(game.getCommunityOption()).getImage().getHeight(), null);
+					g.drawImage(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), 710, 655, 400+710, 200+655, 0, 0, game.getBoard().getCommunityCard(game.getCommunityOption()).getImage().getWidth(), game.getBoard().getCommunityCard(game.getCommunityOption()).getImage().getHeight(), null);
 					game.decTimeToShowCommunityCard();
 				}
 			}
+			g2d.setColor(Color.BLACK);
+			g2d.setFont(new Font("ArialRoundedMTBold", Font.PLAIN, 35)); //Geogia
+			g2d.drawString(game.getCurrentPlayer().getName(), 600, 300);
 			if (game.getCurrentPlayer().getDicesValue() != 0 && !game.getCurrentPlayer().getInJail() && game.getCurrentPlayer().getCellsToMove() != 0) {
 				aux = game.getBoard().getBoardBox(game.getCurrentPlayer().getValuePosition()).getImage();
-				g.drawImage(aux, 524, 330,524 + aux.getWidth(),330 + aux.getHeight(), 0, 0,aux.getWidth(),aux.getHeight(), null);
+				g.drawImage(aux, 524, 340,524 + aux.getWidth(),340 + aux.getHeight(), 0, 0,aux.getWidth(),aux.getHeight(), null);
 			}
 			else if(game.getCurrentPlayer().getDicesValue() != 0  && game.getCurrentPlayer().getValuePosition() == game.getCurrentPlayer().getPos().getPos()){
 				aux = game.getBoard().getBoardBox(game.getCurrentPlayer().getValuePosition()).getImage();
-				g.drawImage(aux, 524, 330,524 + aux.getWidth(),330 + aux.getHeight(), 0, 0,aux.getWidth(),aux.getHeight(), null);
+				g.drawImage(aux, 524, 340,524 + aux.getWidth(),340 + aux.getHeight(), 0, 0,aux.getWidth(),aux.getHeight(), null);
 			}
 		}
 	}

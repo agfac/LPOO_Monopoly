@@ -194,7 +194,7 @@ public class Game {
 		
 		// Store the value of 2 rolled dices
 		totalDiceValue = get2RollDices(dice1, dice2);
-		totalDiceValue=22;
+
 		player.setDicesValue(totalDiceValue);
 
 		// Update number of tries from player, if get 3 times goes to jail.
@@ -502,7 +502,6 @@ public class Game {
 		option = r.nextInt(15) + 1;
 		chanceOption = option;
 		
-		option= 8;
 		switch (option) {
 		case 1:
 			movePlayerGUI(player, calcCellToMove(player, 0));

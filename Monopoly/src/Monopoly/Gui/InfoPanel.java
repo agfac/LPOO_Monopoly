@@ -1,6 +1,7 @@
 package Monopoly.Gui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -63,11 +64,13 @@ public class InfoPanel extends ImagesLoad implements ActionListener {
 				Graphics2D g2d = (Graphics2D) g;
 				g2d.setColor(Color.BLACK);
 				g2d.drawRect(xIn, yIn, boxWidht, boxHeight);
+				g2d.setFont(new Font("LucidaSan", Font.PLAIN, 13)); 
 				g2d.drawString(p.getName(), 10, yIn + 90 + 20);
-				g2d.drawString(String.valueOf(p.getBalance()), 10, yIn + 90 + 40);
+				g2d.drawString(String.valueOf(p.getBalance())+ " M ", 10, yIn + 90 + 40);
 				g2d.drawString("Dice Value: " + String.valueOf(p.getDicesValue()), 10, yIn + 90 + 60);
+				g2d.setFont(new Font("LucidaSan", Font.PLAIN, 20));
 				g2d.drawString(p.getPos().getName(), xi, yIn + 20);
-					g2d.drawString(p.getMensage(), xi, yIn + 40);
+				g2d.drawString(p.getMensage(), xi, yIn + 40);
 				// TODO
 				int yAuxI = yi;
 				int yAuxF = yf;
@@ -75,6 +78,7 @@ public class InfoPanel extends ImagesLoad implements ActionListener {
 					g.drawImage(p.getPropertiesOwned().get(j).getIconImage(), xi, yi, xf, yf, 0, 0,
 							p.getPropertiesOwned().get(j).getIconImage().getWidth(),
 							p.getPropertiesOwned().get(j).getIconImage().getHeight(), null);
+					
 					xi += propertySize;
 					xf += propertySize;
 					if (j == 3 || j == 7 || j == 11 || j == 15 || j == 19 || j == 23 || j == 27) {
