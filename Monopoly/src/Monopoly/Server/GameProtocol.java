@@ -24,6 +24,7 @@ import Monopoly.Logic.NormalProperty;
 import Monopoly.Logic.Player;
 import Monopoly.Logic.PlayerSymbol;
 import Monopoly.Logic.Property;
+import Monopoly.Logic.TaxBox;
 
 public class GameProtocol {
 
@@ -34,7 +35,6 @@ public class GameProtocol {
 	private static final int PLAYING = 4;
 	private static final int BUYINGPROPERTY = 5;
 	private static final int MANAGEACTIVITY = 6;
-	private static final int PAYBILL = 7;
 
 	private static int numPlayers = 0;
 	private static boolean gameSettings = false;
@@ -245,12 +245,42 @@ public class GameProtocol {
 					theOutput = "It is not your turn";
 			break;
 			
+			case "1;Which is my balance?":
+								
+				if(players.get(0).getId()==currentPlayer.getId())
+					theOutput = "Your balance is;"+currentPlayer.getBalance();
+			break;
+				
+			case "2;Which is my balance?":
+								
+				if(players.get(1).getId()==currentPlayer.getId())
+					theOutput = "Your balance is;"+currentPlayer.getBalance();
+			break;
+			
+			case "3;Which is my balance?":
+								
+				if(players.get(2).getId()==currentPlayer.getId())
+					theOutput = "Your balance is;"+currentPlayer.getBalance();
+			break;
+			
+			case "4;Which is my balance?":
+								
+				if(players.get(3).getId()==currentPlayer.getId())
+					theOutput = "Your balance is;"+currentPlayer.getBalance();
+		
+			break;
+			
 			case "Playing begins":
 				game.updateGame(currentPlayer);
 				state = PLAYING;
 				break;
 				
 			case "Manage Activity":
+				if(currentPlayer.getPropertiesOwned().isEmpty()){
+					theOutput="You have no properties to manage!";
+					break;
+				}
+				else{
 				theOutput="Properties:";
 				for(Property p:currentPlayer.getPropertiesOwned()){
 					if(!(p.equals(currentPlayer.getPropertiesOwned().lastElement()))){
@@ -265,6 +295,7 @@ public class GameProtocol {
 				}
 				state = MANAGEACTIVITY;
 				break;
+				}
 		}
 			
 			break;
@@ -330,7 +361,6 @@ public class GameProtocol {
 				if(players.get(0).getId()==currentPlayer.getId()){
 				if ((currentPosition == finalPosition) && !positionSold){
 					theOutput = ""+currentPlayer.getId()+";"+"Do you want to buy this property?";
-					System.out.println("Queres comprar ou n?");
 					state=BUYINGPROPERTY;
 					break;
 				}else if((currentPosition == finalPosition) && positionSold){
@@ -346,13 +376,12 @@ public class GameProtocol {
 						}
 						break;
 					}else{
-						theOutput = ""+currentPosition;
-						state = PAYBILL;
+						game.optimizedPayBill(currentPlayer, currentPlayer.getPos());
+						theOutput=""+currentPosition+";Next Player";
+						game.updateCurrentPlayer();
+						state=READYTOPLAY;
 						break;
 					}
-//					game.checkSpecialBoardBox(game.getCurrentPlayer());
-					//theOutput="Next Player";
-					//state=READYTOPLAY;
 				}
 				else{
 					theOutput = ""+currentPosition;
@@ -367,7 +396,7 @@ public class GameProtocol {
 					state=BUYINGPROPERTY;
 					break;
 				}else if((currentPosition == finalPosition) && positionSold){
-					if ( currentPlayer.getPos() instanceof ChanceBox || currentPlayer.getPos() instanceof CommunityBox || currentPlayer.getPos() instanceof GoJailBox){
+					if ( currentPlayer.getPos() instanceof ChanceBox || currentPlayer.getPos() instanceof CommunityBox || currentPlayer.getPos() instanceof GoJailBox || (currentPlayer.getPos() instanceof JailBox && currentPlayer.getInJail())){
 						game.checkSpecialBoardBox(game.getCurrentPlayer());
 						currentPosition = currentPlayer.getValuePosition();
 						finalPosition = currentPlayer.getPos().getPos();
@@ -379,13 +408,13 @@ public class GameProtocol {
 						}
 						break;
 					}else{
-						theOutput = ""+currentPosition;
-						state = PAYBILL;
+						game.optimizedPayBill(currentPlayer, currentPlayer.getPos());
+						theOutput=""+currentPosition+";Next Player";
+						game.updateCurrentPlayer();
+						state=READYTOPLAY;
 						break;
 					}
-//					game.checkSpecialBoardBox(game.getCurrentPlayer());
-					//theOutput="Next Player";
-					//state=READYTOPLAY;
+
 				}
 				else{
 					theOutput = ""+currentPosition;
@@ -400,7 +429,7 @@ public class GameProtocol {
 					state=BUYINGPROPERTY;
 					break;
 				}else if((currentPosition == finalPosition) && positionSold){
-					if ( currentPlayer.getPos() instanceof ChanceBox || currentPlayer.getPos() instanceof CommunityBox || currentPlayer.getPos() instanceof GoJailBox){
+					if ( currentPlayer.getPos() instanceof ChanceBox || currentPlayer.getPos() instanceof CommunityBox || currentPlayer.getPos() instanceof GoJailBox || (currentPlayer.getPos() instanceof JailBox && currentPlayer.getInJail())){
 						game.checkSpecialBoardBox(game.getCurrentPlayer());
 						currentPosition = currentPlayer.getValuePosition();
 						finalPosition = currentPlayer.getPos().getPos();
@@ -412,13 +441,12 @@ public class GameProtocol {
 						}
 						break;
 					}else{
-						theOutput = ""+currentPosition;
-						state = PAYBILL;
+						game.optimizedPayBill(currentPlayer, currentPlayer.getPos());
+						theOutput=""+currentPosition+";Next Player";
+						game.updateCurrentPlayer();
+						state=READYTOPLAY;
 						break;
 					}
-//					game.checkSpecialBoardBox(game.getCurrentPlayer());
-					//theOutput="Next Player";
-					//state=READYTOPLAY;
 				}
 				else{
 					theOutput = ""+currentPosition;
@@ -433,7 +461,7 @@ public class GameProtocol {
 					state=BUYINGPROPERTY;
 					break;
 				}else if((currentPosition == finalPosition) && positionSold){
-					if ( currentPlayer.getPos() instanceof ChanceBox || currentPlayer.getPos() instanceof CommunityBox || currentPlayer.getPos() instanceof GoJailBox){
+					if ( currentPlayer.getPos() instanceof ChanceBox || currentPlayer.getPos() instanceof CommunityBox || currentPlayer.getPos() instanceof GoJailBox || (currentPlayer.getPos() instanceof JailBox && currentPlayer.getInJail())){
 						game.checkSpecialBoardBox(game.getCurrentPlayer());
 						currentPosition = currentPlayer.getValuePosition();
 						finalPosition = currentPlayer.getPos().getPos();
@@ -445,13 +473,12 @@ public class GameProtocol {
 						}
 						break;
 					}else{
-						theOutput = ""+currentPosition;
-						state = PAYBILL;
+						game.optimizedPayBill(currentPlayer, currentPlayer.getPos());
+						theOutput=""+currentPosition+";Next Player";
+						game.updateCurrentPlayer();
+						state=READYTOPLAY;
 						break;
 					}
-//					game.checkSpecialBoardBox(game.getCurrentPlayer());
-					//theOutput="Next Player";
-					//state=READYTOPLAY;
 				}
 				else{
 					theOutput = ""+currentPosition;
@@ -462,12 +489,8 @@ public class GameProtocol {
 			
 			}
 			break;
-		case PAYBILL:
-			game.optimizedPayBill(currentPlayer, currentPlayer.getPos());
-			theOutput="Next Player";
-			game.updateCurrentPlayer();
-			state=READYTOPLAY;
-			break;
+		
+			
 		case BUYINGPROPERTY:
 			//theOutput = "Do you want to buy this property?";
 			//theOutput = ""+currentPosition;
@@ -558,6 +581,12 @@ public class GameProtocol {
 		case MANAGEACTIVITY:
 			
 			String message=theInput;
+
+			if(message.equals("Play again")){
+				state=READYTOPLAY;
+				break;
+			}
+			else{
 			String[] parts = message.split(";");
 			
 			String propertyName = parts[0];
@@ -567,11 +596,6 @@ public class GameProtocol {
 			for(Property p: currentPlayer.getPropertiesOwned()){
 				if (p.getName().equals(propertyName))
 					property = p;
-			}
-			
-			if(message.equals("Playing begins")){
-				state=READYTOPLAY;
-				break;
 			}
 			
             switch(action){
@@ -603,6 +627,7 @@ public class GameProtocol {
 		
 			break;
 			
+		}
 		}
 		return theOutput;
 	}
