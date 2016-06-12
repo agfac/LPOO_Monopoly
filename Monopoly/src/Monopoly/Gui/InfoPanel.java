@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Vector;
@@ -15,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.Timer;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import Monopoly.Logic.Board;
 import Monopoly.Logic.Game;
@@ -66,10 +68,17 @@ public class InfoPanel extends ImagesLoad implements ActionListener {
 				g2d.setFont(new Font("LucidaSan", Font.PLAIN, 13)); 
 				g2d.drawString(p.getName(), 10, yIn + 90 + 20);
 				g2d.drawString(String.valueOf(p.getBalance())+ " M ", 10, yIn + 90 + 40);
-				g2d.drawString("Dice Value: " + String.valueOf(p.getDicesValue()), 10, yIn + 90 + 60);
+				g2d.drawString(p.getMensage(), xi, yIn + 50);
 				g2d.setFont(new Font("LucidaSan", Font.PLAIN, 20));
 				g2d.drawString(p.getPos().getName(), xi, yIn + 20);
-				g2d.drawString(p.getMensage(), xi, yIn + 40);
+				//Dice value
+				if (p.equals(game.getCurrentPlayer()) && game.getDice1().getValue() != 0 && game.getTimeToShowDice() != 0){
+					g.drawImage(game.getDice1().getImage(), 10, yIn+145, 10+35, yIn+145+35, 0, 0, game.getDice1().getImage().getWidth(), game.getDice1().getImage().getHeight(), null);
+					g.drawImage(game.getDice2().getImage(),50, yIn+145, 50+35, yIn+145+35, 0, 0, game.getDice2().getImage().getWidth(), game.getDice2().getImage().getHeight(), null);	
+					game.decTimeToShowDice();
+				}
+				
+				
 				// TODO
 				int yAuxI = yi;
 				int yAuxF = yf;
@@ -84,8 +93,8 @@ public class InfoPanel extends ImagesLoad implements ActionListener {
 					if (j == 3 || j == 7 || j == 11 || j == 15 || j == 19 || j == 23 || j == 27) {
 						xi = 100;
 						xf = xi + propertySize;
-						yi += 60;
-						yf += 60;
+						yi += 70;//60;
+						yf += 70;//60;
 					}
 
 				}

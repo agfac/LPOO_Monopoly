@@ -24,6 +24,7 @@ public class Game {
 	private String buyPropertyOption = null;
 	private int timeToShowChanceCard = 0;
 	private int timeToShowCommunityCard = 0;
+	private int timeToShowDice = 0;
 	private Player currentPlayer;
 
 	/**
@@ -65,6 +66,23 @@ public class Game {
 	public void decTimeToShowCommunityCard() {
 		this.timeToShowCommunityCard --;;
 	}
+	
+	public int getTimeToShowDice() {
+		return timeToShowDice;
+	}
+	
+	public void decTimeToShowDice() {
+		this.timeToShowDice --;;
+	}
+	
+	public Dice getDice1() {
+		return dice1;
+	}
+
+	public Dice getDice2() {
+		return dice2;
+	}
+
 	/**
 	 * Get all players
 	 * 
@@ -160,7 +178,7 @@ public class Game {
 		if ((player.getPos() == board.getBoardBox(7))
 				|| (player.getPos() == board.getBoardBox(22) || (player.getPos() == board.getBoardBox(36)))
 						&& chanceOption == null) {
-			timeToShowChanceCard = 10;
+			timeToShowChanceCard = 20;
 			player.setMensage("CHANCE BOX");
 			gerateChance(player);
 		}
@@ -168,7 +186,7 @@ public class Game {
 		if ((player.getPos() == board.getBoardBox(2))
 				|| (player.getPos() == board.getBoardBox(17) || (player.getPos() == board.getBoardBox(33)))
 						&& communityOption == null) {
-			timeToShowCommunityCard = 10;
+			timeToShowCommunityCard = 20;
 			player.setMensage("COMMUNITY BOX");
 			gerateCommunity(player);
 		}
@@ -190,11 +208,12 @@ public class Game {
 		communityOption = null;
 		player.setMensage("");
 		player.setDirection("forward");
+		timeToShowDice = 20;
 		int totalDiceValue, atualPlayerPos, dif;
 		
 		// Store the value of 2 rolled dices
 		totalDiceValue = get2RollDices(dice1, dice2);
-		totalDiceValue= 1;
+		
 		player.setDicesValue(totalDiceValue);
 
 		// Update number of tries from player, if get 3 times goes to jail.

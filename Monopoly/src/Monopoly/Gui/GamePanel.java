@@ -84,16 +84,25 @@ public class GamePanel extends ImagesLoad implements ActionListener {
 					game.decTimeToShowCommunityCard();
 				}
 			}
+			
+			//Dice value
+			if (game.getDice1().getValue() != 0){
+				g.drawImage(game.getDice1().getImage(), 550, 750, 550+80, 750+80, 0, 0, game.getDice1().getImage().getWidth(), game.getDice1().getImage().getHeight(), null);
+				g.drawImage(game.getDice2().getImage(),650, 750, 650+80, 750+80, 0, 0, game.getDice2().getImage().getWidth(), game.getDice2().getImage().getHeight(), null);	
+			}
+			//Player Name
 			g2d.setColor(Color.BLACK);
 			g2d.setFont(new Font("ArialRoundedMTBold", Font.PLAIN, 35)); //Geogia
 			g2d.drawString(game.getCurrentPlayer().getName(), 600, 300);
+			
+			//Property Image
 			if (game.getCurrentPlayer().getDicesValue() != 0 && !game.getCurrentPlayer().getInJail() && game.getCurrentPlayer().getCellsToMove() != 0) {
 				aux = game.getBoard().getBoardBox(game.getCurrentPlayer().getValuePosition()).getImage();
-				g.drawImage(aux, 524, 340,524 + aux.getWidth(),340 + aux.getHeight(), 0, 0,aux.getWidth(),aux.getHeight(), null);
+				g.drawImage(aux, 524, 350, 524 + aux.getWidth(),350 + aux.getHeight(), 0, 0,aux.getWidth(),aux.getHeight(), null);
 			}
 			else if(game.getCurrentPlayer().getDicesValue() != 0  && game.getCurrentPlayer().getValuePosition() == game.getCurrentPlayer().getPos().getPos()){
 				aux = game.getBoard().getBoardBox(game.getCurrentPlayer().getValuePosition()).getImage();
-				g.drawImage(aux, 524, 340,524 + aux.getWidth(),340 + aux.getHeight(), 0, 0,aux.getWidth(),aux.getHeight(), null);
+				g.drawImage(aux, 524, 350,524 + aux.getWidth(),350 + aux.getHeight(), 0, 0,aux.getWidth(),aux.getHeight(), null);
 			}
 		}
 	}
