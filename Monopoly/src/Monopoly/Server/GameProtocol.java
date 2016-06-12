@@ -20,6 +20,7 @@ import Monopoly.Logic.Game;
 import Monopoly.Logic.GoBox;
 import Monopoly.Logic.GoJailBox;
 import Monopoly.Logic.JailBox;
+import Monopoly.Logic.NormalProperty;
 import Monopoly.Logic.Player;
 import Monopoly.Logic.PlayerSymbol;
 import Monopoly.Logic.Property;
@@ -562,14 +563,41 @@ public class GameProtocol {
 			String propertyName = parts[0];
 			String action = parts[1];
 			
+			Property property = currentPlayer.getPropertiesOwned().get(0);
+			for(Property p: currentPlayer.getPropertiesOwned()){
+				if (p.getName().equals(propertyName))
+					property = p;
+			}
+			
+			if(message.equals("Playing begins")){
+				state=READYTOPLAY;
+				break;
+			}
+			
             switch(action){
             case "Mortgage":
+            	if (!game.mortgage(currentPlayer, property))
+            		theOutput = "You couldn't mortgage this property";
             	break;
             case "Unmortgage":
+            	if (!game.unMortgage(currentPlayer, property))
+            		theOutput = "You couldn't unmortgage this property";
             	break;
             case "BuildHouse":
+            	if (!game.createHouses(currentPlayer, (NormalProperty) property, 1))
+            		theOutput = "You couldn't build more houses";
             	break;
             case "BuildHotel":
+            	if (!game.createHotel(currentPlayer, (NormalProperty) property))
+            		theOutput = "You couldn't build hotel";
+            	break;
+            case "SellHouse":
+            	if (!game.sellHouses(currentPlayer, (NormalProperty) property, 1))
+            		theOutput = "You couldn't sell more houses";
+            	break;
+            case "SellHotel":
+            	if (!game.sellHotel(currentPlayer, (NormalProperty) property))
+            		theOutput = "You couldn't sell hotel";
             	break;
             }
 		

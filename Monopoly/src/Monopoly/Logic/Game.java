@@ -194,7 +194,7 @@ public class Game {
 		
 		// Store the value of 2 rolled dices
 		totalDiceValue = get2RollDices(dice1, dice2);
-
+		totalDiceValue= 1;
 		player.setDicesValue(totalDiceValue);
 
 		// Update number of tries from player, if get 3 times goes to jail.
@@ -391,11 +391,13 @@ public class Game {
 	 * @param property
 	 *            to be mortgage
 	 */
-	public void mortgage(Player player, Property property) {
-		if (player.equals(property.getOwner()) && !property.getMortgage()) {
+	public boolean mortgage(Player player, Property property) {
+		if (player.equals(property.getOwner()) && !property.getMortgage() && ((NormalProperty )property).getNrHotels() == 0 && ((NormalProperty )property).getNrHouses() == 0) {
 			property.setMortgage(true);
 			player.updateBalance(property.getMortgageValue());
+			return true;
 		}
+		return false;
 	}
 
 	/**
@@ -406,11 +408,13 @@ public class Game {
 	 * @param property
 	 *            to be 'unmortgage'
 	 */
-	public void unMortgage(Player player, Property property) {
+	public boolean unMortgage(Player player, Property property) {
 		if (player.equals(property.getOwner()) && property.getMortgage()) {
 			property.setMortgage(false);
 			player.updateBalance(-property.getMortgageValueBack());
+			return true;
 		}
+		return false;
 	}
 
 	/**
@@ -423,12 +427,14 @@ public class Game {
 	 * @param n
 	 *            number of houses to be sold
 	 */
-	public void sellHouses(Player player, NormalProperty nProperty, int n) {
+	public boolean sellHouses(Player player, NormalProperty nProperty, int n) {
 		if (player.equals(nProperty.getOwner()) && nProperty.getNrHouses() >= n) {
 			nProperty.sellHouse(n);
 			player.updateBalance(n * (nProperty.getHouseCost() / 2));
+			return true;
 		} else
 			player.setMensage("You dont have " + n + " houses.");
+		return false;
 	}
 
 	/**
@@ -441,12 +447,15 @@ public class Game {
 	 * @param n
 	 *            number of hotel to be sold
 	 */
-	public void sellHotel(Player player, NormalProperty nProperty) {
+	public boolean sellHotel(Player player, NormalProperty nProperty) {
 		if (player.equals(nProperty.getOwner()) && nProperty.getNrHotels() == 1) {
 			nProperty.sellHotel();
+			nProperty.setNrHouses(4);
 			player.updateBalance(nProperty.getHotelCost() / 2);
+			return true;
 		} else
 			player.setMensage("You dont have hotel.");
+		return false;
 	}
 
 	/**
@@ -459,16 +468,19 @@ public class Game {
 	 * @param n
 	 *            number of houses to be purchased
 	 */
-	public void createHouses(Player player, NormalProperty nProperty, int n) {
-		if (player.haveAllPropertiesGroup(nProperty)) {
+	public boolean createHouses(Player player, NormalProperty nProperty, int n) {
+		if (player.haveAllPropertiesGroup(nProperty) && !(nProperty.getMortgage()) && nProperty.getNrHotels() == 0) {
 			if ((player.getBalance() >= nProperty.getHouseCost() * n) && (n > 0 && n <= 4)
 					&& nProperty.canBuildHouse()) {
 				player.updateBalance(-nProperty.getHouseCost() * n);
 				nProperty.buildHouse(n);
+				return true;
 			} else {
 				player.setMensage("You don't have money or enter a wrong number or cant build more");
+				return false;
 			}
 		}
+		return false;
 	}
 
 	/**
@@ -479,12 +491,15 @@ public class Game {
 	 * @param nProperty
 	 *            to place the hotel
 	 */
-	public void createHotel(Player player, NormalProperty nProperty) {
-		if (nProperty.canBuildHotel() && (player.getBalance() >= nProperty.getHotelCost())) {
+	public boolean createHotel(Player player, NormalProperty nProperty) {
+		if (nProperty.canBuildHotel() && (player.getBalance() >= nProperty.getHotelCost()) && !(nProperty.getMortgage())) {
+			nProperty.setNrHouses(0);
 			player.updateBalance(-nProperty.getHotelCost());
 			nProperty.buildHotel();
+			return true;
 		} else {
 			player.setMensage("You cant build Hotel or dont have enought money");
+			return false;
 		}
 	}
 

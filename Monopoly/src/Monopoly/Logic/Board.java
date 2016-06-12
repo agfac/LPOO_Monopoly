@@ -192,7 +192,7 @@ public class Board {
 		boxs[3] = BalticAvenue;
 		TaxBox IncomeTax = new TaxBox(4, "Income Tax", 200, incomeTaxImage);
 		boxs[4] = IncomeTax;
-		RailRoadProperty ReadingRailRoad = new RailRoadProperty(5, "Reading Railroad", g2p5, g2p5RP);
+		RailRoadProperty ReadingRailRoad = new RailRoadProperty(5, "Reading RailRoad", g2p5, g2p5RP);
 		boxs[5] = ReadingRailRoad;
 		NormalProperty OrientalAvenue = new NormalProperty(6, "Oriental Avenue", 3, 100, 50, 6,
 				new int[] { 30, 90, 270, 400 }, 550, g3p6, g3p6RP);

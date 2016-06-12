@@ -184,6 +184,10 @@ public class NormalProperty extends Property {
 		return hotelCost;
 	}
 
+	public void setNrHouses(int nrHouses) {
+		this.nrHouses = nrHouses;
+	}
+	
 	/**
 	 * Get the value to pay on this property
 	 * 
