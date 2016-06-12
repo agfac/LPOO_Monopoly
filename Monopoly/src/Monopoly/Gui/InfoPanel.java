@@ -60,7 +60,6 @@ public class InfoPanel extends ImagesLoad implements ActionListener {
 			for (Player p : game.getPlayers()) {
 				g.drawImage(p.getSymbol().getPiece(), 0, yIn, 90, yIn + 90, 0, 0, p.getSymbol().getPiece().getWidth(),
 						p.getSymbol().getPiece().getHeight(), null);
-
 				Graphics2D g2d = (Graphics2D) g;
 				g2d.setColor(Color.BLACK);
 				g2d.drawRect(xIn, yIn, boxWidht, boxHeight);
@@ -78,7 +77,8 @@ public class InfoPanel extends ImagesLoad implements ActionListener {
 					g.drawImage(p.getPropertiesOwned().get(j).getIconImage(), xi, yi, xf, yf, 0, 0,
 							p.getPropertiesOwned().get(j).getIconImage().getWidth(),
 							p.getPropertiesOwned().get(j).getIconImage().getHeight(), null);
-					
+					if (p.getPropertiesOwned().get(j).getMortgage())
+						g.drawImage(mortgage, xi+50, yi, xf, yf-20, 0, 0, mortgage.getWidth(), mortgage.getHeight(), null);
 					xi += propertySize;
 					xf += propertySize;
 					if (j == 3 || j == 7 || j == 11 || j == 15 || j == 19 || j == 23 || j == 27) {
