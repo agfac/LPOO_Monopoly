@@ -24,17 +24,9 @@ public class ServerThread extends Thread {
         ) {
             String inputLine, outputLine;
             
-            //outputLine = gp.processInput(null);
-            //System.out.println(outputLine);
-            //out.println(outputLine);
-
             while ((inputLine = in.readLine()) != null) {
-                //System.out.println(outputLine);
                 outputLine = gp.processInput(inputLine);
-                System.out.println(outputLine);
                 out.println(outputLine);
-                /*if (outputLine.equals("Bye"))
-                    break;*/
             }
             socket.close();
         } catch (IOException e) {

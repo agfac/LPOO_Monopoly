@@ -48,7 +48,7 @@ public class Property extends BoardBox {
 		this.owner = null;
 		this.mortgage = false;
 		this.mortgageValue = mortgageValue;
-		this.mortgageValueBack = (int) (this.mortgageValue * 0.8);
+		this.mortgageValueBack = (int) (this.mortgageValue * 1.2);
 		this.iconImage = icon;
 		this.image = image;
 	}

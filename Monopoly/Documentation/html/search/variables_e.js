@@ -1,8 +1,6 @@
 var searchData=
 [
   ['setgameproperties',['SETGAMEPROPERTIES',['../class_monopoly_1_1_server_1_1_game_protocol.html#a08a159e70f29fbac3d5c34c3bb06a0f7',1,'Monopoly::Server::GameProtocol']]],
-  ['ship',['ship',['../class_monopoly_1_1_logic_1_1_game.html#aa3284241255ce061e89c840372e9ace0',1,'Monopoly::Logic::Game']]],
-  ['shippiece',['shipPiece',['../class_monopoly_1_1_logic_1_1_game.html#ab84d4d846a47154e872a4e2498c2d72d',1,'Monopoly::Logic::Game']]],
   ['socket',['socket',['../class_monopoly_1_1_server_1_1_server_thread.html#a19c9a9d75155a759aa029544141ee09a',1,'Monopoly::Server::ServerThread']]],
   ['sold',['sold',['../class_monopoly_1_1_logic_1_1_property.html#a3a3b93ad91c78c5fc0ffd6f5bfbdad1b',1,'Monopoly::Logic::Property']]],
   ['state',['state',['../class_monopoly_1_1_server_1_1_game_protocol.html#ad96dd410c80756d63c446a70222dec2d',1,'Monopoly::Server::GameProtocol']]],

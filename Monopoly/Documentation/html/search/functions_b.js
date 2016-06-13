@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['normalproperty',['NormalProperty',['../class_monopoly_1_1_logic_1_1_normal_property.html#a175bcb0bb1aa6eab66ba1c8289286da6',1,'Monopoly::Logic::NormalProperty']]]
+  ['optimizedpaybill',['optimizedPayBill',['../class_monopoly_1_1_logic_1_1_game.html#a16376d072bdb79b089175c1987d4cee3',1,'Monopoly::Logic::Game']]]
 ];

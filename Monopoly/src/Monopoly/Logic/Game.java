@@ -262,7 +262,7 @@ public class Game {
 		
 		// Store the value of 2 rolled dices
 		totalDiceValue = get2RollDices(dice1, dice2);
-		totalDiceValue = 1;
+
 		player.setDicesValue(totalDiceValue);
 
 		// Update number of tries from player, if get 3 times goes to jail.
@@ -295,7 +295,6 @@ public class Game {
 			player.setMensage("!!!WARNING!!! Valeu to pay: " + ((TaxBox) board.getBoardBox(4)).getTaxValue());
 			player.updateBalance(-((TaxBox) board.getBoardBox(4)).getTaxValue());
 		}
-		System.out.println("Dice value: " + (dice1.getValue() + dice2.getValue()));
 	}
 
 	/**
@@ -317,14 +316,13 @@ public class Game {
 	 *            to be updated on Jail
 	 */
 	public void updatePlayerInJail(Player player) {
+		player.setMensage("");
 		int totalDiceValue, atualPlayerPos;
 
 		// Store the value of 2 rolled dices
 		totalDiceValue = get2RollDices(dice1, dice2);
 
 		player.setDicesValue(totalDiceValue);
-
-		System.out.println("Dice1 value: " + dice1.getValue() + " Dice2 value: " + dice2.getValue());
 
 		// Increment the tries in jail
 		player.setNrOfRollsInJail(sameValuesDice(dice1, dice2));
@@ -445,18 +443,6 @@ public class Game {
 	}
 
 	/**
-	 * Method to show information about properties that a player have.
-	 * 
-	 * @param player
-	 *            to be showed information
-	 */
-	public void showProperties(Player player) {
-		for (Property vp : player.getPropertiesOwned()) {
-			System.out.println("Property name: " + vp.getName() + " Nr: " + player.getPropertiesNr(vp));
-		}
-	}
-
-	/**
 	 * Method to mortgage a property
 	 * 
 	 * @param player
@@ -562,7 +548,7 @@ public class Game {
 				player.setMensage("House purchased successful");
 				return true;
 			} else {
-				player.setMensage("!!!WARNING!!! You don't have money or enter a wrong number or cant build more");
+				player.setMensage("!!!WARNING!!! You don't have money or can't build more");
 				return false;
 			}
 		}
@@ -877,17 +863,4 @@ public class Game {
 		return board;
 	}
 
-	/**
-	 * Print player information
-	 * 
-	 * @param player
-	 *            to be showed information
-	 */
-	public void infoPlayer(Player player) {
-		System.out.println("Player balance: " + player.getBalance());
-		System.out.println("Player pos: " + player.getPos().getPos());
-		System.out.println("Player Double: " + player.getNrOfRolls());
-		System.out.println("Player in jail: " + player.getInJail());
-		// showProperties(player);
-	}
 }

@@ -7,12 +7,10 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
-import Monopoly.Gui.ImageLoader;
-
 /**
  * Dice class
  */
-public class Dice extends ImageLoader {
+public class Dice {
 	private int value;
 	private static BufferedImage diceFace1;
 	private static BufferedImage diceFace2;
@@ -58,7 +56,6 @@ public class Dice extends ImageLoader {
 	public void rollDice() {
 		Random gerador = new Random();
 		this.value = gerador.nextInt(6) + 1;
-		System.out.println("sou o dado e o meu valor é ---------> " + value);
 	}
 
 	/**

@@ -8,11 +8,10 @@ var searchData=
   ['boardbox',['BoardBox',['../class_monopoly_1_1_logic_1_1_board_box.html#aaba7b92a6d29974b897cca4aff9ad70f',1,'Monopoly.Logic.BoardBox.BoardBox()'],['../class_monopoly_1_1_logic_1_1_board_box.html#afaca40383c3c6adf9e5ae82a2a0c0206',1,'Monopoly.Logic.BoardBox.BoardBox(String name, int pos)']]],
   ['boardbox',['BoardBox',['../class_monopoly_1_1_logic_1_1_board_box.html',1,'Monopoly::Logic']]],
   ['boardbox_2ejava',['BoardBox.java',['../_board_box_8java.html',1,'']]],
-  ['boot',['boot',['../class_monopoly_1_1_logic_1_1_game.html#a16abdb90decd1f01e20ad2704ce7f8a2',1,'Monopoly::Logic::Game']]],
-  ['bootpiece',['bootPiece',['../class_monopoly_1_1_logic_1_1_game.html#af5f0a46238effac27049e9c7136333e4',1,'Monopoly::Logic::Game']]],
   ['boxs',['boxs',['../class_monopoly_1_1_logic_1_1_board.html#a3ef95f74f882c732d9747a957341aad1',1,'Monopoly::Logic::Board']]],
   ['buildhotel',['buildHotel',['../class_monopoly_1_1_logic_1_1_normal_property.html#a5c8250cb6aa2761da7ac9b82a2da0453',1,'Monopoly::Logic::NormalProperty']]],
   ['buildhouse',['buildHouse',['../class_monopoly_1_1_logic_1_1_normal_property.html#aaca96e1c246e9dbd9f31e26a5f849343',1,'Monopoly::Logic::NormalProperty']]],
   ['buyingproperty',['BUYINGPROPERTY',['../class_monopoly_1_1_server_1_1_game_protocol.html#ac5ba79972e1e2d496ed779fdd7ed36f3',1,'Monopoly::Server::GameProtocol']]],
-  ['buyproperty',['buyProperty',['../class_monopoly_1_1_logic_1_1_game.html#a762472efc27ce244e217ed4135691cd9',1,'Monopoly.Logic.Game.buyProperty()'],['../class_monopoly_1_1_logic_1_1_player.html#ad996dcb61a56f2d654360cf20c6a6706',1,'Monopoly.Logic.Player.buyProperty()']]]
+  ['buyproperty',['buyProperty',['../class_monopoly_1_1_logic_1_1_game.html#a762472efc27ce244e217ed4135691cd9',1,'Monopoly.Logic.Game.buyProperty()'],['../class_monopoly_1_1_logic_1_1_player.html#ad996dcb61a56f2d654360cf20c6a6706',1,'Monopoly.Logic.Player.buyProperty()']]],
+  ['buypropertyoption',['buyPropertyOption',['../class_monopoly_1_1_logic_1_1_game.html#abb784248ea530aa3048e3d0bb446bc1a',1,'Monopoly::Logic::Game']]]
 ];

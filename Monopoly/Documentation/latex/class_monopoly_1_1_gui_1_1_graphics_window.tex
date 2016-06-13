@@ -9,14 +9,14 @@ Inheritance diagram for Monopoly.\+Gui.\+Graphics\+Window\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_monopoly_1_1_gui_1_1_graphics_window_abdd7511395d6a4afd617d3a7fee618cf}{Graphics\+Window} ()
+\hyperlink{class_monopoly_1_1_gui_1_1_graphics_window_a16240618dba3bc96b0dcea077c145a97}{Graphics\+Window} (\hyperlink{class_monopoly_1_1_logic_1_1_game}{Game} game)
 \item 
 void \hyperlink{class_monopoly_1_1_gui_1_1_graphics_window_a8bafa0e5f4f8e1912bd834d58fc648cb}{game\+Status} ()
 \end{DoxyCompactItemize}
-\subsection*{Static Public Member Functions}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static void \hyperlink{class_monopoly_1_1_gui_1_1_graphics_window_a1e1d248ae01ec37b02567e8e47a91763}{main} (String\mbox{[}$\,$\mbox{]} args)
+J\+Frame \hyperlink{class_monopoly_1_1_gui_1_1_graphics_window_ab43b42c7612644a1ba7c4386cc744ec6}{frame}
 \end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
@@ -25,8 +25,6 @@ void \hyperlink{class_monopoly_1_1_gui_1_1_graphics_window_a700f7b4000e6b02ebe22
 \end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
-\item 
-J\+Frame \hyperlink{class_monopoly_1_1_gui_1_1_graphics_window_ab43b42c7612644a1ba7c4386cc744ec6}{frame}
 \item 
 \hyperlink{class_monopoly_1_1_gui_1_1_game_panel}{Game\+Panel} \hyperlink{class_monopoly_1_1_gui_1_1_graphics_window_ae8c4d8f340754454eb9297e23614157f}{panel}
 \item 
@@ -38,11 +36,11 @@ J\+Frame \hyperlink{class_monopoly_1_1_gui_1_1_graphics_window_ab43b42c7612644a1
 \subsection{Constructor \& Destructor Documentation}
 \index{Monopoly\+::\+Gui\+::\+Graphics\+Window@{Monopoly\+::\+Gui\+::\+Graphics\+Window}!Graphics\+Window@{Graphics\+Window}}
 \index{Graphics\+Window@{Graphics\+Window}!Monopoly\+::\+Gui\+::\+Graphics\+Window@{Monopoly\+::\+Gui\+::\+Graphics\+Window}}
-\subsubsection[{\texorpdfstring{Graphics\+Window()}{GraphicsWindow()}}]{\setlength{\rightskip}{0pt plus 5cm}Monopoly.\+Gui.\+Graphics\+Window.\+Graphics\+Window (
+\subsubsection[{\texorpdfstring{Graphics\+Window(\+Game game)}{GraphicsWindow(Game game)}}]{\setlength{\rightskip}{0pt plus 5cm}Monopoly.\+Gui.\+Graphics\+Window.\+Graphics\+Window (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf Game}}]{game}
 \end{DoxyParamCaption}
-)}\hypertarget{class_monopoly_1_1_gui_1_1_graphics_window_abdd7511395d6a4afd617d3a7fee618cf}{}\label{class_monopoly_1_1_gui_1_1_graphics_window_abdd7511395d6a4afd617d3a7fee618cf}
+)}\hypertarget{class_monopoly_1_1_gui_1_1_graphics_window_a16240618dba3bc96b0dcea077c145a97}{}\label{class_monopoly_1_1_gui_1_1_graphics_window_a16240618dba3bc96b0dcea077c145a97}
 Create the application. 
 
 \subsection{Member Function Documentation}
@@ -60,19 +58,12 @@ Create the application.
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_gui_1_1_graphics_window_a700f7b4000e6b02ebe2229bb6ba77514}{}\label{class_monopoly_1_1_gui_1_1_graphics_window_a700f7b4000e6b02ebe2229bb6ba77514}
-Initialize the contents of the frame. \index{Monopoly\+::\+Gui\+::\+Graphics\+Window@{Monopoly\+::\+Gui\+::\+Graphics\+Window}!main@{main}}
-\index{main@{main}!Monopoly\+::\+Gui\+::\+Graphics\+Window@{Monopoly\+::\+Gui\+::\+Graphics\+Window}}
-\subsubsection[{\texorpdfstring{main(\+String[] args)}{main(String[] args)}}]{\setlength{\rightskip}{0pt plus 5cm}static void Monopoly.\+Gui.\+Graphics\+Window.\+main (
-\begin{DoxyParamCaption}
-\item[{String\mbox{[}$\,$\mbox{]}}]{args}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_monopoly_1_1_gui_1_1_graphics_window_a1e1d248ae01ec37b02567e8e47a91763}{}\label{class_monopoly_1_1_gui_1_1_graphics_window_a1e1d248ae01ec37b02567e8e47a91763}
-Launch the application. 
+Initialize the contents of the frame. 
 
 \subsection{Member Data Documentation}
 \index{Monopoly\+::\+Gui\+::\+Graphics\+Window@{Monopoly\+::\+Gui\+::\+Graphics\+Window}!frame@{frame}}
 \index{frame@{frame}!Monopoly\+::\+Gui\+::\+Graphics\+Window@{Monopoly\+::\+Gui\+::\+Graphics\+Window}}
-\subsubsection[{\texorpdfstring{frame}{frame}}]{\setlength{\rightskip}{0pt plus 5cm}J\+Frame Monopoly.\+Gui.\+Graphics\+Window.\+frame\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_gui_1_1_graphics_window_ab43b42c7612644a1ba7c4386cc744ec6}{}\label{class_monopoly_1_1_gui_1_1_graphics_window_ab43b42c7612644a1ba7c4386cc744ec6}
+\subsubsection[{\texorpdfstring{frame}{frame}}]{\setlength{\rightskip}{0pt plus 5cm}J\+Frame Monopoly.\+Gui.\+Graphics\+Window.\+frame}\hypertarget{class_monopoly_1_1_gui_1_1_graphics_window_ab43b42c7612644a1ba7c4386cc744ec6}{}\label{class_monopoly_1_1_gui_1_1_graphics_window_ab43b42c7612644a1ba7c4386cc744ec6}
 \index{Monopoly\+::\+Gui\+::\+Graphics\+Window@{Monopoly\+::\+Gui\+::\+Graphics\+Window}!panel@{panel}}
 \index{panel@{panel}!Monopoly\+::\+Gui\+::\+Graphics\+Window@{Monopoly\+::\+Gui\+::\+Graphics\+Window}}
 \subsubsection[{\texorpdfstring{panel}{panel}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Game\+Panel} Monopoly.\+Gui.\+Graphics\+Window.\+panel\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_gui_1_1_graphics_window_ae8c4d8f340754454eb9297e23614157f}{}\label{class_monopoly_1_1_gui_1_1_graphics_window_ae8c4d8f340754454eb9297e23614157f}

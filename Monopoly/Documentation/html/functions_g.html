@@ -86,7 +86,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_h.html#index_h"><span>h</span></a></li>
       <li><a href="functions_i.html#index_i"><span>i</span></a></li>
       <li><a href="functions_j.html#index_j"><span>j</span></a></li>
-      <li><a href="functions_k.html#index_k"><span>k</span></a></li>
       <li><a href="functions_m.html#index_m"><span>m</span></a></li>
       <li><a href="functions_n.html#index_n"><span>n</span></a></li>
       <li><a href="functions_o.html#index_o"><span>o</span></a></li>
@@ -127,13 +126,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_monopoly_1_1_logic_1_1_board.html#aaeeda9f5c80e5ed76e67289cb3f22ea7">Monopoly.Logic.Board</a>
 </li>
 <li>Game()
-: <a class="el" href="class_monopoly_1_1_logic_1_1_game.html#a5f2946cff44df4b850dc41825029f353">Monopoly.Logic.Game</a>
+: <a class="el" href="class_monopoly_1_1_logic_1_1_game.html#a6b50a9d7c49c5ca0d91c7816bd8acff1">Monopoly.Logic.Game</a>
 </li>
 <li>game
 : <a class="el" href="class_monopoly_1_1_server_1_1_game_protocol.html#a2496f74982ea2cc8730f1871c1406542">Monopoly.Server.GameProtocol</a>
 </li>
+<li>gameLogic()
+: <a class="el" href="class_monopoly_1_1_server_1_1_game_protocol.html#abca495ebc2303b356ff7306c8a26e912">Monopoly.Server.GameProtocol</a>
+</li>
 <li>GamePanel()
 : <a class="el" href="class_monopoly_1_1_gui_1_1_game_panel.html#a5d29924ab30b719b403453d61d5591b6">Monopoly.Gui.GamePanel</a>
+</li>
+<li>GameProtocol()
+: <a class="el" href="class_monopoly_1_1_server_1_1_game_protocol.html#af8d2e046f5e5a11799d8379361689584">Monopoly.Server.GameProtocol</a>
+</li>
+<li>gameSettings
+: <a class="el" href="class_monopoly_1_1_server_1_1_game_protocol.html#ad9946dfb84c7321318dee58de3c5f65c">Monopoly.Server.GameProtocol</a>
 </li>
 <li>gameStatus()
 : <a class="el" href="class_monopoly_1_1_gui_1_1_graphics_window.html#a8bafa0e5f4f8e1912bd834d58fc648cb">Monopoly.Gui.GraphicsWindow</a>
@@ -171,6 +179,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>getBoardBox()
 : <a class="el" href="class_monopoly_1_1_logic_1_1_board.html#a836d88dbde44833965456754821edf96">Monopoly.Logic.Board</a>
 </li>
+<li>getBuyPropertyOption()
+: <a class="el" href="class_monopoly_1_1_logic_1_1_game.html#ae7c6b79a95e1d1dc8f7d8bd47e93f506">Monopoly.Logic.Game</a>
+</li>
 <li>getCellsToMove()
 : <a class="el" href="class_monopoly_1_1_logic_1_1_player.html#ac0dd44eebc83dba1281e36c359a646ed">Monopoly.Logic.Player</a>
 </li>
@@ -186,8 +197,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>getCommunityOption()
 : <a class="el" href="class_monopoly_1_1_logic_1_1_game.html#a360b16bdaea39cbbcae7a317b20c44c0">Monopoly.Logic.Game</a>
 </li>
+<li>getCurrentPlayer()
+: <a class="el" href="class_monopoly_1_1_logic_1_1_game.html#a021296358e355211fd5bae130913fb69">Monopoly.Logic.Game</a>
+, <a class="el" href="class_monopoly_1_1_server_1_1_game_protocol.html#aba65994f64b948eb5dff1e4eebc93367">Monopoly.Server.GameProtocol</a>
+</li>
+<li>getDice1()
+: <a class="el" href="class_monopoly_1_1_logic_1_1_game.html#ae66cbd6a5c2d72c7e51e2508c3796726">Monopoly.Logic.Game</a>
+</li>
+<li>getDice2()
+: <a class="el" href="class_monopoly_1_1_logic_1_1_game.html#a9a502d8b153c4c1ce0738b76e15fe0e6">Monopoly.Logic.Game</a>
+</li>
 <li>getDicesValue()
 : <a class="el" href="class_monopoly_1_1_logic_1_1_player.html#a469824453601f9ea9fafe9c705b1f86b">Monopoly.Logic.Player</a>
+</li>
+<li>getGameSettings()
+: <a class="el" href="class_monopoly_1_1_server_1_1_game_protocol.html#a4ec6d4ea15af4195decd7b0db1e545d9">Monopoly.Server.GameProtocol</a>
 </li>
 <li>getHotelCost()
 : <a class="el" href="class_monopoly_1_1_logic_1_1_normal_property.html#ac69e1342451e1a6f435c4d5b1f86be7d">Monopoly.Logic.NormalProperty</a>
@@ -207,14 +231,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_monopoly_1_1_logic_1_1_property.html#ab38c4860d9510be25024866bc68ee0f0">Monopoly.Logic.Property</a>
 </li>
 <li>getImage()
-: <a class="el" href="class_monopoly_1_1_logic_1_1_card.html#ae24ee12ca60b8113f6d48323e1a9d93d">Monopoly.Logic.Card</a>
-, <a class="el" href="class_monopoly_1_1_logic_1_1_property.html#a0919070bb7975e8551cad6f5743b5f37">Monopoly.Logic.Property</a>
+: <a class="el" href="class_monopoly_1_1_logic_1_1_board_box.html#a0fdc6f0eae85275cd1c3e5bc95e1aa1d">Monopoly.Logic.BoardBox</a>
+, <a class="el" href="class_monopoly_1_1_logic_1_1_card.html#ae24ee12ca60b8113f6d48323e1a9d93d">Monopoly.Logic.Card</a>
+, <a class="el" href="class_monopoly_1_1_logic_1_1_dice.html#a183b3e988e5a115a3ab602d7422bb4db">Monopoly.Logic.Dice</a>
 </li>
 <li>getInJail()
 : <a class="el" href="class_monopoly_1_1_logic_1_1_player.html#a998ce119ac6845284fc8d52a2d35356e">Monopoly.Logic.Player</a>
 </li>
 <li>getMaxPropertiesPerGroup()
 : <a class="el" href="class_monopoly_1_1_logic_1_1_board.html#a8cb936eb34bc5fdd5bbe0a4105c0be29">Monopoly.Logic.Board</a>
+</li>
+<li>getMensage()
+: <a class="el" href="class_monopoly_1_1_logic_1_1_player.html#aba3ec4dc3998f97a8766d00e649e2410">Monopoly.Logic.Player</a>
 </li>
 <li>getMortgage()
 : <a class="el" href="class_monopoly_1_1_logic_1_1_property.html#a3d90a3b32b39ff03e6902ee8b4e9eb9c">Monopoly.Logic.Property</a>
@@ -248,6 +276,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>getNrOfRollsInJail()
 : <a class="el" href="class_monopoly_1_1_logic_1_1_player.html#a508585931f8d357c2535552a5c182474">Monopoly.Logic.Player</a>
 </li>
+<li>getNumPlayers()
+: <a class="el" href="class_monopoly_1_1_server_1_1_game_protocol.html#a6ca7ecbc46e3175d612ee66014f03ecd">Monopoly.Server.GameProtocol</a>
+</li>
 <li>getOwner()
 : <a class="el" href="class_monopoly_1_1_logic_1_1_property.html#a7090f5002c44914c9627e981c9b89f29">Monopoly.Logic.Property</a>
 </li>
@@ -256,6 +287,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>getPlayers()
 : <a class="el" href="class_monopoly_1_1_logic_1_1_game.html#a057dfd53e851958229778a86c2981d7b">Monopoly.Logic.Game</a>
+, <a class="el" href="class_monopoly_1_1_server_1_1_game_protocol.html#a56346961e961b9ee763e3ffacfc37b48">Monopoly.Server.GameProtocol</a>
 </li>
 <li>getPos()
 : <a class="el" href="class_monopoly_1_1_logic_1_1_board_box.html#a4cb9795a6df15b45d01640a2a43499d9">Monopoly.Logic.BoardBox</a>
@@ -282,6 +314,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>getTaxValue()
 : <a class="el" href="class_monopoly_1_1_logic_1_1_tax_box.html#a3e7d5fe75e6a1d91b94b2363c06e8651">Monopoly.Logic.TaxBox</a>
 </li>
+<li>getTimeToShowChanceCard()
+: <a class="el" href="class_monopoly_1_1_logic_1_1_game.html#ab226e5b690f112558bb8ded71b05c20d">Monopoly.Logic.Game</a>
+</li>
+<li>getTimeToShowCommunityCard()
+: <a class="el" href="class_monopoly_1_1_logic_1_1_game.html#a9b3125adc9310ef49ad506298f107c57">Monopoly.Logic.Game</a>
+</li>
+<li>getTimeToShowDice()
+: <a class="el" href="class_monopoly_1_1_logic_1_1_game.html#a2a2b58d4f6e972d09458e4ae4aa119f4">Monopoly.Logic.Game</a>
+</li>
 <li>getTotalProperty()
 : <a class="el" href="class_monopoly_1_1_logic_1_1_group_property.html#aaf2a61b884cec107cbd34f5d55f3033b">Monopoly.Logic.GroupProperty</a>
 </li>
@@ -306,7 +347,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_monopoly_1_1_logic_1_1_go_box.html#a77cc9ce82f5cdddf6f27098a8a79dd2e">Monopoly.Logic.GoBox</a>
 </li>
 <li>GoJailBox()
-: <a class="el" href="class_monopoly_1_1_logic_1_1_go_jail_box.html#a7ee8aeaf50b2513928e34cdfba9c3090">Monopoly.Logic.GoJailBox</a>
+: <a class="el" href="class_monopoly_1_1_logic_1_1_go_jail_box.html#a61090688b270fdcb2a387797ae17075a">Monopoly.Logic.GoJailBox</a>
 </li>
 <li>GOVALUE
 : <a class="el" href="class_monopoly_1_1_logic_1_1_game.html#a56756d9c96a11f599e4abaed874b2cf9">Monopoly.Logic.Game</a>
@@ -315,7 +356,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_monopoly_1_1_server_1_1_server_thread.html#a1f3548c7768315759bdc1a5d3f6761c4">Monopoly.Server.ServerThread</a>
 </li>
 <li>GraphicsWindow()
-: <a class="el" href="class_monopoly_1_1_gui_1_1_graphics_window.html#abdd7511395d6a4afd617d3a7fee618cf">Monopoly.Gui.GraphicsWindow</a>
+: <a class="el" href="class_monopoly_1_1_gui_1_1_graphics_window.html#a16240618dba3bc96b0dcea077c145a97">Monopoly.Gui.GraphicsWindow</a>
 </li>
 <li>groupProperty
 : <a class="el" href="class_monopoly_1_1_logic_1_1_board.html#a6861185113e9efbff62d0c02ad1aafad">Monopoly.Logic.Board</a>

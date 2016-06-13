@@ -5,7 +5,7 @@
 \item 
 \hyperlink{class_monopoly_1_1_logic_1_1_player_ae03fd34bc6503a939b2b85f763e0ae7e}{Player} (String \hyperlink{class_monopoly_1_1_logic_1_1_player_ac9a1abcd87e522434ec657f541c69647}{name}, int piece, int \hyperlink{class_monopoly_1_1_logic_1_1_player_adee3b4a4dea242b17568e6d93922a698}{balance})
 \item 
-\hyperlink{class_monopoly_1_1_logic_1_1_player_a9982c0f955a39716b9f2d0bcc4179203}{Player} (String \hyperlink{class_monopoly_1_1_logic_1_1_player_ac9a1abcd87e522434ec657f541c69647}{name}, \hyperlink{class_monopoly_1_1_logic_1_1_player_symbol}{Player\+Symbol} piece, int \hyperlink{class_monopoly_1_1_logic_1_1_player_adee3b4a4dea242b17568e6d93922a698}{balance}, \hyperlink{class_monopoly_1_1_logic_1_1_board_box}{Board\+Box} \hyperlink{class_monopoly_1_1_logic_1_1_player_a94388e91629f1f055fed991fd202e1b8}{pos}, int \hyperlink{class_monopoly_1_1_logic_1_1_player_a30de4a228019d4020511fb2f573901dd}{id})
+\hyperlink{class_monopoly_1_1_logic_1_1_player_a1ddc3d2d7ab423cff3cb395dc456eac0}{Player} (String \hyperlink{class_monopoly_1_1_logic_1_1_player_ac9a1abcd87e522434ec657f541c69647}{name}, \hyperlink{class_monopoly_1_1_logic_1_1_player_symbol}{Player\+Symbol} piece, int \hyperlink{class_monopoly_1_1_logic_1_1_player_adee3b4a4dea242b17568e6d93922a698}{balance}, int \hyperlink{class_monopoly_1_1_logic_1_1_player_a30de4a228019d4020511fb2f573901dd}{id})
 \item 
 void \hyperlink{class_monopoly_1_1_logic_1_1_player_a1bb5cf33a38b1fe7984d23b632ce48fc}{update\+G\+U\+I\+Position} ()
 \item 
@@ -70,6 +70,12 @@ boolean \hyperlink{class_monopoly_1_1_logic_1_1_player_a08631c9db2cdc0225393ce56
 int \hyperlink{class_monopoly_1_1_logic_1_1_player_a469824453601f9ea9fafe9c705b1f86b}{get\+Dices\+Value} ()
 \item 
 void \hyperlink{class_monopoly_1_1_logic_1_1_player_a86e4fe7be709b46c21a8c9232c29e435}{set\+Dices\+Value} (int \hyperlink{class_monopoly_1_1_logic_1_1_player_a73973f9d5106195b500c2c99c7e72abd}{dices\+Value})
+\item 
+String \hyperlink{class_monopoly_1_1_logic_1_1_player_aba3ec4dc3998f97a8766d00e649e2410}{get\+Mensage} ()
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_player_a5aa84b8f9771bb39819df1002488df5c}{set\+Mensage} (String \hyperlink{class_monopoly_1_1_logic_1_1_player_ae1e9a893f8b815bc34a00c36492a8722}{mensage})
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_player_a31105cb31489a5f0ed35d6a99d108451}{set\+Direction} (String s)
 \end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
@@ -111,6 +117,8 @@ int \hyperlink{class_monopoly_1_1_logic_1_1_player_a9b17ab340918d686bcca176f7d4d
 \item 
 int \hyperlink{class_monopoly_1_1_logic_1_1_player_a005b4707e0457444f1de5053dd9f8f70}{value\+Posittion}
 \item 
+String \hyperlink{class_monopoly_1_1_logic_1_1_player_ae1e9a893f8b815bc34a00c36492a8722}{mensage} = \char`\"{}\char`\"{}
+\item 
 int \hyperlink{class_monopoly_1_1_logic_1_1_player_a726ddcf52ccfa413b17f4e13ac876231}{deltaX} = 105
 \item 
 int \hyperlink{class_monopoly_1_1_logic_1_1_player_aff17704c13a3c1c22221d3af045c855f}{deltaY} = 81
@@ -147,6 +155,8 @@ int \hyperlink{class_monopoly_1_1_logic_1_1_player_a5d635361fee918ab33d077b68335
 \item 
 int \hyperlink{class_monopoly_1_1_logic_1_1_player_a91badb1171c698b441576b6b6a2cdbfc}{y\+Pos\+DownE} = 170
 \item 
+String \hyperlink{class_monopoly_1_1_logic_1_1_player_ae7d2dd2501bc529c3c4e0d5e8683289a}{direction} = \char`\"{}forward\char`\"{}
+\item 
 int \hyperlink{class_monopoly_1_1_logic_1_1_player_aab40d56c70ee9e5ecad051a39d4719a8}{symbol\+\_\+1}
 \end{DoxyCompactItemize}
 
@@ -166,15 +176,14 @@ Class \hyperlink{class_monopoly_1_1_logic_1_1_player}{Player}
 )}\hypertarget{class_monopoly_1_1_logic_1_1_player_ae03fd34bc6503a939b2b85f763e0ae7e}{}\label{class_monopoly_1_1_logic_1_1_player_ae03fd34bc6503a939b2b85f763e0ae7e}
 \index{Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}!Player@{Player}}
 \index{Player@{Player}!Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}}
-\subsubsection[{\texorpdfstring{Player(\+String name, Player\+Symbol piece, int balance, Board\+Box pos, int id)}{Player(String name, PlayerSymbol piece, int balance, BoardBox pos, int id)}}]{\setlength{\rightskip}{0pt plus 5cm}Monopoly.\+Logic.\+Player.\+Player (
+\subsubsection[{\texorpdfstring{Player(\+String name, Player\+Symbol piece, int balance, int id)}{Player(String name, PlayerSymbol piece, int balance, int id)}}]{\setlength{\rightskip}{0pt plus 5cm}Monopoly.\+Logic.\+Player.\+Player (
 \begin{DoxyParamCaption}
 \item[{String}]{name, }
 \item[{{\bf Player\+Symbol}}]{piece, }
 \item[{int}]{balance, }
-\item[{{\bf Board\+Box}}]{pos, }
 \item[{int}]{id}
 \end{DoxyParamCaption}
-)}\hypertarget{class_monopoly_1_1_logic_1_1_player_a9982c0f955a39716b9f2d0bcc4179203}{}\label{class_monopoly_1_1_logic_1_1_player_a9982c0f955a39716b9f2d0bcc4179203}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_player_a1ddc3d2d7ab423cff3cb395dc456eac0}{}\label{class_monopoly_1_1_logic_1_1_player_a1ddc3d2d7ab423cff3cb395dc456eac0}
 Constructor of \hyperlink{class_monopoly_1_1_logic_1_1_player}{Player}
 
 
@@ -267,6 +276,16 @@ Get player in jail boolean
 
 \begin{DoxyReturn}{Returns}
 True if player is in Jail, false if player not in jail 
+\end{DoxyReturn}
+\index{Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}!get\+Mensage@{get\+Mensage}}
+\index{get\+Mensage@{get\+Mensage}!Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}}
+\subsubsection[{\texorpdfstring{get\+Mensage()}{getMensage()}}]{\setlength{\rightskip}{0pt plus 5cm}String Monopoly.\+Logic.\+Player.\+get\+Mensage (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_player_aba3ec4dc3998f97a8766d00e649e2410}{}\label{class_monopoly_1_1_logic_1_1_player_aba3ec4dc3998f97a8766d00e649e2410}
+Method to get player log on graphic window \begin{DoxyReturn}{Returns}
+Message String 
 \end{DoxyReturn}
 \index{Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}!get\+Name@{get\+Name}}
 \index{get\+Name@{get\+Name}!Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}}
@@ -481,6 +500,18 @@ Update dice values
 {\em dices\+Value} & \\
 \hline
 \end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}!set\+Direction@{set\+Direction}}
+\index{set\+Direction@{set\+Direction}!Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}}
+\subsubsection[{\texorpdfstring{set\+Direction(\+String s)}{setDirection(String s)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Player.\+set\+Direction (
+\begin{DoxyParamCaption}
+\item[{String}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_player_a31105cb31489a5f0ed35d6a99d108451}{}\label{class_monopoly_1_1_logic_1_1_player_a31105cb31489a5f0ed35d6a99d108451}
+Method to set the direction of player (Need to be used when use a card to return X steps) 
+\begin{DoxyParams}{Parameters}
+{\em s} & Direction \\
+\hline
+\end{DoxyParams}
 \index{Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}!set\+In\+Jail@{set\+In\+Jail}}
 \index{set\+In\+Jail@{set\+In\+Jail}!Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}}
 \subsubsection[{\texorpdfstring{set\+In\+Jail(boolean in\+Jail)}{setInJail(boolean inJail)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Player.\+set\+In\+Jail (
@@ -493,6 +524,18 @@ Update player in jail boolean
 
 \begin{DoxyParams}{Parameters}
 {\em in\+Jail} & True if player goes to the jail, false if leaves the jail \\
+\hline
+\end{DoxyParams}
+\index{Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}!set\+Mensage@{set\+Mensage}}
+\index{set\+Mensage@{set\+Mensage}!Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}}
+\subsubsection[{\texorpdfstring{set\+Mensage(\+String mensage)}{setMensage(String mensage)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Player.\+set\+Mensage (
+\begin{DoxyParamCaption}
+\item[{String}]{mensage}
+\end{DoxyParamCaption}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_player_a5aa84b8f9771bb39819df1002488df5c}{}\label{class_monopoly_1_1_logic_1_1_player_a5aa84b8f9771bb39819df1002488df5c}
+Method to set player log on graphic window 
+\begin{DoxyParams}{Parameters}
+{\em mensage} & Message String \\
 \hline
 \end{DoxyParams}
 \index{Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}!set\+Nr\+Of\+Rolls@{set\+Nr\+Of\+Rolls}}
@@ -634,7 +677,7 @@ Update the cards from out of jail
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{class_monopoly_1_1_logic_1_1_player_a1bb5cf33a38b1fe7984d23b632ce48fc}{}\label{class_monopoly_1_1_logic_1_1_player_a1bb5cf33a38b1fe7984d23b632ce48fc}
-Method to update player on graphic window 
+Method to update player position on graphic window 
 
 \subsection{Member Data Documentation}
 \index{Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}!balance@{balance}}
@@ -658,12 +701,18 @@ Method to update player on graphic window
 \index{Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}!dices\+Value@{dices\+Value}}
 \index{dices\+Value@{dices\+Value}!Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}}
 \subsubsection[{\texorpdfstring{dices\+Value}{dicesValue}}]{\setlength{\rightskip}{0pt plus 5cm}int Monopoly.\+Logic.\+Player.\+dices\+Value = 0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_player_a73973f9d5106195b500c2c99c7e72abd}{}\label{class_monopoly_1_1_logic_1_1_player_a73973f9d5106195b500c2c99c7e72abd}
+\index{Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}!direction@{direction}}
+\index{direction@{direction}!Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}}
+\subsubsection[{\texorpdfstring{direction}{direction}}]{\setlength{\rightskip}{0pt plus 5cm}String Monopoly.\+Logic.\+Player.\+direction = \char`\"{}forward\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_player_ae7d2dd2501bc529c3c4e0d5e8683289a}{}\label{class_monopoly_1_1_logic_1_1_player_ae7d2dd2501bc529c3c4e0d5e8683289a}
 \index{Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}!id@{id}}
 \index{id@{id}!Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}}
 \subsubsection[{\texorpdfstring{id}{id}}]{\setlength{\rightskip}{0pt plus 5cm}int Monopoly.\+Logic.\+Player.\+id\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_player_a30de4a228019d4020511fb2f573901dd}{}\label{class_monopoly_1_1_logic_1_1_player_a30de4a228019d4020511fb2f573901dd}
 \index{Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}!in\+Jail@{in\+Jail}}
 \index{in\+Jail@{in\+Jail}!Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}}
 \subsubsection[{\texorpdfstring{in\+Jail}{inJail}}]{\setlength{\rightskip}{0pt plus 5cm}boolean Monopoly.\+Logic.\+Player.\+in\+Jail\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_player_a97afe5ab76ab1b1377a9e8243643fcb6}{}\label{class_monopoly_1_1_logic_1_1_player_a97afe5ab76ab1b1377a9e8243643fcb6}
+\index{Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}!mensage@{mensage}}
+\index{mensage@{mensage}!Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}}
+\subsubsection[{\texorpdfstring{mensage}{mensage}}]{\setlength{\rightskip}{0pt plus 5cm}String Monopoly.\+Logic.\+Player.\+mensage = \char`\"{}\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_player_ae1e9a893f8b815bc34a00c36492a8722}{}\label{class_monopoly_1_1_logic_1_1_player_ae1e9a893f8b815bc34a00c36492a8722}
 \index{Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}!name@{name}}
 \index{name@{name}!Monopoly\+::\+Logic\+::\+Player@{Monopoly\+::\+Logic\+::\+Player}}
 \subsubsection[{\texorpdfstring{name}{name}}]{\setlength{\rightskip}{0pt plus 5cm}String Monopoly.\+Logic.\+Player.\+name\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{class_monopoly_1_1_logic_1_1_player_ac9a1abcd87e522434ec657f541c69647}{}\label{class_monopoly_1_1_logic_1_1_player_ac9a1abcd87e522434ec657f541c69647}

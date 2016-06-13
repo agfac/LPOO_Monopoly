@@ -9,11 +9,7 @@ Inheritance diagram for Monopoly.\+Logic.\+Normal\+Property\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{class_monopoly_1_1_logic_1_1_normal_property_acaf1b55e111dd745464a06cab032a229}{set\+HouseN} (int n)
-\item 
-void \hyperlink{class_monopoly_1_1_logic_1_1_normal_property_ac3d5af5d9d951c615c554e3653f53f86}{set\+HotelN} (int n)
-\item 
-\hyperlink{class_monopoly_1_1_logic_1_1_normal_property_a175bcb0bb1aa6eab66ba1c8289286da6}{Normal\+Property} (int \hyperlink{class_monopoly_1_1_logic_1_1_board_box_a750c8300a134809e0eb5772b3ba92258}{pos}, String \hyperlink{class_monopoly_1_1_logic_1_1_board_box_ad5cd8d9fc191dc2df82b9fe7766210fd}{name}, int \hyperlink{class_monopoly_1_1_logic_1_1_property_ab42a31cd99e909728aa49c0184f644b8}{id\+Group}, int \hyperlink{class_monopoly_1_1_logic_1_1_property_a3e5525c94c56e900372c5a13a8fe03fb}{amount}, int \hyperlink{class_monopoly_1_1_logic_1_1_property_ae4b874ede5de05f1f5b0ab329c2c58f5}{mortgage\+Value}, int rent\+Value, int\mbox{[}$\,$\mbox{]} \hyperlink{class_monopoly_1_1_logic_1_1_normal_property_a918c6693fd0638db23698322ae3fdad3}{rent\+Values\+With\+Houses}, int \hyperlink{class_monopoly_1_1_logic_1_1_normal_property_af1d8fcccf72faa5a718594967213ba55}{rent\+Values\+With\+Hotel}, Buffered\+Image icon, Buffered\+Image \hyperlink{class_monopoly_1_1_logic_1_1_property_a1bd3d29f02147192157c57535fd0eca9}{image})
+\hyperlink{class_monopoly_1_1_logic_1_1_normal_property_a175bcb0bb1aa6eab66ba1c8289286da6}{Normal\+Property} (int \hyperlink{class_monopoly_1_1_logic_1_1_board_box_a750c8300a134809e0eb5772b3ba92258}{pos}, String \hyperlink{class_monopoly_1_1_logic_1_1_board_box_ad5cd8d9fc191dc2df82b9fe7766210fd}{name}, int \hyperlink{class_monopoly_1_1_logic_1_1_property_ab42a31cd99e909728aa49c0184f644b8}{id\+Group}, int \hyperlink{class_monopoly_1_1_logic_1_1_property_a3e5525c94c56e900372c5a13a8fe03fb}{amount}, int \hyperlink{class_monopoly_1_1_logic_1_1_property_ae4b874ede5de05f1f5b0ab329c2c58f5}{mortgage\+Value}, int rent\+Value, int\mbox{[}$\,$\mbox{]} \hyperlink{class_monopoly_1_1_logic_1_1_normal_property_a918c6693fd0638db23698322ae3fdad3}{rent\+Values\+With\+Houses}, int \hyperlink{class_monopoly_1_1_logic_1_1_normal_property_af1d8fcccf72faa5a718594967213ba55}{rent\+Values\+With\+Hotel}, Buffered\+Image icon, Buffered\+Image \hyperlink{class_monopoly_1_1_logic_1_1_board_box_a7d9f613b72c69740867388b59649d127}{image})
 \item 
 boolean \hyperlink{class_monopoly_1_1_logic_1_1_normal_property_ae0ce0c684f69d273faca595038f22fee}{can\+Build\+House} ()
 \item 
@@ -34,6 +30,8 @@ int \hyperlink{class_monopoly_1_1_logic_1_1_normal_property_a1ea1cfe8cea8ef479ea
 int \hyperlink{class_monopoly_1_1_logic_1_1_normal_property_a09771e07034d21b288f0cb8afd0e4368}{get\+House\+Cost} ()
 \item 
 int \hyperlink{class_monopoly_1_1_logic_1_1_normal_property_ac69e1342451e1a6f435c4d5b1f86be7d}{get\+Hotel\+Cost} ()
+\item 
+void \hyperlink{class_monopoly_1_1_logic_1_1_normal_property_a0dde535ebff6816c3b00a715d1c439c6}{set\+Nr\+Houses} (int \hyperlink{class_monopoly_1_1_logic_1_1_normal_property_a7e951cc0cdfc94ab74fffa59d8bd32db}{nr\+Houses})
 \item 
 int \hyperlink{class_monopoly_1_1_logic_1_1_normal_property_a9d90ab9578fe29eb12cc61ea00313e50}{get\+Value\+To\+Pay} ()
 \end{DoxyCompactItemize}
@@ -239,20 +237,13 @@ Sell a number of houses
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\index{Monopoly\+::\+Logic\+::\+Normal\+Property@{Monopoly\+::\+Logic\+::\+Normal\+Property}!set\+HotelN@{set\+HotelN}}
-\index{set\+HotelN@{set\+HotelN}!Monopoly\+::\+Logic\+::\+Normal\+Property@{Monopoly\+::\+Logic\+::\+Normal\+Property}}
-\subsubsection[{\texorpdfstring{set\+Hotel\+N(int n)}{setHotelN(int n)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Normal\+Property.\+set\+HotelN (
+\index{Monopoly\+::\+Logic\+::\+Normal\+Property@{Monopoly\+::\+Logic\+::\+Normal\+Property}!set\+Nr\+Houses@{set\+Nr\+Houses}}
+\index{set\+Nr\+Houses@{set\+Nr\+Houses}!Monopoly\+::\+Logic\+::\+Normal\+Property@{Monopoly\+::\+Logic\+::\+Normal\+Property}}
+\subsubsection[{\texorpdfstring{set\+Nr\+Houses(int nr\+Houses)}{setNrHouses(int nrHouses)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Normal\+Property.\+set\+Nr\+Houses (
 \begin{DoxyParamCaption}
-\item[{int}]{n}
+\item[{int}]{nr\+Houses}
 \end{DoxyParamCaption}
-)}\hypertarget{class_monopoly_1_1_logic_1_1_normal_property_ac3d5af5d9d951c615c554e3653f53f86}{}\label{class_monopoly_1_1_logic_1_1_normal_property_ac3d5af5d9d951c615c554e3653f53f86}
-\index{Monopoly\+::\+Logic\+::\+Normal\+Property@{Monopoly\+::\+Logic\+::\+Normal\+Property}!set\+HouseN@{set\+HouseN}}
-\index{set\+HouseN@{set\+HouseN}!Monopoly\+::\+Logic\+::\+Normal\+Property@{Monopoly\+::\+Logic\+::\+Normal\+Property}}
-\subsubsection[{\texorpdfstring{set\+House\+N(int n)}{setHouseN(int n)}}]{\setlength{\rightskip}{0pt plus 5cm}void Monopoly.\+Logic.\+Normal\+Property.\+set\+HouseN (
-\begin{DoxyParamCaption}
-\item[{int}]{n}
-\end{DoxyParamCaption}
-)}\hypertarget{class_monopoly_1_1_logic_1_1_normal_property_acaf1b55e111dd745464a06cab032a229}{}\label{class_monopoly_1_1_logic_1_1_normal_property_acaf1b55e111dd745464a06cab032a229}
+)}\hypertarget{class_monopoly_1_1_logic_1_1_normal_property_a0dde535ebff6816c3b00a715d1c439c6}{}\label{class_monopoly_1_1_logic_1_1_normal_property_a0dde535ebff6816c3b00a715d1c439c6}
 
 
 \subsection{Member Data Documentation}

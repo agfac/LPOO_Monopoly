@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['value',['value',['../class_monopoly_1_1_logic_1_1_dice.html#a2d20f27db8eb52b2ca264412dde4b566',1,'Monopoly::Logic::Dice']]],
-  ['valueposittion',['valuePosittion',['../class_monopoly_1_1_logic_1_1_player.html#a005b4707e0457444f1de5053dd9f8f70',1,'Monopoly::Logic::Player']]]
+  ['wait',['wait',['../class_monopoly_1_1_gui_1_1_images_load.html#a2aa38351567bba7feaafb3bc48bde590',1,'Monopoly::Gui::ImagesLoad']]],
+  ['waitingplayers',['WAITINGPLAYERS',['../class_monopoly_1_1_server_1_1_game_protocol.html#aaefb144ef04b6626e85327e05d61e3b5',1,'Monopoly::Server::GameProtocol']]]
 ];
