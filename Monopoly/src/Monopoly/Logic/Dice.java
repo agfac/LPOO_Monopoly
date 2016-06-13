@@ -61,6 +61,10 @@ public class Dice extends ImageLoader {
 		System.out.println("sou o dado e o meu valor é ---------> " + value);
 	}
 
+	/**
+	 * Get image of actual dice value
+	 * @return Image of dice value
+	 */
 	public BufferedImage getImage() {
 		BufferedImage aux;
 		switch (value) {

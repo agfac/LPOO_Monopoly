@@ -40,6 +40,9 @@ public class Game {
 		dice2 = new Dice();
 	}
 
+	/**
+	 * Change between players
+	 */
 	public void updateCurrentPlayer() {
 		int aux = players.indexOf(currentPlayer);
 		if (aux == players.size() - 1)
@@ -48,37 +51,71 @@ public class Game {
 			currentPlayer = players.get(aux + 1);
 	}
 
+	/**
+	 * Get the current player
+	 * @return player
+	 */
 	public Player getCurrentPlayer() {
 		return currentPlayer;
 	}
+	
+	/**
+	 * Get the time to show a chance card on graphic window
+	 * @return time to show a chance card on graphic window
+	 */
 	public int getTimeToShowChanceCard() {
 		return timeToShowChanceCard;
 	}
 
+	/**
+	 * Method to decrement time when showing a chance card
+	 */
 	public void decTimeToShowChanceCard() {
 		this.timeToShowChanceCard --;
 	}
 
+	/**
+	 * Get the time to show a community card on graphic window
+	 * @return time to show a community card on graphic window
+	 */
 	public int getTimeToShowCommunityCard() {
 		return timeToShowCommunityCard;
 	}
-
+	
+	/**
+	 * Method to decrement time when showing a community card
+	 */
 	public void decTimeToShowCommunityCard() {
-		this.timeToShowCommunityCard --;;
+		this.timeToShowCommunityCard --;
 	}
 	
+	/**
+	 * Get time when showing dices values on graphic window
+	 * @return
+	 */
 	public int getTimeToShowDice() {
 		return timeToShowDice;
 	}
 	
+	/**
+	 * Method to decrement time when showing dices
+	 */
 	public void decTimeToShowDice() {
-		this.timeToShowDice --;;
+		this.timeToShowDice --;
 	}
 	
+	/**
+	 * Get dice 1
+	 * @return Dice 1
+	 */
 	public Dice getDice1() {
 		return dice1;
 	}
 
+	/**
+	 * Get dice 2
+	 * @return Dice 2
+	 */
 	public Dice getDice2() {
 		return dice2;
 	}
@@ -92,6 +129,10 @@ public class Game {
 		return players;
 	}
 
+	/**
+	 * Method to generate randomly the 1st player to start the game.
+	 * @param players Vector of players in game
+	 */
 	public void setPlayers(Vector<Player> players) {
 		this.players = players;
 
@@ -100,10 +141,18 @@ public class Game {
 		this.currentPlayer = players.get(randomInt);
 	}
 
+	/**
+	 * Method to receive the request from server to buy property
+	 * @param buyPropertyOption Receive Yes or no as reply
+	 */
 	public void setBuyPropertyOption(String buyPropertyOption) {
 		this.buyPropertyOption = buyPropertyOption;
 	}
 
+	/**
+	 * Get the option choose on setBuyPropertyOption
+	 * @return String yes or no
+	 */
 	public String getBuyPropertyOption() {
 		return buyPropertyOption;
 	}
