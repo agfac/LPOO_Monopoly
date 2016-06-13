@@ -68,6 +68,7 @@ public class TestRandom {
 	public void testBuyProperty() {
 		int valueInitial = players.get(0).getBalance();
 		players.get(0).setPos(board.getBoardBox(1));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 		assertEquals(true, players.get(0).getPropertiesOwned().contains(board.getBoardBox(1)));
 		assertEquals(valueInitial - ((NormalProperty) board.getBoardBox(1)).getAmount(), players.get(0).getBalance());
@@ -80,6 +81,7 @@ public class TestRandom {
 	public void testBuyPropertyWithoutSufficientMoney() {
 		players.get(0).setBalance(10);
 		players.get(0).setPos(board.getBoardBox(1));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 		assertEquals(false, players.get(0).getPropertiesOwned().contains(board.getBoardBox(1)));
 	}
@@ -148,6 +150,7 @@ public class TestRandom {
 	public void testRentValues() {
 		int valuePlayer2 = players.get(1).getBalance();
 		players.get(0).setPos(board.getBoardBox(1));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 		game.optimizedPayBill(players.get(1), ((Property) board.getBoardBox(1)));
 		assertEquals(valuePlayer2 - ((NormalProperty) board.getBoardBox(1)).getValueToPay(),
@@ -163,8 +166,10 @@ public class TestRandom {
 
 		// Player 1 buy property 1
 		players.get(0).setPos(board.getBoardBox(1));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 		players.get(0).setPos(board.getBoardBox(3));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 
 		// Player 1 buy 3 houses
@@ -185,8 +190,10 @@ public class TestRandom {
 
 		// Player 1 buy property 1 and 3
 		players.get(0).setPos(board.getBoardBox(1));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 		players.get(0).setPos(board.getBoardBox(3));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 
 		// Player 1 buy 4 houses and 1 hotel
@@ -208,6 +215,7 @@ public class TestRandom {
 		// Player will only buy 1 property of this group, when to create a
 		// house, need to have all properties of this group.
 		players.get(0).setPos(board.getBoardBox(1));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 
 		game.createHouses(players.get(0), ((NormalProperty) board.getBoardBox(1)), 3);
@@ -221,6 +229,7 @@ public class TestRandom {
 	@Test
 	public void testBuildHotelWithoutPermission() {
 		players.get(0).setPos(board.getBoardBox(1));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 		
 		game.createHouses(players.get(0), ((NormalProperty) board.getBoardBox(1)), 3);
@@ -260,6 +269,7 @@ public class TestRandom {
 	public void testPlayerStayInPropertyOfSamePlayer() {
 
 		players.get(0).setPos(board.getBoardBox(1));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 
 		int value = players.get(0).getBalance();
@@ -275,6 +285,7 @@ public class TestRandom {
 	@Test
 	public void testMortgageProperty() {
 		players.get(0).setPos(board.getBoardBox(1));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 		int value = players.get(0).getBalance();
 		game.mortgage(players.get(0), ((NormalProperty) board.getBoardBox(1)));
@@ -288,6 +299,7 @@ public class TestRandom {
 	public void testValueRentOnMortagageProperty() {
 		// Player 1 buy property 1 and mortgage it.
 		players.get(0).setPos(board.getBoardBox(1));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 		game.mortgage(players.get(0), ((NormalProperty) board.getBoardBox(1)));
 
@@ -306,8 +318,10 @@ public class TestRandom {
 	@Test
 	public void testBuy2times() {
 		players.get(0).setPos(board.getBoardBox(1));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 		int value = players.get(0).getBalance();
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 		assertEquals(value, players.get(0).getBalance());
 	}
@@ -328,6 +342,7 @@ public class TestRandom {
 	@Test
 	public void testSellPropertyOwned() {
 		players.get(0).setPos(board.getBoardBox(1));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 		players.get(0).sellProperty(((NormalProperty) board.getBoardBox(1)), 50);
 		assertEquals(false, players.get(0).getPropertiesOwned().contains(board.getBoardBox(1)));
@@ -339,6 +354,7 @@ public class TestRandom {
 	@Test
 	public void testUnmortgageProperty() {
 		players.get(0).setPos(board.getBoardBox(1));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 		game.mortgage(players.get(0), ((NormalProperty) board.getBoardBox(1)));
 		assertEquals(true, ((NormalProperty) board.getBoardBox(1)).getMortgage());
@@ -354,8 +370,10 @@ public class TestRandom {
 
 		// Player 1 buy property 1 and 3. Idgroup 1
 		players.get(0).setPos(board.getBoardBox(1));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 		players.get(0).setPos(board.getBoardBox(3));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 
 		// Player 1 buy 3 houses
@@ -374,8 +392,10 @@ public class TestRandom {
 
 		// Player 1 buy property 1 and 3. Idgroup 1
 		players.get(0).setPos(board.getBoardBox(1));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 		players.get(0).setPos(board.getBoardBox(3));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 
 		// Player 1 buy 4 houses and 1 hotel
@@ -396,12 +416,16 @@ public class TestRandom {
 	@Test
 	public void testRailRoads() {
 		players.get(0).setPos(board.getBoardBox(5));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 		players.get(0).setPos(board.getBoardBox(15));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 		players.get(0).setPos(board.getBoardBox(25));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 		players.get(0).setPos(board.getBoardBox(35));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 
 		int value = players.get(1).getBalance();
@@ -415,8 +439,10 @@ public class TestRandom {
 	@Test
 	public void testServiceProperties() {
 		players.get(0).setPos(board.getBoardBox(12));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 		players.get(0).setPos(board.getBoardBox(28));
+		game.setBuyPropertyOption("yes");
 		game.buyProperty(players.get(0));
 
 		int value = players.get(1).getBalance();
