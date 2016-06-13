@@ -64,7 +64,7 @@ public class Game {
 	}
 
 	public void decTimeToShowCommunityCard() {
-		this.timeToShowCommunityCard --;;
+		this.timeToShowCommunityCard --;
 	}
 	
 	public int getTimeToShowDice() {
@@ -72,7 +72,7 @@ public class Game {
 	}
 	
 	public void decTimeToShowDice() {
-		this.timeToShowDice --;;
+		this.timeToShowDice --;
 	}
 	
 	public Dice getDice1() {
@@ -213,7 +213,7 @@ public class Game {
 		
 		// Store the value of 2 rolled dices
 		totalDiceValue = get2RollDices(dice1, dice2);
-		
+		totalDiceValue = 1;
 		player.setDicesValue(totalDiceValue);
 
 		// Update number of tries from player, if get 3 times goes to jail.
@@ -242,9 +242,10 @@ public class Game {
 			player.setPos(board.getBoardBox(atualPlayerPos));
 		}
 
-		if ((player.getPos() == board.getBoardBox(4)) || (player.getPos() == board.getBoardBox(38)))
+		if ((player.getPos() == board.getBoardBox(4)) || (player.getPos() == board.getBoardBox(38))){
+			player.setMensage("!!!WARNING!!! Valeu to pay: " + ((TaxBox) board.getBoardBox(4)).getTaxValue());
 			player.updateBalance(-((TaxBox) board.getBoardBox(4)).getTaxValue());
-
+		}
 		System.out.println("Dice value: " + (dice1.getValue() + dice2.getValue()));
 	}
 
@@ -283,6 +284,7 @@ public class Game {
 		if (sameValuesDice(dice1, dice2)) {
 			player.setInJail(false);
 			player.setNrOfRollsInJail(true); // Reset number of rolls in jail
+			player.setMensage("You got double, you can leave jail now.");
 		}
 
 		// Check if the number of rolls in jail are 3, if yes exit from jail and
@@ -291,7 +293,7 @@ public class Game {
 			player.setInJail(false);
 			player.updateBalance(-JAILVALUE);
 			player.setNrOfRollsInJail(true); // Reset number of rolls in jail
-			player.setMensage("You must pay " + JAILVALUE + " to go out of jail");
+			player.setMensage("!!!WARNING!!! You must pay " + JAILVALUE + " to go out of jail");
 		}
 
 		// If player leaves the jail, will update it for the next position from
@@ -311,14 +313,14 @@ public class Game {
 	public void checkIfPlayerHaveOutOfJailCard(Player player) {
 		if (player.getNrCardJail() != 0) {
 			player.updateCardsJail(-1);
-			player.setMensage("You use one card out of jail");
+			player.setMensage("!!!WARNING!!! You use one card out of jail");
 		} else {
 			player.setInJail(true);
 			movePlayerGUI(player, calcCellToMove(player, 10));
 			// player.muitoAldrabado();
 			player.setPos(board.getBoardBox(10));
 			player.setNrOfRolls(false); // Reset number of rolls
-			player.setMensage("You go to jail!!!");
+			player.setMensage("!!!WARNING!!! You go to jail!!!");
 		}
 	}
 
@@ -351,11 +353,14 @@ public class Game {
 		if ((boardToBuy instanceof Property)) {
 			if (!((Property) (boardToBuy)).getSold()) {
 				if (buyPropertyOption.equals("yes")) {
-					player.buyProperty(((Property) (boardToBuy)),
-							board.getMaxPropertiesPerGroup(((Property) (boardToBuy)).getIdGroup()));
+					player.setMensage("Property bought!");
+					player.buyProperty(((Property) (boardToBuy)), board.getMaxPropertiesPerGroup(((Property) (boardToBuy)).getIdGroup()));
 					buyPropertyOption = null;
+					player.setMensage("Property purchased successful!");
 				}
 			}
+			else
+				player.setMensage("!!!WARNING!!! You can't buy this property!");
 		}
 	}
 
@@ -383,7 +388,7 @@ public class Game {
 
 					player.updateBalance(-valueToPay);
 					((Property)(property)).getOwner().updateBalance(valueToPay);
-					player.setMensage("WARNING !!!! Value to pay: " + valueToPay);
+					player.setMensage("!!!WARNING!!! Value to pay: " + valueToPay);
 					
 				}
 			}
@@ -411,11 +416,19 @@ public class Game {
 	 *            to be mortgage
 	 */
 	public boolean mortgage(Player player, Property property) {
-		if (player.equals(property.getOwner()) && !property.getMortgage() && ((NormalProperty )property).getNrHotels() == 0 && ((NormalProperty )property).getNrHouses() == 0) {
-			property.setMortgage(true);
-			player.updateBalance(property.getMortgageValue());
-			return true;
+		if (player.equals(property.getOwner()) && !property.getMortgage()) {
+			if ( property instanceof NormalProperty && (((NormalProperty )property).getNrHotels() != 0 || ((NormalProperty )property).getNrHouses() != 0 )){
+				player.setMensage("!!!WARNING!!! You can't mortgage this property.");
+				return false;
+			}
+			else {
+				property.setMortgage(true);
+				player.updateBalance(property.getMortgageValue());
+				player.setMensage("Property mortgage successful!");
+				return true;
+			}
 		}
+		player.setMensage("!!!WARNING!!! You can't mortgage this property.");
 		return false;
 	}
 
@@ -431,8 +444,10 @@ public class Game {
 		if (player.equals(property.getOwner()) && property.getMortgage()) {
 			property.setMortgage(false);
 			player.updateBalance(-property.getMortgageValueBack());
+			player.setMensage("Property unmortgage successful");
 			return true;
 		}
+		player.setMensage("!!!WARNING!!! You can't unmortgage this property.");
 		return false;
 	}
 
@@ -450,9 +465,10 @@ public class Game {
 		if (player.equals(nProperty.getOwner()) && nProperty.getNrHouses() >= n) {
 			nProperty.sellHouse(n);
 			player.updateBalance(n * (nProperty.getHouseCost() / 2));
+			player.setMensage("House sold successful!");
 			return true;
 		} else
-			player.setMensage("You dont have " + n + " houses.");
+			player.setMensage("!!!WARNING!!! You don't have houses.");
 		return false;
 	}
 
@@ -471,9 +487,10 @@ public class Game {
 			nProperty.sellHotel();
 			nProperty.setNrHouses(4);
 			player.updateBalance(nProperty.getHotelCost() / 2);
+			player.setMensage("Hotel sold successful");
 			return true;
 		} else
-			player.setMensage("You dont have hotel.");
+			player.setMensage("!!!WARNING!!! You don't have hotel.");
 		return false;
 	}
 
@@ -493,9 +510,10 @@ public class Game {
 					&& nProperty.canBuildHouse()) {
 				player.updateBalance(-nProperty.getHouseCost() * n);
 				nProperty.buildHouse(n);
+				player.setMensage("House purchased successful");
 				return true;
 			} else {
-				player.setMensage("You don't have money or enter a wrong number or cant build more");
+				player.setMensage("!!!WARNING!!! You don't have money or enter a wrong number or cant build more");
 				return false;
 			}
 		}
@@ -515,9 +533,10 @@ public class Game {
 			nProperty.setNrHouses(0);
 			player.updateBalance(-nProperty.getHotelCost());
 			nProperty.buildHotel();
+			player.setMensage("Hotel purchased successful");
 			return true;
 		} else {
-			player.setMensage("You cant build Hotel or dont have enought money");
+			player.setMensage("!!!WARNING!!! You can't build Hotel or don't have enought money");
 			return false;
 		}
 	}
@@ -752,6 +771,7 @@ public class Game {
 				countHouse += ((NormalProperty) np).getNrHouses();
 			}
 		}
+		player.setMensage("!!!WARNING!!! Total value to pay: " + ((valueToPayPerHotel * countHotel) + (valueToPayPerHouse * countHouse)));
 		player.updateBalance(-((valueToPayPerHotel * countHotel) + (valueToPayPerHouse * countHouse)));
 	}
 
