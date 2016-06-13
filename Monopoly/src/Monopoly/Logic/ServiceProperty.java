@@ -36,7 +36,9 @@ public class ServiceProperty extends Property {
 	}
 
 	/**
-	 * @return
+	 * Method to return value to pay by dice value and number of properties
+	 * @param diceValue Value of dice
+	 * @return rent value to pay
 	 */
 	public int getValueToPay(int diceValue) {
 		if (owner.getPropertiesNr(((Property) this)) == 2)

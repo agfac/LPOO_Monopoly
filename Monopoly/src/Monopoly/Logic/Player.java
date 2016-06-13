@@ -93,7 +93,7 @@ public class Player {
 	}
 
 	/**
-	 * Method to update player on graphic window
+	 * Method to update player position on graphic window
 	 */
 	public void updateGUIPosition() { 
 		int x = this.getPosition().getX();
@@ -563,14 +563,26 @@ public class Player {
 		this.dicesValue = dicesValue;
 	}
 	
+	/**
+	 * Method to get player log on graphic window
+	 * @return Message String
+	 */
 	public String getMensage() {
 		return mensage;
 	}
 
+	/**
+	 * Method to set player log on graphic window
+	 * @param mensage Message String
+	 */
 	public void setMensage(String mensage) {
 		this.mensage = mensage;
 	}
 	
+	/**
+	 * Method to set the direction of player (Need to be used when use a card to return X steps)
+	 * @param s Direction
+	 */
 	public void setDirection(String s){
 		direction = s;
 	}
