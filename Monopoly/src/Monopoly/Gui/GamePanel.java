@@ -2,7 +2,9 @@ package Monopoly.Gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -61,6 +63,7 @@ public class GamePanel extends ImagesLoad implements ActionListener {
 
 	@Override
 	protected void paintComponent(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
 		super.paintComponent(g);
 		BufferedImage aux;
 		g.setColor(Color.white);
@@ -72,21 +75,34 @@ public class GamePanel extends ImagesLoad implements ActionListener {
 		
 				showPropertiesHousesAndHotels(g, p);
 
-				if (game.getCommunityOption() != null){// && game.getTimeToShowCoomunityCard()) {
-					teste(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), "community");
+				if (game.getChanceOption() != null && game.getTimeToShowChanceCard() != 0) {
+					g.drawImage(game.getBoard().getChanceCard(game.getChanceOption()).getImage(), 170, 135, 400+175, 200+158, 0, 0, game.getBoard().getChanceCard(game.getChanceOption()).getImage().getWidth(), game.getBoard().getChanceCard(game.getChanceOption()).getImage().getHeight(), null);
+					game.decTimeToShowChanceCard();
 				}
-				if (game.getCommunityOption() != null) {
-				//	teste(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), "community");
-
+				if (game.getCommunityOption() != null && game.getTimeToShowCommunityCard() != 0) {
+					g.drawImage(game.getBoard().getCommunityCard(game.getCommunityOption()).getImage(), 710, 655, 400+710, 200+655, 0, 0, game.getBoard().getCommunityCard(game.getCommunityOption()).getImage().getWidth(), game.getBoard().getCommunityCard(game.getCommunityOption()).getImage().getHeight(), null);
+					game.decTimeToShowCommunityCard();
 				}
 			}
+			
+			//Dice value
+			if (game.getDice1().getValue() != 0){
+				g.drawImage(game.getDice1().getImage(), 550, 750, 550+80, 750+80, 0, 0, game.getDice1().getImage().getWidth(), game.getDice1().getImage().getHeight(), null);
+				g.drawImage(game.getDice2().getImage(),650, 750, 650+80, 750+80, 0, 0, game.getDice2().getImage().getWidth(), game.getDice2().getImage().getHeight(), null);	
+			}
+			//Player Name
+			g2d.setColor(Color.BLACK);
+			g2d.setFont(new Font("ArialRoundedMTBold", Font.PLAIN, 35)); //Geogia
+			g2d.drawString(game.getCurrentPlayer().getName(), 600, 300);
+			
+			//Property Image
 			if (game.getCurrentPlayer().getDicesValue() != 0 && !game.getCurrentPlayer().getInJail() && game.getCurrentPlayer().getCellsToMove() != 0) {
 				aux = game.getBoard().getBoardBox(game.getCurrentPlayer().getValuePosition()).getImage();
-				g.drawImage(aux, 524, 330,524 + aux.getWidth(),330 + aux.getHeight(), 0, 0,aux.getWidth(),aux.getHeight(), null);
+				g.drawImage(aux, 524, 350, 524 + aux.getWidth(),350 + aux.getHeight(), 0, 0,aux.getWidth(),aux.getHeight(), null);
 			}
 			else if(game.getCurrentPlayer().getDicesValue() != 0  && game.getCurrentPlayer().getValuePosition() == game.getCurrentPlayer().getPos().getPos()){
 				aux = game.getBoard().getBoardBox(game.getCurrentPlayer().getValuePosition()).getImage();
-				g.drawImage(aux, 524, 330,524 + aux.getWidth(),330 + aux.getHeight(), 0, 0,aux.getWidth(),aux.getHeight(), null);
+				g.drawImage(aux, 524, 350,524 + aux.getWidth(),350 + aux.getHeight(), 0, 0,aux.getWidth(),aux.getHeight(), null);
 			}
 		}
 	}

@@ -24,6 +24,7 @@ public class Game {
 	private String buyPropertyOption = null;
 	private int timeToShowChanceCard = 0;
 	private int timeToShowCommunityCard = 0;
+	private int timeToShowDice = 0;
 	private Player currentPlayer;
 
 	/**
@@ -49,6 +50,37 @@ public class Game {
 
 	public Player getCurrentPlayer() {
 		return currentPlayer;
+	}
+	public int getTimeToShowChanceCard() {
+		return timeToShowChanceCard;
+	}
+
+	public void decTimeToShowChanceCard() {
+		this.timeToShowChanceCard --;
+	}
+
+	public int getTimeToShowCommunityCard() {
+		return timeToShowCommunityCard;
+	}
+
+	public void decTimeToShowCommunityCard() {
+		this.timeToShowCommunityCard --;;
+	}
+	
+	public int getTimeToShowDice() {
+		return timeToShowDice;
+	}
+	
+	public void decTimeToShowDice() {
+		this.timeToShowDice --;;
+	}
+	
+	public Dice getDice1() {
+		return dice1;
+	}
+
+	public Dice getDice2() {
+		return dice2;
 	}
 
 	/**
@@ -146,6 +178,7 @@ public class Game {
 		if ((player.getPos() == board.getBoardBox(7))
 				|| (player.getPos() == board.getBoardBox(22) || (player.getPos() == board.getBoardBox(36)))
 						&& chanceOption == null) {
+			timeToShowChanceCard = 20;
 			player.setMensage("CHANCE BOX");
 			gerateChance(player);
 		}
@@ -153,6 +186,7 @@ public class Game {
 		if ((player.getPos() == board.getBoardBox(2))
 				|| (player.getPos() == board.getBoardBox(17) || (player.getPos() == board.getBoardBox(33)))
 						&& communityOption == null) {
+			timeToShowCommunityCard = 20;
 			player.setMensage("COMMUNITY BOX");
 			gerateCommunity(player);
 		}
@@ -173,6 +207,8 @@ public class Game {
 		chanceOption = null;
 		communityOption = null;
 		player.setMensage("");
+		player.setDirection("forward");
+		timeToShowDice = 20;
 		int totalDiceValue, atualPlayerPos, dif;
 		
 		// Store the value of 2 rolled dices
@@ -374,11 +410,13 @@ public class Game {
 	 * @param property
 	 *            to be mortgage
 	 */
-	public void mortgage(Player player, Property property) {
-		if (player.equals(property.getOwner()) && !property.getMortgage()) {
+	public boolean mortgage(Player player, Property property) {
+		if (player.equals(property.getOwner()) && !property.getMortgage() && ((NormalProperty )property).getNrHotels() == 0 && ((NormalProperty )property).getNrHouses() == 0) {
 			property.setMortgage(true);
 			player.updateBalance(property.getMortgageValue());
+			return true;
 		}
+		return false;
 	}
 
 	/**
@@ -389,11 +427,13 @@ public class Game {
 	 * @param property
 	 *            to be 'unmortgage'
 	 */
-	public void unMortgage(Player player, Property property) {
+	public boolean unMortgage(Player player, Property property) {
 		if (player.equals(property.getOwner()) && property.getMortgage()) {
 			property.setMortgage(false);
 			player.updateBalance(-property.getMortgageValueBack());
+			return true;
 		}
+		return false;
 	}
 
 	/**
@@ -406,12 +446,14 @@ public class Game {
 	 * @param n
 	 *            number of houses to be sold
 	 */
-	public void sellHouses(Player player, NormalProperty nProperty, int n) {
+	public boolean sellHouses(Player player, NormalProperty nProperty, int n) {
 		if (player.equals(nProperty.getOwner()) && nProperty.getNrHouses() >= n) {
 			nProperty.sellHouse(n);
 			player.updateBalance(n * (nProperty.getHouseCost() / 2));
+			return true;
 		} else
 			player.setMensage("You dont have " + n + " houses.");
+		return false;
 	}
 
 	/**
@@ -424,12 +466,15 @@ public class Game {
 	 * @param n
 	 *            number of hotel to be sold
 	 */
-	public void sellHotel(Player player, NormalProperty nProperty) {
+	public boolean sellHotel(Player player, NormalProperty nProperty) {
 		if (player.equals(nProperty.getOwner()) && nProperty.getNrHotels() == 1) {
 			nProperty.sellHotel();
+			nProperty.setNrHouses(4);
 			player.updateBalance(nProperty.getHotelCost() / 2);
+			return true;
 		} else
 			player.setMensage("You dont have hotel.");
+		return false;
 	}
 
 	/**
@@ -442,16 +487,19 @@ public class Game {
 	 * @param n
 	 *            number of houses to be purchased
 	 */
-	public void createHouses(Player player, NormalProperty nProperty, int n) {
-		if (player.haveAllPropertiesGroup(nProperty)) {
+	public boolean createHouses(Player player, NormalProperty nProperty, int n) {
+		if (player.haveAllPropertiesGroup(nProperty) && !(nProperty.getMortgage()) && nProperty.getNrHotels() == 0) {
 			if ((player.getBalance() >= nProperty.getHouseCost() * n) && (n > 0 && n <= 4)
 					&& nProperty.canBuildHouse()) {
 				player.updateBalance(-nProperty.getHouseCost() * n);
 				nProperty.buildHouse(n);
+				return true;
 			} else {
 				player.setMensage("You don't have money or enter a wrong number or cant build more");
+				return false;
 			}
 		}
+		return false;
 	}
 
 	/**
@@ -462,12 +510,15 @@ public class Game {
 	 * @param nProperty
 	 *            to place the hotel
 	 */
-	public void createHotel(Player player, NormalProperty nProperty) {
-		if (nProperty.canBuildHotel() && (player.getBalance() >= nProperty.getHotelCost())) {
+	public boolean createHotel(Player player, NormalProperty nProperty) {
+		if (nProperty.canBuildHotel() && (player.getBalance() >= nProperty.getHotelCost()) && !(nProperty.getMortgage())) {
+			nProperty.setNrHouses(0);
 			player.updateBalance(-nProperty.getHotelCost());
 			nProperty.buildHotel();
+			return true;
 		} else {
 			player.setMensage("You cant build Hotel or dont have enought money");
+			return false;
 		}
 	}
 
@@ -484,23 +535,27 @@ public class Game {
 		Random r = new Random();
 		option = r.nextInt(15) + 1;
 		chanceOption = option;
+		
 		switch (option) {
 		case 1:
 			movePlayerGUI(player, calcCellToMove(player, 0));
 			player.setPos(board.getBoardBox(0));
 			player.updateBalance(200);
+			player.setMensage("CHANCE BOX: Advance to Go and collect 200$");
 			break;
 		case 2:
 			if (player.getPos().getPos() > 24)
 				player.updateBalance(200);
 			movePlayerGUI(player, calcCellToMove(player, 24));
 			player.setPos(board.getBoardBox(24));
+			player.setMensage("CHANCE BOX: Advance to Illinois Avenue");
 			break;
 		case 3:
 			if (player.getPos().getPos() > 11)
 				player.updateBalance(200);
 			movePlayerGUI(player, calcCellToMove(player, 11));
 			player.setPos(board.getBoardBox(11));
+			player.setMensage("CHANCE BOX: Advance to St. Charles Place");
 			break;
 		case 4:
 			int aux = 0;
@@ -516,6 +571,7 @@ public class Game {
 			// If have owner, player will pay 2 times the value of the rent.
 			if (((Property) (board.getBoardBox(aux))).getSold())
 				optimizedPayBill(player, ((Property) (board.getBoardBox(aux))));
+			player.setMensage("CHANCE BOX: Advance to nearest RailRoad");
 			break;
 		case 5:
 			int val = 0;
@@ -533,48 +589,59 @@ public class Game {
 				((Property) (board.getBoardBox(val))).getOwner().updateBalance(num * 10);
 				player.updateBalance(-(num * 10));
 			}
-
+		player.setMensage("CHANCE BOX: Advance to nearest Utility");
 			break;
 		case 6:
 			player.updateBalance(50);
+			player.setMensage("CHANCE BOX: Receive 50$");
 			break;
 		case 7:
 			player.updateCardsJail(1);
+			player.setMensage("CHANCE BOX: You got an out of jail card");
 			break;
 		case 8:
-			movePlayerGUI(player, calcCellToMove(player, (player.getPos().getPos() - 3)));
+			player.setDirection("back");
+//			movePlayerGUI(player, calcCellToMove(player, (player.getPos().getPos() - 3)));
+			movePlayerGUI(player, 3);
 			player.setPos(board.getBoardBox(player.getPos().getPos() - 3));
+			player.setMensage("CHANCE BOX: Go Back 3 spaces");
 			break;
 		case 9:
 			checkIfPlayerHaveOutOfJailCard(player);
+			player.setMensage("CHANCE BOX: Go to Jail");
 			break;
 		case 10:
 			payPerEachHouseAndHotels(player, 25, 100);
+			player.setMensage("CHANCE BOX: Pay 25$ for each house and 100$ for each hotel");
 			break;
 		case 11:
 			player.updateBalance(-15);
+			player.setMensage("CHANCE BOX: Pay 15$");
 			break;
 		case 12:
 			if (player.getPos().getPos() > 5)
 				player.updateBalance(200);
 			movePlayerGUI(player, calcCellToMove(player, 5));
 			player.setPos(board.getBoardBox(5));
+			player.setMensage("CHANCE BOX: Go to Reading RailRoad");
 			break;
 		case 13:
 			movePlayerGUI(player, calcCellToMove(player, 39));
 			player.setPos(board.getBoardBox(39));
+			player.setMensage("CHANCE BOX: Go to BoardWalk");
 			break;
 		case 14:
 			player.updateBalance(150);
+			player.setMensage("CHANCE BOX: Receive 150$");
 			break;
 		case 15:
 			for (Player p : this.players) {
 				p.updateBalance(50);
 				player.updateBalance(-50);
 			}
+			player.setMensage("CHANCE BOX: Pay each player 50$");
 			break;
 		}
-		System.out.println("CHANCE CARD Nº -> " + option);
 	}
 
 	/**
@@ -597,57 +664,74 @@ public class Game {
 			movePlayerGUI(player, calcCellToMove(player, 0));
 			player.setPos(board.getBoardBox(0));
 			player.updateBalance(200);
+			player.setMensage("COMMUNITY CHEST: Advance to Go and collect 200$");
 			break;
 		case 2:
 			player.updateBalance(200);
+			player.setMensage("COMMUNITY CHEST: Receive 200$");
 			break;
 		case 3:
 			player.updateBalance(-50);
+			player.setMensage("COMMUNITY CHEST: Pay 50$");
 			break;
 		case 4:
 			player.updateBalance(50);
+			player.setMensage("COMMUNITY CHEST: Receive 50$");
 			break;
 		case 5:
 			player.updateCardsJail(1);
+
+			player.setMensage("COMMUNITY CHEST: You got an out of jail card");
 			break;
 		case 6:
 			checkIfPlayerHaveOutOfJailCard(player);
+
+			player.setMensage("COMMUNITY CHEST: Go to jail");
 			break;
 		case 7:
 			player.updateBalance(20);
+			player.setMensage("COMMUNITY CHEST: Receive 20$");
 			break;
 		case 8:
 			for (Player p : this.players) {
 				p.updateBalance(-10);
 				player.updateBalance(10);
 			}
+			player.setMensage("COMMUNITY CHEST: Receive 10$ from each player");
 			break;
 		case 9:
 			player.updateBalance(100);
+			player.setMensage("COMMUNITY CHEST: Receive 100$");
 			break;
 		case 10:
 			player.updateBalance(-100);
+			player.setMensage("COMMUNITY CHEST: Pay 100$");
 			break;
 		case 11:
 			player.updateBalance(-50);
+			player.setMensage("COMMUNITY CHEST: Pay 50$");
 			break;
 		case 12:
 			player.updateBalance(25);
+			player.setMensage("COMMUNITY CHEST: Receive 25$");
 			break;
 		case 13:
 			payPerEachHouseAndHotels(player, 40, 115);
+			player.setMensage("COMMUNITY CHEST: Pay 25$ for each house and 100$ for each hotel");
 			break;
 		case 14:
 			player.updateBalance(10);
+			player.setMensage("COMMUNITY CHEST: Receive 10$");
 			break;
 		case 15:
 			player.updateBalance(100);
+			player.setMensage("COMMUNITY CHEST: Receive 100$");
 			break;
 		case 16:
 			player.updateBalance(100);
+			player.setMensage("COMMUNITY CHEST: Receive 100$");
 			break;
 		}
-		System.out.println("COMMUNITY CHEST CARD Nº -> " + option);
 	}
 
 	/**
