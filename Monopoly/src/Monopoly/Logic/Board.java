@@ -298,7 +298,7 @@ public class Board {
 		groupProperty.add(new GroupProperty(6, "Red", 3));
 		groupProperty.add(new GroupProperty(7, "Yellow", 3));
 		groupProperty.add(new GroupProperty(8, "Green", 3));
-		groupProperty.add(new GroupProperty(9, "Blue", 3));
+		groupProperty.add(new GroupProperty(9, "Blue", 2));
 		groupProperty.add(new GroupProperty(10, "Company", 2));
 	}
 
